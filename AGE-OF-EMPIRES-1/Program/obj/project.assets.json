@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chris\\RiderProjects\\AGE-OF-EMPIRES-1\\Program\\Program.csproj",
+      "projectUniqueName": "C:\\Users\\chris\\Desktop\\Project-Age-Of-Empires\\Age-Of-Empires-Project\\AGE-OF-EMPIRES-1\\Program\\Program.csproj",
       "projectName": "Program",
-      "projectPath": "C:\\Users\\chris\\RiderProjects\\AGE-OF-EMPIRES-1\\Program\\Program.csproj",
+      "projectPath": "C:\\Users\\chris\\Desktop\\Project-Age-Of-Empires\\Age-Of-Empires-Project\\AGE-OF-EMPIRES-1\\Program\\Program.csproj",
       "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chris\\RiderProjects\\AGE-OF-EMPIRES-1\\Program\\obj\\",
+      "outputPath": "C:\\Users\\chris\\Desktop\\Project-Age-Of-Empires\\Age-Of-Empires-Project\\AGE-OF-EMPIRES-1\\Program\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
