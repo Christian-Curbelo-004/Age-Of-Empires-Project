@@ -1,11 +1,11 @@
-﻿using CreateBuildings;
+using CreateBuildings;
 using System;
 
-namespace HomeBuilding
+namespace ChivarlyCenter
 {
-    public class HomeBuilding : Buildings
+    public class ChivarlyCenter : Buildings
     {
-        public HomeBuilding(int endurence, int constructionspeed)
+        public ChivarlyCenter(int endurence, int constructionspeed)
             : base(endurence, constructionspeed)
         {
         }
@@ -13,9 +13,9 @@ namespace HomeBuilding
         {
             Console.WriteLine($"Creando Chivarly Center con {resourceValue} recursos");
         }
-        public void AddCapacity()
+        public void CreateChivarlyCenter()
         {
-            Console.WriteLine("La casa fue creada");
+            Console.WriteLine("Chivarly Center creado!");
         }
     }
 }
