@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary1;
 
-public class Villagers : IPersonaje
+public class Villagers : ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
@@ -11,7 +11,7 @@ public class Villagers : IPersonaje
         AttackValue = attackValue;
         }
 
-    public void Attack(IPersonaje target)
+    public void Attack(ICharacter target)
     {
         Console.WriteLine("El aldeano ataco al enemigo");
         target.RecieveAttack(AttackValue);
