@@ -4,6 +4,7 @@ namespace CreateBuildings
 {
     public abstract class Buildings
     {
+        public string Name { get; set; }
         public int Endurence { get; set; }
         public int ConstructionSpeed { get; set; }
 
