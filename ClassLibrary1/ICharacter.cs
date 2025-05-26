@@ -1,11 +1,11 @@
 ﻿namespace ClassLibrary1;
 
-public interface IPersonaje
+public interface ICharacter
 {
      int Life { get; set; }
      int AttackValue { get; set; }
      
-     void Attack(IPersonaje target);
+     void Attack(ICharacter target);
      void RecieveAttack(int damage);
 }
     

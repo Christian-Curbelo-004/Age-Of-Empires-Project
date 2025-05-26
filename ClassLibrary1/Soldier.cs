@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary1;
 
-public class Soldier : IPersonaje
+public class Soldier : ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
@@ -14,7 +14,7 @@ public class Soldier : IPersonaje
         DefenseValue = defenseValue;
     }
 
-    public void Attack(IPersonaje target)
+    public void Attack(ICharacter target)
     {
         Console.WriteLine("El soldado ataco al enemigo");
         target.RecieveAttack(AttackValue);
