@@ -11,11 +11,11 @@ namespace HomeBuilding
         }
         public override void Build(int resourceValue)
         {
-            Console.WriteLine($"Creando Chivarly Center con {resourceValue} recursos");
+            Console.WriteLine($"Creando Chivarly Center con {resourceValue} recursos"); // que retorne un str
         }
         public void AddCapacity()
         {
-            Console.WriteLine("La casa fue creada");
+            Console.WriteLine("La casa fue creada"); // que retorne un str
         }
     }
 }

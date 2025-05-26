@@ -12,11 +12,11 @@ namespace GoldDepositBuild
         }
         public override void Build(int resourceValue)
         {
-            Console.WriteLine($"Creando el deposito de oro fue creado con {resourceValue} recursos");
+            Console.WriteLine($"Creando el deposito de oro fue creado con {resourceValue} recursos"); // que retorne un str
         }
         public void SaveRecourses(int Gold) // pasar por parametro gold (arreglar)
         {
-            Console.WriteLine("El oro fue guardado en el deposito");
+            Console.WriteLine("El oro fue guardado en el deposito"); // que retorne un str
         }
     }      
     
