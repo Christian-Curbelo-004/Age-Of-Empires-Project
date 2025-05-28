@@ -14,19 +14,21 @@ public class Soldier : ICharacter
         DefenseValue = defenseValue;
     }
 
-    public void Attack(ICharacter target)
+    public int Attack(ICharacter target) // cambio el void que habia, por un int y en vez de consoloe pongo return, ya que es una clase y solo necesitamos retornar el valor
     {
-        Console.WriteLine("El soldado ataco al enemigo");
-        target.RecieveAttack(AttackValue);
+        //Console.WriteLine("El soldado ataco al enemigo");
+        int daño = target.RecieveAttack(AttackValue);
+        return daño;
     }
 
-    public void RecieveAttack(int damage) // caso de ejemplo para probar 
+    public int RecieveAttack(int damage) // cambio el void que habia, por un int y en vez de console pongo return, ya que es una clase y solo necesitamos retornar el valor
     {
         int damageTaken = damage - DefenseValue;
         if (damageTaken < 0) damageTaken = 0;
 
         Life -= damageTaken;
-        Console.WriteLine($"El soldado recibió {damageTaken} de daño. Vida restante: {Life}");
+        return Life;
+        //Console.WriteLine($"El soldado recibió {damageTaken} de daño. Vida restante: {Life}");
     }
 }
 

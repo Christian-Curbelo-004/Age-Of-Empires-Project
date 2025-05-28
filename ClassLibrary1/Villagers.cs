@@ -13,26 +13,32 @@ public class Villagers : ICharacter
         {
         Life = life;
         AttackValue = attackValue;
-        
         }
 
-    public void Attack(ICharacter target)
+    public int Attack(ICharacter target)  //cambie el void que devolvia por un int, ya que nos interesa unicamente el valor, el console.writeline va en el program
     {
-        Console.WriteLine("El aldeano ataco al enemigo");
-        target.RecieveAttack(AttackValue);
+        //Console.WriteLine("El aldeano ataco al enemigo");
+        int daño_recibido = target.RecieveAttack(AttackValue);
+
+        return daño_recibido;
     }
 
-    public void RecieveAttack(int damage)
+    public int RecieveAttack(int damage)
     {
         Life -= damage;
-        Console.WriteLine($"El aldeano recibio {damage} de daño");
+        return Life;
+        //Console.WriteLine($"El aldeano recibio {damage} de daño");
     }
 
-    public void Build(Buildings building)
+    public int Build(Buildings building)
     {
-        Console.WriteLine($"El aldeano creó {building.Name}");
-        Console.WriteLine($"El aldeano tardó {building.ConstructionSpeed}");
-        Console.WriteLine($"El aldeano costó {building.Endurence}");
-        
+        //return building.Name;
+        return building.ConstructionSpeed;
+        return building.Endurence;
+
+        //Console.WriteLine($"El aldeano creó {building.Name}");
+        //Console.WriteLine($"El aldeano tardó {building.ConstructionSpeed}");
+        //Console.WriteLine($"El aldeano costó {building.Endurence}");
+
     }
 }
