@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CreateCivilization
+﻿namespace ClassLibrary1
 {
     public abstract class Civilization
     {
-        public List<Villagers> Villagers { get; set; }
-        public List<Soldier> Soldiers { get; set; }
-        public List<ICharacter> Units { get; set; }
+        public List<Villagers> Villagers { get  ; set; }
+        public List<Soldier> Soldiers { get ; set; }
+        public List<ICharacter> Units { get ; set; }
         public Civilization()
         {
             Villagers = new List<Villagers>();
@@ -15,7 +12,7 @@ namespace CreateCivilization
             Units = new List<ICharacter>();
         }
         public abstract ICharacter PickUnit(string unitName);
-        public abstract void EspecificBuff(ICharacter unit);
+        public abstract void SpecificBuff(ICharacter unit);
         public abstract void InitResource();
      }
 }
