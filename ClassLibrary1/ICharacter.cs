@@ -5,7 +5,7 @@ public interface ICharacter
      int Life { get; set; }
      int AttackValue { get; set; }
      
-     int Attack(ICharacter target);
-     int RecieveAttack(int damage);
+     int Attack(ICharacter target); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
+     int RecieveAttack(int damage); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
 }
     
