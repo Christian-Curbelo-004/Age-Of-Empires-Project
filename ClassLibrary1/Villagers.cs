@@ -29,16 +29,5 @@ public class Villagers : ICharacter
         return Life;
         //Console.WriteLine($"El aldeano recibio {damage} de daño");
     }
-
-    public int Build(Buildings building)
-    {
-        //return building.Name;
-        return building.ConstructionSpeed;
-        return building.Endurence;
-
-        //Console.WriteLine($"El aldeano creó {building.Name}");
-        //Console.WriteLine($"El aldeano tardó {building.ConstructionSpeed}");
-        //Console.WriteLine($"El aldeano costó {building.Endurence}");
-
-    }
+    
 }
