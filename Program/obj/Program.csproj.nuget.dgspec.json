@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj": {}
+    "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj": {}
   },
   "projects": {
-    "C:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj": {
+    "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj",
+        "projectUniqueName": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj",
         "projectName": "Program",
-        "projectPath": "C:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj",
+        "projectPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj",
         "packagesPath": "C:\\Users\\Estudiante UCU\\.nuget\\packages\\",
-        "outputPath": "C:\\repos\\Age-Of-Empires-Project\\Program\\obj\\",
+        "outputPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\NuGet\\NuGet.Config"
