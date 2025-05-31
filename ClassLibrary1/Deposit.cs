@@ -17,10 +17,5 @@ namespace DepositBuilding
         {
             Console.WriteLine($"Creando el deposito con {resourceValue} recursos");
         }
-        public void SaveRecourses()
-        {
-            Console.WriteLine("Recursos guardados");
-        }
-
     }
 }
