@@ -9,13 +9,9 @@ namespace ArcherCenter
             : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public override void Build(int resourceValue)
+        public int resourceBuildAC(int resourceValue)
         {
-            Console.WriteLine($"Creando Archer center con {resourceValue} recursos");
-        }
-        public void CreateArcherCenter()
-        {
-            Console.WriteLine("Archer Center creado!");
+            return resourceValue;
         }
     }
 }
