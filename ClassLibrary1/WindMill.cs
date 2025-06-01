@@ -5,18 +5,15 @@ namespace WindMillDepositBuild
 {
     public class WindMill : Deposit
     {
-        public WindMill(int endurence, int constructionspeed, int capacity)
-            : base(endurence, constructionspeed, capacity)
+        public WindMill(int endurence, int constructionspeed, int capacity, string name, int resourcevalue)
+            : base(endurence, constructionspeed, capacity, name, resourcevalue)
         {
         }
-        public override void Build(int resourceValue)
+        public int resourceBuildWM(int resourceValue)
         {
-            Console.WriteLine($"Creando el deposito de comida fue creado con {resourceValue} recursos");
+            return resourceValue;
         }
-        public void SaveRecourses(int food) // pasar por parametro food (arreglar)
-        {
-            Console.WriteLine("El food fue guardado en el deposito");
-        }
+       
     }      
     
 }

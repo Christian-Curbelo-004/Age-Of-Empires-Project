@@ -5,17 +5,14 @@ namespace HomeBuilding
 {
     public class HomeBuilding : Buildings
     {
-        public HomeBuilding(int endurence, int constructionspeed)
-            : base(endurence, constructionspeed)
+        public HomeBuilding(int endurence, int constructionspeed, string name, int resourcevalue, int capacity)
+            : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public override void Build(int resourceValue)
+        public int resourceBuildHome(int resourceValue)
         {
-            Console.WriteLine($"Creando Chivarly Center con {resourceValue} recursos"); // que retorne un str
+            return resourceValue;
         }
-        public void AddCapacity()
-        {
-            Console.WriteLine("La casa fue creada"); // que retorne un str
-        }
+        
     }
 }

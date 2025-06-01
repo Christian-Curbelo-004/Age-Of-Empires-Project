@@ -11,8 +11,7 @@
             Soldiers = new List<Soldier>();
             Units = new List<ICharacter>();
         }
-        public abstract ICharacter PickUnit(string unitName);
-        public abstract void SpecificBuff(ICharacter unit);
-        public abstract void InitResource();
+        //public abstract ICharacter PickUnit(string unitName);
+        
      }
 }

@@ -5,17 +5,14 @@ namespace ChivarlyCenter
 {
     public class ChivarlyCenter : Buildings
     {
-        public ChivarlyCenter(int endurence, int constructionspeed)
-            : base(endurence, constructionspeed)
+        public ChivarlyCenter(int endurence, int constructionspeed, string name, int resourcevalue, int capacity )
+            : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public override void Build(int resourceValue)
+
+        public int resourceBuildChC(int resourceValue)
         {
-            Console.WriteLine($"Creando Chivarly Center con {resourceValue} recursos");
-        }
-        public void CreateChivarlyCenter()
-        {
-            Console.WriteLine("Chivarly Center creado!");
+            return resourceValue;
         }
     }
 }

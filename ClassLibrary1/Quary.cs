@@ -10,10 +10,5 @@
             SpeedFarm = speedFarm;
             ValueFarm = valueFarm;
         }
-
-        public void GetResources()
-        {
-            Console.WriteLine("SpeedFarm: " + SpeedFarm); // Ejemplo
-        }
     }
 }

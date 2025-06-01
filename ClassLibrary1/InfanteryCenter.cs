@@ -5,17 +5,14 @@ namespace InfanteryCenter
 {
     public class InfanteryCenter : Buildings
     {
-        public InfanteryCenter(int endurence, int constructionspeed)
-            : base(endurence, constructionspeed)
+        public InfanteryCenter(int endurence, int constructionspeed, string name, int resourcevalue, int capacity)
+            : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public override void Build(int resourceValue)
+        public int resourceBuildInf(int resourceValue)
         {
-            Console.WriteLine($"Creando Infantery center con {resourceValue} recursos");
+            return resourceValue;
         }
-        public void CreateInfanteryCenter()
-        {
-            Console.WriteLine("Infantery Center creado!");
-        }
+        
     }
 }

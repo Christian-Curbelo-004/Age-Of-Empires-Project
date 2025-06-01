@@ -3,19 +3,16 @@ using CreateBuildings;
 
 namespace CivicCenter
 {
-    public class CivicCenter : Buildings // hereda de buildings los atributos
+    public class CivicCenter : Buildings 
     {
-        public CivicCenter(int endurence, int constructionspeed)
-            : base(endurence, constructionspeed)
+        public CivicCenter(int endurence, int constructionspeed,string name, int resourcevalue, int capacity)
+            : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public override void Build(int resourceValue)// reescribimos la clase abstracta
+        public int resourceBuildCC(int resourceValue)
         {
-            Console.WriteLine($"Creando CivicCenter con {resourceValue} recursos");
+            return resourceValue;
         }
-        public void CreateVillagers() // metodo
-        {
-            Console.WriteLine("Aldeanos creados!");
-        }
+        
     }
 }
