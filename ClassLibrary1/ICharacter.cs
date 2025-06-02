@@ -2,7 +2,7 @@
 
 public interface ICharacter
 {
-     int Life { get; set; }
+    public  int Life { get; set; }
      int AttackValue { get; set; }
      
      int Attack(ICharacter target); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
