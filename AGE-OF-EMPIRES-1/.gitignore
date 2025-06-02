@@ -1,0 +1,56 @@
+.idea/
+*.sln.iml
+
+# Build results
+bin/
+obj/
+
+# Rider-specific
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nuget.info
+
+# VS Code (si abrís el proyecto también desde VS Code)
+.vscode/
+
+# JetBrains Rider project model
+**/rider.project.model.*.info
+
+# Auto-generated cache
+*.cache
+
+# Log files
+*.log
+
+# Coverage & reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Backup files
+*~
+
+# Other IDE settings
+.idea/
+*.iml
+
+# NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotCover
+.idea/.idea.*
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Ignore Test Results
+TestResults/
