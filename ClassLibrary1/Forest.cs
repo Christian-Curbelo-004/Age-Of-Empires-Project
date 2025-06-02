@@ -14,7 +14,7 @@ namespace QuaryBiome
 
         public void GetResources(int amount)
         {
-            Wood = amount; // Asignar el valor recibido
+            Wood = amount; 
             Console.WriteLine(SpeedFarm);
             Console.WriteLine(ValueFarm);
             Console.WriteLine($"Se recolectó {Wood} de madera");
@@ -32,7 +32,7 @@ namespace QuaryBiome
 
         public void GetResources(int amount)
         {
-            Gold = amount; // Asignar el valor recibido
+            Gold = amount;
             Console.WriteLine(SpeedFarm);
             Console.WriteLine(ValueFarm);
             Console.WriteLine($"Se recolectó {Gold} de oro");
