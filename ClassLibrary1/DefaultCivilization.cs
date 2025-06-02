@@ -221,6 +221,6 @@ public class Viking : Civilization
 }
 
 
-// clase vikingos
+
 
 
