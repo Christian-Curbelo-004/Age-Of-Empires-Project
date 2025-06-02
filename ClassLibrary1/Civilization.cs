@@ -12,6 +12,8 @@
             Units = new List<ICharacter>();
         }
         //public abstract ICharacter PickUnit(string unitName);
-        
-     }
+        public abstract ICharacter PickUnit(string unitName);
+
+
+    }
 }
