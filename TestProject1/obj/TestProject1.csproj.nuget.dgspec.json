@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj": {}
+    "C:\\Users\\joaqu\\OneDrive\\Desktop\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj": {
+    "C:\\Users\\joaqu\\OneDrive\\Desktop\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+        "projectUniqueName": "C:\\Users\\joaqu\\OneDrive\\Desktop\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
         "projectName": "TestProject1",
-        "projectPath": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
-        "packagesPath": "C:\\Users\\Christian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\TestProject1\\obj\\",
+        "projectPath": "C:\\Users\\joaqu\\OneDrive\\Desktop\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+        "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joaqu\\OneDrive\\Desktop\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Christian\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\joaqu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
