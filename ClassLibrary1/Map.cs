@@ -1,4 +1,15 @@
 ﻿using System;
-// using random (para generar cosas aleatorias)
-// establecer medidas (100 x 100)
-// hereda todas las clases (expert)
+namespace ClassLibrary1
+{
+    public class Map
+    {
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
+        public Map()
+        {
+            Width = 100;
+            Height = 100;
+        }
+    }
+}
