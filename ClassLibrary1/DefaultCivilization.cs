@@ -215,8 +215,6 @@ public class Viking : Civilization
             DeffenseValue -= damage;
             return DeffenseValue;
         }
-
-
     }
 }
 
