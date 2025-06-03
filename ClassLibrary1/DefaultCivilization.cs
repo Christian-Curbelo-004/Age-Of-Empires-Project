@@ -113,6 +113,11 @@ public class Templaries : Civilization
 
         }
 
+        public int Deffense(int damage)
+        {
+            DeffenseValue -= damage;
+            return DeffenseValue;
+        }
         public int Heal(ICharacter ally)
         {
             ally.Life = Math.Min(ally.Life + HealValue, 100);
@@ -144,7 +149,9 @@ public class Templaries : Civilization
             DeffenseValue -= damage;
             return DeffenseValue;
         }
+        
     } 
+        
     
 }
 
