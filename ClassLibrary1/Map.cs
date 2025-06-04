@@ -6,7 +6,7 @@ public class Map
 {
     private bool[,] map;
     public int MinDimension = 0;
-    public int MaxDimension = 10;
+    public int MaxDimension = 100;
 
     public int height
     {
