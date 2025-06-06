@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Estudiante UCU\\.nuget\\packages\\": {}
+    "C:\\Users\\Christian\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
+      "projectUniqueName": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
       "projectName": "ClassLibrary1",
-      "projectPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
-      "packagesPath": "C:\\Users\\Estudiante UCU\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\ClassLibrary1\\obj\\",
+      "projectPath": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
+      "packagesPath": "C:\\Users\\Christian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Christian\\Desktop\\Age-Of-Empires-Project\\Age-Of-Empires-Project\\ClassLibrary1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Christian\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\Estudiante UCU\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
