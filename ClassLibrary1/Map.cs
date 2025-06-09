@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 namespace ClassLibrary1;
 
-
-
 public class cell
 {
     public int PosX { get; set;}
@@ -34,7 +32,7 @@ public abstract class Map
             {
                 for (int x = 0; x < Math.Min(height, map.GetLength(dimension: 1)); x++)
                 {
-                    this.map[i, x] = new cell(i,x);
+                    this.map[x,i] = new cell(x,i);
                 }
             }
         }
