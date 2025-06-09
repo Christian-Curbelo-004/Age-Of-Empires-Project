@@ -10,7 +10,7 @@ namespace ChivarlyCenter
         {
         }
 
-        public int resourceBuildChC(int resourceValue)
+        public int ResourceBuildChC(int resourceValue)
         {
             return resourceValue;
         }

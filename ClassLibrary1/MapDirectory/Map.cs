@@ -2,22 +2,11 @@
 using System.Collections.Generic;
 namespace ClassLibrary1;
 
-public class cell
-{
-    public int PosX { get; set;}
-    public int PosY { get; set;}
-
-    public cell(int x, int y)
-    {
-        PosX = x;
-        PosY = y;
-    }
-}
-public abstract class Map
+public class Map
 {
     private int _height;
     private int _length;
-    public cell[,] map;
+    public Cell[,] map;
     
     private const int MinDimension = 0;
     private const int MaxDimension = 100;
@@ -25,14 +14,14 @@ public abstract class Map
     {
         _height= Math.Max(MinDimension, Math.Min(MaxDimension, height));
         _length= Math.Max(MinDimension, Math.Min(MaxDimension, length));
-        this.map = new cell[length, height];
+        this.map = new Cell[length, height];
         if (map != null )
         {
             for (int i = 0; i < Math.Min(length, map.GetLength(dimension: 0)); i++)
             {
                 for (int x = 0; x < Math.Min(height, map.GetLength(dimension: 1)); x++)
                 {
-                    this.map[x,i] = new cell(x,i);
+                    this.map[x,i] = new Cell(x,i);
                 }
             }
         }

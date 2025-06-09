@@ -9,7 +9,7 @@ namespace WindMillDepositBuild
             : base(endurence, constructionspeed, capacity, name, resourcevalue)
         {
         }
-        public int resourceBuildWM(int resourceValue)
+        public int ResourceBuildWM(int resourceValue)
         {
             return resourceValue;
         }

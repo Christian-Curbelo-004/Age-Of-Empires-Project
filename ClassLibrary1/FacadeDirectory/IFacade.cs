@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary1;
 
-public interface IFachada       
+public interface IFacade      
 {
     void GenerateMap(PlayerOne playerOne);
     void GenerateQuary(PlayerOne playerOne);
