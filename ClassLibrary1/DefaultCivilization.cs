@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary1;
 
-//public class DefaultCivilization : Civilization
+
 public class Roman : Civilization
 {
     public Roman()
