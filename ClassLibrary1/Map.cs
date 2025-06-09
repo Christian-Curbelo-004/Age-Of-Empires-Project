@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 namespace ClassLibrary1;
 
-public class Map
+
+
+public class cell
 {
-    private bool[,] map;
-    public int MinDimension = 0;
-    public int MaxDimension = 100;
+    public int PosX { get; set;}
+    public int PosY { get; set;}
 
-    public int height
+    public cell(int x, int y)
     {
-        get;
-        private set;
+        PosX = x;
+        PosY = y;
     }
+}
+public abstract class Map
+{
+    private int _height;
+    private int _length;
+    public cell[,] map;
     
-
-    public int width
+    private const int MinDimension = 0;
+    private const int MaxDimension = 100;
+    public Map(int height, int length)
     {
-        get;
-        private set;
-    }
-    public Map(int height, int width, bool [,] map = null)
-    {
-        this.height = Math.Max(MinDimension, Math.Min(MaxDimension, height));
-        this.width = Math.Max(MinDimension, Math.Min(MaxDimension, width));
-        this.map = new bool[width, height];
+        _height= Math.Max(MinDimension, Math.Min(MaxDimension, height));
+        _length= Math.Max(MinDimension, Math.Min(MaxDimension, length));
+        this.map = new cell[length, height];
         if (map != null )
         {
-            for (int i = 0; i < Math.Min(width, map.GetLength(dimension: 0)); i++)
+            for (int i = 0; i < Math.Min(length, map.GetLength(dimension: 0)); i++)
             {
                 for (int x = 0; x < Math.Min(height, map.GetLength(dimension: 1)); x++)
                 {
-                    this.map[i, x] = map[i, x];
+                    this.map[i, x] = new cell(i,x);
                 }
             }
         }
