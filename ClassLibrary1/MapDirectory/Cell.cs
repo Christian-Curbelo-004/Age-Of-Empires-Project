@@ -11,3 +11,12 @@ public class Cell
         PosY = y;
     }
 }
+public class EvaluateCell
+{
+    
+}
+
+public class PrintCell
+{
+    
+}

@@ -13,6 +13,5 @@ namespace CivicCenter
         {
             return resourceValue;
         }
-        
     }
 }

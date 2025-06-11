@@ -9,6 +9,7 @@ namespace CreateBuildings
         public int ConstructionSpeed { get; set; }
         public int ResourceValue { get; set; }
         public int Capacity { get; set; }
+        public int ValueCell { get; set; }
         
     
         
@@ -19,6 +20,7 @@ namespace CreateBuildings
             Name = name;
             ResourceValue = resourceValue;
             Capacity = capacity;
+            ValueCell = 1;
         }
         
     }
