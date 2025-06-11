@@ -27,3 +27,8 @@ public class Map
         }
     }
 }
+
+public class ShowMap
+{
+    
+}
