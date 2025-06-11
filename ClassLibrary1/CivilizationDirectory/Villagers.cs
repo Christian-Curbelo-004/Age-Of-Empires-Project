@@ -8,11 +8,12 @@ public class Villagers : ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
-    
+    public int ValueCell { get; set; }
     public Villagers(int life, int attackValue, bool building)
         {
         Life = life;
         AttackValue = attackValue;
+        ValueCell = 0;
         }
 
     public int Attack(ICharacter target)  //cambie el void que devolvia por un int, ya que nos interesa unicamente el valor, el console.writeline va en el program
