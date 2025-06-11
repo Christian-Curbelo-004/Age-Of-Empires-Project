@@ -1,5 +1,7 @@
-﻿/AGE-OF-EMPIRES-1.sln
-.idea/
+# Solución específica (si no querés versionarla)
+# /AGE-OF-EMPIRES-1.sln
+
+# Archivos de solución/IDE (si no se usan en colaboración)
 *.sln.iml
 
 # Build results
@@ -12,12 +14,10 @@ obj/
 *.userosscache
 *.sln.docstates
 *.nuget.info
-
-# VS Code (si abrís el proyecto también desde VS Code)
-.vscode/
-
-# JetBrains Rider project model
 **/rider.project.model.*.info
+
+# VS Code settings
+.vscode/
 
 # Auto-generated cache
 *.cache
@@ -33,7 +33,7 @@ coverage/
 # Backup files
 *~
 
-# Other IDE settings
+# IDE settings (JetBrains, etc.)
 .idea/
 *.iml
 
@@ -46,12 +46,9 @@ project.fragment.lock.json
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
-# DotCover
-.idea/.idea.*
-
-# Resharper
+# ReSharper
 _ReSharper*/
 *.DotSettings.user
 
-# Ignore Test Results
+# Test Results
 TestResults/
