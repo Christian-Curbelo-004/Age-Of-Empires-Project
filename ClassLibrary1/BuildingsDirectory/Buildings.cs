@@ -9,9 +9,6 @@ namespace CreateBuildings
         public int ConstructionSpeed { get; set; }
         public int ResourceValue { get; set; }
         public int Capacity { get; set; }
-        public int ValueCell { get; set; }
-        
-    
         
         public Buildings(int endurence, int constructionspeed, string name, int resourceValue, int capacity)
         {
@@ -20,7 +17,6 @@ namespace CreateBuildings
             Name = name;
             ResourceValue = resourceValue;
             Capacity = capacity;
-            ValueCell = 1;
         }
         
     }
