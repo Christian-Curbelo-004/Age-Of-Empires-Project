@@ -1,4 +1,7 @@
-﻿namespace TestProject1;
+﻿using NUnit.Framework;
+
+
+namespace TestProject1;
 
 public class Tests
 {

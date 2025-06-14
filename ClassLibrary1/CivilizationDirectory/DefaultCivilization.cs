@@ -1,4 +1,5 @@
-﻿namespace ClassLibrary1;
+﻿using System;
+namespace ClassLibrary1;
 
 
 public class Roman : Civilization
@@ -194,6 +195,7 @@ public class Viking : Civilization
         {
             DeffenseValue -= damage;
             return DeffenseValue;
+            
         }
     }
 
@@ -223,8 +225,5 @@ public class Viking : Civilization
         }
     }
 }
-
-
-// clase vikingos
 
 
