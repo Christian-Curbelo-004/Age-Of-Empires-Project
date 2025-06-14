@@ -13,10 +13,8 @@ public class Cell
 }
 public class EvaluateCell
 {
-    
 }
 
 public class PrintCell
 {
-    
 }

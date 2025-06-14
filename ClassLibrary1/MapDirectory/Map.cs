@@ -21,14 +21,11 @@ public class Map
             {
                 for (int x = 0; x < Math.Min(height, map.GetLength(dimension: 1)); x++)
                 {
-                    this.map[x,i] = new Cell(x,i);
+                    this.map[i,x] = new Cell(i,x);
                 }
             }
         }
     }
 }
 
-public class ShowMap
-{
-    
-}
+
