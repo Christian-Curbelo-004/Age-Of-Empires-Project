@@ -2,15 +2,13 @@
 {
     public class Quary
     {
-        public int SpeedFarm { get; set; }
-        public int ValueFarm { get; set; }
-        public int ValueCell { get; set; }
+        public int CollectionSpeed { get; set; }
+        public int CollectionValue { get; set; }
 
-        public Quary(int speedFarm, int valueFarm)
+        public Quary(int collectionspeed, int collectionvalue)
         {
-            SpeedFarm = speedFarm;
-            ValueFarm = valueFarm;
-            ValueCell = 1;
+            CollectionSpeed = collectionspeed;
+            CollectionValue = collectionvalue;
         }
     }
 }
