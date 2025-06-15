@@ -1,3 +1,6 @@
+using System;
+
+
 namespace ClassLibrary1.QuaryDirectory;
 
 public class StoneMine : Quary

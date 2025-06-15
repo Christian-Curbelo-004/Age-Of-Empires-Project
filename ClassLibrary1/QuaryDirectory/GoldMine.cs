@@ -1,3 +1,5 @@
+using System;
+
 namespace ClassLibrary1.QuaryDirectory;
 
 public class GoldMine : Quary
