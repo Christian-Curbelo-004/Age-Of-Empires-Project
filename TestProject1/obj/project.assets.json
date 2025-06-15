@@ -812,9 +812,9 @@
     "restore": {
       "projectUniqueName": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
-      "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
-      "outputPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\obj\\",
+      "projectPath": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+      "packagesPath": "C:\\Users\\jota\\.nuget\\packages\\",
+      "outputPath": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jota\\AppData\\Roaming\\NuGet\\NuGet.Config"
