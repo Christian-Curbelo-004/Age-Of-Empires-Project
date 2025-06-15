@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repos\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj": {}
+    "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj": {}
   },
   "projects": {
-    "D:\\repos\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj": {
+    "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
+        "projectUniqueName": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
         "projectName": "ClassLibrary1",
-        "projectPath": "D:\\repos\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
-        "packagesPath": "C:\\Users\\jota\\.nuget\\packages\\",
-        "outputPath": "D:\\repos\\Age-Of-Empires-Project\\ClassLibrary1\\obj\\",
+        "projectPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\ClassLibrary1\\ClassLibrary1.csproj",
+        "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
+        "outputPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\ClassLibrary1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jota\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\joaqu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\jota\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
