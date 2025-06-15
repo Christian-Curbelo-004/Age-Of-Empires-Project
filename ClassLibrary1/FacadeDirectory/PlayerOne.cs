@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-
-
-
+using CivicCenterNamespace;
 namespace ClassLibrary1;
 
 public class PlayerOne
@@ -10,6 +8,7 @@ public class PlayerOne
     public Civilization Civilization { get; private set; }
     public List<Villagers> Villagers { get; private set; }
     public List<Soldier> Soldiers { get; private set; }
+    public CivicCenter CivicCenter { get; set; }
 
     public PlayerOne(string name, Civilization civilization)
     {
@@ -17,8 +16,8 @@ public class PlayerOne
         Civilization = civilization;
         Villagers = new List<Villagers>();
         Soldiers = new List<Soldier>();
+        CivicCenter = null; 
     }
-
     public void AddVillagers(Villagers villagers)
     {
         Villagers.Add(villagers);
@@ -38,5 +37,4 @@ public class PlayerOne
     {
         return Soldiers.Count;
     }   
-
 }

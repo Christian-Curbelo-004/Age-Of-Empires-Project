@@ -1,4 +1,6 @@
-﻿
+﻿using System.Collections.Generic;
+using CivicCenterNamespace;
+
 namespace ClassLibrary1
 {
     public class PlayerTwo : PlayerOne
