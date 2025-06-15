@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj": {}
+    "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj": {}
   },
   "projects": {
-    "D:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj": {
+    "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj",
+        "projectUniqueName": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj",
         "projectName": "Program",
-        "projectPath": "D:\\repos\\Age-Of-Empires-Project\\Program\\Program.csproj",
-        "packagesPath": "C:\\Users\\jota\\.nuget\\packages\\",
-        "outputPath": "D:\\repos\\Age-Of-Empires-Project\\Program\\obj\\",
+        "projectPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\Program.csproj",
+        "packagesPath": "C:\\Users\\Estudiante UCU\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\Program\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jota\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\jota\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Estudiante UCU\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
