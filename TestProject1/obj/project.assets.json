@@ -805,19 +805,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Estudiante UCU\\.nuget\\packages\\": {}
+    "C:\\Users\\jota\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+      "projectUniqueName": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
-      "packagesPath": "C:\\Users\\Estudiante UCU\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Estudiante UCU\\Desktop\\ProyectoP2\\Age-Of-Empires-Project\\TestProject1\\obj\\",
+      "projectPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+      "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
+      "outputPath": "C:\\AgeOfEmpire\\Age-Of-Empires-Project\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jota\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -884,7 +884,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\Estudiante UCU\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\jota\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
