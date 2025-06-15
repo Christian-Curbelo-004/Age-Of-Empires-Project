@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ClassLibrary1;
 
 
@@ -29,8 +30,8 @@ public class Legionary : ICharacter
     public Legionary()
     {
         Life = 100;
-        AttackValue = 75;
-        DeffenseValue = 50;
+        AttackValue = 20;
+        DeffenseValue = 35;
     }
 
     public int Attack(ICharacter target)
@@ -53,7 +54,7 @@ public class Archer : ICharacter
     public Archer()
     {
         Life = 100;
-        AttackValue = 45;
+        AttackValue = 15;
     }
 
     public int Attack(ICharacter target)
@@ -75,6 +76,7 @@ public class Templaries : Civilization
         Units.Add(new Monk());
         Units.Add(new Paladin());
     }
+
     public override ICharacter PickUnit(string unitName)
     {
         return unitName.ToLower() switch
@@ -95,8 +97,8 @@ public class Templaries : Civilization
         public Monk()
         {
             Life = 100;
-            AttackValue = 60;
-            DeffenseValue = 45;
+            AttackValue = 15;
+            DeffenseValue = 25;
             HealValue = 50;
         }
 
@@ -118,6 +120,7 @@ public class Templaries : Civilization
             DeffenseValue -= damage;
             return DeffenseValue;
         }
+
         public int Heal(ICharacter ally)
         {
             ally.Life = Math.Min(ally.Life + HealValue, 100);
@@ -129,14 +132,14 @@ public class Templaries : Civilization
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }
-        public int DeffenseValue {get; set;}
+        public int DeffenseValue { get; set; }
 
 
         public Paladin()
         {
             Life = 100;
-            AttackValue = 47;
-            DeffenseValue = 30;
+            AttackValue = 25;
+            DeffenseValue = 40;
         }
 
         public int Attack(ICharacter target)
@@ -149,12 +152,10 @@ public class Templaries : Civilization
             DeffenseValue -= damage;
             return DeffenseValue;
         }
-        
-    } 
-        
-    
-}
 
+    }
+
+} 
 public class Viking : Civilization
 {
     public Viking()
@@ -182,8 +183,8 @@ public class Viking : Civilization
         public Berserk()
         {
             Life = 100;
-            AttackValue = 130;
-            DeffenseValue = 22;
+            AttackValue = 15;
+            DeffenseValue = 20;
         }
 
         public int Attack(ICharacter target)
@@ -209,8 +210,8 @@ public class Viking : Civilization
         public Raider()
         {
             Life = 100;
-            AttackValue = 22;
-            DeffenseValue = 15;
+            AttackValue = 15;
+            DeffenseValue = 20;
         }
 
         public int Attack(ICharacter target)
