@@ -8,9 +8,11 @@
 *.user
 *.suo
 
-# Build
+# Build artifacts
 bin/
 obj/
+**/bin/
+**/obj/
 
 # NuGet
 *.nupkg
@@ -22,10 +24,12 @@ project.assets.json
 *.restore.info
 *.model.nuget.info
 *.cache
+*.dg.*
+*.g.*
 
 # Logs
 *.log
 
-# OS
+# OS generated files
 .DS_Store
 Thumbs.db
