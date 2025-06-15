@@ -805,19 +805,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Christian\\.nuget\\packages\\": {}
+    "C:\\Users\\jota\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Christian\\Desktop\\AGE-OF-EMPIRES-PROJECTO\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+      "projectUniqueName": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "C:\\Users\\Christian\\Desktop\\AGE-OF-EMPIRES-PROJECTO\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
-      "packagesPath": "C:\\Users\\Christian\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Christian\\Desktop\\AGE-OF-EMPIRES-PROJECTO\\Age-Of-Empires-Project\\TestProject1\\obj\\",
+      "projectPath": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\TestProject1.csproj",
+      "packagesPath": "C:\\Users\\jota\\.nuget\\packages\\",
+      "outputPath": "D:\\repos\\Age-Of-Empires-Project\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Christian\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jota\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -884,7 +884,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\jota\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
