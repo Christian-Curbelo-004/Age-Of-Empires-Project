@@ -9,7 +9,7 @@ namespace DepositBuilding
         public Deposit(int endurence, int constructionspeed, string name,int resourcevalue, int capacity)
             : base(endurence, constructionspeed, name, capacity, resourcevalue)
         {
-            this.MaxCapacity = MaxCapacity;
+            this.MaxCapacity = Capacity;
         }
     }
 }

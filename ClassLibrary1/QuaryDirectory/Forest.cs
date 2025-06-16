@@ -12,12 +12,13 @@ namespace QuaryBiome
 
         public int Wood { get; set; }
 
-        public void GetResources(int amount)
+        public int GetResources()
         {
-            Wood = amount; 
             Console.WriteLine(CollectionSpeed);
             Console.WriteLine(CollectionValue);
-            Console.WriteLine($"Se recolectó {Wood} de madera");
+            int collected = CollectionSpeed * CollectionValue;
+            Console.WriteLine($"Se recolectó {collected} de madera");
+            return collected;
         }
     }
 }

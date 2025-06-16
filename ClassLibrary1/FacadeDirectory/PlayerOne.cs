@@ -18,6 +18,14 @@ public class PlayerOne
         Soldiers = new List<Soldier>();
         CivicCenter = null; 
     }
+
+    public class ResourceInventory
+    {
+        public int Food { get; set; }
+        public int Wood { get; set; }
+        public int Gold { get; set; }
+        public int Stone { get; set; }
+    }
     public void AddVillagers(Villagers villagers)
     {
         Villagers.Add(villagers);
