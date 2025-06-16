@@ -4,6 +4,8 @@ namespace ClassLibrary1;
 
 public class PlayerOne
 {
+    public int Food { get; set; } = 0;
+    public int Wood { get; set; } = 0;
     public string Name { get; private set; }
     public Civilization Civilization { get; private set; }
     public List<Villagers> Villagers { get; private set; }

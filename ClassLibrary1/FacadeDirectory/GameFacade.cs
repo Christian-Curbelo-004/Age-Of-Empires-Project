@@ -34,5 +34,11 @@ namespace ClassLibrary1
                 capacity: 10
             );
         }
+
+        public void InitializePlayer(PlayerOne playerOne)
+        {
+            playerOne.Food = 100;
+            playerOne.Wood = 100;
+        }
     }
 }

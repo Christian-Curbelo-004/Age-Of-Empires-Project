@@ -6,5 +6,6 @@
         void GenerateQuary(PlayerOne playerOne);
         void GenerateVillagers(PlayerOne playerOne);
         void GenerateCivicCenter(PlayerOne playerOne);
+        void InitializePlayer(PlayerOne playerOne);
     }
 }
