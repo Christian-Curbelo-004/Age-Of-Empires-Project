@@ -9,10 +9,8 @@ namespace HomeBuilding
             : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public int resourceBuildHome(int resourceValue)
+        public void IncreasePoblation(int resourceValue)
         {
-            return resourceValue;
         }
-        
     }
 }
