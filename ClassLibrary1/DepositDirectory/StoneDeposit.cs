@@ -5,13 +5,16 @@ namespace StoneDepositBuild
 {
     public class StoneDeposit : Deposit
     {
+        public int CurrentStone { get; private set; }
         public StoneDeposit(int endurence, int constructionspeed,string name, int resourcevalue,int capacity)
             : base(endurence,constructionspeed, name, resourcevalue, capacity)
         {
+            CurrentStone = 0;
         }
-        public int resourceBuildSD(int resourceValue)
+        public void StoreStone(int amount)
         {
-            return resourceValue;
+            int stored = StoreResource(amount);
+            CurrentStone += stored;
         }
         
     }      

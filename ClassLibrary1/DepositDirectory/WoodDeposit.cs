@@ -5,13 +5,16 @@ namespace WoodDepositBuilding
 {
     public class WoodDeposit : Deposit
     {
+        public int CurrentWood { get; private set; }
         public WoodDeposit(int endurence, int constructionspeed,string name, int resourcevalue,int capacity)
             : base(endurence,constructionspeed, name, resourcevalue, capacity)
         {
+            CurrentWood = 0;
         }
-        public int resourceBuildWD(int resourceValue)
+        public void StoreWood(int amount)
         {
-            return resourceValue;
+            int stored = StoreResource(amount);
+            CurrentWood += stored;
         }
     }      
     

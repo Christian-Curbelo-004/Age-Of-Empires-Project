@@ -13,13 +13,8 @@ namespace WindMillDepositBuild
         }
         public void StoreFood(int amount)
         {
-            if (CurrentFood > MaxCapacity)
-            {
-                Console.WriteLine("El molino está lleno");
-                return;
-            }
-            CurrentFood += amount;
-            Console.WriteLine($"{amount} se almacenó correctamente en el molino. El estado del molino es: {CurrentFood}");
+            int stored = StoreResource(amount);
+            CurrentFood += stored;
         }
     }      
 }
