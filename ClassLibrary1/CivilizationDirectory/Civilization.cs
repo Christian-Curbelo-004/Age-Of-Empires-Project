@@ -11,6 +11,7 @@ namespace ClassLibrary1
         public List<Soldier> Soldiers { get ; set; }
         public List<ICharacter> Units { get ; set; }
         public int ValueCell { get; set; }
+        
         public Civilization()
         {
             ValueCell = 0;
@@ -20,7 +21,5 @@ namespace ClassLibrary1
         }
        
         public abstract ICharacter PickUnit(string unitName);
-
-
     }
 }
