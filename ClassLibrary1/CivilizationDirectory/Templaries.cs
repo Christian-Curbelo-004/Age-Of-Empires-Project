@@ -30,7 +30,11 @@ public class Paladin : ICharacter
         AttackValue = 25;
         DeffenseValue = 40;
     }
-
+    public void GetCreate(Dictionary<string,int>GetCost)
+    {
+        GetCost["Oro"] = 5;
+        GetCost["Piedra"] = 40;
+    }
     public int Attack(ICharacter target)
     {
         return target.RecieveAttack(AttackValue);
