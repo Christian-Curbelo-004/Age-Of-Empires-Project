@@ -25,11 +25,13 @@ public class Archer : ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
+    public int Speed { get; set; }
 
     public Archer()
     {
         Life = 100;
         AttackValue = 15;
+        Speed = 20;
     }
 
     public int Attack(ICharacter target)
@@ -42,4 +44,16 @@ public class Archer : ICharacter
         Life -= damage;
         return Life;
     }
+
+    public string Run(string direction)
+    {
+        if (direction.ToLower() == "izquierda" || direction.ToLower() == "derecha" || direction.ToLower() == "sube" ||
+            direction.ToLower() == "baja") ;
+        {
+            Speed += 10;
+            return direction;
+        }
+    }
 }
+
+    
