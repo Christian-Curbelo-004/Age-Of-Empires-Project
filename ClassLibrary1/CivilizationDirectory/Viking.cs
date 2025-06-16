@@ -24,8 +24,8 @@ public class Viking : Civilization
         public Raider()
         {
             Life = 100;
-            AttackValue = 15;
-            DeffenseValue = 20;
+            AttackValue = 33;
+            DeffenseValue = 25;
         }
 
         public int Attack(ICharacter target)
