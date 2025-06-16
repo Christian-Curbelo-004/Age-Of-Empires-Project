@@ -47,8 +47,8 @@ public class Archer : ICharacter
 
     public string Run(string direction)
     {
-        if (direction.ToLower() == "left" || direction.ToLower() == "right" || direction.ToLower() == "up" ||
-            direction.ToLower() == "down") ;
+        if (direction.ToLower() == "izquierda" || direction.ToLower() == "derecha" || direction.ToLower() == "sube" ||
+            direction.ToLower() == "baja") ;
         {
             Speed += 10;
             return direction;
