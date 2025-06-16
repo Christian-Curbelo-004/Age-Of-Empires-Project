@@ -17,5 +17,10 @@ namespace GoldDepositBuild
             int stored = StoreResource(amount);
             CurrentGold += stored;
         }
+        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        {
+            ConstruccionCost["Madera"] = 110;
+            ConstruccionCost["Piedra"] = 35;
+        }
     }      
 }

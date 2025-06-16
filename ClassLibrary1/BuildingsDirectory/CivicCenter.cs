@@ -3,15 +3,18 @@ using CreateBuildings;
 
 namespace CivicCenterNamespace
 {
-    public class CivicCenter : Buildings 
+    public class CivicCenter : Buildings
     {
-        public CivicCenter(int endurence, int constructionspeed,string name, int resourceValue, int capacity)
+        public CivicCenter(int endurence, int constructionspeed, string name, int resourceValue, int capacity)
             : base(endurence, constructionspeed, name, resourceValue, capacity)
         {
         }
-        public int resourceBuildCC(int resourceValue)
+
+        public void GetConstructionCost(Dictionary<string, int> ConstructionCost)
         {
-            return resourceValue;
+            ConstructionCost["Madera"] = 140;
+            ConstructionCost["Oro"] = 6;
+            ConstructionCost["Piedra"] = 10;
         }
     }
 }

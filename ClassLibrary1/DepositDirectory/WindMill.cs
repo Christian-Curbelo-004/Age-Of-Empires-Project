@@ -16,5 +16,10 @@ namespace WindMillDepositBuild
             int stored = StoreResource(amount);
             CurrentFood += stored;
         }
+        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        {
+            ConstruccionCost["Piedra"] = 170;
+            ConstruccionCost["Madera"] = 100;
+        }
     }      
 }

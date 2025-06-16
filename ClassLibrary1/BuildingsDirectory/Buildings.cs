@@ -9,7 +9,7 @@ namespace CreateBuildings
         public int ConstructionSpeed { get; set; }
         public int ResourceValue { get; set; }
         public int Capacity { get; set; }
-        
+        private Dictionary<string, int> ConstruccionCost = new Dictionary<string, int>();
         public Buildings(int endurence, int constructionspeed, string name, int resourceValue, int capacity)
         {
             Endurence = endurence;
@@ -18,6 +18,8 @@ namespace CreateBuildings
             ResourceValue = resourceValue;
             Capacity = capacity;
         }
-        
+        public void GetConstructionCost(Dictionary<string,int>ConstruccionCost)
+        {
+        }
     }
 }

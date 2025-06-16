@@ -16,6 +16,11 @@ namespace WoodDepositBuilding
             int stored = StoreResource(amount);
             CurrentWood += stored;
         }
+        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        {
+            ConstruccionCost["Piedra"] = 30;
+            ConstruccionCost["Oro"] = 10;
+        }
     }      
     
 }

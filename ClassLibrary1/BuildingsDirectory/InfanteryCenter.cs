@@ -9,9 +9,11 @@ namespace InfanteryCenter
             : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
-        public int resourceBuildInf(int resourceValue)
+
+        public void GetConstructionCost(Dictionary<string, int> ConstructionCost)
         {
-            return resourceValue;
+            ConstructionCost["Piedra"] = 10;
+            ConstructionCost["Oro"] = 6;
         }
         
     }

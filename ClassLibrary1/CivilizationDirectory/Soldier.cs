@@ -17,7 +17,7 @@ public class Soldier : ICharacter
         int daño = target.RecieveAttack(AttackValue);
         return daño;
     }
-
+    
     public int RecieveAttack(int damage) // cambio el void que habia, por un int y en vez de console pongo return, ya que es una clase y solo necesitamos retornar el valor
     {
         int damageTaken = damage - DefenseValue;
@@ -26,6 +26,11 @@ public class Soldier : ICharacter
         Life -= damageTaken;
         return Life;
         //Console.WriteLine($"El soldado recibió {damageTaken} de daño. Vida restante: {Life}");
+    }
+    public void GetCreate(Dictionary<string,int>GetCost)
+    {
+        GetCost["Oro"] = 5;
+        GetCost["Piedra"] = 40;
     }
 }
 

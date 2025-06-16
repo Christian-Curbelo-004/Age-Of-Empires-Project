@@ -27,6 +27,7 @@ namespace DepositBuilding
             int stored = Math.Min(amount, availablespace);
             CurrentStorage += stored;
             
+            
             Console.WriteLine($"{stored} unidades almacenadas en {Name}. Total actual: {CurrentStorage}/{MaxCapacity}");
             return stored;
         }

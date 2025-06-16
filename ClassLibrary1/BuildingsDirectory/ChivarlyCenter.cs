@@ -10,9 +10,10 @@ namespace ChivarlyCenter
         {
         }
 
-        public int ResourceBuildChC(int resourceValue)
+        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
         {
-            return resourceValue;
+            ConstruccionCost["Madera"] = 100;
+            ConstruccionCost["Oro"] = 20;
         }
     }
 }

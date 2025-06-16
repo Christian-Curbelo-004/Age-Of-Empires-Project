@@ -9,6 +9,11 @@ namespace HomeBuilding
             : base(endurence, constructionspeed, name, resourcevalue, capacity)
         {
         }
+        public void GetConstructionCost(Dictionary<string, int> ConstructionCost)
+        {
+            ConstructionCost["Piedra"] = 20;
+            ConstructionCost["Madera"] = 100;
+        }
         public void IncreasePoblation(int resourceValue)
         {
         }

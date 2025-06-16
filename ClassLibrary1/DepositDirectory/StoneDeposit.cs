@@ -16,6 +16,10 @@ namespace StoneDepositBuild
             int stored = StoreResource(amount);
             CurrentStone += stored;
         }
-        
+        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        {
+            ConstruccionCost["Piedra"] = 80;
+            ConstruccionCost["Oro"] = 10;
+        }
     }      
 }
