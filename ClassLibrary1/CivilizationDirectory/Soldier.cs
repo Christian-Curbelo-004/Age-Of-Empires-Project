@@ -5,17 +5,12 @@ public class Soldier : ICharacter
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int DefenseValue { get; set; }
-    public int ValueCell { get; set; }
-
-
     public Soldier(int life, int attackValue, int defenseValue)
     {
         Life = life;
         AttackValue = attackValue;
         DefenseValue = defenseValue;
-        ValueCell = 0;
     }
-
     public int Attack(ICharacter target) // cambio el void que habia, por un int y en vez de consoloe pongo return, ya que es una clase y solo necesitamos retornar el valor
     {
         //Console.WriteLine("El soldado ataco al enemigo");
