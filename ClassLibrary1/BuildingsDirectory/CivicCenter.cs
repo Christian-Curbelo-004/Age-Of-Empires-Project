@@ -9,7 +9,6 @@ namespace CivicCenterNamespace
             : base(endurence, constructionspeed, name, resourceValue, capacity)
         {
         }
-
         public void GetConstructionCost(Dictionary<string, int> ConstructionCost)
         {
             ConstructionCost["Madera"] = 140;
