@@ -16,5 +16,15 @@ namespace CivicCenterNamespace
             ConstructionCost["Oro"] = 6;
             ConstructionCost["Piedra"] = 10;
         }
+        
+        public bool TieneCapacidad(int unidades, int capacity)          //para ver si tiene capacidad para agregar mas unidades
+        {
+            if (unidades < capacity)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

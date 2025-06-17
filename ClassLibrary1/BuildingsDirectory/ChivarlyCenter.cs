@@ -22,5 +22,15 @@ namespace ChivarlyCenter
             ConstructionTime = 20;
             return ConstructionTime;
         }
+        
+        public bool TieneCapacidad(int unidades, int capacity)          //para ver si tiene capacidad para agregar mas unidades
+        {
+            if (unidades < capacity)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
