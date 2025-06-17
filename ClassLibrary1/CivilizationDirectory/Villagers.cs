@@ -1,10 +1,10 @@
 ﻿
 using System.Collections.Generic;
+using ClassLibrary1.CivilizationDirectory;
 using CreateBuildings;
 namespace ClassLibrary1;
 
-public class Villagers : ICharacter
-
+public class Villagers : ICharacter, IBuilder
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
@@ -15,13 +15,13 @@ public class Villagers : ICharacter
         Life = life;
         AttackValue = attackValue;
     }
-
+    
     public int Attack(ICharacter target) //cambie el void que devolvia por un int, ya que nos interesa unicamente el valor, el console.writeline va en el program
     {
         //Console.WriteLine("El aldeano ataco al enemigo");
-        int daño_recibido = target.RecieveAttack(AttackValue);
+        int DamageDone = target.RecieveAttack(AttackValue);
 
-        return daño_recibido;
+        return DamageDone;
     }
 
     public int RecieveAttack(int damage)
@@ -34,5 +34,15 @@ public class Villagers : ICharacter
     {
         GetCost["Madera"] = 10;
         GetCost["Piedra"] = 30;
+    }
+
+    public void Build(Buildings target,int builders)
+    {
+        Console.WriteLine($"El aldeano está construyendo el edificio: {target.Name}");
+        target.ConstructionSpeed -= builders;
+        if (target.ConstructionSpeed <= 0)
+        {
+            Console.WriteLine($"El edificio está construido: {target.Name}");
+        }
     }
 }
