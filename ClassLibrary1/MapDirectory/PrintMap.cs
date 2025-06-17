@@ -30,16 +30,16 @@ namespace ClassLibrary1
                 result.Append($"{j % 10} ");
             }
             result.AppendLine();
-            
+
             for (int i = 0; i < height; i++)
             {
-                result.Append($" {i % 10}  ");
+                result.Append($" {i % 10}  "); 
                 for (int j = 0; j < length; j++)
                 {
                     Cell cell = _map.map[j, i];
-                    result.Append($"{cell} ");
+                    result.Append($"{cell} "); 
                 }
-                result.AppendLine($" {i % 10}");
+                result.AppendLine($" {i % 10}"); 
             }
             
             result.Append("     "); 
@@ -52,4 +52,4 @@ namespace ClassLibrary1
             return result.ToString();
         }
     }
-}  
+}
