@@ -39,14 +39,14 @@ public class Villagers : ICharacter, IBuilder
     public void Build(Buildings target,int builders)
     {
         Console.WriteLine($"El aldeano está construyendo el edificio: {target.Name}");
-        target.ConstructionSpeed = Math.Max(0, target.ConstructionSpeed - builders);
-        if (target.ConstructionSpeed <= 0)
+        target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);
+        if (target.ConstructionTimeLeft <= 0)
         {
             Console.WriteLine($"El edificio está construido: {target.Name}");
         }
         else
         {
-            Console.WriteLine($"El edificio {target.Name} le faltan {target.ConstructionSpeed} segundos");
+            Console.WriteLine($"El edificio {target.Name} le faltan {target.ConstructionTimeLeft} segundos");
         }
     }
 }

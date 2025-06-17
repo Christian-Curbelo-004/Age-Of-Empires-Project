@@ -28,7 +28,7 @@ namespace ClassLibrary1
         {
             playerOne.CivicCenter = new CivicCenter(
                 endurence: 100,
-                constructionspeed: 10,
+                constructiontimeleft: 10,
                 name: "Centro Cívico",
                 resourceValue: 50,
                 capacity: 10

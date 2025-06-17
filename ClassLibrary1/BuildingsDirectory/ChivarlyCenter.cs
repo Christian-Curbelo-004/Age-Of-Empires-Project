@@ -7,8 +7,8 @@ namespace ChivarlyCenter
     public class ChivarlyCenter : Buildings
     {
         
-        public ChivarlyCenter(int endurence, int constructionspeed, string name, int resourcevalue, int capacity)
-            : base(endurence, constructionspeed, name, resourcevalue, capacity)
+        public ChivarlyCenter(int endurence, int constructiontimeleft, string name, int resourcevalue, int capacity)
+            : base(endurence:20, constructiontimeleft:10, name: "ChivalryCenter", resourcevalue, capacity:5)
         {
         }
 
@@ -23,7 +23,7 @@ namespace ChivarlyCenter
             return ConstructionTime;
         }
         
-        public bool TieneCapacidad(int unidades, int capacity)          //para ver si tiene capacidad para agregar mas unidades
+        public bool HasCapacity(int unidades, int capacity)          //para ver si tiene capacidad para agregar mas unidades
         {
             if (unidades < capacity)
             {

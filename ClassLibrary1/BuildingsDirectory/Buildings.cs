@@ -7,14 +7,14 @@ namespace CreateBuildings
     {
         public string Name { get; set; }
         public int Endurence { get; set; }
-        public int ConstructionSpeed { get; set; }
+        public int ConstructionTimeLeft { get; set; }
         public int ResourceValue { get; set; }
         public int Capacity { get; set; }
         private Dictionary<string, int> ConstructionCost = new Dictionary<string, int>();
-        public Buildings(int endurence, int constructionspeed, string name, int resourceValue, int capacity)
+        public Buildings(int endurence, int constructiontimeleft, string name, int resourceValue, int capacity)
         {
             Endurence = endurence;
-            ConstructionSpeed = constructionspeed;
+            ConstructionTimeLeft = constructiontimeleft;
             Name = name;
             ResourceValue = resourceValue;
             Capacity = capacity;
