@@ -5,99 +5,106 @@ public class Cell
     public int PosX { get; set; }
     public int PosY { get; set; }
     public bool IsOccupied { get; set; }
-    public string EntityType { get; set; } // Tipo de entidad en la celda
+    public string EntityType { get; set; } // Tipo de entidad en la celda (ej. "Archer", "Paladin", "GoldDeposit", etc.)
 
     public Cell(int x, int y)
     {
         PosX = x;
         PosY = y;
         IsOccupied = false;
-        EntityType = null; // Por defecto, la celda está vacía
+        EntityType = null; 
     }
 
     public override string ToString()
     {
-        return EntityType switch
+        switch (EntityType)
         {
-            // Construcciones
-            "ArcherCenter" => "AC",
-            "ChivalryCenter" => "ChC",
-            "CivicCenter" => "CC",
-            "Home" => "H",
-            "InfanteryCenter" => "IC",
-
             // Tropas
-            "Archer" => "A",
-            "Paladin" => "P",
-            "Raider" => "R",
-            "Soldier" => "S",
-            "Villagers" => "V",
+            case "Archer": return "A";
+            case "Paladin": return "P";
+            case "Raider": return "R";
+            case "Soldier": return "S";
+            case "Villagers": return "V";
 
-            // Depósitos
-            "GoldDeposit" => "GD",
-            "SonteDeposit" => "SD",
-            "WindMill" => "WM",
-            "WoodDeposit" => "WD",
-
-            // Canteras
-            "Forest" => "F",
-            "GoldMine" => "GM",
-            "StoneMine" => "SM",
-
-            // Combates
-            "AvA" => "AvA",
-            "AvP" => "AvP",
-            "AvR" => "AvR",
-            "AvS" => "AvS",
-            "AvV" => "AvV",
-            "AvB" => "AvB",
-            "PvP" => "PvP",
-            "PvR" => "PvR",
-            "PvS" => "PvS",
-            "PvV" => "PvV",
-            "PvB" => "PvB",
-            "RvR" => "RvR",
-            "RvS" => "RvS",
-            "RvV" => "RvV",
-            "RvB" => "RvB",
-            "SvS" => "SvS",
-            "SvV" => "SvV",
-            "SvB" => "SvB",
-
-            // Estados del aldeano
-            "VfG" => "VfG",
-            "VfS" => "VfS",
-            "VfW" => "VfW",
-            "VB" => "VB",
-            "VFf" => "VFf",
+            // Construcciones
+            case "ArcherCenter": return "AC";
+            case "ChivalryCenter": return "ChC";
+            case "CivicCenter": return "CC";
+            case "Home": return "H";
+            case "InfanteryCenter": return "IC";
 
             // Construcciones siendo atacadas
-            "ACa" => "ACa",
-            "ChCa" => "ChCa",
-            "CCa" => "CCa",
-            "Ha" => "Ha",
-            "Ica" => "Ica",
+            case "ACa": return "ACa";
+            case "ChCa": return "ChCa";
+            case "CCa": return "CCa";
+            case "Ha": return "Ha";
+            case "Ica": return "Ica";
 
             // Construcciones en construcción
-            "BAC" => "BAC",
-            "BChC" => "BChC",
-            "BCC" => "BCC",
-            "BH" => "BH",
-            "BIC" => "BIC",
+            case "BAC": return "BAC";
+            case "BChC": return "BChC";
+            case "BCC": return "BCC";
+            case "BH": return "BH";
+            case "BIC": return "BIC";
 
             // Producción de tropas
-            "ACar" => "ACar",     // ArcherCenter fabricando arqueros
-            "ChCc" => "ChCc",     // ChivalryCenter fabricando caballería
-            "ICi" => "ICi",       // InfanteryCenter fabricando infantería
+            case "ACar": return "ACar"; // ArcherCenter fabricando arqueros
+            case "ChCc": return "ChCc"; // ChivalryCenter fabricando caballería
+            case "ICi": return "ICi";   // InfanteryCenter fabricando infantería
+
+            // Depósitos
+            case "GoldDeposit": return "GD";
+            case "SonteDeposit": return "SD";
+            case "WindMill": return "WM";
+            case "WoodDeposit": return "WD";
 
             // Depósitos llenos
-            "GDf" => "GDf",
-            "SDf" => "SDf",
-            "WMf" => "WMf",
-            "WDf" => "WDf",
-            
-            // Predeterminado para celdas vacías
-            _ => "■"
-        };
+            case "GDf": return "GDf";
+            case "SDf": return "SDf";
+            case "WMf": return "WMf";
+            case "WDf": return "WDf";
+
+            // Canteras
+            case "Forest": return "F";
+            case "GoldMine": return "GM";
+            case "StoneMine": return "SM";
+
+            // Aldeano trabajando
+            case "VfG": return "VfG"; // farmeando oro
+            case "VfS": return "VfS"; // farmeando piedra
+            case "VfW": return "VfW"; // farmeando madera
+            case "VB": return "VB";   // construyendo
+            case "VFf": return "VFf"; // lleno
+
+            // Combates Archer
+            case "AvA": return "AvA";
+            case "AvP": return "AvP";
+            case "AvR": return "AvR";
+            case "AvS": return "AvS";
+            case "AvV": return "AvV";
+            case "AvB": return "AvB";
+
+            // Combates Paladin
+            case "PvP": return "PvP";
+            case "PvR": return "PvR";
+            case "PvS": return "PvS";
+            case "PvV": return "PvV";
+            case "PvB": return "PvB";
+
+            // Combates Raider
+            case "RvR": return "RvR";
+            case "RvS": return "RvS";
+            case "RvV": return "RvV";
+            case "RvB": return "RvB";
+
+            // Combates Soldier
+            case "SvS": return "SvS";
+            case "SvV": return "SvV";
+            case "SvB": return "SvB";
+
+            // Valor por defecto para celdas vacías u otras entidades desconocidas
+            default: return "■";
+        }
     }
 }
+
