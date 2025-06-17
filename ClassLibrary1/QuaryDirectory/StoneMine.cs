@@ -5,17 +5,18 @@ namespace ClassLibrary1.QuaryDirectory;
 
 public class StoneMine : Quary
 {
-    public StoneMine(int collectionspeed, int collectionvalue)
-        : base(collectionspeed, collectionvalue)
+    public StoneMine(int collectionspeed, int collectionvalue, string collectiontype)
+        : base(collectionspeed, collectionvalue,collectiontype)
     {
     }
     public int Stone { get; set; }
 
-    public void GetResources(int amount)
+
+
+    public override int GetResources()
     {
-        Stone = amount;
-        Console.WriteLine(CollectionSpeed);
-        Console.WriteLine(CollectionValue);
-        Console.WriteLine($"Se recolecto {Stone} de oro");
+        int recolectado = base.GetResources();
+        return recolectado;
     }
+    
 }
