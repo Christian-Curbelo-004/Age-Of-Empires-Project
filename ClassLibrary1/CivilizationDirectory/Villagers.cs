@@ -30,7 +30,6 @@ public class Villagers : ICharacter
         return Life;
         //Console.WriteLine($"El aldeano recibio {damage} de daño");
     }
-
     public void GetCreate(Dictionary<string,int>GetCost)
     {
         GetCost["Madera"] = 10;
