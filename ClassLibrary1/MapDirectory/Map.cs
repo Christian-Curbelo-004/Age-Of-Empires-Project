@@ -7,7 +7,12 @@ public class Map
     private int _height;
     private int _length;
     public Cell[,] map; 
+    
+    
+    public PlayerOne PlayerOne { get; set; }
+    public PlayerTwo PlayerTwo { get; set; }
 
+    
     private const int MinDimension = 0;
     private const int MaxDimension = 100;
 
