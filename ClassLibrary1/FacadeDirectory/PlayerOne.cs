@@ -13,8 +13,6 @@ public class PlayerOne
     public List<Soldier> Soldiers { get; private set; }
     public List<Quary> Quaries { get; private set; }
     public CivicCenter CivicCenter { get; set; }
-    public PopulationManager PopulationManager { get; set; } = new PopulationManager();
-
     public PlayerOne(string name, Civilization civilization)
     {
         Name = name;

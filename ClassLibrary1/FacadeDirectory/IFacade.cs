@@ -2,10 +2,10 @@
 {
     public interface IFacade      
     {
-        void GenerateMap(PlayerOne playerOne);
+        void GenerateMap();
         void GenerateQuary(PlayerOne playerOne);
-        void GenerateVillagers(PlayerOne playerOne);
-        void GenerateCivicCenter(PlayerOne playerOne);
-        void InitializePlayer(PlayerOne playerOne);
+        void GenerateVillagers();
+        void GenerateCivicCenter();
+        void InitializePlayer();
     }
 }

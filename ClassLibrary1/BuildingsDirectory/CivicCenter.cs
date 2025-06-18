@@ -6,6 +6,10 @@ namespace CivicCenterNamespace
 {
     public class CivicCenter : Buildings
     {
+        public int MaxVillagers = 3;
+        public int MaxSoldiers = 0;
+        public int CurrentVillagers = 3;
+        public int CurrentSoldiers = 0;
         public CivicCenter(int endurence, int constructiontimeleft, string name, int resourceValue)
             : base(endurence : 50, constructiontimeleft : 30, name : "CivicCenter", resourceValue)
         {
@@ -16,14 +20,36 @@ namespace CivicCenterNamespace
             ConstructionCost["Oro"] = 6;
             ConstructionCost["Piedra"] = 10;
         }
-        
-        public bool HasCapacity(int unidades, int capacity)          //para ver si tiene capacidad para agregar mas unidades
+        public void AddHomeVillagersCapacity()
         {
-            if (unidades < capacity)
+            MaxVillagers += 5;
+        }
+
+        public void AddHomeSoldiersCapacity()
+        {
+            MaxSoldiers += 5;
+        }
+        public bool CanCreateVillagers()
+        {
+            if (CurrentVillagers < MaxVillagers)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+        }
+        public bool CanCreateSoldiers()
+        {
+            if (CurrentSoldiers < MaxSoldiers)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

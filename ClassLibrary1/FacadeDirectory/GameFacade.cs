@@ -5,11 +5,12 @@ namespace ClassLibrary1
 {
     public class GameFacade : IFacade
     {
-        public void GenerateMap(PlayerOne playerOne)
+        public void GenerateMap()
         {
             Random random = new Random();
             Map map = new Map(100, 100);
         }
+
 
         public void GenerateQuary(PlayerOne playerOne)
         {
@@ -48,20 +49,23 @@ namespace ClassLibrary1
         {
         }
 
-        public void GenerateCivicCenter(PlayerOne playerOne)
+        public void GenerateCivicCenter()
         {
-            playerOne.CivicCenter = new CivicCenter(
-                endurence: 100,
-                constructiontimeleft: 10,
-                name: "Centro Cívico",
-                resourceValue: 50
-            );
         }
 
-        public void InitializePlayer(PlayerOne playerOne)
+        public void GenerateVillagers()
         {
-            playerOne.Food = 100;
-            playerOne.Wood = 100;
+            
+        }
+
+        public void TrainSoldiers()
+        {
+        }
+
+        public void InitializePlayer()
+        {
+            int Food = 100;
+            int Wood = 100;
         }
     }
 }
