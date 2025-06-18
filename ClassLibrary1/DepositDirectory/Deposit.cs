@@ -7,17 +7,14 @@ namespace DepositBuilding
     {
         public int MaxCapacity { get; set; }
         public int CurrentStorage { get; set; }
-
-        public Deposit(int endurence, int constructionspeed, string name,int resourcevalue, int capacity)
-            : base(endurence, constructionspeed, name, resourcevalue, capacity)
+        public Deposit(int endurence, int constructiontimeleft, string name,int resourcevalue)
+            : base(endurence, constructiontimeleft, name, resourcevalue)
         {
-            this.MaxCapacity = capacity;
         }
-
+        
         public int StoreResource(int amount)
         {
             int availablespace = MaxCapacity - CurrentStorage;
-
             if (availablespace <= 0)
             {
                 return 0;

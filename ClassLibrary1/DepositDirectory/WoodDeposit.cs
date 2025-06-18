@@ -7,8 +7,8 @@ namespace WoodDepositBuilding
     public class WoodDeposit : Deposit
     {
         public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructionspeed,string name, int resourcevalue,int capacity)
-            : base(endurence,constructionspeed, name, resourcevalue, capacity)
+        public WoodDeposit(int endurence, int constructiontimeleft,string name, int resourcevalue)
+            : base(endurence,constructiontimeleft, name, resourcevalue)
         {
             CurrentWood = 0;
         }

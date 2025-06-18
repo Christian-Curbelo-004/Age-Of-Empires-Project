@@ -8,8 +8,8 @@ namespace GoldDepositBuild
     public class GoldDeposit : Deposit
     {
         public int CurrentGold { get; private set; } 
-        public GoldDeposit(int endurence, int constructionspeed,string name, int resourcevalue,int capacity)
-            : base(endurence,constructionspeed, name, resourcevalue, capacity)
+        public GoldDeposit(int endurence, int constructiontimeleft,string name, int resourcevalue)
+            : base(endurence,constructiontimeleft, name, resourcevalue)
         {
             CurrentGold = 0;
         }

@@ -7,8 +7,8 @@ namespace WindMillDepositBuild
     public class WindMill : Deposit
     {
         public int CurrentFood { get; private set; }
-        public WindMill(int endurence, int constructionspeed,string name, int resourcevalue,int capacity)
-            : base(endurence,constructionspeed, name, resourcevalue, capacity)
+        public WindMill(int endurence, int constructiontimeleft,string name, int resourcevalue)
+            : base(endurence,constructiontimeleft, name, resourcevalue)
         {
             CurrentFood = 0;
         }

@@ -30,8 +30,7 @@ namespace ClassLibrary1
                 endurence: 100,
                 constructiontimeleft: 10,
                 name: "Centro Cívico",
-                resourceValue: 50,
-                capacity: 10
+                resourceValue: 50
             );
         }
 
