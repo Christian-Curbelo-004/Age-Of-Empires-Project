@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace TestProject1;
 
-public class TestsInfanteyCenter
+public class TestsChivarlyCenter
 {
     private ChivarlyCenter.ChivarlyCenter center;
     [SetUp]
@@ -19,7 +19,16 @@ public class TestsInfanteyCenter
         
         var constructionCost = new Dictionary<string, int>();
         center.GetconstructionCost(constructionCost);
-        Assert.AreEqual(100, constructionCost["Madera"]);
-        Assert.AreEqual(20, constructionCost["Oro"]);
+        //Assert.AreEquals(100, constructionCost["Madera"]);
+        Assert.That(constructionCost["Oro"],Is.EqualTo(20));
+        Assert.That(constructionCost["Madera"],Is.EqualTo(100));
+        //Assert.AreEquals(20, constructionCost["Oro"]);
+    }
+
+    [Test]
+    public void ConstructionTime()
+    {
+        int constructionTime = center.GetConstuctionTime(0);
+        Assert.That(constructionTime, Is.EqualTo(20));
     }
 }
