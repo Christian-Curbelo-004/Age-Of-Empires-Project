@@ -34,4 +34,10 @@ public class Paladin : ICharacter
         return DeffenseValue;
     }
 
+    public int BoosDeffense(int damage)
+    {
+        DeffenseValue += 15;
+        return BoosDeffense(damage);
+    }
+
 }

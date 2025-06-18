@@ -33,5 +33,11 @@ namespace ClassLibrary1
             DeffenseValue -= damage;
             return DeffenseValue;
         }
+
+        public int BoostAttack(ICharacter target)
+        {
+            AttackValue += 10;
+            return target.RecieveAttack(BoostAttack(target));
+        }
     }
 }

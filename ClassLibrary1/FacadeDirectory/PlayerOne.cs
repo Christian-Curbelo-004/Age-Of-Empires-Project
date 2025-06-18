@@ -11,6 +11,7 @@ public class PlayerOne
     public Civilization Civilization { get; private set; }
     public List<Villagers> Villagers { get; private set; }
     public List<Soldier> Soldiers { get; private set; }
+    public List<Quary> Quaries { get; private set; }
     public CivicCenter CivicCenter { get; set; }
     public PopulationManager PopulationManager { get; set; } = new PopulationManager();
 
@@ -20,7 +21,8 @@ public class PlayerOne
         Civilization = civilization;
         Villagers = new List<Villagers>();
         Soldiers = new List<Soldier>();
-        CivicCenter = null; 
+        CivicCenter = null;
+        Quaries = new List<Quary>();
     }
 
     public class ResourceInventory
@@ -48,5 +50,10 @@ public class PlayerOne
     public int GetSoldierCount()
     {
         return Soldiers.Count;
-    }   
+    }
+
+    public void AddQuary(Quary quary)
+    {
+        Quaries.Add(quary);
+    }
 }
