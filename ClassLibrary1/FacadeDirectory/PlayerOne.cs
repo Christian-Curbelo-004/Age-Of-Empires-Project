@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ClassLibrary1.LogicDirectory;
 using CivicCenterNamespace;
 namespace ClassLibrary1;
 
@@ -11,6 +12,7 @@ public class PlayerOne
     public List<Villagers> Villagers { get; private set; }
     public List<Soldier> Soldiers { get; private set; }
     public CivicCenter CivicCenter { get; set; }
+    public PopulationManager PopulationManager { get; set; } = new PopulationManager();
 
     public PlayerOne(string name, Civilization civilization)
     {

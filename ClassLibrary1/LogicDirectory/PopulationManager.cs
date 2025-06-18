@@ -45,7 +45,7 @@ public class PopulationManager
     {
         if (CanCreateVillagers())
         {
-            CurrentSoldiers++;
+            CurrentVillagers++;
             return true;
         }
         else
