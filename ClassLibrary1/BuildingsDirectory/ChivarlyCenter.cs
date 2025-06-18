@@ -22,6 +22,5 @@ namespace ChivarlyCenter
             ConstructionTime = 20;
             return ConstructionTime;
         }
-        
     }
 }
