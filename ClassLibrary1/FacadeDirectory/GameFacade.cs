@@ -7,6 +7,7 @@ namespace ClassLibrary1
     {
         public void GenerateMap(PlayerOne playerOne)
         {
+            Random random = new Random();
             Map map = new Map(100, 100);
         }
 
