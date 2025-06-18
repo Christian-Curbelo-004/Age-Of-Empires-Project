@@ -2,10 +2,8 @@ using System.Collections.Generic;
 using System;
 
 namespace ClassLibrary1
-
-
 {
-    public class Raider : ICharacter
+    public class Centuries : ICharacter
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }
@@ -13,17 +11,17 @@ namespace ClassLibrary1
         public int Speed { get; set; }
 
 
-        public Raider()
+        public Centuries()
         {
             Life = 100;
-            AttackValue = 33;
-            DeffenseValue = 25;
-            Speed = 15;
+            AttackValue = 10;
+            DeffenseValue = 40;
+            Speed = 12;
         }
         public void GetCreate(Dictionary<string,int>GetCost)
         {
-            GetCost["Oro"] = 5;
-            GetCost["Piedra"] = 40;
+            GetCost["Oro"] = 13;
+            GetCost["Piedra"] = 60;
         }
         public int Attack(ICharacter target)
         {

@@ -10,6 +10,7 @@ public class Paladin : ICharacter
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int DeffenseValue { get; set; }
+    public int Speed { get; set; }
 
 
     public  Paladin()
@@ -17,6 +18,7 @@ public class Paladin : ICharacter
         Life = 100;
         AttackValue = 25;
         DeffenseValue = 40;
+        Speed = 9;
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {
