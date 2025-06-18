@@ -4,8 +4,8 @@ namespace ClassLibrary1.QuaryDirectory;
 
 public class GoldMine : Quary
 {
-    public GoldMine(int collectionspeed, int collectionvalue, string collectiontype)
-            : base(collectionspeed, collectionvalue, collectiontype)
+    public GoldMine(int collectiontimeleft, int collectionvalue, string collectiontype)
+            : base(collectiontimeleft, collectionvalue, collectiontype)
         {
         }
 

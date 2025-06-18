@@ -1,6 +1,7 @@
 ﻿using CreateBuildings;
 using System;
 using System.Collections.Generic;
+using ClassLibrary1;
 
 namespace HomeBuilding
 {
@@ -22,6 +23,19 @@ namespace HomeBuilding
                 return true;
             }
             return false;
+        }
+
+        public int CreateVillagers(int unidades, int capacity)
+        {
+            if (HasCapacity(unidades, capacity))
+            {
+                unidades += 1;
+                return unidades;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

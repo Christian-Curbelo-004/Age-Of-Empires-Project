@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 namespace ClassLibrary1;
 
-public class Villagers : ICharacter, IBuilder
+public class Villagers : ICharacter, IBuilder, ICollect
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
@@ -16,7 +17,6 @@ public class Villagers : ICharacter, IBuilder
         Life = life;
         AttackValue = attackValue;
     }
-    
     public int Attack(ICharacter target) //cambie el void que devolvia por un int, ya que nos interesa unicamente el valor, el console.writeline va en el program
     {
         //Console.WriteLine("El aldeano ataco al enemigo");
@@ -36,18 +36,28 @@ public class Villagers : ICharacter, IBuilder
         GetCost["Madera"] = 10;
         GetCost["Piedra"] = 30;
     }
-
-    public void Build(Buildings target,int builders)
+    public bool Build(Buildings target,int builders)
     {
-        Console.WriteLine($"El aldeano está construyendo el edificio: {target.Name}");
         target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);
         if (target.ConstructionTimeLeft <= 0)
         {
-            Console.WriteLine($"El edificio está construido: {target.Name}");
+            return true;
         }
         else
         {
-            Console.WriteLine($"El edificio {target.Name} le faltan {target.ConstructionTimeLeft} segundos");
+            return false;
+        }
+    }
+    public bool Collect(Quary target, int collectors)
+    {
+        target.CollectionTimeLeft = Math.Max(0, target.CollectionTimeLeft - collectors);
+        if (target.CollectionTimeLeft <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
