@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-
+using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1
 
 
@@ -11,6 +11,7 @@ namespace ClassLibrary1
         public int AttackValue { get; set; }
         public int DeffenseValue { get; set; }
         public int Speed { get; set; }
+        public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
 
 
         public Raider() : base(100, 33,25,15)
@@ -18,8 +19,9 @@ namespace ClassLibrary1
         }
         public void GetCreate(Dictionary<string,int>GetCost)
         {
-            GetCost["Oro"] = 5;
-            GetCost["Piedra"] = 40;
+            ConstructionCost[GameResourceType.Stone] = 100;
+            ConstructionCost[GameResourceType.Gold] = 40;
+            ConstructionCost[GameResourceType.Wood] = 150;
         }
         public int Attack(ICharacter target)
         {

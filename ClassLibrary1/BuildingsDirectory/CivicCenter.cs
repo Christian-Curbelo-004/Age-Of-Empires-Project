@@ -19,7 +19,6 @@ namespace CivicCenterNamespace
         {
             MaxVillagers += 5;
         }
-
         public void AddHomeSoldiersCapacity()
         {
             MaxSoldiers += 5;
@@ -32,7 +31,6 @@ namespace CivicCenterNamespace
         {
             return (CurrentSoldiers < MaxSoldiers);
         }
-
         public override void SetConstructionCost()
         {
             ConstructionCost[GameResourceType.Stone] = 100;

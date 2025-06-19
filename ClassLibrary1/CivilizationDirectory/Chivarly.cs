@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Chivarly : Soldier, ICharacter
@@ -14,8 +14,9 @@ public class Chivarly : Soldier, ICharacter
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {
-        GetCost["Madera"] = 80;
-        GetCost["Piedra"] = 60;
+        ConstructionCost[GameResourceType.Stone] = 100;
+        ConstructionCost[GameResourceType.Gold] = 40;
+        ConstructionCost[GameResourceType.Wood] = 150;
     }
     public int Attack(ICharacter target)
     {

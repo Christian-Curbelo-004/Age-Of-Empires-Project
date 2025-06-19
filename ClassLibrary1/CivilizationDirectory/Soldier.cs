@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1;
 
 public class Soldier : ICharacter
@@ -8,6 +7,7 @@ public class Soldier : ICharacter
     public int AttackValue { get; set; }
     public int DefenseValue { get; set; }
     public int Speed { get; set; }
+    public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     public Soldier(int life, int attackValue, int defenseValue, int speed)
     {
         Life = life;
@@ -34,8 +34,9 @@ public class Soldier : ICharacter
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {
-        GetCost["Oro"] = 5;
-        GetCost["Piedra"] = 40;
+        ConstructionCost[GameResourceType.Stone] = 100;
+        ConstructionCost[GameResourceType.Gold] = 40;
+        ConstructionCost[GameResourceType.Wood] = 150;
     }
 }
 
