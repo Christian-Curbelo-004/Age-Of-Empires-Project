@@ -18,13 +18,16 @@ class Program
 
         RecursosEnEsquinas(map, 70, 0, 30, 30);
         RecursosEnEsquinas(map, 0, 70, 30, 30);
+        
+        PrintMap printmap = new PrintMap(map);
+        Console.WriteLine(printmap.GetMapAsString());
 
         static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height)
         {
             Random random = new Random();
-            for (int x = inicialX; x < inicialX + width; x++)
+            for (int y = inicialY; y < inicialX + width; y++)
             {
-                for (int y = inicialY; y < inicialY + height; y++)
+                for (int x = inicialY; x < inicialX + height; x++)
                 {
                     int recurso = random.Next(3);
                     IMapEntidad entidad;
