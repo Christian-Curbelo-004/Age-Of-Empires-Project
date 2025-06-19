@@ -16,14 +16,12 @@ namespace ClassLibrary1
             map.PlayerOne.CivicCenter = new CivicCenter(
                 endurence: 100,
                 constructiontimeleft: 10,
-                name: "Centro Cívico",
-                resourceValue: 50
+                name: "Centro Cívico"
             );
             map.PlayerTwo.CivicCenter = new CivicCenter(
                 endurence: 100,
                 constructiontimeleft: 10,
-                name: "Centro Cívico",
-                resourceValue: 50
+                name: "Centro Cívico"
             );
         }
         public void GenerateQuary(Map map)
@@ -54,9 +52,6 @@ namespace ClassLibrary1
            map.PlayerOne.AddQuary(WoodQuary);
            map.PlayerTwo.AddQuary(WoodQuary);
         }
-    
-        
-
         public void GenerateVillagers(Map map)
         {
             for (int a = 0; a < 3; a++)
@@ -66,9 +61,6 @@ namespace ClassLibrary1
                 map.PlayerTwo.AddVillagers(villagers);
             }
         }
-
-
-
         public void TrainSoldiers(Map map)
         {
             for (int s = 0; s < 3; s++)
@@ -77,7 +69,7 @@ namespace ClassLibrary1
                 Paladin paladin = new Paladin();
                 Raider raider = new Raider();
                 Centuries centuries = new Centuries();
-                Chevarly chevarly = new Chevarly();
+                Chivarly chevarly = new Chivarly();
                 
                 map.PlayerOne.AddSoldier(archer);
                 map.PlayerOne.AddSoldier(paladin);

@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 namespace ClassLibrary1.CivilizationDirectory;
 
-public class Chevarly : Soldier, ICharacter
+public class Chivarly : Soldier, ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int DeffenseValue { get; set; }
     public int Speed { get; set; }
 
-    public Chevarly() : base(100, 20, 15)
+    public Chivarly() : base(100, 20, 15,20)
     {
-        Speed = 20;
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {

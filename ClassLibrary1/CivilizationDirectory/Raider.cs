@@ -13,11 +13,8 @@ namespace ClassLibrary1
         public int Speed { get; set; }
 
 
-        public Raider() : base(100, 33,25)
+        public Raider() : base(100, 33,25,15)
         {
-            
-            Speed = 15;
-           
         }
         public void GetCreate(Dictionary<string,int>GetCost)
         {

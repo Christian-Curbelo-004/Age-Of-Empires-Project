@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
+using System.Security.AccessControl;
 using DepositBuilding;
+using GameResourceType = GameModels.GameResourceType;
 
 namespace GoldDepositBuild
 {
     public class GoldDeposit : Deposit
     {
         public int CurrentGold { get; private set; } 
-        public GoldDeposit(int endurence, int constructiontimeleft,string name, int resourcevalue)
-            : base(endurence,constructiontimeleft, name, resourcevalue)
+        public GoldDeposit(int endurence, int constructionTimeLeft, string name, int maxCapacity, ResourceType resourceType)
+            : base(endurence, constructionTimeLeft, name, maxCapacity, GameResourceType.Gold)
         {
-            CurrentGold = 0;
         }
         public void StoreGold(int amount)
         {
-            int stored = StoreResource(amount);
-            CurrentGold += stored;
+            StoreResource(amount, this.ResourceType);
         }
-        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        public override void SetConstructionCost()
         {
-            ConstruccionCost["Madera"] = 110;
-            ConstruccionCost["Piedra"] = 35;
+            ConstructionCost[GameResourceType.Wood] = 120;
+            ConstructionCost[GameResourceType.Stone] = 80;
         }
     }      
 }

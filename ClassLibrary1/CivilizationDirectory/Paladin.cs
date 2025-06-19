@@ -13,9 +13,8 @@ public class Paladin : Soldier, ICharacter
     public int Speed { get; set; }
 
 
-    public Paladin() : base(100, 25,  40) 
+    public Paladin() : base(100, 25,  40,9) 
     {
-        Speed = 9;
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {

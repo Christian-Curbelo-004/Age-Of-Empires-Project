@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using DepositBuilding;
+using GameModels;
 
 namespace WindMillDepositBuild
 {
     public class WindMill : Deposit
     {
         public int CurrentFood { get; private set; }
-        public WindMill(int endurence, int constructiontimeleft,string name, int resourcevalue)
-            : base(endurence,constructiontimeleft, name, resourcevalue)
+        public WindMill(int endurence, int constructiontimeleft,string name,int maxCapacity,GameResourceType resourceType)
+            : base(endurence,constructiontimeleft, name, maxCapacity, GameResourceType.Food)
         {
-            CurrentFood = 0;
+            CurrentFood = 100;
         }
         public void StoreFood(int amount)
         {
-            int stored = StoreResource(amount);
-            CurrentFood += stored;
+            StoreResource(amount,this.ResourceType);
         }
-        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+        public override void SetConstructionCost()
         {
-            ConstruccionCost["Piedra"] = 170;
-            ConstruccionCost["Madera"] = 100;
+            ConstructionCost[GameResourceType.Stone] = 170;
+            ConstructionCost[GameResourceType.Wood] = 100;
         }
     }      
 }

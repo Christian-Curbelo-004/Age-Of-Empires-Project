@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using CreateBuildings;
+using GameModels;
 
 namespace CivicCenterNamespace
 {
     public class CivicCenter : Buildings
     {
-        public int MaxVillagers = 3;
-        public int MaxSoldiers = 0;
-        public int CurrentVillagers = 3;
-        public int CurrentSoldiers = 0;
-        public CivicCenter(int endurence, int constructiontimeleft, string name, int resourceValue)
-            : base(endurence : 50, constructiontimeleft : 30, name : "CivicCenter", resourceValue)
+        public int MaxVillagers {get; private set;} = 3;
+        public int MaxSoldiers {get; private set;} = 0;
+        public int CurrentVillagers {get; private set;} = 3;
+        public int CurrentSoldiers {get; private set;} = 0;
+        public CivicCenter(int endurence, int constructiontimeleft, string name)
+            : base(endurence : 50, constructiontimeleft : 30, name : "CivicCenter")
         {
-        }
-        public void GetConstructionCost(Dictionary<string, int> ConstructionCost) //Método para asignar el tipo de material y el valor de una construcción
-        {
-            ConstructionCost["Madera"] = 140;
-            ConstructionCost["Oro"] = 6;
-            ConstructionCost["Piedra"] = 10;
         }
         public void AddHomeVillagersCapacity()
         {
@@ -31,25 +26,18 @@ namespace CivicCenterNamespace
         }
         public bool CanCreateVillagers()
         {
-            if (CurrentVillagers < MaxVillagers)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (CurrentVillagers < MaxVillagers);
         }
         public bool CanCreateSoldiers()
         {
-            if (CurrentSoldiers < MaxSoldiers)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (CurrentSoldiers < MaxSoldiers);
+        }
+
+        public override void SetConstructionCost()
+        {
+            ConstructionCost[GameResourceType.Stone] = 100;
+            ConstructionCost[GameResourceType.Gold] = 40;
+            ConstructionCost[GameResourceType.Wood] = 150;
         }
     }
 }

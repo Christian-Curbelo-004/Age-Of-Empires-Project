@@ -9,7 +9,7 @@ public class Archer : Soldier, ICharacter
     public int AttackValue { get; set; }
     public int Speed { get; set; }
 
-    public Archer() : base(100,15, 20) // Life, AttackValue y Speed
+    public Archer() : base(100,15, 0,20) // Life, AttackValue y Speed
     {
     }
     public void GetCreate(Dictionary<string,int>GetCost)

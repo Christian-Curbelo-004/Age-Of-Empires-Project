@@ -11,9 +11,8 @@ namespace ClassLibrary1
         public int Speed { get; set; }
 
 
-        public Centuries() : base(100, 10, 40)
+        public Centuries() : base(100, 10, 40,12)
         {
-            Speed = 12;
         }
         public void GetCreate(Dictionary<string,int>GetCost)
         {

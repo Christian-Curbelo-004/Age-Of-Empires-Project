@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using DepositBuilding;
+using GameModels;
 
 namespace StoneDepositBuild
 {
     public class StoneDeposit : Deposit
     {
         public int CurrentStone { get; private set; }
-        public StoneDeposit(int endurence, int constructiontimeleft,string name, int resourcevalue)
-            : base(endurence,constructiontimeleft, name, resourcevalue)
+        public StoneDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity, GameResourceType resourceType)
+            : base(endurence,constructiontimeleft, name, maxCapacity,GameResourceType.Stone)
         {
-            CurrentStone = 0;
         }
         public void StoreStone(int amount)
         {
-            int stored = StoreResource(amount);
-            CurrentStone += stored;
+            StoreResource(amount,this.ResourceType);
+         
         }
-        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+
+        public override void SetConstructionCost()
         {
-            ConstruccionCost["Piedra"] = 80;
-            ConstruccionCost["Oro"] = 10;
+            ConstructionCost[GameResourceType.Stone] = 80;
+            ConstructionCost[GameResourceType.Gold] = 10;
         }
     }      
 }

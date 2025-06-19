@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using DepositBuilding;
+using GameModels;
+using GameResourceType = GameModels.GameResourceType;
 
 namespace WoodDepositBuilding
 {
     public class WoodDeposit : Deposit
     {
         public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructiontimeleft,string name, int resourcevalue)
-            : base(endurence,constructiontimeleft, name, resourcevalue)
+        public WoodDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity,GameResourceType resourceType)
+            : base(endurence,constructiontimeleft, name, maxCapacity,GameResourceType.Wood)
         {
-            CurrentWood = 0;
+            CurrentWood = 100;
         }
         public void StoreWood(int amount)
         {
-            int stored = StoreResource(amount);
-            CurrentWood += stored;
+            StoreResource(amount, this.ResourceType);
         }
-        public void GetconstructionCost(Dictionary<string,int>ConstruccionCost)
+
+        public override void SetConstructionCost()
         {
-            ConstruccionCost["Piedra"] = 30;
-            ConstruccionCost["Oro"] = 10;
+            ConstructionCost[GameResourceType.Stone] = 30;
+            ConstructionCost[GameResourceType.Gold] = 10;
         }
     }      
-    
 }

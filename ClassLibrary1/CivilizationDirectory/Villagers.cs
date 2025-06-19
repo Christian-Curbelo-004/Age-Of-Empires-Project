@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassLibrary1.CivilizationDirectory;
+﻿using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
+using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1;
 
 public class Villagers : ICharacter, IBuilder, ICollect
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
-    private Dictionary<string, int> GetCost = new Dictionary<string, int>();
+    public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     
     public Villagers(int life, int attackValue)
     {
@@ -32,9 +31,11 @@ public class Villagers : ICharacter, IBuilder, ICollect
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {
-        GetCost["Madera"] = 10;
-        GetCost["Piedra"] = 30;
+        ConstructionCost[GameResourceType.Stone] = 100;
+        ConstructionCost[GameResourceType.Gold] = 40;
+        ConstructionCost[GameResourceType.Wood] = 150;
     }
+    
     public bool Build(Buildings target,int builders)
     {
         target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);

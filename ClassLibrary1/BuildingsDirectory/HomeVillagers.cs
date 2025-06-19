@@ -1,24 +1,20 @@
-﻿using CreateBuildings;
-using System;
+﻿using System;
+using CreateBuildings;
 using System.Collections.Generic;
-using ClassLibrary1;
-
+using GameResourceType = GameModels.GameResourceType;
 namespace HomeVillagers
 {
     public class HomeVillagers : Buildings
     {
-        public HomeVillagers(int endurence, int constructiontimeleft, string name, int resourcevalue)
-            : base(endurence : 30, constructiontimeleft : 15, name : "Home", resourcevalue)
+        public const int PopulationIncrease = 5;
+        public HomeVillagers(int endurence, int constructiontimeleft, string name)
+            : base(endurence : 30, constructiontimeleft : 15, name : "Home")
         {
         }
-        public void GetConstructionCost(Dictionary<string, int> ConstructionCost)
+        public override void SetConstructionCost()
         {
-            ConstructionCost["Piedra"] = 20;
-            ConstructionCost["Madera"] = 100;
-        }
-        public int GetPopulation()
-        {
-            return 5;
+            ConstructionCost[GameResourceType.Food] = 30;
+            ConstructionCost[GameResourceType.Stone] = 20;
         }
     }
 }
