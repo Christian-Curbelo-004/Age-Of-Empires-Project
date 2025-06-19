@@ -12,6 +12,7 @@ public class Soldier : ICharacter
         Life = life;
         AttackValue = attackValue;
         DefenseValue = defenseValue;
+        
     }
     public int Attack(ICharacter target) // cambio el void que habia, por un int y en vez de consoloe pongo return, ya que es una clase y solo necesitamos retornar el valor
     {

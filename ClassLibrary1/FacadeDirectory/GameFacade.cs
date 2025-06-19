@@ -76,8 +76,21 @@ namespace ClassLibrary1
                 Archer archer = new Archer();
                 Paladin paladin = new Paladin();
                 Raider raider = new Raider();
-                // chivarly
-                // centuries
+                Centuries centuries = new Centuries();
+                Chevarly chevarly = new Chevarly();
+                
+                map.PlayerOne.AddSoldier(archer);
+                map.PlayerOne.AddSoldier(paladin);
+                map.PlayerOne.AddSoldier(raider);
+                map.PlayerOne.AddSoldier(centuries);
+                map.PlayerOne.AddSoldier(chevarly);
+                
+                map.PlayerTwo.AddSoldier(archer);
+                map.PlayerTwo.AddSoldier(paladin);
+                map.PlayerTwo.AddSoldier(raider);
+                map.PlayerTwo.AddSoldier(centuries);
+                map.PlayerTwo.AddSoldier(chevarly);
+                
             }
         }
 

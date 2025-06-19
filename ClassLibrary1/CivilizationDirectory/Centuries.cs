@@ -3,7 +3,7 @@ using System;
 
 namespace ClassLibrary1
 {
-    public class Centuries : ICharacter
+    public class Centuries : Soldier, ICharacter
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }
@@ -11,11 +11,8 @@ namespace ClassLibrary1
         public int Speed { get; set; }
 
 
-        public Centuries()
+        public Centuries() : base(100, 10, 40)
         {
-            Life = 100;
-            AttackValue = 10;
-            DeffenseValue = 40;
             Speed = 12;
         }
         public void GetCreate(Dictionary<string,int>GetCost)

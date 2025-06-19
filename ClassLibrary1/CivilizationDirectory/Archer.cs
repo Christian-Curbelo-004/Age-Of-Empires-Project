@@ -3,17 +3,14 @@ using System.Collections.Generic;
 
 namespace ClassLibrary1.CivilizationDirectory;
 
-public class Archer : ICharacter
+public class Archer : Soldier, ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int Speed { get; set; }
 
-    public Archer()
+    public Archer() : base(100,15, 20) // Life, AttackValue y Speed
     {
-        Life = 100;
-        AttackValue = 15;
-        Speed = 20;
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {

@@ -5,7 +5,7 @@ namespace ClassLibrary1
 
 
 {
-    public class Raider : ICharacter
+    public class Raider : Soldier, ICharacter
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }
@@ -13,12 +13,11 @@ namespace ClassLibrary1
         public int Speed { get; set; }
 
 
-        public Raider()
+        public Raider() : base(100, 33,25)
         {
-            Life = 100;
-            AttackValue = 33;
-            DeffenseValue = 25;
+            
             Speed = 15;
+           
         }
         public void GetCreate(Dictionary<string,int>GetCost)
         {
