@@ -14,7 +14,7 @@ public class TestInfanteryCenter
     [SetUp]
     public void Setup()
     {
-        centerInf = new InfanteryCenter.InfanteryCenter(20, 10, "InfanteryCenter", 100);
+        centerInf = new InfanteryCenter.InfanteryCenter(20, 10, "InfanteryCenter");
         
     }
 
@@ -22,7 +22,7 @@ public class TestInfanteryCenter
     public void ConstructionCostCorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.GetConstructionCost(constructionCost);
+        centerInf.SetConstructionCost();
         Assert.That(constructionCost["Piedra"],Is.EqualTo(10));
         Assert.That(constructionCost["Oro"],Is.EqualTo(6));
     }
@@ -30,7 +30,7 @@ public class TestInfanteryCenter
     public void ConstructionCostIncorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.GetConstructionCost(constructionCost);
+        centerInf.SetConstructionCost();
         //int time = centerInf.GetConstructionTime(0);
         //Assert.That(time, Is.EqualTo(6));
     }

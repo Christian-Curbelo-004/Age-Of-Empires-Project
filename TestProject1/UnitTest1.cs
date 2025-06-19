@@ -10,7 +10,7 @@ public class TestsChivarlyCenter
     [SetUp]
     public void Setup()
     {
-        center = new ChivarlyCenter.ChivarlyCenter(20, 10, "ChivarlyCenter", 100);
+        center = new ChivarlyCenter.ChivarlyCenter(20, 10, "ChivarlyCenter");
     }
 
     [Test]

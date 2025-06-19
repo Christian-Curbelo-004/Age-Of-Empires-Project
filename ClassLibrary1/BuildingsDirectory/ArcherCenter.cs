@@ -1,7 +1,6 @@
 ﻿using System;
 using CreateBuildings;
 using ClassLibrary1.CivilizationDirectory;
-using System.Collections.Generic;
 using GameModels;
 
 namespace ArcherCenter
