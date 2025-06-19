@@ -57,4 +57,9 @@ public class Map
             throw new ArgumentOutOfRangeException($"La posición ({x}, {y}) está fuera de los límites del mapa.");
         }
     }
+
+    public void PonerEntidad(int x, int y, IMapEntidad entity)
+    {
+        map[x, y].Entity = entity;
+    }
 }

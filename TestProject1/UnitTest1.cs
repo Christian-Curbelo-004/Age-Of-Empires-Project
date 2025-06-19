@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace TestProject1;
 
-public class TestsInfanteyCenter
+public class TestsChivarlyCenter
 {
     private ChivarlyCenter.ChivarlyCenter center;
     [SetUp]

@@ -6,6 +6,7 @@ public class Cell
     public int PosY { get; set; }
     public bool IsOccupied { get; set; }
     public string EntityType { get; set; } // Tipo de entidad en la celda (ej. "Archer", "Paladin", "GoldDeposit", etc.)
+    public IMapEntidad Entity { get; set; }
 
     public Cell(int x, int y)
     {
