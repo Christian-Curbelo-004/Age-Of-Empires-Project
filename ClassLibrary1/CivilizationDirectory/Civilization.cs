@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-namespace ClassLibrary1
+namespace ClassLibrary1.CivilizationDirectory
 {
     public abstract class Civilization
     {

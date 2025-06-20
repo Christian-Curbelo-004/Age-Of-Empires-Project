@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using ClassLibrary1.LogicDirectory;
 using CivicCenterNamespace;
-namespace ClassLibrary1;
-
+namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne
 {
     public int Food { get; set; } = 0;

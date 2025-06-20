@@ -4,10 +4,10 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Chivarly : Soldier, ICharacter
 {
-    public int Life { get; set; }
-    public int AttackValue { get; set; }
-    public int DeffenseValue { get; set; }
-    public int Speed { get; set; }
+    public override  int Life { get; set; }
+    public override  int AttackValue { get; set; }
+    public override  int DeffenseValue { get; set; }
+   // public override int Speed { get; set; }
 
     public Chivarly() : base(100, 20, 15,20)
     {
@@ -27,15 +27,5 @@ public class Chivarly : Soldier, ICharacter
     {
         Life -= damage;
         return Life;
-    }
-
-    public string Run(string direction)
-    {
-        if (direction.ToLower() == "izquierda" || direction.ToLower() == "derecha" || direction.ToLower() == "sube" ||
-            direction.ToLower() == "baja") ;
-        {
-            Speed += 10;
-            return direction;
-        }
     }
 }

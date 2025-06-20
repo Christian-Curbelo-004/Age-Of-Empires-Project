@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace ClassLibrary1
+namespace ClassLibrary1.CivilizationDirectory
 {
     public class PrintMap
     {

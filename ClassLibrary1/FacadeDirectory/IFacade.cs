@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace ClassLibrary1.CivilizationDirectory
 {
     public interface IFacade      
     {

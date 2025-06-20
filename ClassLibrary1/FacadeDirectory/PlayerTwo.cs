@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CivicCenterNamespace;
 
-namespace ClassLibrary1
+namespace ClassLibrary1.CivilizationDirectory
 {
     public class PlayerTwo : PlayerOne
     {
