@@ -15,9 +15,6 @@ public class Infantery : Soldier,ICharacter
     }
     public void GetCreate(Dictionary<string,int>GetCost)
     {
-        ConstructionCost[GameResourceType.Stone] = 100;
-        ConstructionCost[GameResourceType.Gold] = 40;
-        ConstructionCost[GameResourceType.Wood] = 150;
     }
     public int Attack(ICharacter target)
     {

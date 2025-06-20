@@ -32,11 +32,11 @@ public class Soldier : ICharacter
         return Life;
         //Console.WriteLine($"El soldado recibió {damageTaken} de daño. Vida restante: {Life}");
     }
-    public virtual  void GetCreate(Dictionary<string,int>getCost)
+    public virtual void GetCreate(Dictionary<string,int>getCost)
     {
         ConstructionCost[GameResourceType.Stone] = 100;
         ConstructionCost[GameResourceType.Gold] = 40;
-        ConstructionCost[GameResourceType.Wood] = 150;
+        ConstructionCost[GameResourceType.Food] = 150;
     }
 }
 

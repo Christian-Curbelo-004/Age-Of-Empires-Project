@@ -9,7 +9,7 @@ public class Paladin : Soldier, ICharacter
     public override  int Life { get; set; }
     public override int AttackValue { get; set; }
     public override int DeffenseValue { get; set; }
-   // public override int Speed { get; set; }
+    public override int Speed { get; set; }
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
 
     public Paladin() : base(100, 25,  40,9) 
@@ -17,9 +17,6 @@ public class Paladin : Soldier, ICharacter
     }
     public void GetCreate(Dictionary<string,int>getCost)
     {
-        ConstructionCost[GameResourceType.Stone] = 100;
-        ConstructionCost[GameResourceType.Gold] = 40;
-        ConstructionCost[GameResourceType.Wood] = 150;
     }
     public int Attack(ICharacter target)
     {

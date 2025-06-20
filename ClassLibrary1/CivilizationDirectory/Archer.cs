@@ -7,16 +7,14 @@ public class Archer : Soldier
     public override int Life { get; set; }
     public override int AttackValue { get; set; }
     public override int Speed { get; set; }
-    //public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
+    public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     public Archer() : base(100,15, 0,20) // Life, AttackValue y Speed
     {
     }
-    //public void GetCreate(Dictionary<string,int>GetCost)
-    //{
-       // ConstructionCost[GameResourceType.Stone] = 100;
-      //  ConstructionCost[GameResourceType.Gold] = 40;
-       // ConstructionCost[GameResourceType.Wood] = 150;
-    //}
+
+    public void GetCreate(Dictionary<string, int> GetCost)
+    {
+    }
     
     public override int Attack(ICharacter target)
     {
