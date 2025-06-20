@@ -1,4 +1,6 @@
-﻿using ClassLibrary1.CivilizationDirectory;
+﻿using System;
+using System.Collections.Generic;
+using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
@@ -8,6 +10,7 @@ public class Villagers : ICharacter, IBuilder, ICollect
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
+    public int Speed { get; set; } 
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     
     public Villagers(int life, int attackValue)

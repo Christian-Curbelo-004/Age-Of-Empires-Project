@@ -2,22 +2,30 @@
 
 public class Cell
 {
-    public int PosX { get; set; }
-    public int PosY { get; set; }
+    public int PosX { get; set; } 
+    public int PosY { get; set; } 
     public bool IsOccupied { get; set; }
-    public string EntityType { get; set; } // Tipo de entidad en la celda (ej. "Archer", "Paladin", "GoldDeposit", etc.)
-    public IMapEntidad Entity { get; set; }
+    public string EntityType { get; set; } 
+    public int Speed { get; set; } 
+    public Quary Resource { get; set; } 
 
-    public Cell(int x, int y)
+    public Cell(int x, int y, int speed = 1000)
     {
         PosX = x;
         PosY = y;
         IsOccupied = false;
-        EntityType = null; 
+        EntityType = null;
+        Speed = speed; 
+        Resource = null;
     }
 
     public override string ToString()
     {
+        if (Resource != null)
+        {
+            return $"{Resource.CollectionType}({Resource.CollectionValue})"; 
+        }
+
         switch (EntityType)
         {
             // Tropas
@@ -69,43 +77,7 @@ public class Cell
             case "Forest": return "F";
             case "GoldMine": return "GM";
             case "StoneMine": return "SM";
-
-            // Aldeano trabajando
-            case "VfG": return "VfG"; // farmeando oro
-            case "VfS": return "VfS"; // farmeando piedra
-            case "VfW": return "VfW"; // farmeando madera
-            case "VB": return "VB";   // construyendo
-            case "VFf": return "VFf"; // lleno
-
-            // Combates Archer
-            case "AvA": return "AvA";
-            case "AvP": return "AvP";
-            case "AvR": return "AvR";
-            case "AvS": return "AvS";
-            case "AvV": return "AvV";
-            case "AvB": return "AvB";
-
-            // Combates Paladin
-            case "PvP": return "PvP";
-            case "PvR": return "PvR";
-            case "PvS": return "PvS";
-            case "PvV": return "PvV";
-            case "PvB": return "PvB";
-
-            // Combates Raider
-            case "RvR": return "RvR";
-            case "RvS": return "RvS";
-            case "RvV": return "RvV";
-            case "RvB": return "RvB";
-
-            // Combates Soldier
-            case "SvS": return "SvS";
-            case "SvV": return "SvV";
-            case "SvB": return "SvB";
-
-            // Valor por defecto para celdas vacías u otras entidades desconocidas
-            default: return "■";
+            default: return "■"; 
         }
     }
 }
-

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading;
 
 namespace ClassLibrary1.CivilizationDirectory
 {
@@ -52,6 +53,16 @@ namespace ClassLibrary1.CivilizationDirectory
             result.AppendLine();
 
             return result.ToString();
+        }
+
+        public void StartDisplay(int refreshRateMs = 500)
+        {
+            while (true)
+            {
+                Console.Clear(); 
+                Console.WriteLine(GetMapAsString()); 
+                Thread.Sleep(refreshRateMs); 
+            }
         }
     }
 }

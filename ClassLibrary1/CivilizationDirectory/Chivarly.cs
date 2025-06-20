@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.CivilizationDirectory;
 
@@ -7,7 +8,7 @@ public class Chivarly : Soldier, ICharacter
     public override  int Life { get; set; }
     public override  int AttackValue { get; set; }
     public override  int DeffenseValue { get; set; }
-   // public override int Speed { get; set; }
+    public override int Speed { get; set; }
 
     public Chivarly() : base(100, 20, 15,20)
     {

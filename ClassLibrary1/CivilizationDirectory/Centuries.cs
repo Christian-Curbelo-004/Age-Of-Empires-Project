@@ -8,6 +8,7 @@ namespace ClassLibrary1.CivilizationDirectory
         public override int Life { get; set; }
         public override  int AttackValue { get; set; }
         public override int DeffenseValue { get; set; }
+        public override int Speed { get; set; }
         public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
 
         public Centuries() : base(100, 10, 40,12)
