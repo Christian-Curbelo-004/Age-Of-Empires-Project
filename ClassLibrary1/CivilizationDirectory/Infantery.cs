@@ -5,11 +5,6 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Infantery : Soldier,ICharacter
 {
-    public override int Life { get; set; }
-    public override int AttackValue { get; set; }
-    public int DeffenseValue { get; set; }
-    public int Speed { get; set; }
-    public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
 
     public Infantery() : base(100,14,10,13)
     {
