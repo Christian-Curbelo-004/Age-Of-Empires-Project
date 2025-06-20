@@ -1,8 +1,10 @@
-using ArcherCenter;
-using StoneDepositBuild;
-using WoodDepositBuilding;
-using GoldDepositBuild;
-using WindMillDepositBuild;
+// using ArcherCenter;
+//using StoneDepositBuild;
+//using WoodDepositBuilding;
+//using GoldDepositBuild;
+//using WindMillDepositBuild;
+
+// using ClassLibrary1.DepositDirectory;
 namespace ClassLibrary1.LogicDirectory;
 
 public abstract class LogicCore : ILogic

@@ -1,15 +1,21 @@
-﻿using CreateBuildings;
-using System;
-using System.Collections.Generic;
-using ClassLibrary1.CivilizationDirectory;
+﻿//using System;
+//using System.Collections.Generic;
+//using ClassLibrary1.CivilizationDirectory;
+
+
+//using ClassLibrary1.BuildingsDirectory;
+
+
+using CreateBuildings;
 using GameModels;
-namespace ChivarlyCenter
+
+namespace ClassLibrary1.CivilizationDirectory
 {
     public class ChivarlyCenter : Buildings
     {
         
         public ChivarlyCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence:20, constructiontimeleft:10, name: "ChivalryCenter")
+            : base(endurence, constructiontimeleft, name) // endurence:20, constructiontimeleft:10, name: "ChivalryCenter"
         {
         }
         public override void SetConstructionCost()
@@ -18,7 +24,7 @@ namespace ChivarlyCenter
             ConstructionCost[GameResourceType.Wood] = 100;
         }
 
-        public void CreateChivarly()
+        public Chivarly  CreateChivarly()
         {
             Chivarly chivarly = new Chivarly()
             {
@@ -27,6 +33,7 @@ namespace ChivarlyCenter
                 DeffenseValue = 15,
                 Speed = 20,
             };
+            return chivarly;
         }
     }
 }

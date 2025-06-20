@@ -23,7 +23,7 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
             ConstructionCost[GameResourceType.Stone] = 20;
         }
 
-        public void CreateInfantery()
+        public  Infantery CreateInfantery()   // public void CreateInfantery()
         {
             Infantery infantery = new Infantery()
             {
@@ -32,6 +32,7 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
                 DeffenseValue = 10,
                 Speed = 13,
             };
+            return infantery;
         }
     }
 }

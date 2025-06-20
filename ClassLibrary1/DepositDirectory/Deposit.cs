@@ -2,8 +2,8 @@
 using CreateBuildings;
 using System.IO;
 using GameModels;
-
-namespace DepositBuilding
+using ClassLibrary1.BuildingsDirectory;
+namespace ClassLibrary1.DepositDirectory
 {
     public abstract class Deposit : Buildings
     {

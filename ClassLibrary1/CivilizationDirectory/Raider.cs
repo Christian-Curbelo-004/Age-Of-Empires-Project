@@ -11,12 +11,12 @@ namespace ClassLibrary1.CivilizationDirectory
         public Raider() : base(100, 33,25,15)
         {
         }
-        public int Attack(ICharacter target)
+        public override  int Attack(ICharacter target)
         {
             return target.RecieveAttack(AttackValue);
         }
 
-        public int RecieveAttack(int damage)
+        public override  int RecieveAttack(int damage)
         {
             DeffenseValue -= damage;
             return DeffenseValue;

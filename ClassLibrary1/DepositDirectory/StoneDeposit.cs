@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using DepositBuilding;
+﻿//using System;
+//using System.Collections.Generic;
+//using DepositBuilding;
 using GameModels;
 
-namespace StoneDepositBuild
+namespace ClassLibrary1.DepositDirectory
 {
     public class StoneDeposit : Deposit
     {

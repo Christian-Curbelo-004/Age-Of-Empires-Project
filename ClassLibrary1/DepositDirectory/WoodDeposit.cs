@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using DepositBuilding;
-using GameModels;
+﻿// using System;
+// using System.Collections.Generic;
+// using DepositBuilding;
+// using GameModels;
 using GameResourceType = GameModels.GameResourceType;
 
-namespace WoodDepositBuilding
+namespace ClassLibrary1.DepositDirectory
 {
     public class WoodDeposit : Deposit
     {

@@ -1,14 +1,14 @@
-﻿using System;
+﻿//using System;
 using CreateBuildings;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using GameResourceType = GameModels.GameResourceType;
-namespace HomeVillagers
+namespace   ClassLibrary1.BuildingsDirectory                                   // HomeVillagers
 {
     public class HomeVillagers : Buildings
     {
         public const int PopulationIncrease = 5;
         public HomeVillagers(int endurence, int constructiontimeleft, string name)
-            : base(endurence : 30, constructiontimeleft : 15, name : "Home")
+            : base(endurence, constructiontimeleft, name)        // endurence : 30, constructiontimeleft : 15, name : "Home"
         {
         }
         public override void SetConstructionCost()

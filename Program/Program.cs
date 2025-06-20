@@ -4,8 +4,9 @@ using ClassLibrary1;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.QuaryDirectory;
 using QuaryBiome;
+using ClassLibrary1.FacadeDirectory;
 
-namespace ClassLibrary1.FacadeDirectory;
+namespace ClassLibrary1;
 
 class Program
 {

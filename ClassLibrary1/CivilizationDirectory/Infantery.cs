@@ -3,7 +3,7 @@
 //  using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.CivilizationDirectory;
 
-public class Infantery : Soldier,ICharacter
+public class Infantery : Soldier                                                //ICharacter
 {
 
     public Infantery() : base(100,14,10,13)

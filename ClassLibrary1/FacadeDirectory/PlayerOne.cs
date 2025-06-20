@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using ClassLibrary1.LogicDirectory;
-using CivicCenterNamespace;
+﻿//using System.Collections.Generic;
+//using ClassLibrary1.LogicDirectory;
+//using ClassLibrary1.CivilizationDirectory;
+
+using ClassLibrary1.BuildingsDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne
 {

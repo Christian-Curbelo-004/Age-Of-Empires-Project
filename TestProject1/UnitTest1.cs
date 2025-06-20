@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿//using System.Collections.Generic;
 //using InfanteryCenter;  
-using NUnit.Framework; 
+//using NUnit.Framework; 
+//using ClassLibrary1.BuildingsDirectory;
 
-
-
+using ClassLibrary1.CivilizationDirectory;
 namespace TestProject1;
 
 public class TestsChivarlyCenter
 {
-    private ChivarlyCenter.ChivarlyCenter center;
+    private ChivarlyCenter center;
     [SetUp]
     public void Setup()
     {
-        center = new ChivarlyCenter.ChivarlyCenter(20, 10, "ChivarlyCenter");
+        center = new ChivarlyCenter(20, 10, "ChivarlyCenter");
     }
 
     [Test]

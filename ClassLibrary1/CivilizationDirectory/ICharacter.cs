@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// using System.Collections.Generic;
 
-namespace ClassLibrary1;
+namespace ClassLibrary1.CivilizationDirectory;
 
 public interface ICharacter
 {
@@ -10,6 +10,6 @@ public interface ICharacter
      int Attack(ICharacter target); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
      int RecieveAttack(int damage); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
 
-     public void GetCreate(Dictionary<string,int>GetCreate);
+     public void GetCreate(Dictionary<string,int>getCreate);
 }
     

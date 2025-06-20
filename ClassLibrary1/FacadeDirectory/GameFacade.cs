@@ -1,9 +1,13 @@
-using System;
-using CivicCenterNamespace;
-using ClassLibrary1.LogicDirectory;
-using ClassLibrary1.CivilizationDirectory;
-namespace ClassLibrary1.FacadeDirectory
+//using System;
+//using CivicCenterNamespace;
+//using ClassLibrary1.LogicDirectory;
+//namespace ClassLibrary1.FacadeDirectory
+//namespace ClassLibrary1.FacadeDirectory
 
+using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
+
+namespace ClassLibrary1.FacadeDirectory 
 {
     public class GameFacade : IFacade
     {
