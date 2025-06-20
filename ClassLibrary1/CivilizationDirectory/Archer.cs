@@ -7,11 +7,7 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Archer : Soldier
 {
-    public override int Life { get; set; }
-    public override int AttackValue { get; set; }
-    public override int Speed { get; set; }
-    //public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
-    public Archer() : base(100,15, 0,20) // Life, AttackValue y Speed
+    public Archer() : base(100,15, 0,20)
     {
     }
 
