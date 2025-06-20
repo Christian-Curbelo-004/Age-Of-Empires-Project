@@ -16,7 +16,6 @@ public class TestsChivarlyCenter
     [Test]
     public void ConstructionCost()
     {
-        
         var constructionCost = new Dictionary<string, int>();
         Assert.That(constructionCost["Madera"],Is.EqualTo(100));
         Assert.That(constructionCost["Oro"],Is.EqualTo(20));

@@ -12,7 +12,7 @@ namespace InfanteryCenter
         public const int CostStone = 40;
         public const int CostGold = 15;
         public InfanteryCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence:20, constructiontimeleft:10, name:"InfanteryCenter")
+            : base(endurence, constructiontimeleft, name)
         {
         }
         public override void SetConstructionCost()
