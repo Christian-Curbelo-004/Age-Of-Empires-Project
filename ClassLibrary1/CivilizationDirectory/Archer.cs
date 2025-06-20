@@ -10,10 +10,6 @@ public class Archer : Soldier
     public Archer() : base(100,15, 0,20)
     {
     }
-
-    public override void GetCreate(Dictionary<string, int> getCost)
-    {
-    }
     
     public override int Attack(ICharacter target)
     {

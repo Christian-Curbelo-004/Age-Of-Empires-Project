@@ -8,9 +8,6 @@ namespace ClassLibrary1.CivilizationDirectory
         public Centuries() : base(100, 10, 40,12)
         {
         }
-        public override  void GetCreate(Dictionary<string,int>getCost)
-        {
-        }
         public override int Attack(ICharacter target)
         {
             return target.RecieveAttack(AttackValue);

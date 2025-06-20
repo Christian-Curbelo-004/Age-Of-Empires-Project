@@ -9,9 +9,6 @@ public class Infantery : Soldier,ICharacter
     public Infantery() : base(100,14,10,13)
     {
     }
-    public void GetCreate(Dictionary<string,int>GetCost)
-    {
-    }
     public int Attack(ICharacter target)
     {
         return target.RecieveAttack(AttackValue);

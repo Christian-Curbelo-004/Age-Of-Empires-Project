@@ -11,9 +11,6 @@ namespace ClassLibrary1.CivilizationDirectory
         public Raider() : base(100, 33,25,15)
         {
         }
-        public void GetCreate(Dictionary<string,int>GetCost)
-        {
-        }
         public int Attack(ICharacter target)
         {
             return target.RecieveAttack(AttackValue);

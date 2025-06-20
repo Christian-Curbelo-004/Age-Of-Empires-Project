@@ -8,9 +8,6 @@ public class Chivarly : Soldier, ICharacter
     public Chivarly() : base(100, 20, 15,20)
     {
     }
-    public void GetCreate(Dictionary<string,int>GetCost)
-    {
-    }
     public int Attack(ICharacter target)
     {
         return target.RecieveAttack(AttackValue);
