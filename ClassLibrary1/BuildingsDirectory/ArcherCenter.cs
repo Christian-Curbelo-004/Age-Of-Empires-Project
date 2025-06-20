@@ -19,6 +19,12 @@ namespace ArcherCenter
 
         public void CreateArcher()
         {
+            Archer archer = new Archer()
+            {
+                Life = 100,
+                AttackValue = 15,
+                Speed = 20,
+            };
         }
     }
 }

@@ -23,6 +23,13 @@ namespace InfanteryCenter
 
         public void CreateInfantery()
         {
+            Infantery infantery = new Infantery()
+            {
+                Life = 100,
+                AttackValue = 14,
+                DeffenseValue = 10,
+                Speed = 13,
+            };
         }
     }
 }

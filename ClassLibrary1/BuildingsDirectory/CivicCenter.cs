@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ClassLibrary1;
 using CreateBuildings;
 using GameModels;
 
@@ -37,5 +38,12 @@ namespace CivicCenterNamespace
             ConstructionCost[GameResourceType.Gold] = 40;
             ConstructionCost[GameResourceType.Wood] = 150;
         }
+
+        public void CreateVillagers()
+        {
+            Villagers villager = new Villagers(100, 5);
+        }
+
+        
     }
 }
