@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
-using InfanteryCenter;  
+//using InfanteryCenter;  
 using NUnit.Framework; 
+
+
 
 namespace TestProject1;
 

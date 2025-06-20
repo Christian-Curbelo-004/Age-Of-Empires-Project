@@ -1,10 +1,11 @@
-﻿using System;
+﻿//using System;
 using ClassLibrary1.CivilizationDirectory;
 using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
 
 
-namespace InfanteryCenter
+namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si genera problemas ClassLibrary1.BuildingsDirectory) ClassLibrary1.BuildingsDirectory
+
 {
     public class InfanteryCenter : Buildings
     {

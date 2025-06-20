@@ -1,20 +1,21 @@
-using System;
-using System.Collections.Generic;
-using InfanteryCenter;  
-using NUnit.Framework;
+//using System;
+//using System.Collections.Generic;
+//using InfanteryCenter;  
+//using NUnit.Framework;
 
 
+using ClassLibrary1.BuildingsDirectory;
 
 namespace TestProject1;
 
 public class TestInfanteryCenter
 {
-    private InfanteryCenter.InfanteryCenter centerInf;
+    private InfanteryCenter centerInf;
 
     [SetUp]
     public void Setup()
     {
-        centerInf = new InfanteryCenter.InfanteryCenter(20, 10, "InfanteryCenter");
+        centerInf = new InfanteryCenter (20, 10, "InfanteryCenter");
         
     }
 
