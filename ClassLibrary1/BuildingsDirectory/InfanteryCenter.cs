@@ -11,6 +11,7 @@ namespace InfanteryCenter
         public int ConstructionTime = 20;
         public const int CostStone = 40;
         public const int CostGold = 15;
+
         public InfanteryCenter(int endurence, int constructiontimeleft, string name)
             : base(endurence, constructiontimeleft, name)
         {
