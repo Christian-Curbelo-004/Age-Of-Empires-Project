@@ -34,16 +34,15 @@ class Program
 
                     if (recurso == 0)
                     {
-                        entidad = new Forest(5, 0,"Madera");
+                        entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Madera", wood: 150);
                     }
                     else if (recurso == 1)
                     {
-                        entidad = new GoldMine(5, 0, "Gold");
-                        
+                        entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Gold", gold: 50);
                     }
                     else
                     {
-                        entidad = new StoneMine(5, 0, "Stone");
+                        entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Stone", stone: 75);
                     }
 
                     map.PonerEntidad(x, y, entidad);

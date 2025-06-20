@@ -2,12 +2,13 @@
 
 public class Cell
 {
-    public int PosX { get; set; } 
+    public int PosX { get; set; }
     public int PosY { get; set; } 
     public bool IsOccupied { get; set; }
     public string EntityType { get; set; } 
     public int Speed { get; set; } 
     public Quary Resource { get; set; } 
+    public IMapEntidad Entity { get; set; } 
 
     public Cell(int x, int y, int speed = 1000)
     {
@@ -15,8 +16,9 @@ public class Cell
         PosY = y;
         IsOccupied = false;
         EntityType = null;
-        Speed = speed; 
+        Speed = speed;
         Resource = null;
+        Entity = null; 
     }
 
     public override string ToString()
