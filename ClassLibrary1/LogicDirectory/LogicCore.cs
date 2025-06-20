@@ -20,4 +20,9 @@ public abstract class LogicCore : ILogic
     {
         
     }
+
+    public void VillagersLogic()
+    {
+        
+    }
 }
