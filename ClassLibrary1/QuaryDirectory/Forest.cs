@@ -10,7 +10,6 @@ namespace QuaryBiome
         {
             Wood = wood;
         }
-
         public int Wood { get; set; } 
 
         public override int GetResources()
@@ -22,9 +21,8 @@ namespace QuaryBiome
                 Console.WriteLine($"Se han recolectado {recolectado} unidades de madera. Madera restante: {Wood}");
                 return recolectado;
             }
-            else
             {
-                Console.WriteLine("No hay suficiente madera para recolectar.");
+                // Console.WriteLine("No hay suficiente madera para recolectar.");
                 return 0;
             }
         }
