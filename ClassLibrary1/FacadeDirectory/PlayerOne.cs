@@ -1,4 +1,5 @@
-﻿using GameResourceType = GameModels.GameResourceType;
+﻿using System.Collections.Generic;
+using GameResourceType = GameModels.GameResourceType;
 using ClassLibrary1.BuildingsDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne

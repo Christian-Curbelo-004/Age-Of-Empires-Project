@@ -1,4 +1,6 @@
 ﻿// using System.Collections.Generic;
+
+using System.Collections.Generic;
 using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.CivilizationDirectory;
 

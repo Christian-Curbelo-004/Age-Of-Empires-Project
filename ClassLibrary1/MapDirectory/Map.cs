@@ -12,7 +12,7 @@ public class Map
     public PlayerOne PlayerOne { get; set; }
     public PlayerTwo PlayerTwo { get; set; }
 
-    
+
     private const int MinDimension = 0;
     private const int MaxDimension = 100;
 

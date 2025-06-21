@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary1;
+﻿using System;
+
+namespace ClassLibrary1;
 
 public class Cell
 {
@@ -75,11 +77,24 @@ public class Cell
             case "WMf": return "WMf";
             case "WDf": return "WDf";
 
-            // Canteras
-            case "Forest": return "F";
-            case "GoldMine": return "GM";
-            case "StoneMine": return "SM";
-            default: return "■"; 
+            // Canteras con colores
+            case "Forest":
+                Console.ForegroundColor = ConsoleColor.Green; // Verde para Forest
+                Console.Write("F");
+                Console.ResetColor();
+                return "";
+            case "GoldMine":
+                Console.ForegroundColor = ConsoleColor.Yellow; // Amarillo para GoldMine
+                Console.Write("GM");
+                Console.ResetColor();
+                return "";
+            case "StoneMine":
+                Console.ForegroundColor = ConsoleColor.Gray; // Gris para StoneMine
+                Console.Write("SM");
+                Console.ResetColor();
+                return "";
+
+            default: return "■"; // Celda vacía o desconocida
         }
     }
 }

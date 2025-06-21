@@ -1,4 +1,5 @@
-﻿using GameResourceType = GameModels.GameResourceType;
+﻿using System.Collections.Generic;
+using GameResourceType = GameModels.GameResourceType;
 namespace CreateBuildings
 {
     public abstract class Buildings

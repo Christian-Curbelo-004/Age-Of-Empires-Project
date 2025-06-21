@@ -3,7 +3,10 @@
 //using NUnit.Framework; 
 //using ClassLibrary1.BuildingsDirectory;
 
+using System.Collections.Generic;
 using ClassLibrary1.CivilizationDirectory;
+using NUnit.Framework;
+
 namespace TestProject1;
 
 public class TestsChivarlyCenter
