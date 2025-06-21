@@ -3,7 +3,7 @@ using CreateBuildings;
 using ClassLibrary1.CivilizationDirectory;
 using GameModels;
 
-namespace ArcherCenter
+namespace ArcherCenter_
 {
     public class ArcherCenter : Buildings
     {
