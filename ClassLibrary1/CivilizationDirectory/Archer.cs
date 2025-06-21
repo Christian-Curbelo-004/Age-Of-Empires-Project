@@ -1,9 +1,16 @@
+using GameModels;
+
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Archer : Soldier
 {
     public Archer() : base(100,15, 0,20)
     {
+        ConstructionCost = new Dictionary<GameResourceType, int>
+        {
+            { GameResourceType.Wood, 50 },
+            { GameResourceType.Stone, 20 }
+        };
     }
     
     public override int Attack(ICharacter target)

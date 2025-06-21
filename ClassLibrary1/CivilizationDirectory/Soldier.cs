@@ -1,7 +1,4 @@
-﻿// using System.Collections.Generic;
-
-using System.Collections.Generic;
-using GameResourceType = GameModels.GameResourceType;
+﻿using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Soldier : ICharacter
@@ -37,12 +34,7 @@ public class Soldier : ICharacter
     }
     public Dictionary<GameResourceType, int> GetCreate()
     {
-        return new Dictionary<GameResourceType, int>
-        {
-            {GameResourceType.Stone,100},
-            {GameResourceType.Gold, 40},
-            {GameResourceType.Food, 150}
-        };
+        return ConstructionCost;
     }
 }
 

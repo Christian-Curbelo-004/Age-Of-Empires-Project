@@ -1,4 +1,3 @@
-
 using ClassLibrary1.CivilizationDirectory;
 namespace ClassLibrary1.LogicDirectory;
 
@@ -37,7 +36,28 @@ public abstract class LogicCore : ILogic
     {
     }
 
-    public void VillagersLogic()
+    public void VillagersLogic(PlayerOne player)
     {
+        void TransformVillager(PlayerOne player, Soldier soldier)
+        {
+            var villager = player.Villagers.FirstOrDefault();
+
+            if (villager == null)
+            {
+                return;
+            }
+            
+            var cost = soldier.GetCreate();
+
+            if (player.HasResources(cost))
+            {
+                player.SpendResources(cost);
+                player.Villagers.Remove(villager);
+                player.AddSoldier(soldier);
+            }
+        }
+        TransformVillager(player, UnitFactory.CreateArcher());
+        TransformVillager(player,UnitFactory.CreateChivarly());
+        TransformVillager(player,UnitFactory.CreateInfantery());
     }
 }
