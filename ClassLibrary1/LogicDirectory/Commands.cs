@@ -78,20 +78,19 @@ namespace ClassLibrary1
 
             while (currentX != targetX || currentY != targetY)
             {
-                // Determinar la dirección del movimiento
                 if (currentX < targetX) currentX++;
                 else if (currentX > targetX) currentX--;
 
                 if (currentY < targetY) currentY++;
                 else if (currentY > targetY) currentY--;
 
-                // Simular el tiempo de movimiento basado en Speed
+            
                 int moveTime = 1000 / cell.Speed;
                 Console.WriteLine($"Moviendo {entityType} a la posición ({currentX}, {currentY})... Tiempo estimado: {moveTime / 1000.0} segundos.");
                 await Task.Delay(moveTime);
 
-                // Actualizar la celda en el mapa
-                _map.map[cell.PosX, cell.PosY].EntityType = null; // Vaciar la celda anterior
+             
+                _map.map[cell.PosX, cell.PosY].EntityType = null; 
                 _map.map[cell.PosX, cell.PosY].IsOccupied = false;
 
                 cell.PosX = currentX;
@@ -180,7 +179,7 @@ namespace ClassLibrary1
             {
                 Console.WriteLine($"El {entityType} está atacando a una estructura enemiga en ({x}, {y})...");
                 await Task.Delay(2000);
-                building.Endurence -= attacker.AttackValue; // Reduce la resistencia de la estructura
+                building.Endurence -= attacker.AttackValue;
                 Console.WriteLine($"El daño infligido por {entityType} es: {attacker.AttackValue}. Resistencia restante de la estructura: {building.Endurence}.");
             }
             else

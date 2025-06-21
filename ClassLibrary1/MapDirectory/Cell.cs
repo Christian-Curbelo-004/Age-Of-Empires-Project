@@ -27,9 +27,22 @@ public class Cell
     {
         if (Resource != null && Resource.CollectionValue > 0)
         {
-            return $"{Resource.CollectionType}({Resource.CollectionValue})"; 
+            switch (Resource.CollectionType)
+            {
+                case "GoldMine":
+                    Console.ForegroundColor = ConsoleColor.Yellow; 
+                    return "GM";
+                case "StoneMine":
+                    Console.ForegroundColor = ConsoleColor.Gray; 
+                    return "SM";
+                case "Forest":
+                    Console.ForegroundColor = ConsoleColor.Green; 
+                    return "F";
+                default:
+                    return $"{Resource.CollectionType}({Resource.CollectionValue})";
+            }
         }
-
+        
         switch (EntityType)
         {
             // Tropas
@@ -80,21 +93,16 @@ public class Cell
             // Canteras con colores
             case "Forest":
                 Console.ForegroundColor = ConsoleColor.Green; // Verde para Forest
-                Console.Write("F");
-                Console.ResetColor();
-                return "";
+                return "F";
             case "GoldMine":
                 Console.ForegroundColor = ConsoleColor.Yellow; // Amarillo para GoldMine
-                Console.Write("GM");
-                Console.ResetColor();
-                return "";
+                return "GM";
             case "StoneMine":
                 Console.ForegroundColor = ConsoleColor.Gray; // Gris para StoneMine
-                Console.Write("SM");
-                Console.ResetColor();
-                return "";
+                return "SM";
 
-            default: return "■"; // Celda vacía o desconocida
+            default: 
+                return "■"; // Celda vacía o desconocida
         }
     }
 }
