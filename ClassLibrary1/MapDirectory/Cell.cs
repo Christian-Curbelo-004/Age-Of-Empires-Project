@@ -23,33 +23,13 @@ public class Cell
         Entity = null; 
     }
 
-    public override string ToString()
+ public override string ToString()
     {
-        if (Resource != null && Resource.CollectionValue > 0)
+        if (Resource != null)
         {
-            switch (Resource.CollectionType)
-            {
-                case "GoldMine":
-                    Console.ForegroundColor = ConsoleColor.Yellow; 
-                    Console.Write("GM");
-                    Console.ResetColor(); 
-                    return "";
-                case "StoneMine":
-                    Console.ForegroundColor = ConsoleColor.Gray; 
-                    Console.Write("SM");
-                    Console.ResetColor();
-                    return "";
-                case "Forest":
-                    Console.ForegroundColor = ConsoleColor.Green; 
-                    Console.Write("F");
-                    Console.ResetColor(); 
-                    return "";
-                default:
-                    return $"{Resource.CollectionType}({Resource.CollectionValue})";
-            }
+            return $"{Resource.CollectionType}({Resource.CollectionValue})"; 
         }
 
-        // Imprimir las entidades con sus representaciones
         switch (EntityType)
         {
             // Tropas
@@ -97,8 +77,11 @@ public class Cell
             case "WMf": return "WMf";
             case "WDf": return "WDf";
 
-            default: 
-                return "■"; // Celda vacía o desconocida
+            // Canteras
+            case "Forest": return "F";
+            case "GoldMine": return "GM";
+            case "StoneMine": return "SM";
+            default: return "■"; 
         }
     }
 }
