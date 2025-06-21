@@ -10,7 +10,8 @@ public class Villagers : ICharacter, IBuilder, ICollect
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
-    public int Speed { get; set; } 
+    public int Speed { get; set; }
+    public bool IsFree { get; set; } = true;
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     
     public Villagers(int life, int attackValue)
@@ -32,7 +33,7 @@ public class Villagers : ICharacter, IBuilder, ICollect
         return Life;
         //Console.WriteLine($"El aldeano recibio {damage} de daño");
     }
-    public Dictionary<GameResourceType, int> GetCreate()
+    public Dictionary<GameResourceType, int> GetCreationCost()
     {
         return new Dictionary<GameResourceType, int>
         {

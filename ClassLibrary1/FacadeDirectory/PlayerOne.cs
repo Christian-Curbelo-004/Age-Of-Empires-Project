@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GameResourceType = GameModels.GameResourceType;
+﻿using GameResourceType = GameModels.GameResourceType;
 using ClassLibrary1.BuildingsDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne
@@ -67,6 +66,17 @@ public class PlayerOne
     public int GetSoldierCount()
     {
         return Soldiers.Count;
+    }
+
+    public Villagers GetFirstVillagerFree()
+    {
+        Villagers villager = new Villagers(100,15);
+        foreach (var V in Villagers)
+        {
+            if (villager.IsFree)
+                return villager;
+        }
+        return null;
     }
 
     public void AddQuary(Quary quary)

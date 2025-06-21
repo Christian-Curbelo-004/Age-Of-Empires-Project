@@ -32,7 +32,7 @@ public class Soldier : ICharacter
         return Life;
         //Console.WriteLine($"El soldado recibió {damageTaken} de daño. Vida restante: {Life}");
     }
-    public Dictionary<GameResourceType, int> GetCreate()
+    public Dictionary<GameResourceType, int> GetCreationCost()
     {
         return ConstructionCost;
     }

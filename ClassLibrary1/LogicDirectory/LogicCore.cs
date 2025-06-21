@@ -3,61 +3,68 @@ namespace ClassLibrary1.LogicDirectory;
 
 public abstract class LogicCore : ILogic
 {
-    // Los centros tienen que crear su respectivo soldado si tiene los recuros.
-    // Luego de crearlo hay que hacer que el aldeano deje de ser aldeano.
-    // Evaluar si hay espacio en la casa Soldado.
-    // sumar los aldeanos que se pueden crear en la casa del aldeano y restar la capacidad de la casa soldier.
     public void CentersLogic(PlayerOne player)
-    {
+    {   
         void CreateSoldier(Soldier soldier)
         {
-            var cost = soldier.GetCreate();
-            if (player.HasResources(cost))
+            var cost = soldier.GetCreationCost();
+            if (player.HasResources(cost) && player.CivicCenter.CanCreateSoldiers())
             {
                 player.SpendResources(cost);
-                player.AddSoldier(soldier);
+                var newSoldier = player.CivicCenter.CreateSoldier(soldier);
+                player.AddSoldier(newSoldier);
             }
         }
         CreateSoldier(UnitFactory.CreateInfantery());
         CreateSoldier(UnitFactory.CreateArcher());
         CreateSoldier(UnitFactory.CreateChivarly());
 
-        void CreateVillagers(Villagers villagers)
+        void CreateVillagers(Villagers villager)
         {
-            
+            if (player.CivicCenter.CanCreateVillagers())
+            {
+                var newVillager = player.CivicCenter.CreateVillagers();
+                if (newVillager != null)
+                {
+                    var cost = villager.GetCreationCost();
+                    if (player.HasResources(cost))
+                    {
+                        player.SpendResources(cost);
+                        player.AddVillagers(newVillager);
+                    }
+                }
+            }
         }
+        CreateVillagers(new Villagers(100,5));
     }
-
     public void DepositLogic()
     {
     }
-
-    public void MinesLogic()
-    {
-    }
-
     public void VillagersLogic(PlayerOne player)
-    {
-        void TransformVillager(PlayerOne player, Soldier soldier)
+    {   
+        void TransformVillager(Soldier soldier)
         {
-            var villager = player.Villagers.FirstOrDefault();
-
-            if (villager == null)
-            {
-                return;
-            }
+            var villager = player.GetFirstVillagerFree();
+            if (villager == null) return;
             
-            var cost = soldier.GetCreate();
-
-            if (player.HasResources(cost))
+            var cost = soldier.GetCreationCost();
+            if (player.CivicCenter.CanCreateSoldiers())
             {
-                player.SpendResources(cost);
-                player.Villagers.Remove(villager);
-                player.AddSoldier(soldier);
+                if (player.HasResources(cost))
+                {
+                    player.SpendResources(cost);
+                    player.Villagers.Remove(villager);
+
+                    var newSoldier = player.CivicCenter.CreateSoldier(soldier);
+                    if (newSoldier != null)
+                    {
+                        player.AddSoldier(newSoldier);
+                    }
+                }
             }
         }
-        TransformVillager(player, UnitFactory.CreateArcher());
-        TransformVillager(player,UnitFactory.CreateChivarly());
-        TransformVillager(player,UnitFactory.CreateInfantery());
+        TransformVillager( UnitFactory.CreateArcher());
+        TransformVillager(UnitFactory.CreateChivarly());
+        TransformVillager(UnitFactory.CreateInfantery());
     }
 }

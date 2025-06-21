@@ -1,6 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using ClassLibrary1;
+﻿using ClassLibrary1.CivilizationDirectory;
 using CreateBuildings;
 using GameModels;
 
@@ -10,8 +8,8 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
     {
         public int MaxVillagers { get; private set; } = 3;
         public int MaxSoldiers { get; private set; } = 1;
-        public int CurrentVillagers { get; private set; } = 3;
-        public int CurrentSoldiers { get; private set; } = 0;
+        public int CurrentVillagers { get; set; } = 3;
+        public int CurrentSoldiers { get; set; }
 
         public CivicCenter(int endurence, int constructiontimeleft, string name)
             : base(endurence, constructiontimeleft, name)   // endurence: 50, constructiontimeleft: 30, name: "CivicCenter"
@@ -47,10 +45,16 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
 
         public Villagers CreateVillagers()
         {
-            Villagers villager = new Villagers(100, 5);
-            return villager;
+            if (!CanCreateVillagers()) return null;
+            CurrentVillagers++;
+            return new Villagers(100,5);
         }
 
+        public Soldier CreateSoldier(Soldier soldier)
+        {
+            CurrentSoldiers++;
+            return soldier;
+        }
         public string EntityType { get; }
     }
 }
