@@ -18,4 +18,5 @@ public class Chivarly : Soldier                                 //ICharacter
         Life -= damage;
         return Life;
     }
+    
 }

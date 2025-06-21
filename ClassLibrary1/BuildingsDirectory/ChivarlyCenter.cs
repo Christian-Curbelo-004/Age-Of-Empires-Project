@@ -1,11 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using ClassLibrary1.CivilizationDirectory;
-
-
-//using ClassLibrary1.BuildingsDirectory;
-
-
+﻿using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 using GameModels;
 
@@ -26,14 +19,7 @@ namespace ClassLibrary1.CivilizationDirectory
 
         public Chivarly  CreateChivarly()
         {
-            Chivarly chivarly = new Chivarly()
-            {
-                Life = 100,
-                AttackValue = 20,
-                DeffenseValue = 15,
-                Speed = 20,
-            };
-            return chivarly;
+            return UnitFactory.CreateChivarly();
         }
     }
 }

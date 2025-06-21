@@ -1,8 +1,3 @@
-
-// using GameResourceType = GameModels.GameResourceType;
-
-// using System.Collections.Generic;
-
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Archer : Soldier

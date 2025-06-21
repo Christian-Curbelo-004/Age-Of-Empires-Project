@@ -1,7 +1,7 @@
-﻿//using System;
-using ClassLibrary1.CivilizationDirectory;
+﻿using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
-using GameResourceType = GameModels.GameResourceType;
+using GameModels;
 
 
 namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si genera problemas ClassLibrary1.BuildingsDirectory) ClassLibrary1.BuildingsDirectory
@@ -9,10 +9,6 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
 {
     public class InfanteryCenter : Buildings
     {
-        public int ConstructionTime = 20;
-        public const int CostStone = 40;
-        public const int CostGold = 15;
-
         public InfanteryCenter(int endurence, int constructiontimeleft, string name)
             : base(endurence, constructiontimeleft, name)
         {
@@ -23,16 +19,9 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
             ConstructionCost[GameResourceType.Stone] = 20;
         }
 
-        public  Infantery CreateInfantery()   // public void CreateInfantery()
+        public  Infantery CreateInfantery()
         {
-            Infantery infantery = new Infantery()
-            {
-                Life = 100,
-                AttackValue = 14,
-                DeffenseValue = 10,
-                Speed = 13,
-            };
-            return infantery;
+            return UnitFactory.CreateInfantery();
         }
     }
 }

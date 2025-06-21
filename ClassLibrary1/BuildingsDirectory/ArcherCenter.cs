@@ -1,14 +1,14 @@
-﻿//using System;
 using CreateBuildings;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.LogicDirectory;
 using GameModels;
 
-namespace ClassLibrary1.BuildingsDirectory                      //  ArcherCenter 
-{
+namespace ClassLibrary1.BuildingsDirectory
+{   
     public class ArcherCenter : Buildings
     {
         public ArcherCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence, constructiontimeleft, name) // : base(endurence:20, constructiontimeleft:10, name:"ArcherCenter")
+            : base(endurence:20, constructiontimeleft:10, name:"ArcherCenter")
         {
         }
         public override void SetConstructionCost()
@@ -19,13 +19,7 @@ namespace ClassLibrary1.BuildingsDirectory                      //  ArcherCenter
 
         public Archer CreateArcher()
         {
-            Archer archer = new Archer()
-            {
-                Life = 100,
-                AttackValue = 15,
-                Speed = 20,
-            };
-            return archer;
+            return UnitFactory.CreateArcher();
         }
     }
 }

@@ -32,13 +32,15 @@ public class Villagers : ICharacter, IBuilder, ICollect
         return Life;
         //Console.WriteLine($"El aldeano recibio {damage} de daño");
     }
-    public void GetCreate(Dictionary<string,int>GetCost)
+    public Dictionary<GameResourceType, int> GetCreate()
     {
-        ConstructionCost[GameResourceType.Stone] = 100;
-        ConstructionCost[GameResourceType.Gold] = 40;
-        ConstructionCost[GameResourceType.Wood] = 150;
+        return new Dictionary<GameResourceType, int>
+        {
+            {GameResourceType.Stone,100},
+            {GameResourceType.Gold, 40},
+            {GameResourceType.Food, 150}
+        };
     }
-    
     public bool Build(Buildings target,int builders)
     {
         target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);

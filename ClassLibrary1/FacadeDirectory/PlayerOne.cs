@@ -1,11 +1,9 @@
-﻿//using System.Collections.Generic;
-//using ClassLibrary1.LogicDirectory;
-//using ClassLibrary1.CivilizationDirectory;
-
+﻿using GameResourceType = GameModels.GameResourceType;
 using ClassLibrary1.BuildingsDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne
 {
+    public Dictionary<GameResourceType, int> Resources { get; private set; }
     public int Food { get; set; } = 0;
     public int Wood { get; set; } = 0;
     public string Name { get; private set; }
@@ -22,20 +20,39 @@ public class PlayerOne
         Soldiers = new List<Soldier>();
         CivicCenter = null;
         Quaries = new List<Quary>();
-    }
-
-    public class ResourceInventory
-    {
-        public int Food { get; set; }
-        public int Wood { get; set; }
-        public int Gold { get; set; }
-        public int Stone { get; set; }
+        
+        Resources = new Dictionary<GameResourceType, int> 
+        {
+            { GameResourceType.Food, 0 },
+            { GameResourceType.Wood, 0 },
+            { GameResourceType.Gold, 0 },
+            { GameResourceType.Stone, 0 }
+        };
     }
     public void AddVillagers(Villagers villagers)
     {
         Villagers.Add(villagers);
     }
 
+    public bool HasResources(Dictionary<GameResourceType, int> Resources)
+    {
+        foreach (var item in Resources)
+        {
+            if (!Resources.ContainsKey(item.Key) || Resources[item.Key] < item.Value)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void SpendResources(Dictionary<GameResourceType, int> ConstructionCost)
+    {
+        foreach (var item in ConstructionCost)
+        {
+            ConstructionCost[item.Key] -= item.Value;
+        }
+    }
     public void AddSoldier(Soldier soldier)
     {
         Soldiers.Add(soldier);
