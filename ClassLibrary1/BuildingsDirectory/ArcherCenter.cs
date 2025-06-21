@@ -1,14 +1,14 @@
-﻿using System;
+﻿//using System;
 using CreateBuildings;
 using ClassLibrary1.CivilizationDirectory;
 using GameModels;
 
-namespace ArcherCenter
+namespace ClassLibrary1.BuildingsDirectory                      //  ArcherCenter 
 {
     public class ArcherCenter : Buildings
     {
         public ArcherCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence:20, constructiontimeleft:10, name:"ArcherCenter")
+            : base(endurence, constructiontimeleft, name) // : base(endurence:20, constructiontimeleft:10, name:"ArcherCenter")
         {
         }
         public override void SetConstructionCost()
@@ -17,7 +17,7 @@ namespace ArcherCenter
             ConstructionCost[GameResourceType.Wood] = 100;
         }
 
-        public void CreateArcher()
+        public Archer CreateArcher()
         {
             Archer archer = new Archer()
             {
@@ -25,6 +25,7 @@ namespace ArcherCenter
                 AttackValue = 15,
                 Speed = 20,
             };
+            return archer;
         }
     }
 }
