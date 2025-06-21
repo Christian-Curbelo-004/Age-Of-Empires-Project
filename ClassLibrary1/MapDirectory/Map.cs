@@ -60,6 +60,17 @@ public class Map
 
     public void PonerEntidad(int x, int y, IMapEntidad entity)
     {
-        map[x, y].Entity = entity;
+        //map[x, y].Entity = entity;
+        if (!IsWithinBounds(x, y)) return;
+        
+        var cell = map [x, y];
+        cell.Entity = entity;
+        cell.IsOccupied = true;
+        cell.EntityType = entity.GetType().Name;
+
+        if (entity is Quary recurso)
+        {
+            cell.Resource = recurso;
+        }
     }
 }

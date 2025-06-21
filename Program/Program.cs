@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using ClassLibrary1;
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.QuaryDirectory;
 using QuaryBiome;
@@ -17,19 +18,20 @@ class Program
 
         Map map = new Map(100, 100);
 
-        RecursosEnEsquinas(map, 70, 0, 30, 30);
-        RecursosEnEsquinas(map, 0, 70, 30, 30);
+        RecursosEnEsquinas(map, 70, 0, 30, 30,20);
+        RecursosEnEsquinas(map, 0, 70, 30, 30,20);
         
         PrintMap printmap = new PrintMap(map);
         Console.WriteLine(printmap.GetMapAsString());
 
-        static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height)
+        static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
         {
             Random random = new Random();
-            for (int y = inicialY; y < inicialX + width; y++)
+            for (int i = 0; i < cantidadrecursos ; i++)
             {
-                for (int x = inicialY; x < inicialX + height; x++)
-                {
+                int x = random.Next(inicialX, inicialX + width);
+                int y = random.Next(inicialY, inicialY + height);
+                
                     int recurso = random.Next(3);
                     IMapEntidad entidad;
 
@@ -48,9 +50,14 @@ class Program
 
                     map.PonerEntidad(x, y, entidad);
 
-                }
-                
             }
+
+            int centrocivX = inicialX + width / 2;
+            int centrocivY = inicialY + height / 2;
+
+            CivicCenter civicCenter = new CivicCenter(50,30,"Civic Center");
+            map.PonerEntidad(centrocivX,centrocivY,civicCenter);
+
         }
 
     }

@@ -23,7 +23,7 @@ public class Cell
 
     public override string ToString()
     {
-        if (Resource != null)
+        if (Resource != null && Resource.CollectionValue > 0)
         {
             return $"{Resource.CollectionType}({Resource.CollectionValue})"; 
         }

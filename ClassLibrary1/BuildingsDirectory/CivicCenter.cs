@@ -6,7 +6,7 @@ using GameModels;
 
 namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNamespace
 {
-    public class CivicCenter : Buildings
+    public class CivicCenter : Buildings, IMapEntidad
     {
         public int MaxVillagers { get; private set; } = 3;
         public int MaxSoldiers { get; private set; } = 1;
@@ -50,6 +50,7 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
             Villagers villager = new Villagers(100, 5);
             return villager;
         }
-        
+
+        public string EntityType { get; }
     }
 }
