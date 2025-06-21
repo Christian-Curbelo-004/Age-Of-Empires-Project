@@ -8,7 +8,7 @@ namespace ClassLibrary1.BuildingsDirectory
     public class ArcherCenter : Buildings
     {
         public ArcherCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence:20, constructiontimeleft:10, name:"ArcherCenter") 
+            : base(endurence, constructiontimeleft, name)
         {
         }
         public override void SetConstructionCost()

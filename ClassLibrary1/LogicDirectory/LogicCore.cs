@@ -22,6 +22,11 @@ public abstract class LogicCore : ILogic
         CreateSoldier(UnitFactory.CreateInfantery());
         CreateSoldier(UnitFactory.CreateArcher());
         CreateSoldier(UnitFactory.CreateChivarly());
+
+        void CreateVillagers(Villagers villagers)
+        {
+            
+        }
     }
 
     public void DepositLogic()
