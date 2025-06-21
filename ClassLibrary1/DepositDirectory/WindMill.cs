@@ -8,8 +8,8 @@ namespace  ClassLibrary1.DepositDirectory
     public class WindMill : Deposit
     {
         public int CurrentFood { get; private set; }
-        public WindMill(int endurence, int constructiontimeleft,string name,int maxCapacity,GameResourceType resourceType)
-            : base(endurence,constructiontimeleft, name, maxCapacity, GameResourceType.Food)
+        public WindMill(int endurence, int constructiontimeleft,string name,int maxCapacity)
+            : base(endurence,constructiontimeleft, name, maxCapacity)
         {
             CurrentFood = 100;
         }

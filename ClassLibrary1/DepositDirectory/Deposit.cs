@@ -11,10 +11,10 @@ namespace ClassLibrary1.DepositDirectory
         public int MaxCapacity { get; set; }
         public int CurrentStorage { get; set; }
 
-        public Deposit(int endurence, int constructiontimeleft, string name,int maxCapacity,GameResourceType resourceType)
+        public Deposit(int endurence, int constructiontimeleft, string name,int maxCapacity)
             : base(endurence, constructiontimeleft, name)
         {
-            ResourceType = resourceType;
+           
             MaxCapacity = maxCapacity;
             CurrentStorage = 0;
         }

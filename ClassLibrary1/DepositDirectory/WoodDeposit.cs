@@ -9,8 +9,8 @@ namespace ClassLibrary1.DepositDirectory
     public class WoodDeposit : Deposit
     {
         public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity,GameResourceType resourceType)
-            : base(endurence,constructiontimeleft, name, maxCapacity,GameResourceType.Wood)
+        public WoodDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity)
+            : base(endurence,constructiontimeleft, name, maxCapacity)
         {
             CurrentWood = 100;
         }

@@ -3,8 +3,10 @@
 // using ClassLibrary1;
 // using System.IO;
 
+using System.Security.AccessControl;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.QuaryDirectory;
 using QuaryBiome;
 using ClassLibrary1.FacadeDirectory;
@@ -44,16 +46,19 @@ class Program
             {
                 case "1":
                     ElegiUnaCivilizacion();
+                    salir = true;
                     break;
 
                 case "2":
                     Construir();
+                    salir = true;
                     break;
                 case "3":
                     Atacar();
                     break;
                 case "4":
                     GuardarPartida();
+                    salir = true;
                     break;
                 case "5":
                     salir = true;
@@ -79,6 +84,9 @@ class Program
                 Console.WriteLine("4: Civic Center");
                 Console.WriteLine("5: Infantery Center");
                 Console.WriteLine("6: Chivarly Center");
+                Console.WriteLine("7: Wood Deposit ");
+                Console.WriteLine("8: Gold Deposit ");
+                Console.WriteLine("9: Stone Deposit ");
 
                 string seleccion = Console.ReadLine();
 
@@ -86,6 +94,10 @@ class Program
                 InfanteryCenter infanteryCenter = new InfanteryCenter(50, 30, "Infantery Center");
                 ChivarlyCenter chivarlyCenter = new ChivarlyCenter(50, 30, "Chivarly Center");
 
+                WoodDeposit woodDeposit = new WoodDeposit(123, 20, "Wood Deposit ", 123);
+                GoldDeposit goldDeposit = new GoldDeposit(200, 50, "Gold Deposit ", 23);
+                StoneDeposit stoneDeposit = new StoneDeposit(170, 30, "Stone Deposit ", 176);
+                
 
             }
 
