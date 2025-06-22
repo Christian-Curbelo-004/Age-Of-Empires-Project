@@ -1,5 +1,5 @@
+
 using System;
-using System.Text;
 using System.Threading;
 
 namespace ClassLibrary1.CivilizationDirectory
@@ -13,55 +13,72 @@ namespace ClassLibrary1.CivilizationDirectory
             _map = map;
         }
 
-        public string GetMapAsString()
+        public void DisplayMap()
         {
             if (_map?.map == null)
             {
-                return "The map is empty.";
+                Console.WriteLine("The map is empty.");
+                return;
             }
 
             int height = _map.map.GetLength(1);
             int length = _map.map.GetLength(0);
-            
-            int coordWidth = Math.Max(height, length).ToString().Length;
-            string numFormat = new string('0', coordWidth);
 
-            var result = new StringBuilder();
+            int coordWidth = Math.Max(height, length).ToString().Length;
+            string numFormat = new string('0', coordWidth); 
+            int cellWidth = 4; 
             
-            result.Append(' ', coordWidth + 1);
+            Console.Write(new string(' ', coordWidth + 1));
             for (int j = 0; j < length; j++)
             {
-                result.Append(j.ToString(numFormat) + " ");
+                Console.Write(j.ToString(numFormat).PadRight(cellWidth)); 
             }
-            result.AppendLine();
+            Console.WriteLine();
 
             for (int i = 0; i < height; i++)
             {
-                result.Append(i.ToString(numFormat) + " ");
+
+                Console.Write(i.ToString(numFormat).PadRight(coordWidth) + " ");
                 for (int j = 0; j < length; j++)
                 {
                     Cell cell = _map.map[j, i];
-                    result.Append($"{cell.ToString().PadRight(coordWidth)} ");
+                    Console.ForegroundColor = GetCellColor(cell);
+                    
+                    string cellRepresentation = cell.GetColoredRepresentation().PadRight(cellWidth); 
+                    Console.Write(cellRepresentation);
+                    Console.ResetColor();
                 }
-                result.AppendLine(i.ToString(numFormat));
+                Console.WriteLine(i.ToString(numFormat).PadRight(coordWidth));
             }
-            result.Append(' ', coordWidth + 1);
+            
+            Console.Write(new string(' ', coordWidth + 1));
             for (int j = 0; j < length; j++)
             {
-                result.Append(j.ToString(numFormat) + " ");
+                Console.Write(j.ToString(numFormat).PadRight(cellWidth)); 
             }
-            result.AppendLine();
-
-            return result.ToString();
+            Console.WriteLine();
         }
-
+        private ConsoleColor GetCellColor(Cell cell)
+        {
+            if (cell.Resource != null)
+            {
+                return cell.Resource.CollectionType switch
+                {
+                    "Gold" => ConsoleColor.Yellow, 
+                    "Stone" => ConsoleColor.Gray, 
+                    "Madera" => ConsoleColor.Green, 
+                    _ => ConsoleColor.White 
+                };
+            }
+            return ConsoleColor.White; 
+        }
         public void StartDisplay(int refreshRateMs = 500)
         {
             while (true)
             {
-                Console.Clear(); 
-                Console.WriteLine(GetMapAsString()); 
-                Thread.Sleep(refreshRateMs); 
+                Console.Clear();
+                DisplayMap(); 
+                Thread.Sleep(refreshRateMs);
             }
         }
     }

@@ -1,16 +1,17 @@
-﻿using System;
+﻿
+using System;
 
 namespace ClassLibrary1;
 
 public class Cell
 {
     public int PosX { get; set; }
-    public int PosY { get; set; } 
+    public int PosY { get; set; }
     public bool IsOccupied { get; set; }
-    public string EntityType { get; set; } 
-    public int Speed { get; set; } 
-    public Quary Resource { get; set; } 
-    public IMapEntidad Entity { get; set; } 
+    public string EntityType { get; set; }
+    public int Speed { get; set; }
+    public Quary Resource { get; set; }
+    public IMapEntidad Entity { get; set; }
 
     public Cell(int x, int y, int speed = 1000)
     {
@@ -20,68 +21,51 @@ public class Cell
         EntityType = null;
         Speed = speed;
         Resource = null;
-        Entity = null; 
+        Entity = null;
     }
 
- public override string ToString()
+    public string GetColoredRepresentation()
     {
         if (Resource != null)
         {
-            return $"{Resource.CollectionType}({Resource.CollectionValue})"; 
+            switch (Resource.CollectionType)
+            {
+                case "Gold":
+                    Console.ForegroundColor = ConsoleColor.Yellow; // Color amarillo para GoldMine
+                    return "GM";
+                case "Stone":
+                    Console.ForegroundColor = ConsoleColor.Gray; // Color gris para StoneMine
+                    return "SM";
+                case "Madera":
+                    Console.ForegroundColor = ConsoleColor.Green; // Color verde para Forest
+                    return "F";
+                default:
+                    Console.ResetColor(); // Restaurar color original
+                    return "?";
+            }
         }
 
-        switch (EntityType)
+        Console.ResetColor(); // Restaurar color original para otros casos
+        return EntityType switch
         {
-            // Tropas
-            case "Archer": return "A";
-            case "Paladin": return "P";
-            case "Raider": return "R";
-            case "Soldier": return "S";
-            case "Villagers": return "V";
-
-            // Construcciones
-            case "ArcherCenter": return "AC";
-            case "ChivalryCenter": return "ChC";
-            case "CivicCenter": return "CC";
-            case "Home": return "H";
-            case "InfanteryCenter": return "IC";
-
-            // Construcciones siendo atacadas
-            case "ACa": return "ACa";
-            case "ChCa": return "ChCa";
-            case "CCa": return "CCa";
-            case "Ha": return "Ha";
-            case "Ica": return "Ica";
-
-            // Construcciones en construcción
-            case "BAC": return "BAC";
-            case "BChC": return "BChC";
-            case "BCC": return "BCC";
-            case "BH": return "BH";
-            case "BIC": return "BIC";
-
-            // Producción de tropas
-            case "ACar": return "ACar"; // ArcherCenter fabricando arqueros
-            case "ChCc": return "ChCc"; // ChivalryCenter fabricando caballería
-            case "ICi": return "ICi";   // InfanteryCenter fabricando infantería
-
-            // Depósitos
-            case "GoldDeposit": return "GD";
-            case "SonteDeposit": return "SD";
-            case "WindMill": return "WM";
-            case "WoodDeposit": return "WD";
-
-            // Depósitos llenos
-            case "GDf": return "GDf";
-            case "SDf": return "SDf";
-            case "WMf": return "WMf";
-            case "WDf": return "WDf";
-
-            // Canteras
-            case "Forest": return "F";
-            case "GoldMine": return "GM";
-            case "StoneMine": return "SM";
-            default: return "■"; 
-        }
+            "Archer" => "A",
+            "Paladin" => "P",
+            "Raider" => "R",
+            "Soldier" => "S",
+            "Villagers" => "V",
+            "ArcherCenter" => "AC",
+            "ChivalryCenter" => "ChC",
+            "CivicCenter" => "CC",
+            "Home" => "H",
+            "InfanteryCenter" => "IC",
+            "GoldDeposit" => "GD",
+            "SonteDeposit" => "SD",
+            "WindMill" => "WM",
+            "WoodDeposit" => "WD",
+            "Forest" => "F",
+            "GoldMine" => "GM",
+            "StoneMine" => "SM",
+            _ => "■"
+        };
     }
 }
