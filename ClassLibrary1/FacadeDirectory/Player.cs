@@ -1,9 +1,10 @@
-﻿using GameResourceType = GameModels.GameResourceType;
+using GameResourceType = GameModels.GameResourceType;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.CivilizationDirectory;
+namespace ClassLibrary1.FacadeDirectory;
 
-namespace ClassLibrary1.CivilizationDirectory;
-public class PlayerOne
+public class Player
 {
     public Dictionary<GameResourceType, int> Resources { get; private set; }
     public int Food { get; set; } = 0;
@@ -15,7 +16,7 @@ public class PlayerOne
     public List<Soldier> Soldiers { get; private set; }
     public List<Quary> Quaries { get; private set; }
     public CivicCenter CivicCenter { get; set; }
-    public PlayerOne(string name, Civilization civilization)
+    public Player(string name, Civilization civilization)
     {
         Name = name;
         Civilization = civilization;
@@ -53,7 +54,10 @@ public class PlayerOne
     {
         foreach (var item in ConstructionCost)
         {
-            ConstructionCost[item.Key] -= item.Value;
+            if (Resources.ContainsKey(item.Key))
+            {
+                ConstructionCost[item.Key] -= item.Value;
+            }
         }
     }
 

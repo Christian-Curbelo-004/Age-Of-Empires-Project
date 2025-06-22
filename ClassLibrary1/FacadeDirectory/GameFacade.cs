@@ -1,6 +1,6 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
-
+using ClassLibrary1.FacadeDirectory;
 namespace ClassLibrary1.FacadeDirectory 
 {
     public class GameFacade : IFacade
@@ -9,6 +9,20 @@ namespace ClassLibrary1.FacadeDirectory
         {
             Random random = new Random();
             Map RandomMap = new Map(100, 100);
+        }
+
+        public GameState StartNewGame()
+        {
+            var state = new GameState();
+
+            state.Map = new Map(100, 100);
+            state.PlayerOne = new Player("Joaco", new Roman());
+            state.PlayerTwo = new Player("Cpu", new Templaries());
+                    
+            state.Map.PlayerOne = state.PlayerOne;
+            state.Map.PlayerTwo = state.PlayerTwo;
+            InitializePlayer(state.Map);
+            return state;
         }
         public void GenerateCivicCenter(Map map)
         {
@@ -55,9 +69,10 @@ namespace ClassLibrary1.FacadeDirectory
         {
             for (int a = 0; a < 3; a++)
             {
-                Villagers villagers = new Villagers(100, 10);
-                map.PlayerOne.AddVillagers(villagers);
-                map.PlayerTwo.AddVillagers(villagers);
+                var villager1 = new Villagers(100, 10);
+                var villager2 = new Villagers(100, 10);
+                map.PlayerOne.AddVillagers(villager1);
+                map.PlayerTwo.AddVillagers(villager2);
             }
         }
         public void TrainSoldiers(Map map)
@@ -89,8 +104,11 @@ namespace ClassLibrary1.FacadeDirectory
         {
             map.PlayerOne.Food = 100;
             map.PlayerOne.Wood = 100;
+            map.PlayerTwo.Food = 100;
+            map.PlayerTwo.Wood = 100;
             GenerateCivicCenter(map);
             GenerateVillagers(map);
+            TrainSoldiers(map);
         }
     }
 }

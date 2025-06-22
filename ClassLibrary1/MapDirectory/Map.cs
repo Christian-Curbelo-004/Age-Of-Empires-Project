@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using ClassLibrary1.FacadeDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Map
@@ -9,8 +8,8 @@ public class Map
     public Cell[,] map; 
     
     
-    public PlayerOne PlayerOne { get; set; }
-    public PlayerTwo PlayerTwo { get; set; }
+    public Player PlayerOne { get; set; }
+    public Player PlayerTwo { get; set; }
 
 
     private const int MinDimension = 0;

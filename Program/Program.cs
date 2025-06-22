@@ -11,10 +11,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        GameFacade game = new GameFacade();
-        PlayerOne playerOne = new PlayerOne("joaco", new Roman());
+        GameFacade facade = new GameFacade();
+        GameState state = facade.StartNewGame();
 
-        Map map = new Map(100, 100);
+        Player playerOne = state.PlayerOne;
+        Player playerTwo = state.PlayerTwo;
+        Map map = state.Map;
 
         bool salir = false;
 

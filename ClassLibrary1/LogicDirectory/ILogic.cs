@@ -1,10 +1,10 @@
-using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.FacadeDirectory;
 
 namespace ClassLibrary1.LogicDirectory;
 
 public interface ILogic
 {
-    void CentersLogic(PlayerOne player);
-    void DepositLogic(PlayerOne player);
-    void VillagersLogic(PlayerOne player);
+    void CentersLogic(Player playerOne);
+    void DepositLogic(Player playerOne);
+    void VillagersLogic(Player playerOne);
 }

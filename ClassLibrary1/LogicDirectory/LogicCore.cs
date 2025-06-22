@@ -1,19 +1,19 @@
 using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1;
+using ClassLibrary1.FacadeDirectory;
 namespace ClassLibrary1.LogicDirectory;
 
 public abstract class LogicCore : ILogic
 {
-    public void CentersLogic(PlayerOne player)
+    public void CentersLogic(Player playerOne)
     {   
         void CreateSoldier(Soldier soldier)
         {
             var cost = soldier.GetCreationCost();
-            if (player.HasResources(cost) && player.CivicCenter.CanCreateSoldiers())
+            if (playerOne.HasResources(cost) && playerOne.CivicCenter.CanCreateSoldiers())
             {
-                player.SpendResources(cost);
-                var newSoldier = player.CivicCenter.CreateSoldier(soldier);
-                player.AddSoldier(newSoldier);
+                playerOne.SpendResources(cost);
+                var newSoldier = playerOne.CivicCenter.CreateSoldier(soldier);
+                playerOne.AddSoldier(newSoldier);
             }
         }
         CreateSoldier(UnitFactory.CreateInfantery());
@@ -22,32 +22,32 @@ public abstract class LogicCore : ILogic
 
         void CreateVillagers(Villagers villager)
         {
-            if (player.CivicCenter.CanCreateVillagers())
+            if (playerOne.CivicCenter.CanCreateVillagers())
             {
-                var newVillager = player.CivicCenter.CreateVillagers();
+                var newVillager = playerOne.CivicCenter.CreateVillagers();
                 if (newVillager != null)
                 {
                     var cost = villager.GetCreationCost();
-                    if (player.HasResources(cost))
+                    if (playerOne.HasResources(cost))
                     {
-                        player.SpendResources(cost);
-                        player.AddVillagers(newVillager);
+                        playerOne.SpendResources(cost);
+                        playerOne.AddVillagers(newVillager);
                     }
                 }
             }
         }
         CreateVillagers(new Villagers(100,5));
     }
-    public void DepositLogic(PlayerOne player)
+    public void DepositLogic(Player playerOne)
     {
         int collectors = 1;
-        foreach (var villager in player.Villagers)
+        foreach (var villager in playerOne.Villagers)
         {
             if (!villager.IsFree) continue;
             var task = villager.CurrentTask;
             if (task == null || task.ResourceType == null) continue;
 
-            var deposit = player.GetAvailableDeposit(task.ResourceType);
+            var deposit = playerOne.GetAvailableDeposit(task.ResourceType);
             if (deposit == null)
             {
                 continue;
@@ -58,25 +58,25 @@ public abstract class LogicCore : ILogic
 
         }
     }
-    public void VillagersLogic(PlayerOne player)
+    public void VillagersLogic(Player playerOne)
     {   
         void TransformVillager(Soldier soldier)
         {
-            var villager = player.GetFirstVillagerFree();
+            var villager = playerOne.GetFirstVillagerFree();
             if (villager == null) return;
             
             var cost = soldier.GetCreationCost();
-            if (player.CivicCenter.CanCreateSoldiers())
+            if (playerOne.CivicCenter.CanCreateSoldiers())
             {
-                if (player.HasResources(cost))
+                if (playerOne.HasResources(cost))
                 {
-                    player.SpendResources(cost);
-                    player.Villagers.Remove(villager);
+                    playerOne.SpendResources(cost);
+                    playerOne.Villagers.Remove(villager);
 
-                    var newSoldier = player.CivicCenter.CreateSoldier(soldier);
+                    var newSoldier = playerOne.CivicCenter.CreateSoldier(soldier);
                     if (newSoldier != null)
                     {
-                        player.AddSoldier(newSoldier);
+                        playerOne.AddSoldier(newSoldier);
                     }
                 }
             }
