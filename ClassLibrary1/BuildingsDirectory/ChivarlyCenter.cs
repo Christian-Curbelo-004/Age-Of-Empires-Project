@@ -4,7 +4,7 @@ using GameModels;
 
 namespace ClassLibrary1.CivilizationDirectory
 {
-    public class ChivarlyCenter : Buildings
+    public class ChivarlyCenter : Buildings, IMapEntidad
     {
         
         public ChivarlyCenter(int endurence, int constructiontimeleft, string name)
@@ -21,6 +21,8 @@ namespace ClassLibrary1.CivilizationDirectory
         {
             return UnitFactory.CreateChivarly();
         }
+        public string EntityType => "ChivarlyCenter";
+
     }
 }
  

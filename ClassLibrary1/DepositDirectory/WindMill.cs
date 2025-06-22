@@ -5,7 +5,7 @@ using GameModels;
 
 namespace  ClassLibrary1.DepositDirectory
 {
-    public class WindMill : Deposit
+    public class WindMill : Deposit, IMapEntidad
     {
         public int CurrentFood { get; private set; }
         public WindMill(int endurence, int constructiontimeleft,string name,int maxCapacity)
@@ -22,5 +22,7 @@ namespace  ClassLibrary1.DepositDirectory
             ConstructionCost[GameResourceType.Stone] = 170;
             ConstructionCost[GameResourceType.Wood] = 100;
         }
+        public string EntityType => "WindMill";
+
     }      
 }

@@ -6,7 +6,7 @@ using GameResourceType = GameModels.GameResourceType;
 
 namespace ClassLibrary1.DepositDirectory
 {
-    public class GoldDeposit : Deposit
+    public class GoldDeposit : Deposit,  IMapEntidad
     {
         public int CurrentGold { get; private set; } 
         public GoldDeposit(int endurence, int constructionTimeLeft, string name, int maxCapacity)
@@ -22,5 +22,7 @@ namespace ClassLibrary1.DepositDirectory
             ConstructionCost[GameResourceType.Wood] = 120;
             ConstructionCost[GameResourceType.Stone] = 80;
         }
+        public string EntityType => "GoldDeposit";
+
     }      
 }

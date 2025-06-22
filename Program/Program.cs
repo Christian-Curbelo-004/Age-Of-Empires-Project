@@ -2,8 +2,12 @@
 // using System.Data;
 // using ClassLibrary1;
 // using System.IO;
+//  using System.Security.AccessControl;
 
-using System.Security.AccessControl;
+
+
+
+
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
@@ -18,10 +22,10 @@ class Program
     static void Main(string[] args)
     {
         GameFacade game = new GameFacade();
-        PlayerOne playerOne = new PlayerOne("joaco",new Roman());
+        PlayerOne playerOne = new PlayerOne("joaco", new Roman());
 
         Map map = new Map(100, 100);
-        
+
         bool salir = false;
 
         while (!salir)
@@ -43,23 +47,20 @@ class Program
             string opcion = Console.ReadLine();
 
             switch (opcion)
-            {
+            { 
                 case "1":
                     ElegiUnaCivilizacion();
                     salir = true;
                     break;
-
                 case "2":
-                    Construir();
-                    salir = true;
-                    break;
-                case "3":
                     Atacar();
                     break;
+                case "3":
+                    Construir(map);
+                   break;
                 case "4":
-                    GuardarPartida();
-                    salir = true;
-                    break;
+                 //   GuardarPartida();
+                 //   break;
                 case "5":
                     salir = true;
                     break;
@@ -71,33 +72,11 @@ class Program
                 Console.WriteLine("2: Vikings");
                 Console.WriteLine("3: Paladins");
 
-                string seleccion = Console.ReadLine();
+                string opcion = Console.ReadLine();
 
                 // Roman roman = new Roman();
                 // Viking viking = new Viking();
                 // Paladin paladin = new Paladin();
-
-            }
-
-            static void Construir()
-            {
-                Console.WriteLine("4: Civic Center");
-                Console.WriteLine("5: Infantery Center");
-                Console.WriteLine("6: Chivarly Center");
-                Console.WriteLine("7: Wood Deposit ");
-                Console.WriteLine("8: Gold Deposit ");
-                Console.WriteLine("9: Stone Deposit ");
-
-                string seleccion = Console.ReadLine();
-
-                CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
-                InfanteryCenter infanteryCenter = new InfanteryCenter(50, 30, "Infantery Center");
-                ChivarlyCenter chivarlyCenter = new ChivarlyCenter(50, 30, "Chivarly Center");
-
-                WoodDeposit woodDeposit = new WoodDeposit(123, 20, "Wood Deposit ", 123);
-                GoldDeposit goldDeposit = new GoldDeposit(200, 50, "Gold Deposit ", 23);
-                StoneDeposit stoneDeposit = new StoneDeposit(170, 30, "Stone Deposit ", 176);
-                
 
             }
 
@@ -108,55 +87,102 @@ class Program
                 Console.WriteLine("9: Villagers");
             }
 
-            static void GuardarPartida()
+            static void Construir(Map map)
             {
-                // con un txt
-            }
+                Console.WriteLine("4: Civic Center");
+                Console.WriteLine("5: Infantery Center");
+                Console.WriteLine("6: Chivarly Center");
+                Console.WriteLine("7: Archer Center: ");
+                Console.WriteLine("8: Wood Deposit ");
+                Console.WriteLine("9: Gold Deposit ");
+                Console.WriteLine("10: Stone Deposit ");
+                Console.WriteLine("11: WindMill Deposit ");
 
-            RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
-            RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
+                string opcion = Console.ReadLine();
 
-            PrintMap printmap = new PrintMap(map);
-            Console.WriteLine(printmap.GetMapAsString());
+              
+                InfanteryCenter infanteryCenter = new InfanteryCenter(50, 30, "Infantery Center");
+                ChivarlyCenter chivarlyCenter = new ChivarlyCenter(50, 30, "Chivarly Center");
+                ArcherCenter archerCenter = new ArcherCenter(50, 30, "Archer Center");
 
-            static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height,
-                int cantidadrecursos)
-            {
-                Random random = new Random();
-                for (int i = 0; i < cantidadrecursos; i++)
+                WoodDeposit woodDeposit = new WoodDeposit(123, 20, "Wood Deposit ", 123);
+                GoldDeposit goldDeposit = new GoldDeposit(200, 50, "Gold Deposit ", 23);
+                StoneDeposit stoneDeposit = new StoneDeposit(170, 30, "Stone Deposit ", 176);
+                WindMill windMill = new WindMill(123, 20, "Wind Mill", 123);
+
+                switch (opcion)
                 {
-                    int x = random.Next(inicialX, inicialX + width);
-                    int y = random.Next(inicialY, inicialY + height);
+                    case "4":
+                        //map.PonerEntidad(50, 30, civicCenter);
+                        break;
+                    case "5":
+                        map.PonerEntidad(123, 30, infanteryCenter);
+                        break;
+                    case "6":
+                        map.PonerEntidad(200, 20, chivarlyCenter);
+                        break;
+                    case "7":
+                        map.PonerEntidad(150, 10, archerCenter);
+                        break;
+                    case "8":
+                        map.PonerEntidad(60, 20, woodDeposit);
+                        break;
+                    case "9":
+                        map.PonerEntidad(210, 32, goldDeposit);
+                        break;
+                    case "10":
+                        map.PonerEntidad(20, 30, stoneDeposit);
+                        break;
+                    case "11":
+                        map.PonerEntidad(12, 30, windMill);
+                        break;
+                }
+                
+                RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
+                RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
 
-                    int recurso = random.Next(3);
-                    IMapEntidad entidad;
+                PrintMap printmap = new PrintMap(map);
+                Console.WriteLine(printmap.GetMapAsString());
 
-                    if (recurso == 0)
+                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height,
+                    int cantidadrecursos)
+                {
+                    Random random = new Random();
+                    for (int i = 0; i < cantidadrecursos; i++)
                     {
-                        entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Madera",
-                            wood: 150);
-                    }
-                    else if (recurso == 1)
-                    {
-                        entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Gold",
-                            gold: 50);
-                    }
-                    else
-                    {
-                        entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Stone",
-                            stone: 75);
+                        int x = random.Next(inicialX, inicialX + width);
+                        int y = random.Next(inicialY, inicialY + height);
+
+                        int recurso = random.Next(3);
+                        IMapEntidad entidad;
+
+                        if (recurso == 0)
+                        {
+                            entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Madera",
+                                wood: 150);
+                        }
+                        else if (recurso == 1)
+                        {
+                            entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Gold",
+                                gold: 50);
+                        }
+                        else
+                        {
+                            entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Stone",
+                                stone: 75);
+                        }
+
+                        map.PonerEntidad(x, y, entidad);
+
                     }
 
-                    map.PonerEntidad(x, y, entidad);
+                    int centrocivX = inicialX + width / 2;
+                    int centrocivY = inicialY + height / 2;
+
+                    CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
+                    map.PonerEntidad(centrocivX, centrocivY, civicCenter);
 
                 }
-
-                int centrocivX = inicialX + width / 2;
-                int centrocivY = inicialY + height / 2;
-
-                CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
-                map.PonerEntidad(centrocivX, centrocivY, civicCenter);
-
             }
         }
     }

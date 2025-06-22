@@ -2,7 +2,7 @@
 
 namespace ClassLibrary1.DepositDirectory
 {
-    public class StoneDeposit : Deposit
+    public class StoneDeposit : Deposit, IMapEntidad
     {
         public int CurrentStone { get; private set; }
         public StoneDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity)
@@ -20,5 +20,7 @@ namespace ClassLibrary1.DepositDirectory
             ConstructionCost[GameResourceType.Stone] = 80;
             ConstructionCost[GameResourceType.Gold] = 10;
         }
+        public string EntityType => "StoneDeposit";
+
     }      
 }

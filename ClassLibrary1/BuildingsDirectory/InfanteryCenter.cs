@@ -7,7 +7,7 @@ using GameModels;
 namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si genera problemas ClassLibrary1.BuildingsDirectory) ClassLibrary1.BuildingsDirectory
 
 {
-    public class InfanteryCenter : Buildings
+    public class InfanteryCenter : Buildings, IMapEntidad
     {
         public InfanteryCenter(int endurence, int constructiontimeleft, string name)
             : base(endurence, constructiontimeleft, name)
@@ -23,5 +23,7 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
         {
             return UnitFactory.CreateInfantery();
         }
+        public string EntityType => "InfanteryCenter";
+
     }
 }

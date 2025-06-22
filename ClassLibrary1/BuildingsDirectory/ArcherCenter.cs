@@ -5,7 +5,7 @@ using GameModels;
 
 namespace ClassLibrary1.BuildingsDirectory
 {   
-    public class ArcherCenter : Buildings
+    public class ArcherCenter : Buildings, IMapEntidad
     {
         public ArcherCenter(int endurence, int constructiontimeleft, string name)
             : base(endurence, constructiontimeleft, name)
@@ -21,5 +21,7 @@ namespace ClassLibrary1.BuildingsDirectory
         {
             return UnitFactory.CreateArcher();
         }
+        public string EntityType => "ArcherCenter";
+
     }
 }
