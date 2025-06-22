@@ -1,4 +1,5 @@
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1;
 namespace ClassLibrary1.LogicDirectory;
 
 public abstract class LogicCore : ILogic
@@ -37,9 +38,25 @@ public abstract class LogicCore : ILogic
         }
         CreateVillagers(new Villagers(100,5));
     }
-    public void DepositLogic()
+    public void DepositLogic(PlayerOne player)
     {
-        
+        int collectors = 1;
+        foreach (var villager in player.Villagers)
+        {
+            if (!villager.IsFree) continue;
+            var task = villager.CurrentTask;
+            if (task == null || task.ResourceType == null) continue;
+
+            var deposit = player.GetAvailableDeposit(task.ResourceType);
+            if (deposit == null)
+            {
+                continue;
+            }
+
+            int delivered = deposit.StoreResource(task.ExtractResources(collectors), task.ResourceType);
+            villager.IsFree = true;
+
+        }
     }
     public void VillagersLogic(PlayerOne player)
     {   

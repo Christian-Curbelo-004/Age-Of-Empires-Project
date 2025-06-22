@@ -1,8 +1,4 @@
-﻿// using System;
-
-using System;
-using ClassLibrary1;
-
+﻿using ClassLibrary1;
 namespace QuaryBiome
 {
     public class Forest : Quary

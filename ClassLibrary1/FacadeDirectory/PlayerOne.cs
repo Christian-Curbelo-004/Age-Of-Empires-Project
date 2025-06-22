@@ -1,5 +1,7 @@
 ﻿using GameResourceType = GameModels.GameResourceType;
 using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.DepositDirectory;
+
 namespace ClassLibrary1.CivilizationDirectory;
 public class PlayerOne
 {
@@ -8,6 +10,7 @@ public class PlayerOne
     public int Wood { get; set; } = 0;
     public string Name { get; private set; }
     public Civilization Civilization { get; private set; }
+    public List<Deposit> Deposits { get; set; } = new();
     public List<Villagers> Villagers { get; private set; }
     public List<Soldier> Soldiers { get; private set; }
     public List<Quary> Quaries { get; private set; }
@@ -53,6 +56,16 @@ public class PlayerOne
             ConstructionCost[item.Key] -= item.Value;
         }
     }
+
+    public Deposit GetAvailableDeposit(GameResourceType type)
+    {
+        foreach (var d in Deposits)
+        {
+            if (d.ResourceType == type && d.CurrentStorage < d.MaxCapacity)
+                return d;
+        }
+        return null;
+    }  
     public void AddSoldier(Soldier soldier)
     {
         Soldiers.Add(soldier);

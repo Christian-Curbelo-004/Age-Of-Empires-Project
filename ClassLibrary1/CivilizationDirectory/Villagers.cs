@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassLibrary1.CivilizationDirectory;
+﻿using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
@@ -11,6 +9,7 @@ public class Villagers : ICharacter, IBuilder, ICollect
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int Speed { get; set; }
+    public IWorkTarget CurrentTask { get; set; }
     public bool IsFree { get; set; } = true;
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     
