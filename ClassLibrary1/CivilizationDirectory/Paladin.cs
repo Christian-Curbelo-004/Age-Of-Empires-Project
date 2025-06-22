@@ -4,7 +4,7 @@
 namespace ClassLibrary1.CivilizationDirectory;
 
 
-public class Paladin : Soldier                                           //ICharacter 
+public class Paladin : Soldier                                         //ICharacter 
 {
     public Paladin() : base(100, 25,  40,9) 
     {
