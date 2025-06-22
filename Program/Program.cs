@@ -31,8 +31,8 @@ class Program
 
             Console.WriteLine("Seleccioná una opción: ");
             Console.WriteLine("1. Elegí una civilizacón");
-            Console.WriteLine("2: Construir: ");
-            Console.WriteLine("3: Atacar: ");
+            Console.WriteLine("2: Atacar: ");
+            Console.WriteLine("3: Construir: ");
             Console.WriteLine("4 Guardar partida: ");
             Console.WriteLine("5: Salir: ");
 
@@ -41,31 +41,39 @@ class Program
             switch (opcion)
             {
                 case "1":
-                    Civilization civilization = ElegiUnaCivilizacion(map); 
-                    PrintMap printmap = new PrintMap(map);
+                    Civilization civilization = ElegiUnaCivilizacion(map);
+                    playerOne = new Player(playerOne.Name, civilization);
+                    Console.WriteLine($"Elegiste la civilización: {civilization.GetType().Name}");
 
-                    printmap.DisplayMap(); // Imprime el mapa directamente con colores
-                    Console.WriteLine("Presione una tecla para continuar...");
-                    Console.ReadKey(); // lee la opcion
+                    PrintMap printMap = new PrintMap(map);
+                    printMap.DisplayMap();
+
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
                     break;
 
                 case "2":
-                    Atacar(); 
+                    Atacar(map);
                     break;
+
 
                 case "3":
                     Construir(map);
                     break;
 
+
                 case "4":
                 //   GuardarPartida();
                 //   break;
+
                 case "5":
                     salir = true;
                     break;
             }
 
-            static Civilization ElegiUnaCivilizacion(Map map) // Roman roman = new Roman();// Viking viking = new Viking()// Paladin paladin = new Paladin();
+            static Civilization
+                ElegiUnaCivilizacion(
+                    Map map) // Roman roman = new Roman();// Viking viking = new Viking()// Paladin paladin = new Paladin();
             {
                 while (true)
                 {
@@ -78,14 +86,20 @@ class Program
                     if (opcion == "1") return new Roman();
                     if (opcion == "2") return new Viking();
                     if (opcion == "3") return new Templaries();
+
                 }
             }
 
-            static void Atacar()
+            static void Atacar(Map map)
             {
                 Console.WriteLine("7: Infantery");
                 Console.WriteLine("8: Chivarly");
                 Console.WriteLine("9: Villagers");
+
+                PrintMap printMap = new PrintMap(map);
+                printMap.DisplayMap();
+                Console.WriteLine("Presione una tecla para continuar...");
+                Console.ReadKey();
             }
 
             static void Construir(Map map)
@@ -113,38 +127,55 @@ class Program
                 switch (opcion)
                 {
                     case "4":
-                        //map.PonerEntidad(50, 30, civicCenter);
+                        CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
+                        map.PonerEntidad(50, 30, civicCenter);
                         break;
+
                     case "5":
                         map.PonerEntidad(123, 30, infanteryCenter);
                         break;
+
                     case "6":
                         map.PonerEntidad(200, 20, chivarlyCenter);
                         break;
+
                     case "7":
                         map.PonerEntidad(150, 10, archerCenter);
                         break;
+
                     case "8":
                         map.PonerEntidad(60, 20, woodDeposit);
                         break;
+
                     case "9":
                         map.PonerEntidad(210, 32, goldDeposit);
                         break;
+
                     case "10":
                         map.PonerEntidad(20, 30, stoneDeposit);
                         break;
+
                     case "11":
                         map.PonerEntidad(12, 30, windMill);
                         break;
                 }
 
-                RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
-                RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
+                if (int.TryParse(opcion, out int opcionN) && opcionN >= 4 &&
+                    opcionN <= 11) // la opcion es un str, que pasa a ser un int
+                {
+                    RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
+                    RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
 
-                PrintMap printmap = new PrintMap(map);
-                printmap.DisplayMap(); // Imprime el mapa directamente con colores
+                    PrintMap
+                        printmap = new PrintMap(map); // muestra el mapa desp de elegir algun edificio para construir
+                    printmap.DisplayMap();
 
-                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
+                }
+
+                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height,
+                    int cantidadrecursos)
                 {
                     Random random = new Random();
                     for (int i = 0; i < cantidadrecursos; i++)
@@ -157,22 +188,26 @@ class Program
 
                         if (recurso == 0)
                         {
-                            entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Madera",
+                            entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0,
+                                collectiontype: "Madera",
                                 wood: 150);
                         }
                         else if (recurso == 1)
                         {
-                            entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Gold",
+                            entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0,
+                                collectiontype: "Gold",
                                 gold: 50);
                         }
                         else
                         {
-                            entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Stone",
+                            entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0,
+                                collectiontype: "Stone",
                                 stone: 75);
                         }
 
                         map.PonerEntidad(x, y, entidad);
                     }
+
                     int centrocivX = inicialX + width / 2;
                     int centrocivY = inicialY + height / 2;
 
@@ -183,3 +218,5 @@ class Program
         }
     }
 }
+
+

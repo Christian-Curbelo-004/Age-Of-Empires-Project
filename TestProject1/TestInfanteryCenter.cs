@@ -26,5 +26,4 @@ public class TestInfanteryCenter
         var constructionCost = new Dictionary<string, int>();
         centerInf.GetConstructionCost();
     }
-    
 }
