@@ -39,6 +39,7 @@ public abstract class LogicCore : ILogic
     }
     public void DepositLogic()
     {
+        
     }
     public void VillagersLogic(PlayerOne player)
     {   

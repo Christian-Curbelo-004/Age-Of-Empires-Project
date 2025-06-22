@@ -11,7 +11,7 @@ namespace ClassLibrary1.BuildingsDirectory
             : base(endurence, constructiontimeleft, name)
         {
         }
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Stone] = 170;
             ConstructionCost[GameResourceType.Wood] = 100;

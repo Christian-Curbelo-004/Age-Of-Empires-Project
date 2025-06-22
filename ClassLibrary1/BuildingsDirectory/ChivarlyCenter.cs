@@ -8,10 +8,10 @@ namespace ClassLibrary1.CivilizationDirectory
     {
         
         public ChivarlyCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence, constructiontimeleft, name) // endurence:20, constructiontimeleft:10, name: "ChivalryCenter"
+            : base(endurence, constructiontimeleft, name) 
         {
         }
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Stone] = 170;
             ConstructionCost[GameResourceType.Wood] = 100;

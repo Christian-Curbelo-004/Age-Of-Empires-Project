@@ -1,7 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using DepositBuilding;
-using GameModels;
+﻿using GameModels;
 
 namespace ClassLibrary1.DepositDirectory
 {
@@ -18,7 +15,7 @@ namespace ClassLibrary1.DepositDirectory
          
         }
 
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Stone] = 80;
             ConstructionCost[GameResourceType.Gold] = 10;

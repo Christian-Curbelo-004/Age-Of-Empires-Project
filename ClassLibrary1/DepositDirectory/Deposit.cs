@@ -1,8 +1,5 @@
-﻿using System;
-using CreateBuildings;
-using System.IO;
+﻿using CreateBuildings;
 using GameModels;
-using ClassLibrary1.BuildingsDirectory;
 namespace ClassLibrary1.DepositDirectory
 {
     public abstract class Deposit : Buildings
@@ -18,7 +15,7 @@ namespace ClassLibrary1.DepositDirectory
             MaxCapacity = maxCapacity;
             CurrentStorage = 0;
         }
-        public abstract override void SetConstructionCost();
+        public abstract override void GetConstructionCost();
         
         public int StoreResource(int amount, GameResourceType type)
         {

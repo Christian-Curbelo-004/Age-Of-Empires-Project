@@ -17,7 +17,7 @@ namespace ClassLibrary1.DepositDirectory
         {
             StoreResource(amount, this.ResourceType);
         }
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Wood] = 120;
             ConstructionCost[GameResourceType.Stone] = 80;

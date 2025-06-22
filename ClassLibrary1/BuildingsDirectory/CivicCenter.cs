@@ -36,7 +36,7 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
             return (CurrentSoldiers < MaxSoldiers);
         }
 
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Stone] = 100;
             ConstructionCost[GameResourceType.Gold] = 40;

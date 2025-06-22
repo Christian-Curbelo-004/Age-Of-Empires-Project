@@ -1,13 +1,4 @@
-//using System;
-//using System.Collections.Generic;
-//using InfanteryCenter;  
-//using NUnit.Framework;
-
-
-using System.Collections.Generic;
 using ClassLibrary1.BuildingsDirectory;
-using NUnit.Framework;
-
 namespace TestProject1;
 
 public class TestInfanteryCenter
@@ -25,7 +16,7 @@ public class TestInfanteryCenter
     public void ConstructionCostCorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.SetConstructionCost();
+        centerInf.GetConstructionCost();
         Assert.That(constructionCost["Piedra"],Is.EqualTo(10));
         Assert.That(constructionCost["Oro"],Is.EqualTo(6));
     }
@@ -33,9 +24,7 @@ public class TestInfanteryCenter
     public void ConstructionCostIncorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.SetConstructionCost();
-        //int time = centerInf.GetConstructionTime(0);
-        //Assert.That(time, Is.EqualTo(6));
+        centerInf.GetConstructionCost();
     }
     
 }

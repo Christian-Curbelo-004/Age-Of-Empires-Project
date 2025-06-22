@@ -12,7 +12,7 @@ namespace   ClassLibrary1.BuildingsDirectory
         {
         }
         
-        public override void SetConstructionCost()
+        public override void GetConstructionCost()
         {
             ConstructionCost[GameResourceType.Food] = 30;
             ConstructionCost[GameResourceType.Stone] = 20;

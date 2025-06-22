@@ -15,6 +15,6 @@ namespace CreateBuildings
             ConstructionTimeLeft = constructiontimeleft;
             Name = name;
         }
-        public abstract void SetConstructionCost();
+        public abstract void GetConstructionCost();
     }
 }
