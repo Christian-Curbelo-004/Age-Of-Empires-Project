@@ -1,10 +1,3 @@
-//using System;
-//using CivicCenterNamespace;
-//using ClassLibrary1.LogicDirectory;
-//namespace ClassLibrary1.FacadeDirectory
-//namespace ClassLibrary1.FacadeDirectory
-
-using System;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 

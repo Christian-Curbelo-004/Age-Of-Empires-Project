@@ -42,7 +42,7 @@ class Program
                     Civilization civilization = ElegiUnaCivilizacion(map); 
                     PrintMap printmap = new PrintMap(map);
 
-                    Console.WriteLine(printmap.GetMapAsString());
+                    printmap.DisplayMap(); // Imprime el mapa directamente con colores
                     Console.WriteLine("Presione una tecla para continuar...");
                     Console.ReadKey(); // lee la opcion
                     break;
@@ -54,6 +54,7 @@ class Program
                 case "3":
                     Construir(map);
                     break;
+
                 case "4":
                 //   GuardarPartida();
                 //   break;
@@ -139,7 +140,7 @@ class Program
                 RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
 
                 PrintMap printmap = new PrintMap(map);
-                Console.WriteLine(printmap.GetMapAsString());
+                printmap.DisplayMap(); // Imprime el mapa directamente con colores
 
                 static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
                 {
@@ -170,16 +171,13 @@ class Program
 
                         map.PonerEntidad(x, y, entidad);
                     }
-
                     int centrocivX = inicialX + width / 2;
                     int centrocivY = inicialY + height / 2;
 
                     CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
                     map.PonerEntidad(centrocivX, centrocivY, civicCenter);
-
                 }
             }
         }
     }
 }
-
