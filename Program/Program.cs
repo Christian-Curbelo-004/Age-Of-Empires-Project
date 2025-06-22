@@ -18,7 +18,7 @@ class Program
         Player playerTwo = state.PlayerTwo;
         Map map = state.Map;
 
-        bool salir = false;
+        bool salir = false;                 // menu
 
         while (!salir)
         {
@@ -71,9 +71,7 @@ class Program
                     break;
             }
 
-            static Civilization
-                ElegiUnaCivilizacion(
-                    Map map) // Roman roman = new Roman();// Viking viking = new Viking()// Paladin paladin = new Paladin();
+            static Civilization ElegiUnaCivilizacion(Map map) // metodos
             {
                 while (true)
                 {
@@ -86,6 +84,12 @@ class Program
                     if (opcion == "1") return new Roman();
                     if (opcion == "2") return new Viking();
                     if (opcion == "3") return new Templaries();
+                    
+                    PrintMap printmap = new PrintMap(map); 
+                    printmap.DisplayMap();
+
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
 
                 }
             }
@@ -159,23 +163,18 @@ class Program
                         map.PonerEntidad(12, 30, windMill);
                         break;
                 }
-
-                if (int.TryParse(opcion, out int opcionN) && opcionN >= 4 &&
-                    opcionN <= 11) // la opcion es un str, que pasa a ser un int
                 {
                     RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
                     RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
 
-                    PrintMap
-                        printmap = new PrintMap(map); // muestra el mapa desp de elegir algun edificio para construir
+                    PrintMap printmap = new PrintMap(map); // muestra el mapa desp de elegir algun edificio para construir
                     printmap.DisplayMap();
 
                     Console.WriteLine("Presiona una tecla para continuar...");
                     Console.ReadKey();
                 }
 
-                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height,
-                    int cantidadrecursos)
+                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos) // recursos
                 {
                     Random random = new Random();
                     for (int i = 0; i < cantidadrecursos; i++)
