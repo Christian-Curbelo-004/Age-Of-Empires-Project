@@ -48,12 +48,12 @@ public class Cell
         Console.ResetColor(); // Restaurar color original para otros casos
         return EntityType switch
         {
-            "Archer" => "A",
+            "Archer" => "A",//Caracteres que representan las entidades
             "Paladin" => "P",
             "Raider" => "R",
             "Soldier" => "S",
             "Villagers" => "V",
-            "ArcherCenter" => "AC",
+            "ArcherCenter" => "AC", 
             "ChivalryCenter" => "ChC",
             "CivicCenter" => "CC",
             "Home" => "H",
