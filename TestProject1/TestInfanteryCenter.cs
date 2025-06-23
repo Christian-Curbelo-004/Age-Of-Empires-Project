@@ -8,7 +8,7 @@ public class TestInfanteryCenter
     [SetUp]
     public void Setup()
     {
-        centerInf = new InfanteryCenter (20, 10, "InfanteryCenter");
+        centerInf = new InfanteryCenter (20, 10, "InfanteryCenter",1223);
         
     }
 
