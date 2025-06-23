@@ -72,4 +72,26 @@ public class Map
             cell.Resource = recurso;
         }
     }
+
+    public bool MoverEntidad(int origenX, int origenY, int destinoX, int destinoY)
+    {
+        if (!IsWithinBounds(origenX, origenY) || !IsWithinBounds(destinoX, destinoY)) //pasan coordenadas fuera de los limites retorna false
+        {
+            return false;
+        }
+        Cell origen = map[origenX, origenY];
+        Cell destino = map[destinoX, destinoY];
+        if (origen.Entity == null)
+        {
+            return false; //ya que no hay nada para mover
+        }
+        if (destino.Entity != null)
+        {
+            return false; //ya que el destino al que quiero ir esta ocupado
+        }
+
+        destino.Entity = origen.Entity;
+        origen.Entity = null;
+        return true;
+    }
 }
