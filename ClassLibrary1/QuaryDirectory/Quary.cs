@@ -2,7 +2,7 @@
 {
     public class Quary : IMapEntidad
     {
-        public int CollectionTimeLeft { get; set; } //cantidad por tiempo
+        public int ExtractionRate { get; set; } //cantidad por tiempo
         public int CollectionValue { get; set; }  //total de lo recolectado
         
         public string CollectionType { get; set; } //para ver que material esta colectando
@@ -12,23 +12,25 @@
             get {return CollectionType;}
         }
 
-        public Quary(int collectiontimeleft,int collectionValue, string collectionType)
+        public Quary(int extractionRate,int collectionValue, string collectionType)
         {
-            CollectionTimeLeft = collectiontimeleft;
+            ExtractionRate = extractionRate;
             CollectionValue = collectionValue;
             CollectionType = collectionType;
+            
         }
 
 
         public virtual int GetResources()
         {
-            CollectionValue += CollectionTimeLeft;
-            return CollectionTimeLeft; //para ver lo que se recolecto, sin ver lo que ya podia haber de antes
-            
+            int amount = ExtractionRate;
+            CollectionValue += ExtractionRate;
+            return amount; //para ver lo que se recolecto, sin ver lo que ya podia haber de antes
         }
-        public void Collect()
+
+        public void collect()
         {
-            CollectionValue += CollectionTimeLeft;   //suma al total de lo recolectado, la cantidad que recolecta por tiempo
+            CollectionValue += ExtractionRate;
         }
     }
 }

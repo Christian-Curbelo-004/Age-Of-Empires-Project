@@ -3,8 +3,8 @@ namespace QuaryBiome
 {
     public class Forest : Quary
     {
-        public Forest(int collectiontimeleft, int collectionvalue, string collectiontype, int wood)
-            : base(collectiontimeleft, collectionvalue, collectiontype)
+        public Forest(int ExtractionRate, int collectionvalue, string collectiontype, int wood)
+            : base(ExtractionRate, collectionvalue, collectiontype)
         {
             Wood = wood;
         }
@@ -12,15 +12,15 @@ namespace QuaryBiome
 
         public override int GetResources()
         {
-            int recolectado = base.GetResources(); 
-            if (Wood >= recolectado)
+            int gather = base.GetResources(); 
+            if (Wood >= gather)
             {
-                Wood -= recolectado;
-                Console.WriteLine($"Se han recolectado {recolectado} unidades de madera. Madera restante: {Wood}");
-                return recolectado;
+                Wood -= gather;
+                CollectionValue += gather;
+                Console.WriteLine($"Se han recolectado {gather} unidades de madera. Madera restante: {Wood}");
+                return gather;
             }
             {
-                // Console.WriteLine("No hay suficiente madera para recolectar.");
                 return 0;
             }
         }

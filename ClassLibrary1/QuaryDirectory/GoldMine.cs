@@ -1,6 +1,3 @@
-// using System;
-
-using System;
 
 namespace ClassLibrary1.QuaryDirectory;
 
@@ -16,16 +13,16 @@ public class GoldMine : Quary
 
     public override int GetResources()
     {
-        int recolectado = base.GetResources(); 
-        if (Gold >= recolectado)
+        int gather = base.GetResources(); 
+        if (Gold >= gather)
         {
-            Gold -= recolectado; 
-            Console.WriteLine($"Se han recolectado {recolectado} unidades de oro. Oro restante: {Gold}");
-            return recolectado;
+            Gold -= gather;
+            CollectionValue += gather;
+            Console.WriteLine($"Se han recolectado {gather} unidades de madera. Madera restante: {Gold}");
+            return gather;
         }
-        else
         {
-            Console.WriteLine("No hay suficiente oro para recolectar.");
+            // Console.WriteLine("No hay suficiente madera para recolectar.");
             return 0;
         }
     }

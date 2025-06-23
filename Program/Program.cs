@@ -92,8 +92,9 @@ class Program
 
 
                 case "4":
-                    logic.VillagersLogic(playerOne); // 👈 llamada a la lógica
-                    Console.WriteLine("Los aldeanos han recolectado recursos.");
+                    Console.WriteLine("Recolectando con lógica:");
+                    logic.VillagersLogic(playerOne);
+                    Console.WriteLine("Aldeanos recolectaron recursos.");
                     Console.ReadKey();
                     break;
 
@@ -326,7 +327,7 @@ class Program
 
                         if (recurso == 0)
                         {
-                            entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0,
+                            entidad = new Forest(ExtractionRate: 5, collectionvalue: 0,
                                 collectiontype: "Madera",
                                 wood: 150);
                         }

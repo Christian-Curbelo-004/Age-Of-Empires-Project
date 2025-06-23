@@ -39,7 +39,7 @@ namespace ClassLibrary1.FacadeDirectory
             Random random = new Random();
             
             Quary stoneQuary = new Quary(
-                collectiontimeleft: random.Next(5, 10),
+                extractionRate: random.Next(5, 10),
                 collectionValue: 0,
                 collectionType: "Stone"
             );
@@ -47,7 +47,7 @@ namespace ClassLibrary1.FacadeDirectory
         //    map.PlayerTwo.AddQuary(StoneQuary);
             
             Quary goldQuary = new Quary(
-                collectiontimeleft: random.Next(7, 15),
+                extractionRate: random.Next(7, 15),
                 collectionValue: 0,
                 collectionType: "Gold"
             );
@@ -55,7 +55,7 @@ namespace ClassLibrary1.FacadeDirectory
           // map.PlayerTwo.AddQuary(GoldQuary);
             
             Quary woodQuary = new Quary(
-                collectiontimeleft: random.Next(4, 9),
+                extractionRate: random.Next(4, 9),
                 collectionValue: 0,
                 collectionType: "Wood"
             );

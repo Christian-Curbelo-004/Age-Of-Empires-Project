@@ -57,8 +57,8 @@ public class Villagers : ICharacter, IBuilder, ICollect
     }
     public bool Collect(Quary target, int collectors)
     {
-        target.CollectionTimeLeft = Math.Max(0, target.CollectionTimeLeft - collectors);
-        if (target.CollectionTimeLeft <= 0)
+        target.ExtractionRate = Math.Max(0, target.ExtractionRate - collectors);
+        if (target.ExtractionRate <= 0)
         {
             return true;
         }
@@ -74,7 +74,7 @@ public class Villagers : ICharacter, IBuilder, ICollect
         {
             if (!villager.IsFree) continue;
             
-            var quarry = player.Quaries.FirstOrDefault(q => q.CollectionTimeLeft > 0);
+            var quarry = player.Quaries.FirstOrDefault(q => q.ExtractionRate > 0);
             if (quarry == null) continue;
 
             GameResourceType resourceType;
@@ -93,7 +93,7 @@ public class Villagers : ICharacter, IBuilder, ICollect
 
             int stored = deposit.StoreResource(collected, resourceType);
             player.Resources[resourceType] += stored;
-            villager.IsFree = quarry.CollectionTimeLeft > 0;
+            villager.IsFree = quarry.ExtractionRate > 0;
         }
     }
 }

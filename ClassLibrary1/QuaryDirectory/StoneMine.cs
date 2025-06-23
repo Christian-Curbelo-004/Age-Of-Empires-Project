@@ -16,16 +16,16 @@ public class StoneMine : Quary
 
     public override int GetResources()
     {
-        int recolectado = base.GetResources(); 
-        if (Stone >= recolectado)
+        int gather = base.GetResources(); 
+        if (Stone >= gather)
         {
-            Stone -= recolectado; 
-            Console.WriteLine($"Se han recolectado {recolectado} unidades de piedra. Piedra restante: {Stone}");
-            return recolectado;
+            Stone -= gather;
+            CollectionValue += gather;
+            Console.WriteLine($"Se han recolectado {gather} unidades de madera. Madera restante: {Stone}");
+            return gather;
         }
-        else
         {
-            Console.WriteLine("No hay suficiente piedra para recolectar.");
+            // Console.WriteLine("No hay suficiente madera para recolectar.");
             return 0;
         }
     }
