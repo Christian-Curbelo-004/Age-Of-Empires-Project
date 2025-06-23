@@ -6,7 +6,7 @@ using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1;
 
-public class Villagers : ICharacter, IBuilder, ICollect, IMapEntidad
+public class Villagers : ICharacter
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
@@ -46,70 +46,5 @@ public class Villagers : ICharacter, IBuilder, ICollect, IMapEntidad
             {GameResourceType.Gold, 40},
             {GameResourceType.Food, 150}
         };
-    }
-    public bool Build(Buildings target,int builders)
-    {
-        target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);
-        if (target.ConstructionTimeLeft <= 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool Collect(Quary target, int collectors)
-    {
-        target.ExtractionRate = Math.Max(0, target.ExtractionRate - collectors);
-        if (target.ExtractionRate <= 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public void VillagersLogic(Player player, int collectors)
-    {
-        List<Villagers> freeVillagers = new List<Villagers>();
-        foreach (var villager in player.Villagers)
-        {
-            if (villager.IsFree)
-            {
-                freeVillagers.Add(villager);
-                if (freeVillagers.Count == collectors)
-                    break;
-            }
-        }
-        if (freeVillagers.Count == 0) return; 
-        foreach (var villager in player.Villagers)
-        {
-            if (!villager.IsFree) continue;
-            
-            var quarry = player.Quaries.FirstOrDefault(q => q.RemainingResource > 0);
-            if (quarry == null) continue;
-
-            GameResourceType resourceType;
-            switch (quarry.CollectionType.ToLower())
-            {
-                case "madera": resourceType = GameResourceType.Wood; break;
-                case "gold": resourceType = GameResourceType.Gold; break;
-                case "stone": resourceType = GameResourceType.Stone; break;
-                case "food": resourceType = GameResourceType.Food; break;
-                default: continue;
-            }
-            int collected = quarry.GetResources(1);
-            if (collected <= 0) continue;
-            
-            var deposit = player.GetAvailableDeposit(resourceType);
-            if (deposit == null) continue;
-
-            int stored = deposit.StoreResource(collected, resourceType);
-            player.Resources[resourceType] += stored;
-            villager.IsFree = quarry.RemainingResource > 0;
-        }
     }
 }

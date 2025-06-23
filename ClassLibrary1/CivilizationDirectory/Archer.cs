@@ -6,11 +6,6 @@ public class Archer : Soldier
 {
     public Archer() : base(0,20, 10, 10)
     {
-        ConstructionCost = new Dictionary<GameResourceType, int>
-        {
-            { GameResourceType.Wood, 50 },
-            { GameResourceType.Stone, 20 }
-        };
     }
     
     public override int Attack(ICharacter target)
@@ -23,15 +18,5 @@ public class Archer : Soldier
         Life -= damage;
         return Life;
     }
-
-    public string? Run(string direction)
-    {
-        if (direction.ToLower() == "izquierda" || direction.ToLower() == "derecha" || direction.ToLower() == "sube" ||
-            direction.ToLower() == "baja") 
-        {
-            Speed += 10;
-            return direction;
-        }
-        return null;
-    }
+    
 }

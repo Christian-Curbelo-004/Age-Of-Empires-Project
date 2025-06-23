@@ -1,8 +1,7 @@
 namespace ClassLibrary1.CivilizationDirectory;
-
-public class Peleas
+public class Figths
 {
-    public List<string> Combates(ICharacter attacker, ICharacter target)
+    public List<string> Combats(ICharacter attacker, ICharacter target)
     {
         List<string> historialCombate = new List<string>();
 
@@ -16,7 +15,6 @@ public class Peleas
         {
             historialCombate.Add($"{target.GetType().Name} tiene {target.Life} de vida");
         }
-
         return historialCombate;
     }
 }

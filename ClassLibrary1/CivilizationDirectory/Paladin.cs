@@ -20,10 +20,10 @@ public class Paladin : Soldier                                         //ICharac
         return DeffenseValue;
     }
 
-    public  int BoostDeffense(int damage)
+    public  int Boost(int damage)
     {
         DeffenseValue += 15;
-        return BoostDeffense(damage);
+        return Boost(damage);
     }
 
 }

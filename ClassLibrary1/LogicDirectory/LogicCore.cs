@@ -9,10 +9,10 @@ public abstract class LogicCore : ILogic
     {   
         void CreateSoldier(Soldier soldier)
         {
-            var cost = soldier.GetCreationCost();
-            if (playerOne.HasResources(cost) && playerOne.CivicCenter.CanCreateSoldiers())
+           // var cost = soldier.GetCreationCost();
+           // if (playerOne.HasResources(cost) && playerOne.CivicCenter.CanCreateSoldiers())
             {
-                playerOne.SpendResources(cost);
+             //   playerOne.SpendResources(cost);
                 var newSoldier = playerOne.CivicCenter.CreateSoldier(soldier);
                 playerOne.AddSoldier(newSoldier);
             }
@@ -66,12 +66,11 @@ public abstract class LogicCore : ILogic
             var villager = playerOne.GetFirstVillagerFree();
             if (villager == null) return;
             
-            var cost = soldier.GetCreationCost();
             if (playerOne.CivicCenter.CanCreateSoldiers())
             {
-                if (playerOne.HasResources(cost))
+               // if (playerOne.HasResources(cost))
                 {
-                    playerOne.SpendResources(cost);
+                 //   playerOne.SpendResources(cost);
                     playerOne.Villagers.Remove(villager);
 
                     var newSoldier = playerOne.CivicCenter.CreateSoldier(soldier);

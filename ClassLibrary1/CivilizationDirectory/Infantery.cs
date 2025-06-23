@@ -4,14 +4,8 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Infantery : Soldier                                               
 {
-
     public Infantery() : base(100,14,10,13)
     {
-        ConstructionCost = new Dictionary<GameResourceType, int>
-        {
-            { GameResourceType.Wood, 40 },
-            { GameResourceType.Stone, 40}
-        };
     }
     public override int Attack(ICharacter target)
     {
@@ -23,15 +17,5 @@ public class Infantery : Soldier
         Life -= damage;
         return Life;
     }
-
-    public string? Run(string direction)
-    {
-        if (direction.ToLower() == "izquierda" || direction.ToLower() == "derecha" || direction.ToLower() == "sube" ||
-            direction.ToLower() == "baja") 
-        {
-            Speed += 10;
-            return direction;
-        }
-        return null;
-    }
+    
 }

@@ -1,8 +1,3 @@
-// using System.Collections.Generic;
-// using System;
-
-
-
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Templaries : Civilization

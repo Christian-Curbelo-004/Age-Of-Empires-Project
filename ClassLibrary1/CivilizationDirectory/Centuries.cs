@@ -21,7 +21,7 @@ namespace ClassLibrary1.CivilizationDirectory
             return DeffenseValue;
         }
 
-        public  int BoostAttack(ICharacter target)
+        public  int Boost(ICharacter target)
         {
             AttackValue += 10;
             return target.RecieveAttack(AttackValue);

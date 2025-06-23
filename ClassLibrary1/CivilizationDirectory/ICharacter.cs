@@ -11,7 +11,6 @@ public interface ICharacter
      
      int Attack(ICharacter target); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
      int RecieveAttack(int damage); //en vez de void, necesitamos el valor para cuando utilizamos la interfaz y por eso usamos un int
-
-     public Dictionary<GameResourceType, int> GetCreationCost();
+     
 }
     
