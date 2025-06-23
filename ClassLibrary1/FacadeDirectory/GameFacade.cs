@@ -1,26 +1,27 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1.FacadeDirectory;
+
+
 namespace ClassLibrary1.FacadeDirectory 
 {
     public class GameFacade : IFacade
     {
-        public void GenerateMap(Map map)
+        public Map GenerateMap()
         {
-            Random random = new Random();
-            Map RandomMap = new Map(100, 100);
+            Map randomMap = new Map(100, 100);
+            return randomMap;
         }
 
         public GameState StartNewGame()
         {
             var state = new GameState();
 
-            state.Map = new Map(100, 100);
+            state.Map = GenerateMap();
             state.PlayerOne = new Player("Joaco", new Roman());
             state.PlayerTwo = new Player("Cpu", new Templaries());
                     
             state.Map.PlayerOne = state.PlayerOne;
-            state.Map.PlayerTwo = state.PlayerTwo;
+        //    state.Map.PlayerTwo = state.PlayerTwo;
             InitializePlayer(state.Map);
             return state;
         }
@@ -31,39 +32,35 @@ namespace ClassLibrary1.FacadeDirectory
                 constructiontimeleft: 10,
                 name: "Centro Cívico"
             );
-            map.PlayerTwo.CivicCenter = new CivicCenter(
-                endurence: 100,
-                constructiontimeleft: 10,
-                name: "Centro Cívico"
-            );
+       
         }
         public void GenerateQuary(Map map)
         {
             Random random = new Random();
             
-            Quary StoneQuary = new Quary(
+            Quary stoneQuary = new Quary(
                 collectiontimeleft: random.Next(5, 10),
                 collectionValue: 0,
                 collectionType: "Stone"
             );
-            map.PlayerOne.AddQuary(StoneQuary);
-            map.PlayerTwo.AddQuary(StoneQuary);
+            map.PlayerOne.AddQuary(stoneQuary);
+        //    map.PlayerTwo.AddQuary(StoneQuary);
             
-            Quary GoldQuary = new Quary(
+            Quary goldQuary = new Quary(
                 collectiontimeleft: random.Next(7, 15),
                 collectionValue: 0,
                 collectionType: "Gold"
             );
-           map.PlayerOne.AddQuary(GoldQuary);
-           map.PlayerTwo.AddQuary(GoldQuary);
+           map.PlayerOne.AddQuary(goldQuary);
+          // map.PlayerTwo.AddQuary(GoldQuary);
             
-            Quary WoodQuary = new Quary(
+            Quary woodQuary = new Quary(
                 collectiontimeleft: random.Next(4, 9),
                 collectionValue: 0,
                 collectionType: "Wood"
             );
-           map.PlayerOne.AddQuary(WoodQuary);
-           map.PlayerTwo.AddQuary(WoodQuary);
+           map.PlayerOne.AddQuary(woodQuary);
+         //  map.PlayerTwo.AddQuary(WoodQuary);
         }
         public void GenerateVillagers(Map map)
         {

@@ -1,4 +1,5 @@
-﻿using ClassLibrary1.CivilizationDirectory;
+﻿
+using ClassLibrary1.CivilizationDirectory;
 using CreateBuildings;
 using GameModels;
 
@@ -6,16 +7,16 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
 {
     public class CivicCenter : Buildings, IMapEntidad
     {
-        public int MaxVillagers { get; private set; } = 3;
+       public int Health { get; set; }
+        public int MaxVillagers { get; private set; } = 20;
         public int MaxSoldiers { get; private set; } = 1;
         public int CurrentVillagers { get; set; } = 3;
         public int CurrentSoldiers { get; set; }
 
         public CivicCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence, constructiontimeleft, name)   // endurence: 50, constructiontimeleft: 30, name: "CivicCenter"
+            : base(endurence, constructiontimeleft,name)   // endurence: 50, constructiontimeleft: 30, name: "CivicCenter"
         {
         }
-
         public void AddHomeVillagersCapacity()
         {
             MaxVillagers = Math.Min(MaxVillagers + HomeVillagers.PopulationIncrease,20);

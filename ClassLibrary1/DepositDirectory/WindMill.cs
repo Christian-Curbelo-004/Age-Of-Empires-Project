@@ -5,8 +5,8 @@ namespace  ClassLibrary1.DepositDirectory
     public class WindMill : Deposit, IMapEntidad
     {
         public int CurrentFood { get; private set; }
-        public WindMill(int endurence, int constructiontimeleft,string name,int maxCapacity)
-            : base(endurence,constructiontimeleft, name, maxCapacity)
+        public WindMill(int endurence, int constructiontimeleft,string name, int maxCapacity)
+            : base(endurence,constructiontimeleft, name,  maxCapacity)
         {
             CurrentFood = 100;
         }

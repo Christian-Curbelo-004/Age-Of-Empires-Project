@@ -7,7 +7,7 @@ namespace ClassLibrary1.CivilizationDirectory
     public class ChivarlyCenter : Buildings, IMapEntidad
     {
         
-        public ChivarlyCenter(int endurence, int constructiontimeleft, string name)
+        public ChivarlyCenter(int endurence, int constructiontimeleft,  string name)
             : base(endurence, constructiontimeleft, name) 
         {
         }

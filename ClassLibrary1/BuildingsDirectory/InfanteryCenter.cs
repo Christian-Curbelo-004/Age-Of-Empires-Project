@@ -10,7 +10,7 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
     public class InfanteryCenter : Buildings, IMapEntidad
     {
         public InfanteryCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence, constructiontimeleft, name)
+            : base(endurence, constructiontimeleft,name)
         {
         }
         public override void GetConstructionCost()

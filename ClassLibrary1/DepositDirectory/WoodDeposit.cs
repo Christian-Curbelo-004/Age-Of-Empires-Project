@@ -4,7 +4,7 @@ namespace ClassLibrary1.DepositDirectory
     public class WoodDeposit : Deposit, IMapEntidad
     {
         public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructiontimeleft,string name,int maxCapacity)
+        public WoodDeposit(int endurence, int constructiontimeleft,string name,  int maxCapacity)
             : base(endurence,constructiontimeleft, name, maxCapacity)
         {
             CurrentWood = 100;

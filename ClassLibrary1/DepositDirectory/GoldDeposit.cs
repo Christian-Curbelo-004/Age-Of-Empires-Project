@@ -6,7 +6,7 @@ namespace ClassLibrary1.DepositDirectory
     {
         public int CurrentGold { get; private set; } 
         public GoldDeposit(int endurence, int constructionTimeLeft, string name, int maxCapacity)
-            : base(endurence, constructionTimeLeft, name, maxCapacity) // GameResourceType.Gold)
+            : base(endurence, constructionTimeLeft, name,  maxCapacity) // GameResourceType.Gold)
         {
         }
         public void StoreGold(int amount)

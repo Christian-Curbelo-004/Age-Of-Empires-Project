@@ -18,7 +18,7 @@ class Program
         Player playerOne = state.PlayerOne;
         Map map = state.Map;
 
-        bool salir = false;                 // menu
+        bool salir = false; // menu
 
         while (!salir)
         {
@@ -58,7 +58,7 @@ class Program
 
 
                 case "3":
-                    Construir(map,playerOne);
+                    Construir(map, playerOne);
                     break;
 
 
@@ -84,8 +84,8 @@ class Program
                     if (opcion == "1") return new Roman();
                     if (opcion == "2") return new Viking();
                     if (opcion == "3") return new Templaries();
-                    
-                    PrintMap printmap = new PrintMap(map); 
+
+                    PrintMap printmap = new PrintMap(map);
                     printmap.DisplayMap();
 
                     Console.WriteLine("Presiona una tecla para continuar...");
@@ -119,6 +119,7 @@ class Program
 
                 string opcion = Console.ReadLine() ?? "";
 
+                
                 InfanteryCenter infanteryCenter = new InfanteryCenter(50, 30, "Infantery Center");
                 ChivarlyCenter chivarlyCenter = new ChivarlyCenter(50, 30, "Chivarly Center");
                 ArcherCenter archerCenter = new ArcherCenter(50, 30, "Archer Center");
@@ -163,14 +164,15 @@ class Program
                         map.PonerEntidad(12, 30, windMill);
                         break;
                     case "12":
+                        
                         var houseV = new HomeVillagers(20, 10, "Casa de aldeanos");
-                        map.PonerEntidad(17,34,houseV);
+                        map.PonerEntidad(17, 34, houseV);
                         player.CivicCenter.AddHomeVillagersCapacity();
                         Console.WriteLine("Limite de aldeanos aumentado");
                         break;
                     case "13":
                         var houseS = new HomeSoldiers(20, 10, "Casa de soldados");
-                        map.PonerEntidad(18,23,houseS);
+                        map.PonerEntidad(18, 23, houseS);
                         player.CivicCenter.AddHomeSoldiersCapacity();
                         Console.WriteLine("Limite de soldados aumentado");
                         break;
@@ -188,59 +190,59 @@ class Program
                         break;
                 }
             }
+
+            {
+                RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
+                RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
+
+                PrintMap printmap = new PrintMap(map); // muestra el mapa desp de elegir algun edificio para construir
+                printmap.DisplayMap();
+
+                Console.WriteLine("Presiona una tecla para continuar...");
+                Console.ReadKey();
+            }
+
+            static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos) // recursos
+            {
+                Random random = new Random();
+                for (int i = 0; i < cantidadrecursos; i++)
                 {
-                    RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
-                    RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
+                    int x = random.Next(inicialX, inicialX + width);
+                    int y = random.Next(inicialY, inicialY + height);
 
-                    PrintMap printmap = new PrintMap(map); // muestra el mapa desp de elegir algun edificio para construir
-                    printmap.DisplayMap();
+                    int recurso = random.Next(3);
+                    IMapEntidad entidad;
 
-                    Console.WriteLine("Presiona una tecla para continuar...");
-                    Console.ReadKey();
-                }
-
-                static void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos) // recursos
-                {
-                    Random random = new Random();
-                    for (int i = 0; i < cantidadrecursos; i++)
+                    if (recurso == 0)
                     {
-                        int x = random.Next(inicialX, inicialX + width);
-                        int y = random.Next(inicialY, inicialY + height);
-
-                        int recurso = random.Next(3);
-                        IMapEntidad entidad;
-
-                        if (recurso == 0)
-                        {
-                            entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0,
-                                collectiontype: "Madera",
-                                wood: 150);
-                        }
-                        else if (recurso == 1)
-                        {
-                            entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0,
-                                collectiontype: "Gold",
-                                gold: 50);
-                        }
-                        else
-                        {
-                            entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0,
-                                collectiontype: "Stone",
-                                stone: 75);
-                        }
-
-                        map.PonerEntidad(x, y, entidad);
+                        entidad = new Forest(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Madera",
+                            wood: 150);
+                    }
+                    else if (recurso == 1)
+                    {
+                        entidad = new GoldMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Gold",
+                            gold: 50);
+                    }
+                    else
+                    {
+                        entidad = new StoneMine(collectiontimeleft: 5, collectionvalue: 0, collectiontype: "Stone",
+                            stone: 75);
                     }
 
-                    int centrocivX = inicialX + width / 2;
-                    int centrocivY = inicialY + height / 2;
-
-                    CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
-                    map.PonerEntidad(centrocivX, centrocivY, civicCenter);
+                    map.PonerEntidad(x, y, entidad);
                 }
+
+                int centrocivX = inicialX + width / 2;
+                int centrocivY = inicialY + height / 2;
+
+                CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center");
+                map.PonerEntidad(centrocivX, centrocivY, civicCenter);
             }
         }
+    }
 }
+
+
 
 
 

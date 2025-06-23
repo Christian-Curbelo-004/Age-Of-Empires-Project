@@ -6,6 +6,7 @@ namespace CreateBuildings
     {
         
         public string Name { get; set; }
+        public int Capacity { get; set; }
         public int Endurence { get; set; }
         public int ConstructionTimeLeft { get; set; }
         public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
@@ -14,6 +15,7 @@ namespace CreateBuildings
             Endurence = endurence;
             ConstructionTimeLeft = constructiontimeleft;
             Name = name;
+            
         }
         public abstract void GetConstructionCost();
     }

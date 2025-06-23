@@ -7,7 +7,7 @@ namespace ClassLibrary1.BuildingsDirectory
 {   
     public class ArcherCenter : Buildings, IMapEntidad
     {
-        public ArcherCenter(int endurence, int constructiontimeleft, string name)
+        public ArcherCenter(int endurence, int constructiontimeleft,  string name)
             : base(endurence, constructiontimeleft, name)
         {
         }

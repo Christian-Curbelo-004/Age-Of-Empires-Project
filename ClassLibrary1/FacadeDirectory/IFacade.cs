@@ -2,7 +2,7 @@
 {
     public interface IFacade      
     {
-        void GenerateMap(Map map);
+        Map GenerateMap();
         void GenerateQuary(Map map);
         void GenerateVillagers(Map map);
         void GenerateCivicCenter(Map map);
