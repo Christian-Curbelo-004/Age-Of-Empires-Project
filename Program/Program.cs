@@ -2,20 +2,20 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.QuaryDirectory;
-using QuaryBiome;
 using ClassLibrary1.FacadeDirectory;
+using QuaryBiome;
+
 
 namespace ClassLibrary1;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main() // string[] args (borrado)
     {
         GameFacade facade = new GameFacade();
         GameState state = facade.StartNewGame();
 
         Player playerOne = state.PlayerOne;
-        Player playerTwo = state.PlayerTwo;
         Map map = state.Map;
 
         bool salir = false;                 // menu
