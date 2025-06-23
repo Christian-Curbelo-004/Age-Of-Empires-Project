@@ -1,6 +1,8 @@
-﻿namespace ClassLibrary1;
-
-public interface IResourceDeposit
+﻿namespace ClassLibrary1.QuaryDirectory
 {
-    void GetResources(int amount);
+    public interface IResourceDeposit
+    {
+        int GetResources(int collectors = 1);
+        string ResourceType { get; }
+    }
 }

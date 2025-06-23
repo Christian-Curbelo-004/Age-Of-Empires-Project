@@ -1,20 +1,29 @@
-﻿using ClassLibrary1;
-namespace QuaryBiome
+﻿namespace ClassLibrary1.QuaryDirectory
 {
     public class Forest : Quary
     {
-        public Forest(int ExtractionRate, int collectionvalue, string collectiontype, int wood)
-            : base(ExtractionRate, collectionvalue, collectiontype)
-        {
-            Wood = wood;
-        }
-        public int Wood { get; set; } 
+        public int Wood { get; private set; }
 
-        public override int GetResources(int collectors = 1)
+        public Forest(int extractionRate, int collectionValue, int initialWood)
+            : base(extractionRate, collectionValue, initialWood, "Wood")
+        {
+            Wood = initialWood;
+        }
+
+        public ResourceResult CollectResources(int collectors = 1)
         {
             int amount = base.GetResources(collectors);
-            Console.WriteLine($"Se recolectaron {amount} unidades");
-            return amount;
+
+            if (Wood <= 0)
+            {
+                return new ResourceResult(0, "El bosque está vacía.");
+            }
+
+            int collected = Math.Min(Wood, amount);
+            Wood -= collected;
+
+            string message = $"Se recolectaron {collected} unidades de madera.";
+            return new ResourceResult(collected, message);
         }
     }
 }

@@ -1,23 +1,29 @@
-// using System;
-
-using System;
-
-namespace ClassLibrary1.QuaryDirectory;
-
-public class StoneMine : Quary
+namespace ClassLibrary1.QuaryDirectory
 {
-    public StoneMine(int collectiontimeleft, int collectionvalue, string collectiontype, int stone)
-        : base(collectiontimeleft, collectionvalue, collectiontype)
+    public class StoneMine : Quary
     {
-        Stone = stone;
-    }
+        public int Stone { get; private set; }
 
-    public int Stone { get; set; }
+        public StoneMine(int extractionRate, int collectionValue, int initialStone)
+            : base(extractionRate, collectionValue, initialStone, "Stone")
+        {
+            Stone = initialStone;
+        }
 
-    public override int GetResources(int collectors = 1)
-    {
-        int amount = base.GetResources(collectors);
-        Console.WriteLine($"Se recolectaron {amount} unidades");
-        return amount;
+        public ResourceResult CollectResources(int collectors = 1)
+        {
+            int amount = base.GetResources(collectors);
+
+            if (Stone <= 0)
+            {
+                return new ResourceResult(0, "La mina de piedra está vacía.");
+            }
+
+            int collected = System.Math.Min(Stone, amount);
+            Stone -= collected;
+
+            string message = $"Se recolectaron {collected} unidades de piedra.";
+            return new ResourceResult(collected, message);
+        }
     }
 }

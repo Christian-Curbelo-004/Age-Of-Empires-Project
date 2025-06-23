@@ -1,19 +1,29 @@
-namespace ClassLibrary1.QuaryDirectory;
-
-public class GoldMine : Quary
+namespace ClassLibrary1.QuaryDirectory
 {
-    public GoldMine(int collectiontimeleft, int collectionvalue, string collectiontype, int gold)
-        : base(collectiontimeleft, collectionvalue, collectiontype)
+    public class GoldMine : Quary
     {
-        Gold = gold; 
-    }
+        public int Gold { get; private set; }
 
-    public int Gold { get; set; } 
+        public GoldMine(int extractionRate, int collectionValue, int initialGold)
+            : base(extractionRate, collectionValue, initialGold, "Gold")
+        {
+            Gold = initialGold;
+        }
 
-    public override int GetResources(int collectors = 1)
-    {
-        int amount = base.GetResources(collectors);
-        Console.WriteLine($"Se recolectaron {amount} unidades");
-        return amount;
+        public ResourceResult CollectResources(int collectors = 1)
+        {
+            int amount = base.GetResources(collectors);
+
+            if (Gold <= 0)
+            {
+                return new ResourceResult(0, "La mina de oro está vacía.");
+            }
+
+            int collected = Math.Min(Gold, amount);
+            Gold -= collected;
+
+            string message = $"Se recolectaron {collected} unidades de oro.";
+            return new ResourceResult(collected, message);
+        }
     }
 }
