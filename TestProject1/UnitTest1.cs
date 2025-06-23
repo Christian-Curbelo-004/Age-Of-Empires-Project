@@ -8,6 +8,7 @@ public class TestsChivarlyCenter
     [SetUp]
     public void Setup()
     {
+
         center = new ChivarlyCenter(20, 10, "ChivarlyCenter",12133);
     }
 
