@@ -4,6 +4,7 @@
     {
         public int ExtractionRate { get; set; } //cantidad por tiempo
         public int CollectionValue { get; set; }  //total de lo recolectado
+        public int RemainingResource { get; set; }
         
         public string CollectionType { get; set; } //para ver que material esta colectando
 
@@ -21,11 +22,12 @@
         }
 
 
-        public virtual int GetResources()
+        public virtual int GetResources(int collectors = 1)
         {
-            int amount = ExtractionRate;
-            CollectionValue += ExtractionRate;
-            return amount; //para ver lo que se recolecto, sin ver lo que ya podia haber de antes
+            int amount = Math.Min(ExtractionRate * collectors, RemainingResource);
+            RemainingResource -= amount;
+            CollectionValue += amount;
+            return amount; 
         }
 
         public void collect()

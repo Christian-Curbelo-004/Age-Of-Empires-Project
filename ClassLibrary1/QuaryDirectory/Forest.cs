@@ -10,19 +10,11 @@ namespace QuaryBiome
         }
         public int Wood { get; set; } 
 
-        public override int GetResources()
+        public override int GetResources(int collectors = 1)
         {
-            int gather = base.GetResources(); 
-            if (Wood >= gather)
-            {
-                Wood -= gather;
-                CollectionValue += gather;
-                Console.WriteLine($"Se han recolectado {gather} unidades de madera. Madera restante: {Wood}");
-                return gather;
-            }
-            {
-                return 0;
-            }
+            int amount = base.GetResources(collectors);
+            Console.WriteLine($"Se recolectaron {amount} unidades");
+            return amount;
         }
     }
 }

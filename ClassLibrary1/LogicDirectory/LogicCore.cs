@@ -1,5 +1,6 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.FacadeDirectory;
+using GameModels;
 namespace ClassLibrary1.LogicDirectory;
 
 public abstract class LogicCore : ILogic
@@ -58,7 +59,7 @@ public abstract class LogicCore : ILogic
 
         }
     }
-    public void VillagersLogic(Player playerOne)
+    public void VillagersLogic(Player playerOne, int collectors)
     {   
         void TransformVillager(Soldier soldier)
         {
@@ -84,5 +85,45 @@ public abstract class LogicCore : ILogic
         TransformVillager( UnitFactory.CreateArcher());
         TransformVillager(UnitFactory.CreateChivarly());
         TransformVillager(UnitFactory.CreateInfantery());
+        {
+            List<Villagers> freeVillagers = new List<Villagers>();
+            foreach (var villager in playerOne.Villagers)
+            {
+                if (villager.IsFree)
+                {
+                    freeVillagers.Add(villager);
+                    if (freeVillagers.Count == collectors)
+                        break;
+                }
+            }
+
+            if (freeVillagers.Count == 0) return;
+
+            foreach (var villager in freeVillagers) 
+            {
+                var quarry = playerOne.Quaries.FirstOrDefault(q => q.RemainingResource > 0);
+                if (quarry == null) continue;
+
+                GameResourceType resourceType;
+                switch (quarry.CollectionType.ToLower())
+                {
+                    case "madera": resourceType = GameResourceType.Wood; break;
+                    case "gold": resourceType = GameResourceType.Gold; break;
+                    case "stone": resourceType = GameResourceType.Stone; break;
+                    case "food": resourceType = GameResourceType.Food; break;
+                    default: continue;
+                }
+
+                int collected = quarry.GetResources(1); // podés cambiar esto a usar 1 o el total de freeVillagers.Count
+                if (collected <= 0) continue;
+
+                var deposit = playerOne.GetAvailableDeposit(resourceType);
+                if (deposit == null) continue;
+
+                int stored = deposit.StoreResource(collected, resourceType);
+                playerOne.Resources[resourceType] += stored;
+                villager.IsFree = quarry.RemainingResource > 0;
+            }
+        }
     }
 }

@@ -73,10 +73,6 @@ class Program
             switch (opcion)
             {
                 case "1":
-                    //Civilization civilization = ElegiUnaCivilizacion();
-                    //playerOne = new Player(playerOne.Name, civilization);
-                    //Console.WriteLine($"Elegiste la civilización: {civilization.GetType().Name}");
-                    
                     Console.WriteLine("Presiona una tecla para continuar...");
                     Console.ReadKey();
                     break;
@@ -93,7 +89,8 @@ class Program
 
                 case "4":
                     Console.WriteLine("Recolectando con lógica:");
-                    logic.VillagersLogic(playerOne);
+                    int collectors = 0;
+                    logic.VillagersLogic(playerOne, collectors);  // hay que arreglar bien lo de collectora
                     Console.WriteLine("Aldeanos recolectaron recursos.");
                     Console.ReadKey();
                     break;
@@ -102,6 +99,17 @@ class Program
                     MoverUnidad(map);
                     break;
                 case "6":
+                    Console.WriteLine("Con cuantos aldeanos queres recolectar?");
+                    if (!int.TryParse(Console.ReadLine(), out int Recolectorsamount))
+                    {
+                        Console.WriteLine("Número de aldeanos no asignable");
+                        return;
+                    }
+                    logic.VillagersLogic(playerOne , Recolectorsamount);
+                    Console.WriteLine($"Se enviarán {Recolectorsamount} aldeanos a recolectar");
+                    Console.ReadKey();
+                    break;
+                case "7":
                     salir = true;
                     break;
             }

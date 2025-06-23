@@ -68,13 +68,24 @@ public class Villagers : ICharacter, IBuilder, ICollect
         }
     }
 
-    public void VillagersLogic(Player player)
+    public void VillagersLogic(Player player, int collectors)
     {
+        List<Villagers> freeVillagers = new List<Villagers>();
+        foreach (var villager in player.Villagers)
+        {
+            if (villager.IsFree)
+            {
+                freeVillagers.Add(villager);
+                if (freeVillagers.Count == collectors)
+                    break;
+            }
+        }
+        if (freeVillagers.Count == 0) return; 
         foreach (var villager in player.Villagers)
         {
             if (!villager.IsFree) continue;
             
-            var quarry = player.Quaries.FirstOrDefault(q => q.ExtractionRate > 0);
+            var quarry = player.Quaries.FirstOrDefault(q => q.RemainingResource > 0);
             if (quarry == null) continue;
 
             GameResourceType resourceType;
@@ -86,14 +97,15 @@ public class Villagers : ICharacter, IBuilder, ICollect
                 case "food": resourceType = GameResourceType.Food; break;
                 default: continue;
             }
-            int collected = quarry.GetResources();
-
+            int collected = quarry.GetResources(1);
+            if (collected <= 0) continue;
+            
             var deposit = player.GetAvailableDeposit(resourceType);
             if (deposit == null) continue;
 
             int stored = deposit.StoreResource(collected, resourceType);
             player.Resources[resourceType] += stored;
-            villager.IsFree = quarry.ExtractionRate > 0;
+            villager.IsFree = quarry.RemainingResource > 0;
         }
     }
 }

@@ -6,5 +6,5 @@ public interface ILogic
 {
     void CentersLogic(Player playerOne);
     void DepositLogic(Player playerOne);
-    void VillagersLogic(Player playerOne);
+    void VillagersLogic(Player playerOne, int collectors);
 }
