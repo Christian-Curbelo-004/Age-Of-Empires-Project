@@ -6,17 +6,20 @@ using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1;
 
-public class Villagers : ICharacter, IBuilder, ICollect
+public class Villagers : ICharacter, IBuilder, ICollect, IMapEntidad
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int Speed { get; set; }
     public IWorkTarget CurrentTask { get; set; }
+    public int OwnerId { get; set; }
+    public string EntityType => "Villagers";
     public bool IsFree { get; set; } = true;
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();
     
-    public Villagers(int life, int attackValue)
+    public Villagers(int life, int attackValue, int ownerId)
     {
+        OwnerId= ownerId;
         Life = life;
         AttackValue = attackValue;
     }

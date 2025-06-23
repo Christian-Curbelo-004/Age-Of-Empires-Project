@@ -37,7 +37,7 @@ public abstract class LogicCore : ILogic
                 }
             }
         }
-        CreateVillagers(new Villagers(100,5));
+        CreateVillagers(new Villagers(100,5, 1));
     }
     public void DepositLogic(Player playerOne)
     {

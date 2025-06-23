@@ -9,6 +9,7 @@ public class Player
     public Dictionary<GameResourceType, int> Resources { get; private set; }
     public int Food { get; set; } = 0;
     public int Wood { get; set; } = 0;
+    public int Id { get; private set; }
     public string Name { get; private set; }
     public Civilization Civilization { get; private set; }
     public List<Deposit> Deposits { get; set; } = new();
@@ -19,6 +20,7 @@ public class Player
     public Player(string name, Civilization civilization)
     {
         Name = name;
+        Id = Id;
         Civilization = civilization;
         Villagers = new List<Villagers>();
         Soldiers = new List<Soldier>();
@@ -87,7 +89,7 @@ public class Player
 
     public Villagers GetFirstVillagerFree()
     {
-        Villagers villager = new Villagers(100,15);
+        Villagers villager = new Villagers(100,15, 1);
         foreach (var V in Villagers)
         {
             if (villager.IsFree)

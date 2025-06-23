@@ -27,11 +27,21 @@ namespace ClassLibrary1.FacadeDirectory
         }
         public void GenerateCivicCenter(Map map)
         {
-            map.PlayerOne.CivicCenter = new CivicCenter(
-                endurence: 100,
-                constructiontimeleft: 10,
-                name: "Centro Cívico"
-            );
+            {
+                map.PlayerOne.CivicCenter = new CivicCenter(
+                    endurence: 100,
+                    constructiontimeleft: 10,
+                    name: "Centro Cívico",
+                    ownerId: map.PlayerOne.Id // 👈
+                );
+
+                map.PlayerTwo.CivicCenter = new CivicCenter(
+                    endurence: 100,
+                    constructiontimeleft: 10,
+                    name: "Centro Cívico",
+                    ownerId: map.PlayerTwo.Id // 👈
+                );
+            }
        
         }
         public void GenerateQuary(Map map)
@@ -66,8 +76,8 @@ namespace ClassLibrary1.FacadeDirectory
         {
             for (int a = 0; a < 3; a++)
             {
-                var villager1 = new Villagers(100, 10);
-                var villager2 = new Villagers(100, 10);
+                var villager1 = new Villagers(100, 10,1);
+                var villager2 = new Villagers(100, 10,1);
                 map.PlayerOne.AddVillagers(villager1);
                 map.PlayerTwo.AddVillagers(villager2);
             }

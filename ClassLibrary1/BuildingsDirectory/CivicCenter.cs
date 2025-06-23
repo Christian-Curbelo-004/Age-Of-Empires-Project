@@ -8,14 +8,16 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
     public class CivicCenter : Buildings, IMapEntidad
     {
        public int Health { get; set; }
-        public int MaxVillagers { get; private set; } = 20;
-        public int MaxSoldiers { get; private set; } = 1;
+        public int MaxVillagers { get; private set; } = 10;
+        public int OwnerId { get; set; } 
+        public int MaxSoldiers { get; private set; } = 0;
         public int CurrentVillagers { get; set; } = 3;
         public int CurrentSoldiers { get; set; }
 
-        public CivicCenter(int endurence, int constructiontimeleft, string name)
-            : base(endurence, constructiontimeleft,name)   // endurence: 50, constructiontimeleft: 30, name: "CivicCenter"
+        public CivicCenter(int endurence, int constructiontimeleft, string name, int ownerId)
+            : base(endurence, constructiontimeleft, name)
         {
+            OwnerId = ownerId;
         }
         public void AddHomeVillagersCapacity()
         {
@@ -48,7 +50,7 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
         {
             if (!CanCreateVillagers()) return null;
             CurrentVillagers++;
-            return new Villagers(100,5);
+            return new Villagers(100,5,1);
         }
 
         public Soldier CreateSoldier(Soldier soldier)
@@ -56,6 +58,6 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
             CurrentSoldiers++;
             return soldier;
         }
-        public string EntityType { get; }
+        public string EntityType => "CivicCenter";  
     }
 }
