@@ -24,6 +24,5 @@ namespace ClassLibrary1.DepositDirectory
             ConstructionCost[GameResourceType.Gold] = 10;
         }
         public string EntityType => "StoneDeposit";
-
-    }      
+    }     
 }

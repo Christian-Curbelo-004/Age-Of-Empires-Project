@@ -3,6 +3,8 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Soldier : ICharacter
 {
+    
+    
     public virtual int Life { get; set; }
     public virtual int AttackValue { get; set; }
     public virtual int DeffenseValue { get; set; }
@@ -10,6 +12,7 @@ public class Soldier : ICharacter
     public Dictionary<GameResourceType, int>ConstructionCost { get;  set; } = new ();
     public Soldier(int life, int attackValue, int defenseValue, int speed)
     {
+        
         Life = life;
         AttackValue = attackValue;
         DeffenseValue = defenseValue;

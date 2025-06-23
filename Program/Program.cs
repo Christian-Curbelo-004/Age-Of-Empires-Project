@@ -48,7 +48,9 @@ class Program
             map.map[x, y].IsOccupied = true;
             playerOne.AddVillagers(villager);
         }
-        var posicionesAldeanos2 = new (int x, int y)[] { (width - 3, height - 2), (width - 2, height - 3), (width - 3, height - 3) };
+
+        var posicionesAldeanos2 = new (int x, int y)[]
+            { (width - 3, height - 2), (width - 2, height - 3), (width - 3, height - 3) };
         foreach (var (x, y) in posicionesAldeanos2)
         {
             var villager = new Villagers(100, 5, playerTwo.Id);
@@ -278,3 +280,4 @@ class Program
         }
     }
 }
+
