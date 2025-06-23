@@ -1,11 +1,10 @@
-using System;
-using System.Threading;
-
+using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.QuaryDirectory;
 namespace ClassLibrary1.MapDirectory
 {
     public class PrintMap
     {
-        private Map _map;
+        private readonly Map _map;
 
         public PrintMap(Map map)
         {
@@ -14,54 +13,44 @@ namespace ClassLibrary1.MapDirectory
 
         public void DisplayMap()
         {
-            if (_map?.map == null)
+            if (_map?.Cells == null)
             {
-                Console.WriteLine("The map is empty.");
+                Console.WriteLine("El mapa está vacío.");
                 return;
             }
 
-            int height = _map.map.GetLength(1);
-            int length = _map.map.GetLength(0);
+            int height = _map.Cells.GetLength(1);
+            int length = _map.Cells.GetLength(0);
 
             int coordWidth = Math.Max(height, length).ToString().Length;
             string numFormat = new string('0', coordWidth);
             int cellWidth = 4;
 
-            // Imprimir encabezado columnas
+            // Encabezado de columnas
             Console.Write(new string(' ', coordWidth + 1));
-            for (int j = 0; j < length; j++)
-            {
-                Console.Write(j.ToString(numFormat).PadRight(cellWidth));
-            }
+            for (int x = 0; x < length; x++)
+                Console.Write(x.ToString(numFormat).PadRight(cellWidth));
             Console.WriteLine();
 
             // Filas
-            for (int i = 0; i < height; i++)
+            for (int y = 0; y < height; y++)
             {
-                // Índice fila
-                Console.Write(i.ToString(numFormat).PadRight(coordWidth) + " ");
-
-                for (int j = 0; j < length; j++)
+                Console.Write(y.ToString(numFormat).PadRight(coordWidth) + " ");
+                for (int x = 0; x < length; x++)
                 {
-                    Cell cell = _map.map[j, i];
-
-                    ConsoleColor color;
-                    string symbol = cell.GetColoredRepresentation(out color).PadRight(cellWidth);
+                    var cell = _map.Cells[x, y];
+                    var (symbol, color) = GetSymbolAndColor(cell);
 
                     Console.ForegroundColor = color;
-                    Console.Write(symbol);
+                    Console.Write(symbol.PadRight(cellWidth));
                     Console.ResetColor();
                 }
-
-                Console.WriteLine(i.ToString(numFormat).PadRight(coordWidth));
+                Console.WriteLine(y.ToString(numFormat).PadRight(coordWidth));
             }
 
-            // Imprimir pie columnas
             Console.Write(new string(' ', coordWidth + 1));
-            for (int j = 0; j < length; j++)
-            {
-                Console.Write(j.ToString(numFormat).PadRight(cellWidth));
-            }
+            for (int x = 0; x < length; x++)
+                Console.Write(x.ToString(numFormat).PadRight(cellWidth));
             Console.WriteLine();
         }
 
@@ -73,6 +62,45 @@ namespace ClassLibrary1.MapDirectory
                 DisplayMap();
                 Thread.Sleep(refreshRateMs);
             }
+        }
+
+        private (string symbol, ConsoleColor color) GetSymbolAndColor(Cell cell)
+        {
+            if (cell.Entity is IMapEntity entity)
+            {
+                string symbol = GetSymbolForEntity(entity);
+                ConsoleColor color = entity.OwnerId switch
+                {
+                    1 => ConsoleColor.Blue,
+                    2 => ConsoleColor.Red,
+                    _ => ConsoleColor.Gray
+                };
+                return (symbol, color);
+            }
+            
+            if (cell.Resource is IResource resource)
+            {
+                return resource switch
+                {
+                    GoldMine => ("G", ConsoleColor.Yellow),
+                    StoneMine => ("S", ConsoleColor.DarkGray),
+                    Forest => ("F", ConsoleColor.Green),
+                    _ => ("R", ConsoleColor.Gray)
+                };
+            }
+
+            // Celda vacía
+            return ("·", ConsoleColor.DarkGray);
+        }
+
+        private string GetSymbolForEntity(IMapEntity entity)
+        {
+            return entity switch
+            {
+                Villagers => "V",
+                CivicCenter => "C",
+                _ => "?"
+            };
         }
     }
 }
