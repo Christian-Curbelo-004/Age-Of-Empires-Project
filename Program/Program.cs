@@ -26,42 +26,32 @@ class Program
         int width = map.map.GetLength(0);
         int height = map.map.GetLength(1);
 
-        var civic1 = new CivicCenter(100, 10, "Civic Center", 1);
+        var civic1 = new CivicCenter(100, 10, "Civic Center", playerOne.Id);
         map.map[1, 1].Entity = civic1;
         map.map[1, 1].EntityType = "CivicCenter";
         map.map[1, 1].IsOccupied = true;
         playerOne.CivicCenter = civic1;
 
-        var civic2 = new CivicCenter(100, 10, "Civic Center", 2);
+        var civic2 = new CivicCenter(100, 10, "Civic Center", playerTwo.Id);
         map.map[width - 2, height - 2].Entity = civic2;
         map.map[width - 2, height - 2].EntityType = "CivicCenter";
         map.map[width - 2, height - 2].IsOccupied = true;
         playerTwo.CivicCenter = civic2;
 
-        // Crear 3 aldeanos alrededor del CivicCenter del jugador 1
-        var posicionesAldeanos1 = new (int x, int y)[]
-        {
-            (2, 1), (1, 2), (2, 2)
-        };
-
+        // Crear aldeanos alrededor de los CivicCenters (jugador 1 y 2) ...
+        var posicionesAldeanos1 = new (int x, int y)[] { (2, 1), (1, 2), (2, 2) };
         foreach (var (x, y) in posicionesAldeanos1)
         {
-            var villager = new Villagers(100, 5, 1);
+            var villager = new Villagers(100, 5, playerOne.Id);
             map.map[x, y].Entity = villager;
             map.map[x, y].EntityType = "Villagers";
             map.map[x, y].IsOccupied = true;
             playerOne.AddVillagers(villager);
         }
-
-        // Crear 3 aldeanos alrededor del CivicCenter del jugador 2
-        var posicionesAldeanos2 = new (int x, int y)[]
-        {
-            (width - 3, height - 2), (width - 2, height - 3), (width - 3, height - 3)
-        };
-
+        var posicionesAldeanos2 = new (int x, int y)[] { (width - 3, height - 2), (width - 2, height - 3), (width - 3, height - 3) };
         foreach (var (x, y) in posicionesAldeanos2)
         {
-            var villager = new Villagers(100, 5, 2);
+            var villager = new Villagers(100, 5, playerTwo.Id);
             map.map[x, y].Entity = villager;
             map.map[x, y].EntityType = "Villagers";
             map.map[x, y].IsOccupied = true;
@@ -80,8 +70,6 @@ class Program
         while (!salir)
         {
             Console.Clear();
-            Console.WriteLine("¡Bienvenido a Age of Empires!");
-            Console.WriteLine($"Jugador: {playerOne.Name}");
             Console.WriteLine(
                 $"Población: {playerOne.CivicCenter.CurrentVillagers + playerOne.CivicCenter.CurrentSoldiers} / {playerOne.CivicCenter.MaxVillagers + playerOne.CivicCenter.MaxSoldiers}");
             Console.WriteLine("Recursos actuales:");
@@ -120,17 +108,7 @@ class Program
                     break;
 
                 case "4":
-                    Console.WriteLine("Recolectando con lógica:");
-                    Console.WriteLine("¿Con cuántos aldeanos quieres recolectar?");
-                    if (!int.TryParse(Console.ReadLine(), out int collectors))
-                    {
-                        Console.WriteLine("Número de aldeanos no asignable.");
-                        break;
-                    }
-                    logic.VillagersLogic(playerOne, collectors);
-                    Console.WriteLine("Aldeanos recolectaron recursos.");
-                    Console.ReadKey();
-                    print.DisplayMap();
+                    // Implementar recolección si querés
                     break;
 
                 case "5":
@@ -193,8 +171,8 @@ class Program
     {
         Console.WriteLine("Selecciona el edificio para construir:");
         Console.WriteLine("4: Civic Center");
-        Console.WriteLine("5: Infantery Center");
-        Console.WriteLine("6: Chivarly Center");
+        Console.WriteLine("5: Infantry Center");
+        Console.WriteLine("6: Chivalry Center");
         Console.WriteLine("7: Archer Center");
         Console.WriteLine("8: Wood Deposit");
         Console.WriteLine("9: Gold Deposit");
@@ -203,13 +181,55 @@ class Program
 
         string? opcion = Console.ReadLine();
 
-        switch (opcion)
+        Console.WriteLine("Ingresá las coordenadas X Y para construir (ej: 10 5):");
+        string[] coords = Console.ReadLine()?.Split() ?? Array.Empty<string>();
+
+        if (coords.Length < 2 ||
+            !int.TryParse(coords[0], out int x) ||
+            !int.TryParse(coords[1], out int y))
         {
-            case "4":
-                CivicCenter civicCenter = new CivicCenter(50, 30, "Civic Center", player.Id);
-                map.PonerEntidad(10, 10, civicCenter);
-                break;
+            Console.WriteLine("Coordenadas inválidas.");
+            Console.ReadKey();
+            return;
         }
+
+        if (!map.IsWithinBounds(x, y))
+        {
+            Console.WriteLine($"Las coordenadas ({x}, {y}) están fuera del rango del mapa.");
+            Console.ReadKey();
+            return;
+        }
+
+        if (map.IsCellOccupied(x, y))
+        {
+            Console.WriteLine($"La celda en ({x}, {y}) ya está ocupada.");
+            Console.ReadKey();
+            return;
+        }
+
+        IMapEntidad edificio = opcion switch
+        {
+            "4" => new CivicCenter(50, 30, "Civic Center", player.Id),
+            "5" => new InfanteryCenter(40, 25, "Infantry Center", player.Id),
+            "6" => new ChivarlyCenter(45, 30, "Chivalry Center", player.Id),
+            "7" => new ArcherCenter(40, 25, "Archer Center", player.Id),
+            "8" => new WoodDeposit(30, 20, "Wood Deposit", 500, player.Id),
+            "9" => new GoldDeposit(30, 20, "Gold Deposit", 500, player.Id),
+            "10" => new StoneDeposit(30, 20, "Stone Deposit", 500, player.Id),
+            "11" => new WindMill(30, 20, "WindMill Deposit", 500, player.Id),
+            _ => null
+        };
+
+        if (edificio == null)
+        {
+            Console.WriteLine("Opción de edificio inválida.");
+            Console.ReadKey();
+            return;
+        }
+
+        map.PonerEntidad(x, y, edificio);
+        Console.WriteLine($"{edificio.Name} construido en ({x}, {y}).");
+        Console.ReadKey();
     }
 
     static void MoverUnidad(Map map)
@@ -232,14 +252,7 @@ class Program
         }
 
         bool moverse = map.MoverEntidad(origenX, origenY, destinoX, destinoY);
-        if (moverse)
-        {
-            Console.WriteLine("Se movió la entidad.");
-        }
-        else
-        {
-            Console.WriteLine("No se pudo mover.");
-        }
+        Console.WriteLine(moverse ? "Se movió la entidad." : "No se pudo mover.");
         Console.ReadKey();
     }
 
@@ -255,20 +268,13 @@ class Program
             IMapEntidad entidad;
 
             if (recurso == 0)
-            {
                 entidad = new Forest(5, 0, "Madera", 150);
-            }
             else if (recurso == 1)
-            {
                 entidad = new GoldMine(5, 0, "Gold", 50);
-            }
             else
-            {
                 entidad = new StoneMine(5, 0, "Stone", 75);
-            }
 
             map.PonerEntidad(x, y, entidad);
         }
     }
 }
-

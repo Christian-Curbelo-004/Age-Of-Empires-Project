@@ -8,6 +8,8 @@
         
         public string CollectionType { get; set; } //para ver que material esta colectando
 
+        public string Name { get; set; }
+
         public string EntityType
         {
             get {return CollectionType;}

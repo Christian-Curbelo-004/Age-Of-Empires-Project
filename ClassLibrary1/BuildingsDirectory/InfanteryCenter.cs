@@ -9,9 +9,11 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
 {
     public class InfanteryCenter : Buildings, IMapEntidad
     {
-        public InfanteryCenter(int endurence, int constructiontimeleft, string name)
+        public int OwnerId { get; set; }
+        public InfanteryCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, constructiontimeleft,name)
         {
+            OwnerId = ownerId;
         }
         public override void GetConstructionCost()
         {

@@ -17,8 +17,8 @@ namespace ClassLibrary1.FacadeDirectory
             var state = new GameState();
 
             state.Map = GenerateMap();
-            state.PlayerOne = new Player("Joaco", new Roman());
-            state.PlayerTwo = new Player("Cpu", new Templaries());
+            state.PlayerOne = new Player(1, "Joaco", new Roman());
+            state.PlayerTwo = new Player(2, "Cpu", new Templaries());
                     
             state.Map.PlayerOne = state.PlayerOne;
             state.Map.PlayerTwo = state.PlayerTwo;
@@ -32,14 +32,14 @@ namespace ClassLibrary1.FacadeDirectory
                     endurence: 100,
                     constructiontimeleft: 10,
                     name: "Centro Cívico",
-                    ownerId: map.PlayerOne.Id // 👈
+                    ownerId: map.PlayerOne.Id 
                 );
 
                 map.PlayerTwo.CivicCenter = new CivicCenter(
                     endurence: 100,
                     constructiontimeleft: 10,
                     name: "Centro Cívico",
-                    ownerId: map.PlayerTwo.Id // 👈
+                    ownerId: map.PlayerTwo.Id 
                 );
             }
        

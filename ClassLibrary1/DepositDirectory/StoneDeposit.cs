@@ -4,10 +4,13 @@ namespace ClassLibrary1.DepositDirectory
 {
     public class StoneDeposit : Deposit, IMapEntidad
     {
+        public int OwnerId { get; set; }
         public int CurrentStone { get; private set; }
-        public StoneDeposit(int endurence, int constructiontimeleft,string name, int maxCapacity)
+        public StoneDeposit(int endurence, int constructiontimeleft,string name, int maxCapacity, int ownerId)
             : base(endurence,constructiontimeleft, name,  maxCapacity)
         {
+            OwnerId = ownerId;
+            
         }
         public void StoreStone(int amount)
         {

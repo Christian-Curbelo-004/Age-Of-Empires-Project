@@ -6,10 +6,11 @@ namespace ClassLibrary1.CivilizationDirectory
 {
     public class ChivarlyCenter : Buildings, IMapEntidad
     {
-        
-        public ChivarlyCenter(int endurence, int constructiontimeleft,  string name)
+        public int OwnerId { get; set; }
+        public ChivarlyCenter(int endurence, int constructiontimeleft,  string name, int ownerId)
             : base(endurence, constructiontimeleft, name) 
         {
+            OwnerId = ownerId;
         }
         public override void GetConstructionCost()
         {

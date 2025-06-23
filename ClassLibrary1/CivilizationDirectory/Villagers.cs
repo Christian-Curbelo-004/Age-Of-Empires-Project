@@ -13,6 +13,7 @@ public class Villagers : ICharacter, IBuilder, ICollect, IMapEntidad
     public int Speed { get; set; }
     public IWorkTarget CurrentTask { get; set; }
     public int OwnerId { get; set; }
+    public string Name { get; set; }
     public string EntityType => "Villagers";
     public bool IsFree { get; set; } = true;
     public Dictionary<GameResourceType, int> ConstructionCost { get;  set; } = new ();

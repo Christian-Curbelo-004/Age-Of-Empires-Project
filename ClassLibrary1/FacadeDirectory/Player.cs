@@ -17,23 +17,24 @@ public class Player
     public List<Soldier> Soldiers { get; private set; }
     public List<Quary> Quaries { get; private set; }
     public CivicCenter CivicCenter { get; set; }
-    public Player(string name, Civilization civilization)
+    public Player(int id, string name, Civilization civilization)
     {
+        Id = id; 
         Name = name;
-        Id = Id;
         Civilization = civilization;
         Villagers = new List<Villagers>();
         Soldiers = new List<Soldier>();
         CivicCenter = null;
         Quaries = new List<Quary>();
-        
-        Resources = new Dictionary<GameResourceType, int> 
+
+        Resources = new Dictionary<GameResourceType, int>
         {
             { GameResourceType.Food, 0 },
             { GameResourceType.Wood, 0 },
             { GameResourceType.Gold, 0 },
             { GameResourceType.Stone, 0 }
         };
+    
     }
     public void AddVillagers(Villagers villagers)
     {

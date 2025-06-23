@@ -7,9 +7,11 @@ namespace ClassLibrary1.BuildingsDirectory
 {   
     public class ArcherCenter : Buildings, IMapEntidad
     {
-        public ArcherCenter(int endurence, int constructiontimeleft,  string name)
+        public int OwnerId { get; set; }
+        public ArcherCenter(int endurence, int constructiontimeleft,  string name, int ownerId)
             : base(endurence, constructiontimeleft, name)
         {
+            OwnerId = ownerId;
         }
         public override void GetConstructionCost()
         {

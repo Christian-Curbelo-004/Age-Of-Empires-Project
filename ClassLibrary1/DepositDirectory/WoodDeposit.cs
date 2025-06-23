@@ -3,10 +3,12 @@ namespace ClassLibrary1.DepositDirectory
 {
     public class WoodDeposit : Deposit, IMapEntidad
     {
+        public int OwnerId { get; set; }
         public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructiontimeleft,string name,  int maxCapacity)
+        public WoodDeposit(int endurence, int constructiontimeleft,string name,  int maxCapacity, int ownerId)
             : base(endurence,constructiontimeleft, name, maxCapacity)
         {
+            OwnerId = ownerId;
             CurrentWood = 100;
         }
         public void StoreWood(int amount)
