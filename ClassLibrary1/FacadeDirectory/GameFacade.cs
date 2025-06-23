@@ -21,7 +21,7 @@ namespace ClassLibrary1.FacadeDirectory
             state.PlayerTwo = new Player("Cpu", new Templaries());
                     
             state.Map.PlayerOne = state.PlayerOne;
-            
+            state.Map.PlayerTwo = state.PlayerTwo;
             InitializePlayer(state.Map);
             return state;
         }
@@ -101,8 +101,6 @@ namespace ClassLibrary1.FacadeDirectory
         {
             map.PlayerOne.Food = 100;
             map.PlayerOne.Wood = 100;
-            map.PlayerTwo.Food = 100;
-            map.PlayerTwo.Wood = 100;
             GenerateCivicCenter(map);
             GenerateVillagers(map);
             TrainSoldiers(map);
