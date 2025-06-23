@@ -2,7 +2,7 @@
 
 namespace  ClassLibrary1.DepositDirectory
 {
-    public class WindMill : Deposit, IMapEntidad
+    public class WindMill : Deposit, IMapEntity
     {
         public int OwnerId { get; set; }
         public int CurrentFood { get; private set; }

@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace ClassLibrary1.CivilizationDirectory
+namespace ClassLibrary1.MapDirectory
 {
     public class PrintMap
     {

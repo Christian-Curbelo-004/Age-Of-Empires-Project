@@ -1,10 +1,13 @@
-
 namespace ClassLibrary1
-
 {
-    public interface IMapEntidad
+    public interface IMapEntity
     {
-        string Name { get; set; }
-        string EntityType { get; }
+        int OwnerId { get; }
+
+    }
+
+    public interface IResource : IMapEntity
+    {
+        int Collect(int workers);
     }
 }

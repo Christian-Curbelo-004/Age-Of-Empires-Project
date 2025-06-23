@@ -5,7 +5,7 @@
         public int Wood { get; private set; }
 
         public Forest(int extractionRate, int collectionValue, int initialWood)
-            : base(extractionRate, collectionValue, initialWood, "Wood")
+            : base(extractionRate, collectionValue, initialWood, 300, "Wood")
         {
             Wood = initialWood;
         }

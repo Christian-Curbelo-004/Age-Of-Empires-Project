@@ -2,7 +2,7 @@
 
 namespace ClassLibrary1.DepositDirectory
 {
-    public class StoneDeposit : Deposit, IMapEntidad
+    public class StoneDeposit : Deposit, IMapEntity
     {
         public int OwnerId { get; set; }
         public int CurrentStone { get; private set; }

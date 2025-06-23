@@ -1,97 +1,37 @@
-﻿using ClassLibrary1.FacadeDirectory;
-namespace ClassLibrary1.CivilizationDirectory;
-
-public class Map
+﻿namespace ClassLibrary1.MapDirectory
 {
-    private int _height;
-    private int _length;
-    public Cell[,] map; 
-    
-    
-    public Player PlayerOne { get; set; }
-    public Player PlayerTwo { get; set; }
-
-
-    private const int MinDimension = 0;
-    private const int MaxDimension = 100;
-
-    public Map(int height, int length)
+    public class Map
     {
-        _height = Math.Max(MinDimension, Math.Min(MaxDimension, height));
-        _length = Math.Max(MinDimension, Math.Min(MaxDimension, length));
-        this.map = new Cell[_length, _height];
-        
-        for (int i = 0; i < _length; i++)
+        private int _height;
+        private int _length;
+        public Cell[,] Cells { get; }
+
+        private const int MinDimension = 0;
+        private const int MaxDimension = 100;
+
+        public Map(int height, int length)
         {
-            for (int j = 0; j < _height; j++)
+            _height = Math.Clamp(height, MinDimension, MaxDimension);
+            _length = Math.Clamp(length, MinDimension, MaxDimension);
+            Cells = new Cell[_length, _height];
+
+            for (int x = 0; x < _length; x++)
             {
-                this.map[i, j] = new Cell(i, j);
+                for (int y = 0; y < _height; y++)
+                {
+                    Cells[x, y] = new Cell(x, y);
+                }
             }
         }
-    }
-    public bool IsWithinBounds(int x, int y)
-    {
-        return x >= 0 && x < _length && y >= 0 && y < _height;
-    }
-    
-    public bool IsCellOccupied(int x, int y)
-    {
-        if (IsWithinBounds(x, y))
-        {
-            return map[x, y].IsOccupied;
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException($"La posición ({x}, {y}) está fuera de los límites del mapa.");
-        }
-    }
-    public void OccupyCell(int x, int y)
-    {
-        if (IsWithinBounds(x, y))
-        {
-            map[x, y].IsOccupied = true;
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException($"La posición ({x}, {y}) está fuera de los límites del mapa.");
-        }
-    }
 
-    public void PonerEntidad(int x, int y, IMapEntidad entity)
-    {
-        //map[x, y].Entity = entity;
-        if (!IsWithinBounds(x, y)) return;
-        
-        var cell = map [x, y];
-        cell.Entity = entity;
-        cell.IsOccupied = true;
-        cell.EntityType = entity.GetType().Name;
+        public bool IsWithinBounds(int x, int y) => 
+            x >= 0 && x < _length && y >= 0 && y < _height;
 
-        if (entity is Quary recurso)
+        public Cell GetCell(int x, int y)
         {
-            cell.Resource = recurso;
+            if (!IsWithinBounds(x, y))
+                throw new ArgumentOutOfRangeException($"({x},{y}) fuera del mapa.");
+            return Cells[x, y];
         }
-    }
-
-    public bool MoverEntidad(int origenX, int origenY, int destinoX, int destinoY)
-    {
-        if (!IsWithinBounds(origenX, origenY) || !IsWithinBounds(destinoX, destinoY)) //pasan coordenadas fuera de los limites retorna false
-        {
-            return false;
-        }
-        Cell origen = map[origenX, origenY];
-        Cell destino = map[destinoX, destinoY];
-        if (origen.Entity == null)
-        {
-            return false; //ya que no hay nada para mover
-        }
-        if (destino.Entity != null)
-        {
-            return false; //ya que el destino al que quiero ir esta ocupado
-        }
-
-        destino.Entity = origen.Entity;
-        origen.Entity = null;
-        return true;
     }
 }

@@ -1,40 +1,28 @@
-﻿using System;
+﻿using ClassLibrary1;
+using ClassLibrary1.QuaryDirectory;
 
-namespace ClassLibrary1.QuaryDirectory
+public abstract class Quary : IResourceDeposit, IMapEntity
 {
-    public abstract class Quary : IResourceDeposit, IMapEntidad
+    public int OwnerId { get; private set; }
+
+
+    public int ExtractionRate { get; protected set; }
+    public int CollectionValue { get; protected set; }
+    public int CurrentAmount { get; protected set; }
+    public string ResourceType { get; protected set; }
+
+    protected Quary(int ownerId, int extractionRate, int collectionValue, int initialAmount, string resourceType)
     {
-        public int ExtractionRate { get; protected set; } // unidades por ciclo
-        public int CollectionValue { get; protected set; } // acumulado total
-        public int RemainingResource { get; protected set; } // cantidad restante
+        OwnerId = ownerId;
+        ExtractionRate = extractionRate;
+        CollectionValue = collectionValue;
+        CurrentAmount = initialAmount;
+        ResourceType = resourceType;
 
-        public string ResourceType { get; protected set; } // tipo: oro, piedra, comida, etc.
+    }
 
-        // Nombre visible en el mapa
-        public string Name { get; set; }
-
-        public string EntityType => ResourceType;
-
-        protected Quary(int extractionRate, int collectionValue, int initialResource, string resourceType)
-        {
-            ExtractionRate = extractionRate;
-            CollectionValue = collectionValue;
-            RemainingResource = initialResource;
-            ResourceType = resourceType;
-        }
-
-        public virtual int GetResources(int collectors = 1)
-        {
-            if (RemainingResource <= 0)
-            {
-                return 0;
-            }
-
-            int amount = Math.Min(ExtractionRate * collectors, RemainingResource);
-            RemainingResource -= amount;
-            CollectionValue += amount;
-
-            return amount;
-        }
+    public virtual int GetResources(int collectors = 1)
+    {
+        return ExtractionRate * collectors;
     }
 }

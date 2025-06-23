@@ -5,7 +5,7 @@ namespace ClassLibrary1.QuaryDirectory
         public int Stone { get; private set; }
 
         public StoneMine(int extractionRate, int collectionValue, int initialStone)
-            : base(extractionRate, collectionValue, initialStone, "Stone")
+            : base(extractionRate, collectionValue, initialStone, 300, "Stone")
         {
             Stone = initialStone;
         }

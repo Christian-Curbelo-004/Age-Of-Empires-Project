@@ -5,7 +5,7 @@ namespace ClassLibrary1.QuaryDirectory
         public int Food { get; private set; }
 
         public Farm(int extractionRate, int collectionValue, int initialFood)
-            : base(extractionRate, collectionValue, initialFood, "Food")
+            : base(extractionRate, collectionValue, initialFood, 300,"Food")
         {
             Food = initialFood;
         }
