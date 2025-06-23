@@ -5,25 +5,14 @@ using GameModels;
 
 namespace ClassLibrary1.BuildingsDirectory
 {   
-    public class ArcherCenter : Buildings, IMapEntidad
+    public class ArcherCenter : Buildings, IMapEntity
     {
         public int OwnerId { get; set; }
         public ArcherCenter(int endurence, int constructiontimeleft,  string name, int ownerId)
-            : base(endurence, constructiontimeleft, name)
+            : base(endurence, name)
         {
             OwnerId = ownerId;
         }
-        public override void GetConstructionCost()
-        {
-            ConstructionCost[GameResourceType.Stone] = 170;
-            ConstructionCost[GameResourceType.Wood] = 100;
-        }
-
-        public Archer CreateArcher()
-        {
-            return UnitFactory.CreateArcher();
-        }
-        public string EntityType => "ArcherCenter";
-
+        
     }
 }

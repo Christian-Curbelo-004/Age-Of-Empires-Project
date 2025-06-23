@@ -9,13 +9,13 @@ namespace ClassLibrary1.DepositDirectory
         public int CurrentStorage { get; set; }
 
         public Deposit(int endurence, int constructiontimeleft, string name, int maxCapacity)
-            : base(endurence, constructiontimeleft, name)
+            : base(endurence,  name)
         {
            
             MaxCapacity = maxCapacity;
             CurrentStorage = 0;
         }
-        public abstract override void GetConstructionCost();
+        
         
         public int StoreResource(int amount, GameResourceType type)
         {

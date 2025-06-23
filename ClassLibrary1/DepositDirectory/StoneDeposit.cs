@@ -18,11 +18,6 @@ namespace ClassLibrary1.DepositDirectory
          
         }
 
-        public override void GetConstructionCost()
-        {
-            ConstructionCost[GameResourceType.Stone] = 80;
-            ConstructionCost[GameResourceType.Gold] = 10;
-        }
         public string EntityType => "StoneDeposit";
     }     
 }
