@@ -65,7 +65,8 @@ class Program
             Console.WriteLine("3. Construir");
             Console.WriteLine("4. Recolectar recursos"); 
             Console.WriteLine("5. Guardar partida");
-            Console.WriteLine("6. Salir");
+            Console.WriteLine("6. Mover unidad");
+            Console.WriteLine("7. Salir");
 
             string? opcion = Console.ReadLine();
 
@@ -97,6 +98,9 @@ class Program
                     break;
 
                 case "5":
+                    MoverUnidad(map);
+                    break;
+                case "6":
                     salir = true;
                     break;
             }
@@ -109,6 +113,38 @@ class Program
                 PrintMap printMap = new PrintMap(map);
                 printMap.DisplayMap();
                 Console.WriteLine("Presione una tecla para continuar...");
+                Console.ReadKey();
+            }
+
+            static void MoverUnidad(Map map)
+            {
+                Console.WriteLine("De que coordenadas queres mover algo?:");
+                string[] origenCoords = Console.ReadLine()?.Split() ?? Array.Empty<string>();
+
+                Console.WriteLine("Para donde quers mover?:");
+                string[] destinoCoords = Console.ReadLine()?.Split() ?? Array.Empty<string>();
+
+                if (origenCoords.Length < 2 || destinoCoords.Length < 2 ||
+                    !int.TryParse(origenCoords[0], out int origenX) ||
+                    !int.TryParse(origenCoords[1], out int origenY) ||
+                    !int.TryParse(destinoCoords[0], out int destinoX) ||
+                    !int.TryParse(destinoCoords[1], out int destinoY))
+                {
+                    Console.WriteLine("Coordenadas mal colocadas");
+                    Console.ReadKey();
+                    return;
+                }
+
+                bool moverse = map.MoverEntidad(origenX, origenY, destinoX, destinoY);
+                if (moverse)
+                {
+                    Console.WriteLine("Se movio la entidad de coordenada");
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo mover");
+                }
+
                 Console.ReadKey();
             }
 
