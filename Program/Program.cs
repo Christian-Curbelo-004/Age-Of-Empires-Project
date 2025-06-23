@@ -58,7 +58,7 @@ class Program
 
 
                 case "3":
-                    Construir(map);
+                    Construir(map,playerOne);
                     break;
 
 
@@ -106,7 +106,7 @@ class Program
                 Console.ReadKey();
             }
 
-            static void Construir(Map map)
+            static void Construir(Map map, Player player)
             {
                 Console.WriteLine("4: Civic Center");
                 Console.WriteLine("5: Infantery Center");
@@ -162,7 +162,32 @@ class Program
                     case "11":
                         map.PonerEntidad(12, 30, windMill);
                         break;
+                    case "12":
+                        var houseV = new HomeVillagers(20, 10, "Casa de aldeanos");
+                        map.PonerEntidad(17,34,houseV);
+                        player.CivicCenter.AddHomeVillagersCapacity();
+                        Console.WriteLine("Limite de aldeanos aumentado");
+                        break;
+                    case "13":
+                        var houseS = new HomeSoldiers(20, 10, "Casa de soldados");
+                        map.PonerEntidad(18,23,houseS);
+                        player.CivicCenter.AddHomeSoldiersCapacity();
+                        Console.WriteLine("Limite de soldados aumentado");
+                        break;
+                    case "14":
+                        if (player.CivicCenter.CanCreateVillagers())
+                        {
+                            var villager = player.CivicCenter.CreateVillagers();
+                            player.AddVillagers(villager);
+                            Console.WriteLine("Aldeano creado");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Limite de aldeanos alcanzado");
+                        }
+                        break;
                 }
+            }
                 {
                     RecursosEnEsquinas(map, 70, 0, 30, 30, 20);
                     RecursosEnEsquinas(map, 0, 70, 30, 30, 20);
@@ -215,7 +240,7 @@ class Program
                 }
             }
         }
-    }
 }
+
 
 

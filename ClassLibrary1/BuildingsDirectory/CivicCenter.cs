@@ -18,12 +18,12 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
 
         public void AddHomeVillagersCapacity()
         {
-            MaxVillagers += 5;
+            MaxVillagers = Math.Min(MaxVillagers + HomeVillagers.PopulationIncrease,20);
         }
 
         public void AddHomeSoldiersCapacity()
         {
-            MaxSoldiers += 5;
+            MaxSoldiers += Math.Min(MaxVillagers + HomeVillagers.PopulationIncrease, 30);
         }
 
         public bool CanCreateVillagers()
