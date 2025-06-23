@@ -1,10 +1,5 @@
-using System.Collections.Generic;
-using System;
-using GameResourceType = GameModels.GameResourceType;
 
 namespace ClassLibrary1.CivilizationDirectory
-
-
 {
     public class Raider : Soldier, ICharacter
     {

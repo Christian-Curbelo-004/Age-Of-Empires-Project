@@ -12,7 +12,7 @@ namespace ClassLibrary1.FacadeDirectory
             return randomMap;
         }
 
-        public GameState StartNewGame()
+        public GameState StartNewGame(Civilization civ1)
         {
             var state = new GameState();
 
@@ -21,7 +21,7 @@ namespace ClassLibrary1.FacadeDirectory
             state.PlayerTwo = new Player("Cpu", new Templaries());
                     
             state.Map.PlayerOne = state.PlayerOne;
-        //    state.Map.PlayerTwo = state.PlayerTwo;
+            
             InitializePlayer(state.Map);
             return state;
         }

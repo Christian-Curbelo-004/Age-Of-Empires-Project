@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ClassLibrary1.CivilizationDirectory;
+﻿namespace ClassLibrary1.CivilizationDirectory;
 
 public class Roman : Civilization
 {

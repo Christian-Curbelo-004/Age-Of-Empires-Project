@@ -1,4 +1,6 @@
 ﻿using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 using GameResourceType = GameModels.GameResourceType;
@@ -63,6 +65,35 @@ public class Villagers : ICharacter, IBuilder, ICollect
         else
         {
             return false;
+        }
+    }
+
+    public void VillagersLogic(Player player)
+    {
+        foreach (var villager in player.Villagers)
+        {
+            if (!villager.IsFree) continue;
+            
+            var quarry = player.Quaries.FirstOrDefault(q => q.CollectionTimeLeft > 0);
+            if (quarry == null) continue;
+
+            GameResourceType resourceType;
+            switch (quarry.CollectionType.ToLower())
+            {
+                case "madera": resourceType = GameResourceType.Wood; break;
+                case "gold": resourceType = GameResourceType.Gold; break;
+                case "stone": resourceType = GameResourceType.Stone; break;
+                case "food": resourceType = GameResourceType.Food; break;
+                default: continue;
+            }
+            int collected = quarry.GetResources();
+
+            var deposit = player.GetAvailableDeposit(resourceType);
+            if (deposit == null) continue;
+
+            int stored = deposit.StoreResource(collected, resourceType);
+            player.Resources[resourceType] += stored;
+            villager.IsFree = quarry.CollectionTimeLeft > 0;
         }
     }
 }
