@@ -16,7 +16,17 @@ public class MapService : IMapService
 
     public async Task MoveEntityAsync(string entityType, string destination)
     {
-        var coords = ParseCoords(destination);
+        (int x, int y) coords;
+        try
+        {
+            coords = ParseCoords(destination);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return;
+        }
+
         if (!_map.IsWithinBounds(coords.x, coords.y))
         {
             Console.WriteLine($"Posición inválida ({coords.x},{coords.y}).");
@@ -41,26 +51,48 @@ public class MapService : IMapService
 
         while (currentX != coords.x || currentY != coords.y)
         {
-            if (currentX < coords.x) currentX++;
-            else if (currentX > coords.x) currentX--;
+            int nextX = currentX;
+            int nextY = currentY;
 
-            if (currentY < coords.y) currentY++;
-            else if (currentY > coords.y) currentY--;
+            if (currentX < coords.x) nextX++;
+            else if (currentX > coords.x) nextX--;
+
+            if (currentY < coords.y) nextY++;
+            else if (currentY > coords.y) nextY--;
+
+            if (_map.Cells[nextX, nextY].IsOccupied)
+            {
+                Console.WriteLine($"Movimiento bloqueado en ({nextX}, {nextY}), celda ocupada.");
+                break;
+            }
 
             int moveTime = 1000 / movableEntity.Speed;
             await Task.Delay(moveTime);
 
-            _map.Cells[cell.PosX, cell.PosY].IsOccupied = false;
-            _map.Cells[cell.PosX, cell.PosY].EntityType = null;
+            // Limpiar celda actual
+            _map.Cells[currentX, currentY].Entity = null;
+            _map.Cells[currentX, currentY].IsOccupied = false;
+            _map.Cells[currentX, currentY].EntityType = null;
 
-            cell.PosX = currentX;
-            cell.PosY = currentY;
+            // Actualizar posición en la entidad
+            cell.Entity.Position = (nextX, nextY);
 
+            // Actualizar posición en la celda
+            cell.PosX = nextX;
+            cell.PosY = nextY;
+
+            currentX = nextX;
+            currentY = nextY;
+
+            _map.Cells[currentX, currentY].Entity = cell.Entity;
             _map.Cells[currentX, currentY].IsOccupied = true;
             _map.Cells[currentX, currentY].EntityType = entityType;
+
+            Console.WriteLine($"{entityType} se movió a ({currentX},{currentY}).");
         }
 
-        Console.WriteLine($"{entityType} se movió a ({coords.x},{coords.y}).");
+        if (currentX == coords.x && currentY == coords.y)
+            Console.WriteLine($"{entityType} llegó a destino ({coords.x},{coords.y}).");
     }
 
     public async Task ChopAsync(string entityType, string destination)
@@ -73,8 +105,10 @@ public class MapService : IMapService
         {
             Console.WriteLine($"{entityType} talando en ({x},{y})...");
             await Task.Delay(3000);
-            int collected = forest.GetResources();
-            Console.WriteLine($"{entityType} recolectó {collected} madera.");
+            int collected = forest.GetResources(1); // suponiendo 1 trabajador
+            forest.CurrentAmount -= collected;
+            if (forest.CurrentAmount < 0) forest.CurrentAmount = 0;
+            Console.WriteLine($"{entityType} recolectó {collected} madera. Madera restante: {forest.CurrentAmount}");
         }
         else
         {
@@ -92,15 +126,19 @@ public class MapService : IMapService
         {
             Console.WriteLine($"{entityType} minando oro en ({x},{y})...");
             await Task.Delay(3000);
-            int collected = goldMine.GetResources();
-            Console.WriteLine($"{entityType} recolectó {collected} oro.");
+            int collected = goldMine.GetResources(1);
+            goldMine.CurrentAmount -= collected;
+            if (goldMine.CurrentAmount < 0) goldMine.CurrentAmount = 0;
+            Console.WriteLine($"{entityType} recolectó {collected} oro. Oro restante: {goldMine.CurrentAmount}");
         }
         else if (cell.Resource is StoneMine stoneMine)
         {
             Console.WriteLine($"{entityType} minando piedra en ({x},{y})...");
             await Task.Delay(3000);
-            int collected = stoneMine.GetResources();
-            Console.WriteLine($"{entityType} recolectó {collected} piedra.");
+            int collected = stoneMine.GetResources(1);
+            stoneMine.CurrentAmount -= collected;
+            if (stoneMine.CurrentAmount < 0) stoneMine.CurrentAmount = 0;
+            Console.WriteLine($"{entityType} recolectó {collected} piedra. Piedra restante: {stoneMine.CurrentAmount}");
         }
         else
         {
@@ -146,6 +184,12 @@ public class MapService : IMapService
     private (int x, int y) ParseCoords(string input)
     {
         var parts = input.Split(',');
-        return (int.Parse(parts[0]), int.Parse(parts[1]));
+        if (parts.Length != 2
+            || !int.TryParse(parts[0], out int x)
+            || !int.TryParse(parts[1], out int y))
+        {
+            throw new ArgumentException($"Coordenadas inválidas: {input}");
+        }
+        return (x, y);
     }
 }

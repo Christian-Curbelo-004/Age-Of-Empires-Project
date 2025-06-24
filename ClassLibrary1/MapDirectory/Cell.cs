@@ -1,8 +1,9 @@
 ﻿using ClassLibrary1.MapDirectory;
+using ClassLibrary1.QuaryDirectory;
 
 namespace ClassLibrary1
 {
-    public class Cell 
+    public class Cell
     {
         public int PosX { get; set; }
         public int PosY { get; set; }
@@ -10,7 +11,7 @@ namespace ClassLibrary1
         public string EntityType { get; set; }
 
         public IMapEntity Entity { get; set; }
-        public IResource Resource { get; set; }
+        public IResourceDeposit Resource { get; set; }
 
         public Cell(int x, int y)
         {

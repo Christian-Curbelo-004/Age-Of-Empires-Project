@@ -1,10 +1,39 @@
+using ClassLibrary1.MapDirectory;
+
 namespace ClassLibrary1.QuaryDirectory
 {
-    public class GoldMine : Quary
+    public class GoldMine : IResourceDeposit, IMapEntity
     {
-        public GoldMine(int extractionRate, int collectionValue, int initialGold)
-            : base(extractionRate, collectionValue, initialGold, 300, "Oro")
+        public int OwnerId { get; set; }
+        public (int X, int Y) Position { get; set; }
+        public int Speed { get; set; } = 0; 
+        public int CurrentAmount
         {
+            get => Gold;
+            set => Gold = value;
+        }
+
+        public int Gold { get; private set; }
+        public string ResourceType => "Gold";
+
+        private int _extractionRate;
+        private int _collectionValue;
+
+        public GoldMine(int ownerId, int initialGold, int extractionRate, int collectionValue)
+        {
+            OwnerId = ownerId;
+            Gold = initialGold;
+            _extractionRate = extractionRate;
+            _collectionValue = collectionValue;
+        }
+
+        public int GetResources(int collectors = 1)
+        {
+            if (Gold <= 0) return 0;
+            int amount = _extractionRate * collectors;
+            int collected = Math.Min(Gold, amount);
+            Gold -= collected;
+            return collected;
         }
     }
 }

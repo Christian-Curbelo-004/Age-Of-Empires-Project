@@ -1,3 +1,5 @@
+using ClassLibrary1.QuaryDirectory;
+
 namespace ClassLibrary1.MapDirectory
 {
     public class EntityManager
@@ -20,7 +22,7 @@ namespace ClassLibrary1.MapDirectory
             cell.IsOccupied = true;
             cell.EntityType = entity.GetType().Name;
 
-            if (entity is IResource resource)
+            if (entity is IResourceDeposit resource)
             {
                 cell.Resource = resource;
             }

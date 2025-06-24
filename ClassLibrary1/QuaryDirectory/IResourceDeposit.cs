@@ -4,5 +4,6 @@
     {
         int GetResources(int collectors = 1);
         string ResourceType { get; }
+        int CurrentAmount { get; }
     }
 }

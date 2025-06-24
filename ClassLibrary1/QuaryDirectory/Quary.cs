@@ -5,6 +5,7 @@ using ClassLibrary1.QuaryDirectory;
 public  class Quary : IResourceDeposit, IMapEntity
 {
     public int OwnerId { get; set; }
+    public int Speed { get; set; }= 0; // Quarries no se mueven, por lo que la velocidad es 0
     public (int X, int Y) Position { get; set; }
     public string Type { get; set; }
    

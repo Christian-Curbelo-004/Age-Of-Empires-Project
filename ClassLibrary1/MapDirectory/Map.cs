@@ -1,15 +1,19 @@
-﻿namespace ClassLibrary1.MapDirectory
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ClassLibrary1.MapDirectory
 {
     public class Map
     {
-        private int _height;
-        private int _length;
+        private readonly int _height;
+        private readonly int _length;
+        private readonly List<IMapEntity> _entities = new();
+
         public Cell[,] Cells { get; }
 
         private const int MinDimension = 0;
         private const int MaxDimension = 100;
-
-        private readonly List<IMapEntity> _entities = new();
 
         public Map(int height, int length)
         {
@@ -26,42 +30,62 @@
             }
         }
 
-        public bool IsWithinBounds(int x, int y) => 
+        public bool IsWithinBounds(int x, int y) =>
             x >= 0 && x < _length && y >= 0 && y < _height;
 
         public Cell GetCell(int x, int y)
         {
             if (!IsWithinBounds(x, y))
-                throw new ArgumentOutOfRangeException($"({x},{y}) fuera del mapa.");
+                throw new ArgumentOutOfRangeException($"({x},{y}) está fuera del mapa.");
             return Cells[x, y];
         }
 
-        public void PlaceEntity(IMapEntity entity, int x, int y)
+        public bool PlaceEntity(IMapEntity entity, int x, int y)
         {
             if (!IsWithinBounds(x, y))
-                throw new ArgumentOutOfRangeException($"({x},{y}) fuera del mapa.");
+            {
+                Console.WriteLine($" Posición ({x},{y}) fuera del mapa.");
+                return false;
+            }
+
+            var cell = Cells[x, y];
+
+            if (cell.Entity != null)
+            {
+                Console.WriteLine($"La celda ({x},{y}) ya está ocupada por otra entidad ({cell.Entity.GetType().Name}).");
+                return false;
+            }
 
             entity.Position = (x, y);
             _entities.Add(entity);
-            Cells[x, y].Entity = entity;
-            Cells[x, y].IsOccupied = true;
-            Cells[x, y].EntityType = entity.GetType().Name;
+            cell.Entity = entity;
+            cell.IsOccupied = true;
+            cell.EntityType = entity.GetType().Name;
+
+            return true;
+        }
+        public void RemoveEntity(IMapEntity entity)
+        {
+            var (x, y) = entity.Position;
+            if (IsWithinBounds(x, y) && Cells[x, y].Entity == entity)
+            {
+                Cells[x, y].Entity = null;
+                Cells[x, y].IsOccupied = false;
+                Cells[x, y].EntityType = null;
+            }
+            _entities.Remove(entity);
         }
 
         public List<T> GetEntities<T>() where T : IMapEntity
         {
             return _entities.OfType<T>().ToList();
         }
-        
+
         public IEnumerable<Cell> GetAllCells()
         {
             for (int x = 0; x < _length; x++)
-            {
                 for (int y = 0; y < _height; y++)
-                {
                     yield return Cells[x, y];
-                }
-            }
         }
     }
 }
