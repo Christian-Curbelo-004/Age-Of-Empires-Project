@@ -1,7 +1,10 @@
+using System.ComponentModel.Design;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
+using System.Linq;
+
 
 
 namespace ClassLibrary1;
@@ -24,14 +27,15 @@ public class ShowScreen
         PrintMap printMap = new PrintMap(_map);
         printMap.DisplayMap();
 
-
-       // int health = _playerOne.CivicCenter.Health;
+        string seguisjugando = "seguis jugando";
         string message = "Perdiste";
-        //if (health < 0)
+        int health = _playerOne.CivicCenter.actualhealth;
+        if (health < 0)
         {
-            message += "Perdite";
+            return message;
         }
-        return message;
+
+        return seguisjugando;
     }
 }   
 

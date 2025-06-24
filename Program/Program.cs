@@ -281,3 +281,18 @@ class Program
     }
 }
 */
+using ClassLibrary1;
+using ClassLibrary1.MapDirectory;
+using ClassLibrary1.FacadeDirectory;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        GameFacade gameFacade = new GameFacade();
+        Map map = gameFacade.GenerateMap();
+        gameFacade.InitializePlayer(map);
+        ShowScreen showScreen = new ShowScreen(map, gameFacade.PlayerOne);
+        showScreen.Screen();
+    }
+}

@@ -13,7 +13,7 @@ public class Player
     public object Buildings { get; set; }
     public object Units { get; set; }
     public (int, int) StartingPosition { get; set; }
-    public object CivicCenter { get; set; }
+    public CivicCenter CivicCenter { get; set; }
 
     public Player(int id)
     {
