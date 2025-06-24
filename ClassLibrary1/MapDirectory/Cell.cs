@@ -1,6 +1,8 @@
-﻿namespace ClassLibrary1
+﻿using ClassLibrary1.MapDirectory;
+
+namespace ClassLibrary1
 {
-    public class Cell
+    public class Cell 
     {
         public int PosX { get; set; }
         public int PosY { get; set; }

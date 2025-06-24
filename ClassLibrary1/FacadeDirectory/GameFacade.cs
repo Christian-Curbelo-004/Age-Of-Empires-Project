@@ -1,119 +1,78 @@
-using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.FacadeDirectory;
+using ClassLibrary1.MapDirectory;
+using ClassLibrary1.UnitsDirectory;
+using CreateBuildings;
 
 
-namespace ClassLibrary1.FacadeDirectory 
+namespace ClassLibrary1
 {
     public class GameFacade : IFacade
     {
+        public Player PlayerOne { get; private set; }
+        private readonly Random _random = new Random();
+
         public Map GenerateMap()
         {
-            Map randomMap = new Map(100, 100);
-            return randomMap;
+            return new Map(100, 100); // Mapa 100x100
         }
 
-        public GameState StartNewGame(Civilization civ1)
-        {
-            var state = new GameState();
-
-            state.Map = GenerateMap();
-            state.PlayerOne = new Player(1, "Joaco", new Roman());
-            state.PlayerTwo = new Player(2, "Cpu", new Templaries());
-                    
-            state.Map.PlayerOne = state.PlayerOne;
-            state.Map.PlayerTwo = state.PlayerTwo;
-            InitializePlayer(state.Map);
-            return state;
-        }
         public void GenerateCivicCenter(Map map)
         {
+            var civic = new CivicCenter
             {
-                map.PlayerOne.CivicCenter = new CivicCenter(
-                    endurence: 100,
-                    constructiontimeleft: 10,
-                    name: "Centro Cívico",
-                    ownerId: map.PlayerOne.Id 
-                );
+                OwnerId = PlayerOne.Id,
+                Position = (10, 10)
+            };
 
-                map.PlayerTwo.CivicCenter = new CivicCenter(
-                    endurence: 100,
-                    constructiontimeleft: 10,
-                    name: "Centro Cívico",
-                    ownerId: map.PlayerTwo.Id 
-                );
-            }
-       
+            PlayerOne.Buildings.Equals(civic);
+            map.PlaceEntity(civic, 10, 10);
         }
+
         public void GenerateQuary(Map map)
         {
-            Random random = new Random();
-            
-            Quary stoneQuary = new Quary(
-                extractionRate: random.Next(5, 10),
-                collectionValue: 0,
-                collectionType: "Stone"
-            );
-            map.PlayerOne.AddQuary(stoneQuary);
-        //    map.PlayerTwo.AddQuary(StoneQuary);
-            
-            Quary goldQuary = new Quary(
-                extractionRate: random.Next(7, 15),
-                collectionValue: 0,
-                collectionType: "Gold"
-            );
-           map.PlayerOne.AddQuary(goldQuary);
-          // map.PlayerTwo.AddQuary(GoldQuary);
-            
-            Quary woodQuary = new Quary(
-                extractionRate: random.Next(4, 9),
-                collectionValue: 0,
-                collectionType: "Wood"
-            );
-           map.PlayerOne.AddQuary(woodQuary);
-         //  map.PlayerTwo.AddQuary(WoodQuary);
+            var quary = new Quary
+            {
+                OwnerId = PlayerOne.Id,
+                Position = (20, 5),
+                Type = "Oro",
+                ExtractionRate = _random.Next(5, 10)
+            };
+
+            map.PlaceEntity(quary, 20, 5);
         }
+
         public void GenerateVillagers(Map map)
         {
-            for (int a = 0; a < 3; a++)
+            for (int i = 0; i < 3; i++)
             {
-                var villager1 = new Villagers(100, 10,1);
-                var villager2 = new Villagers(100, 10,1);
-                map.PlayerOne.AddVillagers(villager1);
-                map.PlayerTwo.AddVillagers(villager2);
-            }
-        }
-        public void TrainSoldiers(Map map)
-        {
-            for (int s = 0; s < 3; s++)
-            {
-                Archer archer = new Archer();
-                Paladin paladin = new Paladin();
-                Raider raider = new Raider();
-                Centuries centuries = new Centuries();
-                Chivarly chevarly = new Chivarly();
-                
-                map.PlayerOne.AddSoldier(archer);
-                map.PlayerOne.AddSoldier(paladin);
-                map.PlayerOne.AddSoldier(raider);
-                map.PlayerOne.AddSoldier(centuries);
-                map.PlayerOne.AddSoldier(chevarly);
-                
-                map.PlayerTwo.AddSoldier(archer);
-                map.PlayerTwo.AddSoldier(paladin);
-                map.PlayerTwo.AddSoldier(raider);
-                map.PlayerTwo.AddSoldier(centuries);
-                map.PlayerTwo.AddSoldier(chevarly);
-                
+                var villager = new Villagers( 12, 3,  123, PlayerOne.Id)
+                {
+                    Position = (12 + i, 12)
+                };
+
+                PlayerOne.Units.Equals(villager);
+                map.PlaceEntity(villager, 12 + i, 12);
             }
         }
 
         public void InitializePlayer(Map map)
         {
-            map.PlayerOne.Food = 100;
-            map.PlayerOne.Wood = 100;
+            PlayerOne = new Player(123)
+            {
+                Id = 1,
+                Civilization = new string("Roman"), // Reemplaza por tu civilizaciÃ³n concreta
+                StartingPosition = (10, 10),
+                Buildings = new List<Buildings>(),
+                Units = new List<Units>()
+            };
+
             GenerateCivicCenter(map);
+            GenerateQuary(map);
             GenerateVillagers(map);
-            TrainSoldiers(map);
         }
     }
+
+  
 }

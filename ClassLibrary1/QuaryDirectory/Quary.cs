@@ -1,17 +1,20 @@
-﻿using ClassLibrary1;
+﻿
+using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 
-public abstract class Quary : IResourceDeposit, IMapEntity
+public  class Quary : IResourceDeposit, IMapEntity
 {
-    public int OwnerId { get; private set; }
+    public int OwnerId { get; set; }
+    public (int X, int Y) Position { get; set; }
+    public string Type { get; set; }
+   
 
+    public int ExtractionRate { get; set; }
+    public int CollectionValue { get; set; }
+    public int CurrentAmount { get;  set; }
+    public string ResourceType { get;  set; }
 
-    public int ExtractionRate { get; protected set; }
-    public int CollectionValue { get; protected set; }
-    public int CurrentAmount { get; protected set; }
-    public string ResourceType { get; protected set; }
-
-    protected Quary(int ownerId, int extractionRate, int collectionValue, int initialAmount, string resourceType)
+    public Quary(int ownerId, int extractionRate, int collectionValue, int initialAmount, string resourceType)
     {
         OwnerId = ownerId;
         ExtractionRate = extractionRate;
@@ -19,6 +22,11 @@ public abstract class Quary : IResourceDeposit, IMapEntity
         CurrentAmount = initialAmount;
         ResourceType = resourceType;
 
+    }
+
+    public Quary()
+    {
+        throw new NotImplementedException();
     }
 
     public virtual int GetResources(int collectors = 1)

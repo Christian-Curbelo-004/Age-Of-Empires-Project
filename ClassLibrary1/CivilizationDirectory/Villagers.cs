@@ -1,12 +1,17 @@
 ﻿using ClassLibrary1.CivilizationDirectory;
-namespace ClassLibrary1;
+using ClassLibrary1.MapDirectory;
 
-public class Villagers : ICharacter
+
+
+namespace ClassLibrary1.UnitsDirectory;
+
+public class Villagers : IMapEntity
 {
     public int Life { get; set; }
     public int AttackValue { get; set; }
     public int Speed { get; set; }
     public int OwnerId { get; set; }
+    public (int X, int Y) Position { get; set; }
     public bool IsFree { get; set; } = true;
     
     public Villagers(int life, int attackValue, int ownerId, int speed)

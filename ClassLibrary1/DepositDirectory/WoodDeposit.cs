@@ -1,7 +1,7 @@
 ﻿using GameResourceType = GameModels.GameResourceType;
 namespace ClassLibrary1.DepositDirectory
 {
-    public class WoodDeposit : Deposit, IMapEntity
+    public class WoodDeposit : Deposit
     {
         public int OwnerId { get; set; }
         public int CurrentWood { get; private set; }

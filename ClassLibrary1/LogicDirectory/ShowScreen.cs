@@ -1,6 +1,8 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.FacadeDirectory;
+using ClassLibrary1.MapDirectory;
+
 
 namespace ClassLibrary1;
 

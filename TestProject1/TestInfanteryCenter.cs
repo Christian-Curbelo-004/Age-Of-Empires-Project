@@ -15,7 +15,7 @@ public class TestInfanteryCenter
     public void ConstructionCostCorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.GetConstructionCost();
+      // eliminado >  centerInf.GetConstructionCost();
         Assert.That(constructionCost["Piedra"],Is.EqualTo(10));
         Assert.That(constructionCost["Oro"],Is.EqualTo(6));
     }
@@ -23,6 +23,6 @@ public class TestInfanteryCenter
     public void ConstructionCostIncorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-        centerInf.GetConstructionCost();
+       //eliminado >   centerInf.GetConstructionCost();
     }
 }

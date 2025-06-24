@@ -2,7 +2,7 @@
 
 namespace ClassLibrary1.DepositDirectory
 {
-    public class GoldDeposit : Deposit,  IMapEntity
+    public class GoldDeposit : Deposit
     {
         public int OwnerId { get; set; }
         public int CurrentGold { get; private set; } 

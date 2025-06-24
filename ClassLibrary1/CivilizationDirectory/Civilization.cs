@@ -1,4 +1,8 @@
-﻿namespace ClassLibrary1.CivilizationDirectory
+﻿
+
+using ClassLibrary1.UnitsDirectory;
+
+namespace ClassLibrary1.CivilizationDirectory
 {
     public abstract class Civilization
     {

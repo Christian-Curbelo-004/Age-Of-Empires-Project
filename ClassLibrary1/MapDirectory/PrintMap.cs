@@ -1,5 +1,7 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.QuaryDirectory;
+using ClassLibrary1.UnitsDirectory;
+
 namespace ClassLibrary1.MapDirectory
 {
     public class PrintMap

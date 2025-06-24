@@ -1,5 +1,6 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.FacadeDirectory;
+using ClassLibrary1.UnitsDirectory;
 using GameModels;
 namespace ClassLibrary1.LogicDirectory;
 
@@ -13,7 +14,7 @@ public abstract class LogicCore : ILogic
            // if (playerOne.HasResources(cost) && playerOne.CivicCenter.CanCreateSoldiers())
             {
              //   playerOne.SpendResources(cost);
-                var newSoldier = playerOne.CivicCenter.CreateSoldier(soldier);
+                var newSoldier = playerOne.CivicCenter.Equals(soldier);
                 playerOne.AddSoldier(newSoldier);
             }
         }

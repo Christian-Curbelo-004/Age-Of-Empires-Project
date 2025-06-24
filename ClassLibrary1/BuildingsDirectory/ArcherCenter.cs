@@ -5,7 +5,7 @@ using GameModels;
 
 namespace ClassLibrary1.BuildingsDirectory
 {   
-    public class ArcherCenter : Buildings, IMapEntity
+    public class ArcherCenter : Buildings
     {
         public int OwnerId { get; set; }
         public ArcherCenter(int endurence, int constructiontimeleft,  string name, int ownerId)
