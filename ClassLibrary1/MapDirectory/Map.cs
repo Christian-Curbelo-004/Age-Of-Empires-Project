@@ -1,6 +1,4 @@
-﻿
-
-namespace ClassLibrary1.MapDirectory
+﻿namespace ClassLibrary1.MapDirectory
 {
     public class Map
     {
@@ -11,9 +9,7 @@ namespace ClassLibrary1.MapDirectory
         private const int MinDimension = 0;
         private const int MaxDimension = 100;
 
-        // ✅ Lista para almacenar las entidades en el mapa
         private readonly List<IMapEntity> _entities = new();
-        public object map;
 
         public Map(int height, int length)
         {
@@ -40,7 +36,6 @@ namespace ClassLibrary1.MapDirectory
             return Cells[x, y];
         }
 
-        // ✅ Método para colocar entidades en el mapa
         public void PlaceEntity(IMapEntity entity, int x, int y)
         {
             if (!IsWithinBounds(x, y))
@@ -48,12 +43,25 @@ namespace ClassLibrary1.MapDirectory
 
             entity.Position = (x, y);
             _entities.Add(entity);
+            Cells[x, y].Entity = entity;
+            Cells[x, y].IsOccupied = true;
+            Cells[x, y].EntityType = entity.GetType().Name;
         }
 
-        // ✅ Método para obtener entidades por tipo
         public List<T> GetEntities<T>() where T : IMapEntity
         {
             return _entities.OfType<T>().ToList();
+        }
+        
+        public IEnumerable<Cell> GetAllCells()
+        {
+            for (int x = 0; x < _length; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    yield return Cells[x, y];
+                }
+            }
         }
     }
 }

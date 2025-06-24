@@ -17,6 +17,9 @@ namespace ClassLibrary1
             PosX = x;
             PosY = y;
             IsOccupied = false;
+            EntityType = null;
+            Entity = null;
+            Resource = null;
         }
     }
 }
