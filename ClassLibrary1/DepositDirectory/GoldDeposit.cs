@@ -1,4 +1,4 @@
-﻿
+﻿using ClassLibrary1.LogicDirectory;
 namespace ClassLibrary1.DepositDirectory
 {
     public class GoldDeposit : Deposit
@@ -9,14 +9,15 @@ namespace ClassLibrary1.DepositDirectory
             : base(endurence, constructionTimeLeft, name, maxCapacity) // GameResourceType.Gold)
         {
             OwnerId = ownerId;
- 
-            //ResourceType = GameResourceType.Gold;
         }
         public void StoreGold(int amount)
         {
-            //StoreResource(amount, this.ResourceType);
         }
-        
+
+        public Cost GetCost()
+        {
+            return new Cost(0, 100, 0, 150);
+        }
         public string EntityType => "GoldDeposit";
 
     }      

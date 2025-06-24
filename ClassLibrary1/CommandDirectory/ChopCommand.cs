@@ -1,5 +1,4 @@
 namespace CommandDirectory;
-using ClassLibrary1.QuaryDirectory;
 public class ChopCommand : ICommand
 {
     private readonly IMapService _mapService;

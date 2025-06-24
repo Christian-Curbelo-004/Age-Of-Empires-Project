@@ -1,9 +1,7 @@
-﻿using ClassLibrary1.CivilizationDirectory;
+﻿using CreateBuildings;
 using ClassLibrary1.LogicDirectory;
-using CreateBuildings;
 
-namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si genera problemas ClassLibrary1.BuildingsDirectory) ClassLibrary1.BuildingsDirectory
-
+namespace ClassLibrary1.BuildingsDirectory
 {
     public class InfanteryCenter : Buildings
     {
@@ -12,6 +10,11 @@ namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si 
             : base(endurence, name)
         {
             OwnerId = ownerId;
+        }
+
+        public Cost Getcost()
+        {
+            return new Cost(0, 100, 10, 30);
         }
     }
 }

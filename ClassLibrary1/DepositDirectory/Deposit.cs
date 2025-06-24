@@ -14,9 +14,10 @@ namespace ClassLibrary1.DepositDirectory
             CurrentStorage = 0;
         }
     }
+}
 
 
-    //public int StoreResource(int amount, GameResourceType type)
+//public int StoreResource(int amount, GameResourceType type)
         //{
             //if (type == ResourceType)
             //{
@@ -32,4 +33,4 @@ namespace ClassLibrary1.DepositDirectory
             //return 0;
         //}
     //}
-}
+//}

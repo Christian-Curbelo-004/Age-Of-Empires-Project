@@ -1,7 +1,7 @@
 
 namespace ClassLibrary1.CivilizationDirectory
 {
-    public class Raider : Soldier, ICharacter
+    public class Raider : Soldier
     {
         public Raider() : base(100, 33,25,15)
         {

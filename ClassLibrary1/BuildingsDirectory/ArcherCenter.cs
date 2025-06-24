@@ -1,7 +1,5 @@
-using CreateBuildings;
-using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
-
+using CreateBuildings;
 
 namespace ClassLibrary1.BuildingsDirectory
 {   
@@ -13,6 +11,9 @@ namespace ClassLibrary1.BuildingsDirectory
         {
             OwnerId = ownerId;
         }
-        
+        public Cost GetCost()
+        {
+            return new Cost(0, 100, 10, 0);
+        }
     }
 }

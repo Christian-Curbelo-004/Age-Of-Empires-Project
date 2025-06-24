@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using ClassLibrary1.LogicDirectory;
 
 namespace CreateBuildings
 {
@@ -12,8 +12,6 @@ namespace CreateBuildings
         {
             Endurence = endurence;
             Name = name;
-            
         }
-        
     }
 }

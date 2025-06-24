@@ -1,4 +1,4 @@
-﻿
+﻿using ClassLibrary1.LogicDirectory;
 namespace ClassLibrary1.DepositDirectory
 {
     public class WoodDeposit : Deposit
@@ -16,6 +16,10 @@ namespace ClassLibrary1.DepositDirectory
            // StoreResource(amount, this.ResourceType);
         }
 
+        public Cost GetCost()
+        {
+            return new Cost(100, 0, 0, 0);
+        }
         public string EntityType => "WoodDeposit";
 
     }      

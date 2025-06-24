@@ -1,10 +1,7 @@
 ﻿using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 using ClassLibrary1.MapDirectory;
-
-
-
-using ClassLibrary1.MapDirectory;
+using ClassLibrary1.LogicDirectory;
 
 namespace ClassLibrary1.UnitsDirectory
 {
@@ -38,6 +35,11 @@ namespace ClassLibrary1.UnitsDirectory
         {
             Life -= damage;
             return Life;
+        }
+
+        public Cost GetCost()
+        {
+            return new Cost(120, 50, 0, 0);
         }
     }
 }

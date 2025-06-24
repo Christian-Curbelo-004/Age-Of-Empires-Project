@@ -1,12 +1,5 @@
-using System.ComponentModel.Design;
-using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
-using System.Linq;
-
-
-
 namespace ClassLibrary1;
 
 public class ShowScreen
@@ -29,7 +22,7 @@ public class ShowScreen
 
         string seguisjugando = "seguis jugando";
         string message = "Perdiste";
-        int health = _playerOne.CivicCenter.actualhealth;
+        int health = _playerOne.CivicCenter.ActualHealth;
         if (health < 0)
         {
             return message;

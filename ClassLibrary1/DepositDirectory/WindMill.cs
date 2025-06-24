@@ -1,4 +1,4 @@
-﻿
+﻿using ClassLibrary1.LogicDirectory;
 namespace  ClassLibrary1.DepositDirectory
 {
     public class WindMill : Deposit
@@ -16,6 +16,10 @@ namespace  ClassLibrary1.DepositDirectory
             //StoreResource(amount,this.ResourceType);
         }
 
+        public Cost GetCost()
+        {
+            return new Cost(0, 100, 0, 20);
+        }
         public string EntityType => "WindMill";
 
     }      
