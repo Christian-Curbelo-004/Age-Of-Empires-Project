@@ -1,5 +1,4 @@
 ﻿using CreateBuildings;
-using GameResourceType = GameModels.GameResourceType;
 namespace   ClassLibrary1.BuildingsDirectory                                   
 {
     public class HomeVillagers : Buildings

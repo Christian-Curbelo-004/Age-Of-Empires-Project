@@ -2,7 +2,7 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
-using GameModels;
+
 
 namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNamespace
 {

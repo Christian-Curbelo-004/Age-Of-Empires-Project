@@ -1,8 +1,6 @@
 ﻿using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
-using GameModels;
-
 
 namespace ClassLibrary1.BuildingsDirectory //InfanteryCenter (lo comento por si genera problemas ClassLibrary1.BuildingsDirectory) ClassLibrary1.BuildingsDirectory
 

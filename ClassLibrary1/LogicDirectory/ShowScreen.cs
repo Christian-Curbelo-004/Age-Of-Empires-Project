@@ -25,9 +25,9 @@ public class ShowScreen
         printMap.DisplayMap();
 
 
-        int health = _playerOne.CivicCenter.Health;
+       // int health = _playerOne.CivicCenter.Health;
         string message = "Perdiste";
-        if (health < 0)
+        //if (health < 0)
         {
             message += "Perdite";
         }

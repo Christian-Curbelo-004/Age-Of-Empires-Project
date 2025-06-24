@@ -1,4 +1,4 @@
-﻿using GameModels;
+﻿
 
 namespace ClassLibrary1.DepositDirectory
 {
@@ -14,7 +14,7 @@ namespace ClassLibrary1.DepositDirectory
         }
         public void StoreStone(int amount)
         {
-            StoreResource(amount,this.ResourceType);
+            //StoreResource(amount,this.ResourceType);
          
         }
 

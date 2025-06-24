@@ -1,4 +1,4 @@
-﻿using GameResourceType = GameModels.GameResourceType;
+﻿
 namespace ClassLibrary1.DepositDirectory
 {
     public class WoodDeposit : Deposit
@@ -13,7 +13,7 @@ namespace ClassLibrary1.DepositDirectory
         }
         public void StoreWood(int amount)
         {
-            StoreResource(amount, this.ResourceType);
+           // StoreResource(amount, this.ResourceType);
         }
 
         public string EntityType => "WoodDeposit";

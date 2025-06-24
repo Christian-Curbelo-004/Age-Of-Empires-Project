@@ -1,7 +1,6 @@
 using CreateBuildings;
 
 namespace ClassLibrary1.BuildingsDirectory;
-using GameModels;
 
 public class HomeSoldiers : Buildings
 {

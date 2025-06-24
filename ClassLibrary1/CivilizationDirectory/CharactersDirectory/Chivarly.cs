@@ -2,8 +2,6 @@
 //using System.Collections.Generic;
 //using GameResourceType = GameModels.GameResourceType;
 
-using GameModels;
-
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Chivarly : Soldier                                 //ICharacter

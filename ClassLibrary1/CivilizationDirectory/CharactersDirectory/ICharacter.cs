@@ -1,4 +1,4 @@
-﻿using GameResourceType = GameModels.GameResourceType;
+﻿
 
 namespace ClassLibrary1.CivilizationDirectory;
 

@@ -1,5 +1,4 @@
-﻿using GameResourceType = GameModels.GameResourceType;
-
+﻿
 namespace ClassLibrary1.DepositDirectory
 {
     public class GoldDeposit : Deposit
@@ -11,11 +10,11 @@ namespace ClassLibrary1.DepositDirectory
         {
             OwnerId = ownerId;
  
-            ResourceType = GameResourceType.Gold;
+            //ResourceType = GameResourceType.Gold;
         }
         public void StoreGold(int amount)
         {
-            StoreResource(amount, this.ResourceType);
+            //StoreResource(amount, this.ResourceType);
         }
         
         public string EntityType => "GoldDeposit";
