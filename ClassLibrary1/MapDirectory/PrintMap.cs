@@ -75,7 +75,7 @@ namespace ClassLibrary1.MapDirectory
                 ConsoleColor color = entity switch
                 {
                     GoldMine => ConsoleColor.Yellow,
-                    StoneMine => ConsoleColor.DarkGray,
+                    StoneMine => ConsoleColor.DarkCyan,
                     Forest => ConsoleColor.Green,
                     _ => entity.OwnerId switch
                     {
@@ -93,14 +93,14 @@ namespace ClassLibrary1.MapDirectory
                 return resource switch
                 {
                     GoldMine => ("G", ConsoleColor.Yellow),
-                    StoneMine => ("S", ConsoleColor.DarkGray),
+                    StoneMine => ("S", ConsoleColor.DarkCyan),
                     Forest => ("F", ConsoleColor.Green),
                     _ => ("R", ConsoleColor.Gray)
                 };
             }
 
             // Celda vacía
-            return ("·", ConsoleColor.DarkGray);
+            return ("[]", ConsoleColor.DarkGray);
         }
 
         private string GetSymbolForEntity(IMapEntity entity)
@@ -110,6 +110,8 @@ namespace ClassLibrary1.MapDirectory
                 Villagers => "V",
                 CivicCenter => "C",
                 GoldMine => "G",
+                Forest => "F",
+                StoneMine => "S",
                 _ => "?"
             };
         }
