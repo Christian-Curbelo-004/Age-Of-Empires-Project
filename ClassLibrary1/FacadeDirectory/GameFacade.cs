@@ -13,6 +13,7 @@ namespace ClassLibrary1
     public class GameFacade : IFacade
     {
         public Player PlayerOne { get; private set; }
+        public Player PlayerTwo { get; private set; }
         private readonly Random _random = new Random();
 
         public Map GenerateMap()
@@ -36,19 +37,16 @@ namespace ClassLibrary1
             PlayerOne.Buildings.Equals(civic);
             map.PlaceEntity(civic, 10, 10);
         }
-
-        public void GenerateGoldMine(Map map)
+        public void GenerateCivicCenter2(Map map)
         {
-            var goldMine = new GoldMine(
-                ownerId: PlayerOne.Id,
-                initialGold: 300,
-                extractionRate: _random.Next(5, 10),
-                collectionValue: 5
-            );
+            var civic = new CivicCenter
+            {
+                OwnerId = PlayerTwo.Id,
+                Position = (90, 90)
+            };
 
-            goldMine.Position = (20, 5);
-
-            map.PlaceEntity(goldMine, 20, 5);
+            PlayerTwo.Buildings.Equals(civic);
+            map.PlaceEntity(civic, 90, 90);
         }
 
         public void GenerateVillagers(Map map)
@@ -58,6 +56,19 @@ namespace ClassLibrary1
                 var villager = new Villagers( 12, 3,  123, PlayerOne.Id)
                 {
                     Position = (12 + i, 12)
+                };
+
+                PlayerOne.Units.Equals(villager);
+                map.PlaceEntity(villager, 12 + i, 12);
+            }
+        }
+        public void GenerateVillagers2(Map map)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var villager = new Villagers( 12, 3,  123, PlayerTwo.Id)
+                {
+                    Position = (88 + i, 88)
                 };
 
                 PlayerOne.Units.Equals(villager);
@@ -74,10 +85,19 @@ namespace ClassLibrary1
                 Buildings = new List<Buildings>(),
                 Units = new List<Units>()
             };
+            PlayerTwo = new Player(124)
+            {
+                Id = 2,
+                Civilization = new string("Vikings"), // Reemplaza por tu civilizaciÃ³n concreta
+                StartingPosition = (90, 90),
+                Buildings = new List<Buildings>(),
+                Units = new List<Units>()
+            };
 
             GenerateCivicCenter(map);
-            GenerateGoldMine(map);
+            GenerateCivicCenter2(map);
             GenerateVillagers(map);
+            GenerateVillagers2(map);
         }
         public void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
         {
