@@ -12,9 +12,14 @@ namespace ClassLibrary1
 {
     public class GameFacade : IFacade
     {
+        private string messageProgram = Menu.WelcomeMessage() + "/n" + Menu.MenuScreen();
         public Player PlayerOne { get; private set; }
         private readonly Random _random = new Random();
 
+        public string MenuProgram()
+        {
+            return messageProgram;
+        }
         public Map GenerateMap()
         {
             return new Map(100, 100); // Mapa 100x100
@@ -50,7 +55,6 @@ namespace ClassLibrary1
 
             map.PlaceEntity(goldMine, 20, 5);
         }
-
         public void GenerateVillagers(Map map)
         {
             for (int i = 0; i < 3; i++)
