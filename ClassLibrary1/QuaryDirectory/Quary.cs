@@ -27,7 +27,6 @@ public  class Quary : IResourceDeposit, IMapEntity
 
     public Quary()
     {
-        throw new NotImplementedException();
     }
 
     public virtual int GetResources(int collectors = 1)

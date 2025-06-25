@@ -19,6 +19,7 @@ public class Player
     {
         Id = id;
         Civilization = "Civilization";
+        CivicCenter = new CivicCenter();
     }
     public Player(int id, string civilization)
         {
