@@ -31,10 +31,10 @@ public class BuildingsConstructor
         }
         Buildings newBuilding = buildingType.ToLower() switch
         {
+            "home" => new Home(20, 10, "Home"),
             "civiccenter" => new CivicCenter(),
             "archercenter" => new ArcherCenter(20, 13, "ArcherCenter", 1),
             "chivarlycenter" => new ChivarlyCenter(20, 10, "ChivarlyCenter", 1),
-            "homevillagers" => new HomeVillagers(20, 10, "HomeVillagers"),
             "InfantryCenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),
             "golddeposit" => new GoldDeposit(20, 10, "GoldDeposit", 300, 1),
             "stonedeposit" => new StoneDeposit(20, 10, "StoneDeposit", 300,1),
