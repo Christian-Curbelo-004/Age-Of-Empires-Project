@@ -9,6 +9,7 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
         public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0
         public (int X, int Y) Position { get; set; }
         public const int MaxHealth = 100;
+        public int Counter { get; set; }
         public int ActualHealth = 100;
         private bool isbuilded = false;
         private IMapEntity _mapEntityImplementation;
@@ -16,6 +17,11 @@ namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNam
         public Cost GetCost()
         {
             return new Cost(100, 120, 10, 0);
+        }
+
+        public int CivicCenterCount()
+        {
+            return Counter++;
         }
     }
 }
