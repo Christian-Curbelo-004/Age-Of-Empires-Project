@@ -19,8 +19,8 @@ namespace ClassLibrary1.CivilizationDirectory
 
         public virtual int Attack(ICharacter target)
         {
-            int daño = target.RecieveAttack(AttackValue);
-            return daño;
+            int damage = target.RecieveAttack(AttackValue);
+            return damage;
         }
 
         public virtual int RecieveAttack(int damage)

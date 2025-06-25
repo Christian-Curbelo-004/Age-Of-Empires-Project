@@ -5,8 +5,8 @@ public class Figths
     {
         List<string> historialCombate = new List<string>();
 
-        int daño = attacker.Attack(target);
-        historialCombate.Add($"{attacker.GetType().Name} atacó a {target.GetType().Name} y le pegó {daño}");
+        int damage = attacker.Attack(target);
+        historialCombate.Add($"{attacker.GetType().Name} atacó a {target.GetType().Name} y le pegó {damage}");
         if (target.Life <= 0)
         {
             historialCombate.Add($"{target.GetType().Name} murió");
