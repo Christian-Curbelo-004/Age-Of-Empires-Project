@@ -1,3 +1,4 @@
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 namespace ClassLibrary1;
@@ -23,11 +24,15 @@ public class ShowScreen
         string seguisjugando = "seguis jugando";
         string message = "Perdiste";
         int health = _playerOne.CivicCenter.ActualHealth;
-        if (health < 0)
+        var civic = new CivicCenter();
+        if (civic.Counter == 1)
         {
-            return message;
+            if (health < 0)
+            {
+                return message;
+            }
+            return seguisjugando;
         }
-
         return seguisjugando;
     }
     
