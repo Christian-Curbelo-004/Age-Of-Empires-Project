@@ -37,7 +37,6 @@ namespace ClassLibrary1
                 OwnerId = PlayerOne.Id,
                 Position = (10, 10),
             };
-            civic.Counter();
             PlayerOne.Buildings.Equals(civic);
             map.PlaceEntity(civic, 10, 10);
         }
