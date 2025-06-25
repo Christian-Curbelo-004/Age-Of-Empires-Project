@@ -1,13 +1,15 @@
 ﻿using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
+using CreateBuildings;
 
 namespace ClassLibrary1.BuildingsDirectory                    //  CivicCenterNamespace
 {
-    public class CivicCenter : IMapEntity
+    public class CivicCenter : Buildings , IMapEntity
     {
         public int OwnerId { get; set; }
         public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0
         public (int X, int Y) Position { get; set; }
+        
         public const int MaxHealth = 100;
         public int Counter { get; set; }
         public int ActualHealth = 100;

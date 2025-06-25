@@ -11,7 +11,7 @@ namespace ClassLibrary1.UnitsDirectory
 
         // Implementación de IMovable
         public int Speed { get; set; }
-
+        public string Name { get; set; }
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
 

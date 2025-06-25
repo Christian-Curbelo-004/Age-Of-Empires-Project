@@ -4,6 +4,7 @@ namespace ClassLibrary1.UnitsDirectory
 {
     public abstract class Units : IMapEntity
     {
+        public string  Name { get; set; }
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
 

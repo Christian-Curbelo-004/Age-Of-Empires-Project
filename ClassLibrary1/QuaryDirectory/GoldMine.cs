@@ -5,6 +5,7 @@ namespace ClassLibrary1.QuaryDirectory
     public class GoldMine : IResourceDeposit, IMapEntity
     {
         public int OwnerId { get; set; }
+        public string Name { get; set; } = "Gold Mine";
         public (int X, int Y) Position { get; set; }
         public int Speed { get; set; } = 0; 
         public int CurrentAmount

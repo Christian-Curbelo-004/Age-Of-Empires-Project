@@ -4,6 +4,7 @@ namespace ClassLibrary1.QuaryDirectory
 {
     public class Farm : IResourceDeposit, IMapEntity
     {
+        public string Name { get; set; } = "Farm";
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
         public int Speed { get; set; } = 0;
