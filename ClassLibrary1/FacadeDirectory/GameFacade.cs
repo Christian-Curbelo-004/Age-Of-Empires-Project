@@ -2,6 +2,7 @@ using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
+using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
 using CreateBuildings;
 
@@ -18,6 +19,11 @@ namespace ClassLibrary1
             return new Map(100, 100); // Mapa 100x100
         }
 
+        public void GenerateQuary(Map map)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GenerateCivicCenter(Map map)
         {
             var civic = new CivicCenter
@@ -30,17 +36,18 @@ namespace ClassLibrary1
             map.PlaceEntity(civic, 10, 10);
         }
 
-        public void GenerateQuary(Map map)
+        public void GenerateGoldMine(Map map)
         {
-            var quary = new Quary
-            {
-                OwnerId = PlayerOne.Id,
-                Position = (20, 5),
-                Type = "Oro",
-                ExtractionRate = _random.Next(5, 10)
-            };
+            var goldMine = new GoldMine(
+                ownerId: PlayerOne.Id,
+                initialGold: 300,
+                extractionRate: _random.Next(5, 10),
+                collectionValue: 5
+            );
 
-            map.PlaceEntity(quary, 20, 5);
+            goldMine.Position = (20, 5);
+
+            map.PlaceEntity(goldMine, 20, 5);
         }
 
         public void GenerateVillagers(Map map)
@@ -68,7 +75,7 @@ namespace ClassLibrary1
             };
 
             GenerateCivicCenter(map);
-            GenerateQuary(map);
+            GenerateGoldMine(map);
             GenerateVillagers(map);
         }
     }

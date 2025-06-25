@@ -71,12 +71,20 @@ namespace ClassLibrary1.MapDirectory
             if (cell.Entity is IMapEntity entity)
             {
                 string symbol = GetSymbolForEntity(entity);
-                ConsoleColor color = entity.OwnerId switch
+    
+                ConsoleColor color = entity switch
                 {
-                    1 => ConsoleColor.Blue,
-                    2 => ConsoleColor.Red,
-                    _ => ConsoleColor.Gray
+                    GoldMine => ConsoleColor.Yellow,
+                    StoneMine => ConsoleColor.DarkGray,
+                    Forest => ConsoleColor.Green,
+                    _ => entity.OwnerId switch
+                    {
+                        1 => ConsoleColor.Blue,
+                        2 => ConsoleColor.Red,
+                        _ => ConsoleColor.Gray
+                    }
                 };
+
                 return (symbol, color);
             }
             
@@ -101,6 +109,7 @@ namespace ClassLibrary1.MapDirectory
             {
                 Villagers => "V",
                 CivicCenter => "C",
+                GoldMine => "G",
                 _ => "?"
             };
         }
