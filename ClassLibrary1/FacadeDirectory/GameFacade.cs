@@ -12,10 +12,15 @@ namespace ClassLibrary1
 {
     public class GameFacade : IFacade
     {
+        private string messageProgram = Menu.WelcomeMessage() + "/n" + Menu.MenuScreen();
         public Player PlayerOne { get; private set; }
         public Player PlayerTwo { get; private set; }
         private readonly Random _random = new Random();
 
+        public string MenuProgram()
+        {
+            return messageProgram;
+        }
         public Map GenerateMap()
         {
             return new Map(100, 100); // Mapa 100x100
@@ -48,7 +53,6 @@ namespace ClassLibrary1
             PlayerTwo.Buildings.Equals(civic);
             map.PlaceEntity(civic, 90, 90);
         }
-
         public void GenerateVillagers(Map map)
         {
             for (int i = 0; i < 3; i++)

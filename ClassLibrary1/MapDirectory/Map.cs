@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿
 namespace ClassLibrary1.MapDirectory
 {
     public class Map
