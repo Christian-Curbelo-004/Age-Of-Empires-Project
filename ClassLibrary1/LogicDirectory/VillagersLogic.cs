@@ -17,28 +17,8 @@ public class VillagersLogic : Villagers, ICharacter
     {
         IsFree,
         Construyendo,
-        Walking
     }
 
-    public string Walking(int x, int y)
-    {
-        State = VillagerState.Walking;
-        
-        int newPositionX = x - y;
-        int newPositionY = y - x;
-        
-        int movX = Math.Clamp(newPositionX, -Speed, Speed);  // clamp > para que no se mueva menos de lo permitido ni mas
-        int movY = Math.Clamp(newPositionY, -Speed, Speed);
-
-        Position = (Position.X + movX, Position.Y + movY);
-        
-        if (newPositionX == x && newPositionY == x)
-        {
-            State = VillagerState.IsFree;
-            return $"El aldeano llego a:  {newPositionX}, {newPositionY}";
-        }
-        return Walking(0,0);
-    }
     public int Attack(ICharacter target)
     {
         int damageDone = target.RecieveAttack(AttackValue);
