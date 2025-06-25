@@ -4,7 +4,7 @@ public class Menu
 {
     public string MenuScreen()
     {
-         string MenuMessage = "1. Crear Jugador      Ingresar = (Ingresar NombreJugador Id)" +
+         string MenuMessage ="1. Crear Jugador      Ingresar = (Ingresar NombreJugador Id)" +
                              "2. Elegir Civilización Ingersar = (CrearCivilización Civilización Id)" +
                              "3. Construir           Ingresar = (Construir Unidad Coordenadas<x y> )" +
                              "4. Recolectar          Ingresar = (Recolectar Cantero CantidadAldeanos)" +

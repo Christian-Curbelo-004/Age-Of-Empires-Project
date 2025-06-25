@@ -1,4 +1,6 @@
 
+using System.Diagnostics;
+
 namespace ClassLibrary1.CivilizationDirectory
 {
     public class Centuries : Soldier

@@ -56,7 +56,6 @@ namespace ClassLibrary1
                 map.PlaceEntity(villager, 12 + i, 12);
             }
         }
-
         public void InitializePlayer(Map map)
         {
             PlayerOne = new Player(123)
