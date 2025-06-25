@@ -2,7 +2,7 @@ namespace ClassLibrary1.LogicDirectory;
 
 public class Menu
 {
-    public string MenuScreen()
+    public static string MenuScreen()
     {
          string MenuMessage ="1. Crear Jugador      Ingresar = (Ingresar NombreJugador Id)" +
                              "2. Elegir Civilización Ingersar = (CrearCivilización Civilización Id)" +
@@ -14,5 +14,12 @@ public class Menu
                              "8. Comandos            Ingresar = (Pedir Comandos NombreJugador)" +
                              "9. Construcciones      Ingresar = (Pedir Opciones CreacionConstruccion)";
          return MenuMessage;
+    }
+
+    public string WelcomeMessage()
+    {
+        string Welcome = "   Bienvenido al Juego Game of Empires  " +
+                         "-------------------------------------------";
+        return Welcome;
     }
 }

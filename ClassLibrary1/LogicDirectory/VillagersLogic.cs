@@ -17,12 +17,12 @@ public class VillagersLogic : Villagers, ICharacter
     {
         IsFree,
         Construyendo,
-        Caminando
+        Walking
     }
 
-    public string Caminando(int x, int y)
+    public string Walking(int x, int y)
     {
-        State = VillagerState.Caminando;
+        State = VillagerState.Walking;
         
         int newPositionX = x - y;
         int newPositionY = y - x;
@@ -37,7 +37,7 @@ public class VillagersLogic : Villagers, ICharacter
             State = VillagerState.IsFree;
             return $"El aldeano llego a:  {newPositionX}, {newPositionY}";
         }
-        return Caminando(0,0);
+        return Walking(0,0);
     }
     public int Attack(ICharacter target)
     {
@@ -51,7 +51,7 @@ public class VillagersLogic : Villagers, ICharacter
         return Life;
     }
 
-    public bool Construyendo(Buildings target, int builders)
+    public bool Build(Buildings target, int builders)
     {
         if (State == VillagerState.IsFree)
         {
@@ -66,45 +66,3 @@ public class VillagersLogic : Villagers, ICharacter
         return new Cost(120, 50, 0, 0);
     }
 }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//public bool Build(Buildings target,int builders)
-    //{
-        //target.ConstructionTimeLeft = Math.Max(0, target.ConstructionTimeLeft - builders);
-        //if (target.ConstructionTimeLeft <= 0)
-        //{
-            //return true;
-        //}
-        //else
-        //{
-            //return false;
-        //}
-    //}
-    //public bool Collect(Quary target, int collectors)
-    //{
-        //target.ExtractionRate = Math.Max(0, target.ExtractionRate - collectors);
-        //if (target.ExtractionRate <= 0)
-        //{
-            //return true;
-        //}
-        //else
-        //{
-            //return false;
-        //}
-    //}
-//}

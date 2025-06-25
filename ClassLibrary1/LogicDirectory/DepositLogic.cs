@@ -1,9 +1,4 @@
-// using System.Data.SqlTypes;
-// using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
-// using ClassLibrary1.QuaryDirectory;
-// using CreateBuildings;
-
 namespace ClassLibrary1.LogicDirectory;
 
 public class DepositLogic : Deposit
