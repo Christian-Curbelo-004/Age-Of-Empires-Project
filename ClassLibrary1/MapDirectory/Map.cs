@@ -87,5 +87,6 @@ namespace ClassLibrary1.MapDirectory
                 for (int y = 0; y < _height; y++)
                     yield return Cells[x, y];
         }
+        
     }
 }

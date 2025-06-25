@@ -78,7 +78,27 @@ namespace ClassLibrary1
             GenerateGoldMine(map);
             GenerateVillagers(map);
         }
-    }
+        public void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
+        {
+            Random random = new Random();
+            for (int i = 0; i < cantidadrecursos; i++)
+            {
+                int x = random.Next(inicialX, inicialX + width);
+                int y = random.Next(inicialY, inicialY + height);
 
-  
+                int recurso = random.Next(3);
+                IMapEntity entity;
+
+                if (recurso == 0)
+                    entity = new Forest(5, 0, 50, 150);
+                else if (recurso == 1)
+                    entity = new GoldMine(5, 0, 50, 50);
+                else
+                    entity = new StoneMine(5, 0, 50, 75);
+
+                map.PlaceEntity(entity,x,y);
+            }
+        }
+    }
+    
 }

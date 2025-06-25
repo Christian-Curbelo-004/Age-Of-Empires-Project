@@ -291,6 +291,7 @@ class Program
     {
         GameFacade gameFacade = new GameFacade();
         Map map = gameFacade.GenerateMap();
+        gameFacade.RecursosEnEsquinas(map, 0, 0, 20, 20, 20);
         gameFacade.InitializePlayer(map);
         ShowScreen showScreen = new ShowScreen(map, gameFacade.PlayerOne);
         showScreen.Screen();
