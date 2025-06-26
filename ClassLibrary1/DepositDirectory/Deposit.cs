@@ -13,6 +13,11 @@ namespace ClassLibrary1.DepositDirectory
             MaxCapacity = maxCapacity;
             CurrentStorage = 0;
         }
+
+        public virtual int ActualResources()
+        {
+            return 0;
+        }
     }
 }
 

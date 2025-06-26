@@ -13,7 +13,7 @@ namespace  ClassLibrary1.DepositDirectory
         }
         public void StoreFood(int amount)
         {
-            //StoreResource(amount,this.ResourceType);
+            CurrentFood = Math.Min(CurrentFood + amount, MaxCapacity);
         }
 
         public Cost GetCost()
@@ -21,6 +21,11 @@ namespace  ClassLibrary1.DepositDirectory
             return new Cost(0, 100, 0, 20);
         }
         public string EntityType => "WindMill";
+
+        public override int ActualResources()
+        {
+            return CurrentStorage;
+        }
 
     }      
 }

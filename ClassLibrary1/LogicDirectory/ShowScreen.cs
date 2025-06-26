@@ -1,3 +1,4 @@
+using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 namespace ClassLibrary1;
@@ -29,6 +30,17 @@ public class ShowScreen
         }
         return seguisjugando;
     }
+
+    public List<string> GetInfoResources()
+    {
+        List<string> Resources = new List<string>();
+        foreach (Deposit deposit in _map.GetEntities<Deposit>())
+        {
+            string recursocantidad= $"{deposit.GetType().Name} tiene {deposit.ActualResources()} de {deposit.MaxCapacity} "
+            Resources.Add(recursocantidad);
+        }
+
+        return Resources;
+    }
     
 }   
-

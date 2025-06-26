@@ -12,6 +12,7 @@ namespace ClassLibrary1.DepositDirectory
         }
         public void StoreGold(int amount)
         {
+            CurrentGold = Math.Min(CurrentGold + amount, MaxCapacity);
         }
 
         public Cost GetCost()
@@ -19,6 +20,11 @@ namespace ClassLibrary1.DepositDirectory
             return new Cost(0, 100, 0, 150);
         }
         public string EntityType => "GoldDeposit";
+
+        public override int ActualResources()
+        {
+            return CurrentStorage;
+        }
 
     }      
 }

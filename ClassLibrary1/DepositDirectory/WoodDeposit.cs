@@ -13,7 +13,7 @@ namespace ClassLibrary1.DepositDirectory
         }
         public void StoreWood(int amount)
         {
-           // StoreResource(amount, this.ResourceType);
+            CurrentWood = Math.Min(CurrentWood + amount, MaxCapacity);
         }
 
         public Cost GetCost()
@@ -22,5 +22,9 @@ namespace ClassLibrary1.DepositDirectory
         }
         public string EntityType => "WoodDeposit";
 
+        public override int ActualResources()
+        {
+            return CurrentStorage;
+        }
     }      
 }
