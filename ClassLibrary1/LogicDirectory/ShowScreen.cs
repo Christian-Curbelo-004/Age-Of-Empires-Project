@@ -36,7 +36,8 @@ public class ShowScreen
         List<string> Resources = new List<string>();
         foreach (Deposit deposit in _map.GetEntities<Deposit>())
         {
-            string recursocantidad= $"{deposit.GetType().Name} tiene {deposit.ActualResources()} de {deposit.MaxCapacity} "
+            string recursocantidad =
+                $"{deposit.GetType().Name} tiene {deposit.ActualResources()} de {deposit.MaxCapacity} ";
             Resources.Add(recursocantidad);
         }
 
