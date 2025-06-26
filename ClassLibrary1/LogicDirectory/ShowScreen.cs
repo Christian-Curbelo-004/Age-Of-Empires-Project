@@ -44,7 +44,7 @@ public class ShowScreen
         return Resources;
     }
 
-    public void ShowTasaRecoleccionRecurso(GameFacade gameFacade)
+    public void ShowTasaRecoleccionRecurso(GameFacade gameFacade) //para usar la logica del gamefacade que te guarda en un diccionario la tasa de recoleccion que recolectas por vez, y aca te lo muestre 
     {
         var tasarecurso = gameFacade.TasaRecoleccionRecurso();
         foreach (var recolectado in tasarecurso)
