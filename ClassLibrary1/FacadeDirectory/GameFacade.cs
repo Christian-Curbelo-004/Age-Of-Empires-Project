@@ -123,6 +123,15 @@ namespace ClassLibrary1
                 map.PlaceEntity(entity,x,y);
             }
         }
+        public Dictionary<string,int> TasaRecoleccionRecurso() //para poder mostrar tasa de recoleccion por tipo de recurso
+        {
+            var tasarecurso = new Dictionary<string, int>()
+            {
+                { "gold", 4 }, { "stone", 5 }, { "wood", 6 }, { "food", 5 }
+            };
+            return tasarecurso;
+        }
+        
     }
     
 }

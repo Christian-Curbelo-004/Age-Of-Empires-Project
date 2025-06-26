@@ -43,5 +43,15 @@ public class ShowScreen
 
         return Resources;
     }
+
+    public void ShowTasaRecoleccionRecurso(GameFacade gameFacade)
+    {
+        var tasarecurso = gameFacade.TasaRecoleccionRecurso();
+        foreach (var recolectado in tasarecurso)
+        {
+            Console.WriteLine($"{recolectado.Key} : {recolectado.Value}");
+        }
+        
+    }
     
 }   
