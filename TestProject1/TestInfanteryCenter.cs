@@ -23,6 +23,6 @@ public class TestInfanteryCenter
     public void ConstructionCostIncorrect()
     {
         var constructionCost = new Dictionary<string, int>();
-       //eliminado >   centerInf.GetConstructionCost();
+      //    centerInf.GetConstructionCost();
     }
 }

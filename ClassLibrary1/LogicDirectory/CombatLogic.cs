@@ -3,12 +3,16 @@ using ClassLibrary1.CivilizationDirectory;
 
 namespace ClassLibrary1.LogicDirectory;
 
-public class CombatLogic
+public static class CombatLogic
 {
-    public string Combat(ICharacter attacker, ICharacter target)
+    public static int Damage(ICharacter attacker, ICharacter target)
     {
 
         target.Life -= attacker.AttackValue;
-        return target.Life.ToString();
+        
+        if(target.Life < 0)
+            target.Life = 0;
+
+        return target.Life;
     }
 }

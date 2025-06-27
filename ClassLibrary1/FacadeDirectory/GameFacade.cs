@@ -1,6 +1,6 @@
+//using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
@@ -8,18 +8,18 @@ using ClassLibrary1.LogicDirectory;
 using CreateBuildings;
 
 
-namespace ClassLibrary1
+namespace ClassLibrary1.FacadeDirectory
 {
     public class GameFacade : IFacade
     {
-        private string messageProgram = Menu.WelcomeMessage() + "/n" + Menu.MenuScreen();
+        private string _messageProgram = Menu.WelcomeMessage() + "/n" + Menu.MenuScreen();
         public Player PlayerOne { get; private set; }
         public Player PlayerTwo { get; private set; }
         private readonly Random _random = new Random();
 
         public string MenuProgram()
         {
-            return messageProgram;
+            return _messageProgram;
         }
         public Map GenerateMap()
         {
@@ -102,6 +102,19 @@ namespace ClassLibrary1
             GenerateVillagers(map);
             GenerateVillagers2(map);
         }
+
+        public string Attack(ICharacter attacker, ICharacter target)
+        {
+            int vidaObjetivo = CombatLogic.Damage(attacker, target);
+            string mensaje = $"La vida restante del objetivo es {vidaObjetivo}";
+
+            if (vidaObjetivo < 0)
+                mensaje += "El objetivo ha sido derrotado";
+            return mensaje;
+            
+            // en el test, string resultado = GameFacade.Attack(attacker, target)
+        }
+        
         public void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
         {
             Random random = new Random();
