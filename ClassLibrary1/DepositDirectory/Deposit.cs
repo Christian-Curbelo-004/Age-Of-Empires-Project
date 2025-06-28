@@ -20,22 +20,3 @@ namespace ClassLibrary1.DepositDirectory
         }
     }
 }
-
-
-//public int StoreResource(int amount, GameResourceType type)
-        //{
-            //if (type == ResourceType)
-            //{
-                //int availablespace = MaxCapacity - CurrentStorage;
-                //if (availablespace <= 0)
-                //{
-                    //return 0;
-                //}
-                //int stored = Math.Min(amount, availablespace);
-                //CurrentStorage += stored;
-                //return stored;
-            //}
-            //return 0;
-        //}
-    //}
-//}
