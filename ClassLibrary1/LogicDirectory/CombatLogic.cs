@@ -7,7 +7,6 @@ public static class CombatLogic
 {
     public static int Damage(ICharacter attacker, ICharacter target)
     {
-
         target.Life -= attacker.AttackValue;
         
         if(target.Life < 0)

@@ -1,11 +1,11 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
-using ClassLibrary1.FacadeDirectory;
+// using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
-namespace CommandDirectory;
+namespace ClassLibrary1.CommandDirectory;
 
 public class BuildingsConstructor
 {
