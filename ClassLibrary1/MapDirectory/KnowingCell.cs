@@ -43,7 +43,7 @@ public class KnowingCell
             }
 
             var entity = cell.Entity;
-            if (entity is ArcherCenter archerCenter && entity.OwnerId == ownerID)
+            if (entity is CivicCenter civicCenter && entity.OwnerId == ownerID)
             {
                 CounterCivicCenter += 1;
             }
