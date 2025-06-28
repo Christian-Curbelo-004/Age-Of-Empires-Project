@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6da980cf-4779-40f7-9dae-6a64f86aa08f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.AssemblyInfo.cs" afterDir="false" />
-    </list>
+    <list default="true" id="4a0e9c83-d259-4270-bcd4-b31d13f576fb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +11,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
+  "associatedIndex": 5
 }]]></component>
-  <component name="ProjectId" id="2ydv5lILjunxkoEYtbOJ86lHZvC" />
+  <component name="ProjectId" id="2z8sx33iluOdsMlgmmMKl1tCTEi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,21 +27,21 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\jota\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\jota\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\jota\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Estudiante UCU\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\Estudiante UCU\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6da980cf-4779-40f7-9dae-6a64f86aa08f" name="Changes" comment="" />
-      <created>1750177084170</created>
+      <changelist id="4a0e9c83-d259-4270-bcd4-b31d13f576fb" name="Changes" comment="" />
+      <created>1751124278837</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1750177084170</updated>
-      <workItem from="1750177086030" duration="63000" />
+      <updated>1751124278837</updated>
+      <workItem from="1751124281749" duration="123000" />
     </task>
     <servers />
   </component>

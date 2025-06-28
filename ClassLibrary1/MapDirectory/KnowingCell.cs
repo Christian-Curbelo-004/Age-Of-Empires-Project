@@ -29,8 +29,25 @@ public class KnowingCell
                 maxCapacity += capacityEntity.Capacity;
             }
         }
-
         Console.WriteLine($"El jugador {ownerId} tiene {maxCapacity} de capacidad");
+    }
+    public void CheckCivicCenter(int ownerID)
+    {
+        int CounterCivicCenter = 0;
+
+        foreach (var cell in map.Cells)
+        {
+            if (!cell.IsOccupied || cell.Entity == null)
+            {
+                continue;
+            }
+
+            var entity = cell.Entity;
+            if (entity is ArcherCenter archerCenter && entity.OwnerId == ownerID)
+            {
+                CounterCivicCenter += 1;
+            }
+        }
     }
 }
 
