@@ -11,10 +11,5 @@ namespace ClassLibrary1.BuildingsDirectory
         {
             OwnerId = ownerId;
         }
-
-        public Cost Getcost()
-        {
-            return new Cost(0, 100, 10, 30);
-        }
     }
 }

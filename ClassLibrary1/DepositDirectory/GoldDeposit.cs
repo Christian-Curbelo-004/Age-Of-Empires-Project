@@ -23,7 +23,7 @@ namespace ClassLibrary1.DepositDirectory
 
         public override int ActualResources()
         {
-            return CurrentStorage;
+            return CurrentGold;
         }
 
     }      

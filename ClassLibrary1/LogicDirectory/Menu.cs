@@ -10,7 +10,7 @@ public class Menu
                              "4. Recolectar          Ingresar = (Recolectar Cantero CantidadAldeanos)" +
                              "5. Crear Aldeanos      Ingresar = (Crear  Aldeanos CantidadAldeanos)" +
                              "6. Crear Soldados      Ingresar = (Crear Soldados CantidadSoldados) " +
-                             "7. Atacar              Ingresar = (Atacar )      " +
+                             "7. Atacar              Ingresar = (Atacar Soldado Coordenadas <x y> ) " +
                              "8. Comandos            Ingresar = (Pedir Comandos NombreJugador)" +
                              "9. Construcciones      Ingresar = (Pedir Opciones CreacionConstruccion)";
          return MenuMessage;

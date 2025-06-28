@@ -15,7 +15,7 @@ public class Constructor
             timeleft--;
         }
 
-        buildings.IsConstructed = true; //para cambiar en el mapa para cuadnoe esta construido ya se ocupe el espacio
+        buildings.IsConstructed = true; //para cambiar en el mapa para cuando esta construido ya se ocupe el espacio
         buildings.Position = (x, y); 
         buildings.OwnerId = player.Id; //pra que jugador es que se esta creando la estructura
         map.PlaceEntity(buildings, x, y); //para agregarlo en las coordenadas del mapa

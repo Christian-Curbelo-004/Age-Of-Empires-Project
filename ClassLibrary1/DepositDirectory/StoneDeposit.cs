@@ -16,10 +16,7 @@ namespace ClassLibrary1.DepositDirectory
         {
             CurrentStone = Math.Min(CurrentStone + amount, MaxCapacity);
         }
-        public Cost GetCost()
-        {
-            return new Cost(20, 100, 0, 0);
-        }
+        
         public string EntityType => "StoneDeposit";
 
         public override int ActualResources()

@@ -12,11 +12,6 @@ namespace ClassLibrary1.CivilizationDirectory
         {
             OwnerId = ownerId;
         }
-
-        public Cost GetCost()
-        {
-            return new Cost(0, 100, 0, 15);
-        }
     }
 }
  
