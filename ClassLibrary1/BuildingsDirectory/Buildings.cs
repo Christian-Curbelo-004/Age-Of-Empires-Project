@@ -9,6 +9,8 @@ namespace CreateBuildings
         public (int X, int Y) Position { get; set; }
         public string Name { get; set; }
        // public int Speed { get; }  // Buildings typically do not move, so speed is set to 0
+       public int ConstructionTime { get; set; }
+       public bool IsConstructed { get; set; } = false;
         public int Endurence { get; set; }
         public Buildings(int endurence, string name)
         {

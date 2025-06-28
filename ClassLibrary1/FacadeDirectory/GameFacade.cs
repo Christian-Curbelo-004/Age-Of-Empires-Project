@@ -144,6 +144,12 @@ namespace ClassLibrary1.FacadeDirectory
             };
             return tasarecurso;
         }
+
+        public async Task BuildBuildingWithAsync(Buildings buildings, Map map, int x, int y, Player player)
+        {
+            Constructor constructor = new Constructor();
+            await constructor.BuildEstructura(buildings, map, x, y, player);
+        }
         
     }
     
