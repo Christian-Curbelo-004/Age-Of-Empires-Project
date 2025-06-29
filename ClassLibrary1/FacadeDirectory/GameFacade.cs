@@ -59,7 +59,7 @@ namespace ClassLibrary1.FacadeDirectory
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(12, 3, 123, PlayerOne.Id)
+                var villager = new Villagers(12, 3, 123, 5)
                 {
                     Position = (12 + i, 12)
                 };
@@ -73,7 +73,7 @@ namespace ClassLibrary1.FacadeDirectory
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(12, 3, 123, PlayerTwo.Id)
+                var villager = new Villagers(12, 3, 123, 8)
                 {
                     Position = (88 + i, 88)
                 };
@@ -181,7 +181,5 @@ namespace ClassLibrary1.FacadeDirectory
         {
             var stone = new StoneMine(0, 100, 10, 1) { Position = (x, y) };
         }
-
     }
-    
 }

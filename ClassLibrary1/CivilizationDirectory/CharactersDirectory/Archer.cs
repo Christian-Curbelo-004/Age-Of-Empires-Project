@@ -18,5 +18,4 @@ public class Archer : Soldier
         Life -= damage;
         return Life;
     }
-    
 }
