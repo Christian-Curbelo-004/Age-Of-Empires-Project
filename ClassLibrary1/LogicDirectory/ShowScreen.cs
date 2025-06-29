@@ -20,7 +20,8 @@ public class ShowScreen
         Console.Clear();
         PrintMap printMap = new PrintMap(_map);
         printMap.DisplayMap();
-
+        Console.WriteLine($"Poblacion del juego: {_playerOne.CurrentPoblacion}");
+        
         string seguisjugando = "seguis jugando";
         string message = "Perdiste";
         int health = _playerOne.CivicCenter.ActualHealth;
