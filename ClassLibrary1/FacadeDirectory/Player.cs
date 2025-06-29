@@ -11,35 +11,26 @@ public class Player
     public int Id { get; set; }
     public string Civilization { get; set; }
     public object Buildings { get; set; }
-    public object Units { get; set; }
+    public List<Units> Units { get; set; } = new();
+    public int MaxPoblacion { get; set; }
+    public int CurrentPoblacion => Units.Count;
     public (int, int) StartingPosition { get; set; }
     public CivicCenter CivicCenter { get; set; }
 
-    public Player(int id)
+    public Player(int id, string civilization, int maxPoblacion)
     {
-        Id = id;
-        Civilization = "Civilization";
-        CivicCenter = new CivicCenter();
-    }
-    public Player(int id, string civilization)
-        {
         Id = id;
         Civilization = civilization;
-        
+        CivicCenter = new CivicCenter();
+        MaxPoblacion = maxPoblacion;
+      
+    }
+    public void AddUnit(Units unit)
+    {
+        if (CurrentPoblacion < MaxPoblacion)
+        {
+            Units.Add(unit);
         }
-
-    public void AddUnit(Villagers villager)
-    {
-        
     }
-
-    public void AddSoldier(bool newSoldier)
-    {
-        throw new NotImplementedException();
-    }
-
-    public object GetAvailableDeposit(object resourceType)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

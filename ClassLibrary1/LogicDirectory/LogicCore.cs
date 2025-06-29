@@ -13,8 +13,8 @@ public abstract class LogicCore : ILogic
            // if (playerOne.HasResources(cost) && playerOne.CivicCenter.CanCreateSoldiers())
             {
              //   playerOne.SpendResources(cost);
-                var newSoldier = playerOne.CivicCenter.Equals(soldier);
-                playerOne.AddSoldier(newSoldier);
+            //    var newSoldier = playerOne.CivicCenter.Equals(soldier);
+             //   playerOne.AddSoldier(newSoldier);
             }
         }
         CreateSoldier(UnitFactory.CreateInfantery());

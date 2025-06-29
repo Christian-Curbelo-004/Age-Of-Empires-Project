@@ -78,7 +78,7 @@
 using ClassLibrary1;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.FacadeDirectory;
-using ClassLibrary1.QuaryDirectory;
+
 
 class Program
 {

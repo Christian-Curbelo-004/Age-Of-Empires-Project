@@ -85,7 +85,7 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void InitializePlayer(Map map)
         {
-            PlayerOne = new Player(123)
+            PlayerOne = new Player(123, "", 50)
             {
                 Id = 1,
                 Civilization = new string("Roman"), // Reemplaza por tu civilizaciÃ³n concreta
@@ -93,7 +93,7 @@ namespace ClassLibrary1.FacadeDirectory
                 Buildings = new List<Buildings>(),
                 Units = new List<Units>()
             };
-            PlayerTwo = new Player(124)
+            PlayerTwo = new Player(124,"", 50)
             {
                 Id = 2,
                 Civilization = new string("Vikings"), // Reemplaza por tu civilizaciÃ³n concreta
@@ -181,5 +181,6 @@ namespace ClassLibrary1.FacadeDirectory
         {
             var stone = new StoneMine(0, 100, 10, 1) { Position = (x, y) };
         }
-    }
+    }   
+    
 }
