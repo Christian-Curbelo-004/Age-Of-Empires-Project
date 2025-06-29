@@ -11,10 +11,10 @@ namespace ClassLibrary1.MapDirectory
             this.map = map;
         }
 
-        public string CheckPopulation(int ownerId)
+        public int CheckPopulation(int ownerId)
         {
             int maxCapacity = 0;
-
+            string message = $"El jugador {ownerId} tiene {maxCapacity} de capacidad";
             foreach (var cell in map.Cells)
             {
                 if (!cell.IsOccupied || cell.Entity == null)
@@ -27,7 +27,7 @@ namespace ClassLibrary1.MapDirectory
                 }
             }
 
-            return $"El jugador {ownerId} tiene {maxCapacity} de capacidad";
+            return maxCapacity;
         }
     }
 }
