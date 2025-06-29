@@ -2,7 +2,6 @@ using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
-
 namespace CommandDirectory;
 public class CombatService
 {
@@ -15,7 +14,7 @@ public class CombatService
         _mover = mover;
     }
 
-    public async Task AttackAsync(string entityType, string destination)
+    public async Task<string> AttackAsync(string entityType, string destination)
     {
         await _mover.MoveEntityAsync(entityType, destination);
         var (x, y) = _mover.ParseCoords(destination);
@@ -26,27 +25,24 @@ public class CombatService
 
         if (attacker == null)
         {
-            Console.WriteLine($"'{entityType}' no puede atacar.");
-            return;
+            return $"'{entityType}' no puede atacar.";
         }
 
         if (cell.Entity is ICharacter target)
         {
-            Console.WriteLine($"{entityType} atacando a personaje...");
             await Task.Delay(2000);
             int damage = attacker.Attack(target);
-            Console.WriteLine($"Daño infligido: {damage}. Vida restante: {target.Life}");
+            return $"{entityType} atacó a personaje.\nDaño infligido: {damage}. Vida restante: {target.Life}";
         }
         else if (cell.Entity is Buildings building)
         {
-            Console.WriteLine($"{entityType} atacando edificio...");
             await Task.Delay(2000);
             building.Endurence -= attacker.AttackValue;
-            Console.WriteLine($"Daño a edificio: {attacker.AttackValue}. Resistencia restante: {building.Endurence}");
+            return $"{entityType} atacó edificio.\nDaño a edificio: {attacker.AttackValue}. Resistencia restante: {building.Endurence}";
         }
         else
         {
-            Console.WriteLine($"No hay objetivo para atacar en ({x},{y}).");
+            return $"No hay objetivo para atacar en ({x},{y}).";
         }
     }
 }

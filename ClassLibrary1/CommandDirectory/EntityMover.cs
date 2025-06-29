@@ -1,5 +1,8 @@
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 using ClassLibrary1.MapDirectory;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CommandDirectory;
 
@@ -9,20 +12,22 @@ public class EntityMover
 
     public EntityMover(Map map) => _map = map;
 
-    public async Task MoveEntityAsync(string entityType, string destination)
+    public async Task<List<string>> MoveEntityAsync(string entityType, string destination)
     {
+        var messages = new List<string>();
         var (x, y) = ParseCoords(destination);
+
         if (!_map.IsWithinBounds(x, y))
         {
-            Console.WriteLine($"Posición inválida ({x},{y}).");
-            return;
+            messages.Add($"Posición inválida ({x},{y}).");
+            return messages;
         }
 
         var cell = _map.GetAllCells().FirstOrDefault(c => c.EntityType == entityType);
         if (cell?.Entity is not IMovable movableEntity)
         {
-            Console.WriteLine($"'{entityType}' no es una entidad móvil.");
-            return;
+            messages.Add($"'{entityType}' no es una entidad móvil.");
+            return messages;
         }
 
         int currentX = cell.PosX, currentY = cell.PosY;
@@ -34,7 +39,7 @@ public class EntityMover
 
             if (_map.Cells[nextX, nextY].IsOccupied)
             {
-                Console.WriteLine($"Celda ocupada en ({nextX}, {nextY}).");
+                messages.Add($"Celda ocupada en ({nextX}, {nextY}).");
                 break;
             }
 
@@ -54,11 +59,13 @@ public class EntityMover
 
             currentX = nextX;
             currentY = nextY;
-            Console.WriteLine($"{entityType} se movió a ({currentX},{currentY}).");
+            messages.Add($"{entityType} se movió a ({currentX},{currentY}).");
         }
 
         if (currentX == x && currentY == y)
-            Console.WriteLine($"{entityType} llegó a destino ({x},{y}).");
+            messages.Add($"{entityType} llegó a destino ({x},{y}).");
+
+        return messages;
     }
 
     public (int x, int y) ParseCoords(string input)

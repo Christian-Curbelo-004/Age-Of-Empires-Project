@@ -8,39 +8,30 @@ public class CommandProcessor
         _commands = commands;
     }
 
-    public async Task ProcessCommand(string input)
+    public async Task<string> ProcessCommand(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
-        {
-            Console.WriteLine("El comando está vacío.");
-            return;
-        }
+            return "El comando está vacío.";
 
         var parts = input.Split('+');
         if (parts.Length < 3)
-        {
-            Console.WriteLine("El comando debe tener el formato: verbo+entidad+coordenadas.");
-            return;
-        }
+            return "El comando debe tener el formato: verbo+entidad+parametros.";
 
         string verb = parts[0].ToLower();
         string entityType = parts[1];
         string destination = parts[2];
 
-        if (_commands.TryGetValue(verb, out var command))
+        if (!_commands.TryGetValue(verb, out var command))
+            return $"Comando no reconocido: '{verb}'.";
+
+        try
         {
-            try
-            {
-                await command.ExecuteAsync(entityType, destination);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al ejecutar el comando: {ex.Message}");
-            }
+            await command.ExecuteAsync(entityType, destination);
+            return $"Comando '{verb}' ejecutado para '{entityType}' en '{destination}'.";
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine($"Comando no reconocido: '{verb}'.");
+            return $"Error al ejecutar el comando: {ex.Message}";
         }
     }
 }

@@ -14,19 +14,17 @@ public class BuildingsConstructor
         _map = map;
     }
 
-    public void Construct(string buildingType, string destination, int ownerId)
+    public string Construct(string buildingType, string destination, int ownerId)
     {
         var (x, y) = ParseCoords(destination);
         if (!_map.IsWithinBounds(x, y))
         {
-            Console.WriteLine($"Coordenadas ({x},{y}) fuera del mapa.");
-            return;
+            return $"Coordenadas ({x},{y}) fuera del mapa.";
         }
         var cell = _map.GetCell(x, y);
         if (cell.IsOccupied)
         {
-            Console.WriteLine($"La celda ({x},{y}) ya está ocupada, no se puede construir.");
-            return;
+            return $"La celda ({x},{y}) ya está ocupada, no se puede construir.";
         }
         Buildings newBuilding = buildingType.ToLower() switch
         {
@@ -34,22 +32,21 @@ public class BuildingsConstructor
             "civiccenter" => new CivicCenter(),
             "archercenter" => new ArcherCenter(20, 13, "ArcherCenter", 1),
             "chivarlycenter" => new ChivarlyCenter(20, 10, "ChivarlyCenter", 1),
-            "InfantryCenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),
+            "infantrycenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),
             "golddeposit" => new GoldDeposit(20, 10, "GoldDeposit", 300, 1),
             "stonedeposit" => new StoneDeposit(20, 10, "StoneDeposit", 300,1),
             "windmill" => new WindMill(20, 10, "WindMill", 300,1),
             "wooddeposit" => new WoodDeposit(20, 10, "WoodDeposit", 300, 1),
             _ => null
         };
-        if (newBuilding  == null)
+        if (newBuilding == null)
         {
-            Console.WriteLine($"Tipo de edificio '{buildingType}' no reconocido.");
-            return;
+            return $"Tipo de edificio '{buildingType}' no reconocido.";
         }
         _map.Cells[x, y].Entity = newBuilding;
         _map.Cells[x, y].IsOccupied = true;
         _map.Cells[x, y].EntityType = buildingType;
-        Console.WriteLine($"{buildingType} construido en ({x},{y}) por el jugador {ownerId}.");
+        return $"{buildingType} construido en ({x},{y}) por el jugador {ownerId}.";
     }
 
     private (int x, int y) ParseCoords(string input)
