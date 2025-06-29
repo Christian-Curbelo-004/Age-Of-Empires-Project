@@ -1,3 +1,4 @@
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
@@ -21,6 +22,12 @@ public class ShowScreen
         PrintMap printMap = new PrintMap(_map);
         printMap.DisplayMap();
         Console.WriteLine($"Poblacion del juego: {_playerOne.CurrentPoblacion}");
+
+        int actualhealth = _playerOne.CivicCenter.ActualHealth;
+        if ( actualhealth > 0 && actualhealth <= CivicCenter.MaxHealth * 0.10) // esto es para que si la vida actual del centro civico llega a ser igual al 10 % o menos del centro civico, te avise que estas en riesgo de perder
+        {
+            Console.WriteLine("Tenes poca vida en el centro civico, vas a perder crack :)");
+        }
         
         string seguisjugando = "seguis jugando";
         string message = "Perdiste";
