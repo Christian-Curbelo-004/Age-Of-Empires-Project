@@ -29,26 +29,5 @@ namespace ClassLibrary1.MapDirectory
 
             return true;
         }
-
-        public bool MoveEntity(int fromX, int fromY, int toX, int toY)
-        {
-            if (!_map.IsWithinBounds(fromX, fromY) || !_map.IsWithinBounds(toX, toY))
-                return false;
-
-            var from = _map.GetCell(fromX, fromY);
-            var to = _map.GetCell(toX, toY);
-
-            if (from.Entity == null || to.IsOccupied) return false;
-
-            to.Entity = from.Entity;
-            to.IsOccupied = true;
-            to.EntityType = from.EntityType;
-
-            from.Entity = null;
-            from.IsOccupied = false;
-            from.EntityType = null;
-
-            return true;
-        }
     }
 }

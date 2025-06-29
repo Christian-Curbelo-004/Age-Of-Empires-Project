@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+using System.Threading;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
@@ -12,13 +15,11 @@ namespace ClassLibrary1.MapDirectory
         {
             _map = map;
         }
-
-        public void DisplayMap()
+        public string DisplayMap()
         {
             if (_map?.Cells == null)
             {
-                Console.WriteLine("El mapa está vacío.");
-                return;
+                return "El mapa está vacío.";
             }
 
             int height = _map.Cells.GetLength(1);
@@ -28,32 +29,31 @@ namespace ClassLibrary1.MapDirectory
             string numFormat = new string('0', coordWidth);
             int cellWidth = 4;
 
-            // Encabezado de columnas
-            Console.Write(new string(' ', coordWidth + 1));
+            var sb = new StringBuilder();
+            sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
-                Console.Write(x.ToString(numFormat).PadRight(cellWidth));
-            Console.WriteLine();
+                sb.Append(x.ToString(numFormat).PadRight(cellWidth));
+            sb.AppendLine();
 
             // Filas
             for (int y = 0; y < height; y++)
             {
-                Console.Write(y.ToString(numFormat).PadRight(coordWidth) + " ");
+                sb.Append(y.ToString(numFormat).PadRight(coordWidth) + " ");
                 for (int x = 0; x < length; x++)
                 {
                     var cell = _map.Cells[x, y];
                     var (symbol, color) = GetSymbolAndColor(cell);
-
-                    Console.ForegroundColor = color;
-                    Console.Write(symbol.PadRight(cellWidth));
-                    Console.ResetColor();
+                    sb.Append(symbol.PadRight(cellWidth));
                 }
-                Console.WriteLine(y.ToString(numFormat).PadRight(coordWidth));
+                sb.AppendLine(y.ToString(numFormat).PadRight(coordWidth));
             }
 
-            Console.Write(new string(' ', coordWidth + 1));
+            sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
-                Console.Write(x.ToString(numFormat).PadRight(cellWidth));
-            Console.WriteLine();
+                sb.Append(x.ToString(numFormat).PadRight(cellWidth));
+            sb.AppendLine();
+
+            return sb.ToString();
         }
 
         public void StartDisplay(int refreshRateMs = 500)
@@ -61,7 +61,7 @@ namespace ClassLibrary1.MapDirectory
             while (true)
             {
                 Console.Clear();
-                DisplayMap();
+                Console.WriteLine(DisplayMap());
                 Thread.Sleep(refreshRateMs);
             }
         }
@@ -71,7 +71,7 @@ namespace ClassLibrary1.MapDirectory
             if (cell.Entity is IMapEntity entity)
             {
                 string symbol = GetSymbolForEntity(entity);
-    
+
                 ConsoleColor color = entity switch
                 {
                     GoldMine => ConsoleColor.Yellow,
@@ -87,7 +87,7 @@ namespace ClassLibrary1.MapDirectory
 
                 return (symbol, color);
             }
-            
+
             if (cell.Resource is IResource resource)
             {
                 return resource switch
@@ -98,8 +98,6 @@ namespace ClassLibrary1.MapDirectory
                     _ => ("R", ConsoleColor.Gray)
                 };
             }
-
-            // Celda vacía
             return ("[]", ConsoleColor.DarkGray);
         }
 

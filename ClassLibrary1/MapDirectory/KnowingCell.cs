@@ -1,53 +1,33 @@
 using ClassLibrary1.BuildingsDirectory;
 
-namespace ClassLibrary1.MapDirectory;
-
-public class KnowingCell
+namespace ClassLibrary1.MapDirectory
 {
-    private readonly Map map;
-
-    public KnowingCell(Map map)
+    public class KnowingCell
     {
-        this.map = map;
-    }
+        private readonly Map map;
 
-    public void CheckPopulation(int ownerId)
-    {
-        int maxCapacity = 0;
-        int occupied = 0;
-
-        foreach (var cell in map.Cells)
+        public KnowingCell(Map map)
         {
-            if (!cell.IsOccupied || cell.Entity == null)
-            {
-                continue;
-            }
-
-            var entity = cell.Entity;
-            if (entity is ICapacity capacityEntity && entity.OwnerId == ownerId)
-            {
-                maxCapacity += capacityEntity.Capacity;
-            }
+            this.map = map;
         }
-        Console.WriteLine($"El jugador {ownerId} tiene {maxCapacity} de capacidad");
-    }
-    public void CheckCivicCenter(int ownerID)
-    {
-        int CounterCivicCenter = 0;
 
-        foreach (var cell in map.Cells)
+        public string CheckPopulation(int ownerId)
         {
-            if (!cell.IsOccupied || cell.Entity == null)
+            int maxCapacity = 0;
+
+            foreach (var cell in map.Cells)
             {
-                continue;
+                if (!cell.IsOccupied || cell.Entity == null)
+                    continue;
+
+                var entity = cell.Entity;
+                if (entity is ICapacity capacityEntity && entity.OwnerId == ownerId)
+                {
+                    maxCapacity += capacityEntity.Capacity;
+                }
             }
 
-            var entity = cell.Entity;
-            if (entity is CivicCenter civicCenter && entity.OwnerId == ownerID)
-            {
-                CounterCivicCenter += 1;
-            }
+            return $"El jugador {ownerId} tiene {maxCapacity} de capacidad";
         }
     }
 }
-
