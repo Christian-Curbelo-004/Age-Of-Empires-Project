@@ -21,6 +21,7 @@ namespace ClassLibrary1.FacadeDirectory
         {
             return _messageProgram;
         }
+
         public Map GenerateMap()
         {
             return new Map(100, 100); // Mapa 100x100
@@ -41,6 +42,7 @@ namespace ClassLibrary1.FacadeDirectory
             PlayerOne.Buildings.Equals(civic);
             map.PlaceEntity(civic, 10, 10);
         }
+
         public void GenerateCivicCenter2(Map map)
         {
             var civic = new CivicCenter
@@ -52,11 +54,12 @@ namespace ClassLibrary1.FacadeDirectory
             PlayerTwo.Buildings.Equals(civic);
             map.PlaceEntity(civic, 90, 90);
         }
+
         public void GenerateVillagers(Map map)
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers( 12, 3,  123, PlayerOne.Id)
+                var villager = new Villagers(12, 3, 123, PlayerOne.Id)
                 {
                     Position = (12 + i, 12)
                 };
@@ -65,11 +68,12 @@ namespace ClassLibrary1.FacadeDirectory
                 map.PlaceEntity(villager, 12 + i, 12);
             }
         }
+
         public void GenerateVillagers2(Map map)
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers( 12, 3,  123, PlayerTwo.Id)
+                var villager = new Villagers(12, 3, 123, PlayerTwo.Id)
                 {
                     Position = (88 + i, 88)
                 };
@@ -78,6 +82,7 @@ namespace ClassLibrary1.FacadeDirectory
                 map.PlaceEntity(villager, 12 + i, 12);
             }
         }
+
         public void InitializePlayer(Map map)
         {
             PlayerOne = new Player(123)
@@ -111,10 +116,10 @@ namespace ClassLibrary1.FacadeDirectory
             if (vidaObjetivo < 0)
                 mensaje += "El objetivo ha sido derrotado";
             return mensaje;
-            
+
             // en el test, string resultado = GameFacade.Attack(attacker, target)
         }
-        
+
         public void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
         {
             Random random = new Random();
@@ -133,10 +138,12 @@ namespace ClassLibrary1.FacadeDirectory
                 else
                     entity = new StoneMine(5, 0, 50, 75);
 
-                map.PlaceEntity(entity,x,y);
+                map.PlaceEntity(entity, x, y);
             }
         }
-        public Dictionary<string,int> TasaRecoleccionRecurso() //para poder mostrar tasa de recoleccion por tipo de recurso
+
+        public Dictionary<string, int>
+            TasaRecoleccionRecurso() //para poder mostrar tasa de recoleccion por tipo de recurso
         {
             var tasarecurso = new Dictionary<string, int>()
             {
@@ -150,7 +157,31 @@ namespace ClassLibrary1.FacadeDirectory
             Constructor constructor = new Constructor();
             await constructor.BuildEstructura(buildings, map, x, y, player);
         }
-        
+
+
+        public void PlaceFarm(Map map, int x, int y) // ya se que figura como metodo, hay que completarlo
+        {
+            var farm = new Farm(0, 100, 10, 1) { Position = (x, y) };
+            map.PlaceEntity(farm, x, y);
+        }
+
+        public void PlaceForest(Map map, int x, int y)
+        {
+            var forest = new Forest(0, 100, 10, 1) { Position = (x, y) };
+            map.PlaceEntity(forest, x, y);
+        }
+
+        public void PlaceGoldMine(Map map, int x, int y)
+        {
+            var  gold = new GoldMine(0, 100, 10, 1) { Position = (x, y) };
+            map.PlaceEntity(gold, x, y);
+        }
+
+        public void PlaceStoneMine(Map map, int x, int y)
+        {
+            var stone = new StoneMine(0, 100, 10, 1) { Position = (x, y) };
+        }
+
     }
     
 }
