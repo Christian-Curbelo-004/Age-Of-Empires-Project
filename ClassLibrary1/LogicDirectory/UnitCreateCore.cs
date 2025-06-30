@@ -1,3 +1,4 @@
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.FacadeDirectory;
 namespace ClassLibrary1.LogicDirectory;
@@ -9,6 +10,7 @@ public class UnitCreateCore
     private readonly Map map;
     private readonly KnowingCell knowingCell;
     private readonly Player player;
+    private CivicCenter civicCenter = new CivicCenter();
     
     public UnitCreateCore(IResourceInventory resourceInventory, Map map, Player player)
     {
@@ -85,13 +87,16 @@ public class UnitCreateCore
         }
     }
     public void ReturnVillager()
-    {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+    { 
+        if (civicCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Villagers))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateVillagers();
-                inventory.Spend(CreationCost.Villagers);
+                if (unitAffordable.CanAfford(CreationCost.Villagers))
+                {
+                    UnitFactory.CreateVillagers();
+                    inventory.Spend(CreationCost.Villagers);
+                }
             }
         }
     }

@@ -9,7 +9,6 @@ namespace ClassLibrary1.BuildingsDirectory;
         public (int X, int Y) Position { get; set; }
         public const int MaxHealth = 500;
         public int ActualHealth = 500;
-        private bool isbuilded = false; // Bandera para saber si se construye 
         private IMapEntity _mapEntityImplementation;
         public int Capacity { get; } = 10; // Capacidad del CC
         

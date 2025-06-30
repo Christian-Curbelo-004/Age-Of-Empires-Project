@@ -18,7 +18,7 @@ public class Menu
 
     public static string WelcomeMessage()
     {
-        string Welcome = "   Bienvenido al Juego Game of Empires  " +
+        string Welcome = "   Bienvenido al Juego Age of Empires  " +
                          "-------------------------------------------";
         return Welcome;
     }
