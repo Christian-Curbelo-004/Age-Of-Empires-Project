@@ -19,20 +19,3 @@ public class DepositLogic : Deposit
 
     }
 }
-    
-
-/* otra solucion
- 
- * public class DepositLogic : Deposit
-{
-    public bool IsOccupied => CurrentStorage >= MaxCapacity;
-
-    public DepositLogic(int endurence, int constructiontimeLeft, string name, int maxCapacity)
-        : base(endurence, constructiontimeLeft, name, maxCapacity)
-    {
-        // no se necesita lógica aquí, IsOccupied se calcula sola
-    }
-}
-
- */
-

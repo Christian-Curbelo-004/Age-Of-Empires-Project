@@ -1,6 +1,7 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
@@ -9,6 +10,7 @@ namespace ClassLibrary1.CommandDirectory;
 public class BuildingsConstructor
 {
     private readonly Map _map;
+    private readonly ResourceInventory inventory;
     public BuildingsConstructor(Map map)
     {
         _map = map;
@@ -33,10 +35,10 @@ public class BuildingsConstructor
             "archercenter" => new ArcherCenter(20, 13, "ArcherCenter", 1),
             "chivarlycenter" => new ChivarlyCenter(20, 10, "ChivarlyCenter", 1),
             "infantrycenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),
-            "golddeposit" => new GoldDeposit(20, 10, "GoldDeposit", 300, 1),
-            "stonedeposit" => new StoneDeposit(20, 10, "StoneDeposit", 300,1),
-            "windmill" => new WindMill(20, 10, "WindMill", 300,1),
-            "wooddeposit" => new WoodDeposit(20, 10, "WoodDeposit", 300, 1),
+            "golddeposit" => new GoldDeposit(20, 10, "GoldDeposit", 300, 1, inventory),
+            "stonedeposit" => new StoneDeposit(20, 10, "StoneDeposit", 300,1, inventory),
+            "windmill" => new WindMill(20, 10, "WindMill", 300,1, inventory),
+            "wooddeposit" => new WoodDeposit(20, 10, "WoodDeposit", 300, 1, inventory),
             _ => null
         };
         if (newBuilding == null)

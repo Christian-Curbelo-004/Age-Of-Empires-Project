@@ -1,5 +1,4 @@
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
-using ClassLibrary1.LogicDirectory;
 namespace ClassLibrary1.CivilizationDirectory
 {
     public abstract class Soldier : ICharacter, IMovable
@@ -17,21 +16,16 @@ namespace ClassLibrary1.CivilizationDirectory
             Speed = speed;
         }
 
-        public virtual int Attack(ICharacter target)
+        public virtual int Attack(ICharacter target)  // Metodo para atacar
         {
             int damage = target.RecieveAttack(AttackValue);
             return damage;
         }
 
-        public virtual int RecieveAttack(int damage)
+        public virtual int RecieveAttack(int damage)  // Metodo para recibir daño 
         {
             Life -= damage;
             return Life;
-        }
-
-        public Cost GetCost()
-        {
-            return new Cost(100, 50, 0, 0);
         }
     }
 }

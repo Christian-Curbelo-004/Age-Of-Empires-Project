@@ -13,14 +13,4 @@ public class UnitAffordable
         return inventory.Food >= cost.Food && inventory.Wood >= cost.Wood && inventory.Stone >= cost.Stone &&
                inventory.Gold >= cost.Gold;
     }
-
-    //public bool CreateUnit(Cost cost) // Devuelvo si se puede crear la unidad
-    //{
-        //if (CanAfford(cost))
-        //{
-            //inventory.Spend(cost);
-            //return true;
-        //}
-        //return false;
-    //}
 }

@@ -4,21 +4,20 @@ namespace  ClassLibrary1.DepositDirectory
     public class WindMill : Deposit
     {
         public int OwnerId { get; set; }
-        public int CurrentFood { get; private set; }
-        public WindMill(int endurence, int constructiontimeleft,string name, int maxCapacity, int ownerId)
+        public int CurrentFood { get; private set; } // Comida actual
+        private readonly ResourceInventory inventory;
+        public WindMill(int endurence, int constructiontimeleft,string name, int maxCapacity, int ownerId, ResourceInventory inventory)
             : base(endurence,constructiontimeleft, name,  maxCapacity)
         {
             OwnerId = ownerId;
             CurrentFood = 100;
+            this.inventory = inventory;
         }
-        public void StoreFood(int amount)
+        public void StoreFood(int amount) // Comida Almacenada
         {
-            CurrentFood = Math.Min(CurrentFood + amount, MaxCapacity);
-        }
-
-        public Cost GetCost()
-        {
-            return new Cost(0, 100, 0, 20);
+            int deposited = Math.Min(amount, MaxCapacity - CurrentFood);
+            CurrentFood += deposited;
+            inventory.AddGold(deposited);
         }
         public string EntityType => "WindMill";
 

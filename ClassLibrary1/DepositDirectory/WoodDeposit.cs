@@ -4,21 +4,19 @@ namespace ClassLibrary1.DepositDirectory
     public class WoodDeposit : Deposit
     {
         public int OwnerId { get; set; }
-        public int CurrentWood { get; private set; }
-        public WoodDeposit(int endurence, int constructiontimeleft,string name,  int maxCapacity, int ownerId)
+        public int CurrentWood { get; private set; } // Actual de Madera 
+        private readonly ResourceInventory inventory;
+        public WoodDeposit(int endurence, int constructiontimeleft,string name,  int maxCapacity, int ownerId, ResourceInventory inventory)
             : base(endurence,constructiontimeleft, name, maxCapacity)
         {
             OwnerId = ownerId;
             CurrentWood = 100;
         }
-        public void StoreWood(int amount)
+        public void StoreWood(int amount) // Madera Almacenada
         {
-            CurrentWood = Math.Min(CurrentWood + amount, MaxCapacity);
-        }
-
-        public Cost GetCost()
-        {
-            return new Cost(100, 0, 0, 0);
+            int deposited = Math.Min(amount, MaxCapacity - CurrentWood);
+            CurrentWood += deposited;
+            inventory.AddGold(deposited);
         }
         public string EntityType => "WoodDeposit";
 

@@ -3,8 +3,8 @@ namespace ClassLibrary1.DepositDirectory
 {
     public abstract class Deposit : Buildings
     {
-        public int MaxCapacity { get; set; }
-        public int CurrentStorage { get; set; }
+        public int MaxCapacity { get; set; } // Capacidad Máxima
+        public int CurrentStorage { get; set; } // Capacidad Actual
 
         public Deposit(int endurence, int constructiontimeleft, string name, int maxCapacity)
             : base(endurence, name)
@@ -14,7 +14,7 @@ namespace ClassLibrary1.DepositDirectory
             CurrentStorage = 0;
         }
 
-        public virtual int ActualResources()
+        public virtual int ActualResources() //Recursos Actuales
         {
             return 0;
         }

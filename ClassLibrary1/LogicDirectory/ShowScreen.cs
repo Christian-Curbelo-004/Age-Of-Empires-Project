@@ -29,14 +29,14 @@ public class ShowScreen
             Console.WriteLine("Tenes poca vida en el centro civico, vas a perder crack :)");
         }
         
-        string seguisjugando = "seguis jugando";
+        string continueplaying = "seguis jugando";
         string message = "Perdiste";
         int health = _playerOne.CivicCenter.ActualHealth;
         if (health < 0)
         {
             return message;
         }
-        return seguisjugando;
+        return continueplaying;
     }
 
     public List<string> GetInfoResources()
@@ -44,20 +44,20 @@ public class ShowScreen
         List<string> Resources = new List<string>();
         foreach (Deposit deposit in _map.GetEntities<Deposit>())
         {
-            string recursocantidad =
+            string resourceAmount =
                 $"{deposit.GetType().Name} tiene {deposit.ActualResources()} de {deposit.MaxCapacity} ";
-            Resources.Add(recursocantidad);
+            Resources.Add(resourceAmount);
         }
 
         return Resources;
     }
 
-    public void ShowTasaRecoleccionRecurso(GameFacade gameFacade) //para usar la logica del gamefacade que te guarda en un diccionario la tasa de recoleccion que recolectas por vez, y aca te lo muestre 
+    public void ShowRecolectionResourceMuf(GameFacade gameFacade) //para usar la logica del gamefacade que te guarda en un diccionario la tasa de recoleccion que recolectas por vez, y aca te lo muestre 
     {
-        var tasarecurso = gameFacade.TasaRecoleccionRecurso();
-        foreach (var recolectado in tasarecurso)
+        var ResourceMug = gameFacade.TasaRecoleccionRecurso(); // ResourceMug == Taza de recolección
+        foreach (var recolect in ResourceMug)
         {
-            Console.WriteLine($"{recolectado.Key} : {recolectado.Value}");
+            Console.WriteLine($"{recolect.Key} : {recolect.Value}");
         }
         
     }

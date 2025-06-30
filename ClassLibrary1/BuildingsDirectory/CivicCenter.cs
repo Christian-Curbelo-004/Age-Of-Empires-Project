@@ -1,5 +1,4 @@
-﻿using ClassLibrary1.LogicDirectory;
-using ClassLibrary1.MapDirectory;
+﻿using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
 namespace ClassLibrary1.BuildingsDirectory;                  
@@ -10,9 +9,9 @@ namespace ClassLibrary1.BuildingsDirectory;
         public (int X, int Y) Position { get; set; }
         public const int MaxHealth = 500;
         public int ActualHealth = 500;
-        private bool isbuilded = false;
+        private bool isbuilded = false; // Bandera para saber si se construye 
         private IMapEntity _mapEntityImplementation;
-        public int Capacity { get; } = 10;
+        public int Capacity { get; } = 10; // Capacidad del CC
         
     }
 

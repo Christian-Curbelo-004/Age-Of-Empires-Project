@@ -6,6 +6,7 @@ namespace ClassLibrary1.LogicDirectory;
 
 public class BuildFactory
 {
+    private readonly ResourceInventory inventory;
     // Falta CivicCenter
     public static ChivarlyCenter CreateChivarlyCenter()
     {
@@ -37,20 +38,20 @@ public class BuildFactory
         return new Home(30, 0, "home");
     }
 
-    public static GoldDeposit CreateGoldDeposit()
+    public static GoldDeposit CreateGoldDeposit(ResourceInventory inventory)
     {
-        return new GoldDeposit(30, 0, "Gold Deposit", 100,0);
+        return new GoldDeposit(30, 0, "Gold Deposit", 100,0, inventory);
     }
-    public static StoneDeposit CreateStoneDeposit()
+    public static StoneDeposit CreateStoneDeposit(ResourceInventory inventory)
     {
-        return new StoneDeposit(30, 0, "Stone Deposit", 100,0);
+        return new StoneDeposit(30, 0, "Stone Deposit", 100,0, inventory);
     }
-    public static WoodDeposit CreateWoodDeposit()
+    public static WoodDeposit CreateWoodDeposit(ResourceInventory inventory)
     {
-        return new WoodDeposit(30, 0, "Wood Deposit", 100,0);
+        return new WoodDeposit(30, 0, "Wood Deposit", 100,0, inventory);
     }
-    public static WindMill CreateWindMill()
+    public static WindMill CreateWindMill(ResourceInventory inventory)
     {
-        return new WindMill(30, 0, "WindMill", 100,0);
+        return new WindMill(30, 0, "WindMill", 100,0,inventory);
     }
 }

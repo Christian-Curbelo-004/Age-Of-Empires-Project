@@ -40,9 +40,4 @@ public class VillagersLogic : Villagers, ICharacter
         }
         return false;
     }
-
-    public Cost GetCost()
-    {
-        return new Cost(120, 50, 0, 0);
-    }
 }

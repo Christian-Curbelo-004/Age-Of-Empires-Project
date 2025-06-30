@@ -8,18 +8,18 @@ namespace ClassLibrary1.CivilizationDirectory
         public Centuries() : base( 100, 40,12, 12)
         {
         }
-        public override int Attack(ICharacter target)
+        public override int Attack(ICharacter target) // Atacar
         {
             return target.RecieveAttack(AttackValue);
         }
 
-        public override int RecieveAttack(int damage)
+        public override int RecieveAttack(int damage) // Recibir ataque
         {
             DeffenseValue -= damage;
             return DeffenseValue;
         }
 
-        public  int Boost(ICharacter target)
+        public  int Boost(ICharacter target) //Buffeo 
         {
             AttackValue += 10;
             return target.RecieveAttack(AttackValue);

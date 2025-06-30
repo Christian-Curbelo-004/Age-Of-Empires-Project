@@ -1,23 +1,23 @@
 ﻿using ClassLibrary1.LogicDirectory;
+
 namespace ClassLibrary1.DepositDirectory
 {
     public class GoldDeposit : Deposit
     {
         public int OwnerId { get; set; }
-        public int CurrentGold { get; private set; } 
-        public GoldDeposit(int endurence, int constructionTimeLeft, string name, int maxCapacity, int ownerId)
-            : base(endurence, constructionTimeLeft, name, maxCapacity) // GameResourceType.Gold)
+        public int CurrentGold { get; private set; } // Cantidad actual de Oro
+        private readonly ResourceInventory inventory;
+        public GoldDeposit(int endurence, int constructionTimeLeft, string name, int maxCapacity, int ownerId, ResourceInventory inventory)
+            : base(endurence, constructionTimeLeft, name, maxCapacity) 
         {
             OwnerId = ownerId;
+            this.inventory = inventory;
         }
-        public void StoreGold(int amount)
+        public void StoreGold(int amount)   // Oro almacenado
         {
-            CurrentGold = Math.Min(CurrentGold + amount, MaxCapacity);
-        }
-
-        public Cost GetCost()
-        {
-            return new Cost(0, 100, 0, 150);
+            int deposited = Math.Min(amount, MaxCapacity - CurrentGold);
+            CurrentGold += deposited;
+            inventory.AddGold(deposited);
         }
         public string EntityType => "GoldDeposit";
 
@@ -25,6 +25,5 @@ namespace ClassLibrary1.DepositDirectory
         {
             return CurrentGold;
         }
-
     }      
 }

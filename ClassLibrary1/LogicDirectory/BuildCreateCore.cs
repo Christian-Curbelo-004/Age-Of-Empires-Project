@@ -4,6 +4,7 @@ public class BuildCreateCore
 {
     private readonly ResourceInventory inventory;
     private readonly UnitAffordable unitAffordable;
+
     public BuildCreateCore(ResourceInventory resourceInventory)
     {
         this.inventory = resourceInventory;
@@ -18,7 +19,7 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.ArcherCenter);
         }
     }
-    
+
     public void ReturnInfanteryCenter()
     {
         if (unitAffordable.CanAfford(CreationCost.InfanteryCenter))
@@ -27,7 +28,7 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.InfanteryCenter);
         }
     }
-    
+
     public void ReturnChivarlyCenter()
     {
         if (unitAffordable.CanAfford(CreationCost.ChivarlyCenter))
@@ -36,7 +37,7 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.ChivarlyCenter);
         }
     }
-    
+
     public void ReturnRaiderCenter()
     {
         if (unitAffordable.CanAfford(CreationCost.RaiderCenter))
@@ -45,7 +46,7 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.RaiderCenter);
         }
     }
-    
+
     public void ReturnPaladinCenter()
     {
         if (unitAffordable.CanAfford(CreationCost.PaladinCenter))
@@ -54,7 +55,7 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.PaladinCenter);
         }
     }
-    
+
     public void ReturnCenturiesCenter()
     {
         if (unitAffordable.CanAfford(CreationCost.CenturiesCenter))
@@ -63,30 +64,30 @@ public class BuildCreateCore
             inventory.Spend(CreationCost.CenturiesCenter);
         }
     }
-    
+
     public void ReturnGoldDeposit()
     {
         if (unitAffordable.CanAfford(CreationCost.GoldDeposit))
         {
-            BuildFactory.CreateGoldDeposit();
+            BuildFactory.CreateGoldDeposit(inventory);
             inventory.Spend(CreationCost.GoldDeposit);
         }
     }
-    
+
     public void ReturnWoodDeposit()
     {
         if (unitAffordable.CanAfford(CreationCost.WoodDeposit))
         {
-            BuildFactory.CreateWoodDeposit();
+            BuildFactory.CreateWoodDeposit(inventory);
             inventory.Spend(CreationCost.WoodDeposit);
         }
     }
-    
+
     public void ReturnStoneDeposit()
     {
         if (unitAffordable.CanAfford(CreationCost.StoneDeposit))
         {
-            BuildFactory.CreateStoneDeposit();
+            BuildFactory.CreateStoneDeposit(inventory);
             inventory.Spend(CreationCost.StoneDeposit);
         }
     }
@@ -95,8 +96,17 @@ public class BuildCreateCore
     {
         if (unitAffordable.CanAfford(CreationCost.WindMill))
         {
-            BuildFactory.CreateWindMill();
+            BuildFactory.CreateWindMill(inventory);
             inventory.Spend(CreationCost.WindMill);
+        }
+    }
+
+    public void returnHome()
+    {
+        if (unitAffordable.CanAfford(CreationCost.Home))
+        {
+            BuildFactory.CreateHome();
+            inventory.Spend(CreationCost.Home);
         }
     }
 }

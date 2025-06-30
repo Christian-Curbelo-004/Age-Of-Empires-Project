@@ -7,12 +7,12 @@ public class Chivarly : Soldier                                 //ICharacter
     public Chivarly() : base(100, 20, 15,20)
     {
     }
-    public override int Attack(ICharacter target)
+    public override int Attack(ICharacter target) //Ataque
     {
         return target.RecieveAttack(AttackValue);
     }
 
-    public override int RecieveAttack(int damage)
+    public override int RecieveAttack(int damage) //Recibir Ataque
     {
         Life -= damage;
         return Life;

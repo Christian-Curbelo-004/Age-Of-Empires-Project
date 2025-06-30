@@ -1,5 +1,4 @@
-﻿//using ClassLibrary1.LogicDirectory;
-using ClassLibrary1.MapDirectory;
+﻿using ClassLibrary1.MapDirectory;
 
 namespace CreateBuildings
 {
@@ -18,8 +17,6 @@ namespace CreateBuildings
             Name = name;
             OwnerId = OwnerId;
             Position = (0, 0); // Default position, can be changed later
-            
-            //  Capacity = capacity;
         }
 
         protected Buildings() {}
