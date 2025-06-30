@@ -2,8 +2,8 @@ namespace ClassLibrary1.LogicDirectory;
 
 public class UnitAffordable
 {
-    private readonly ResourceInventory inventory; //Uso el inventario global del jugador
-    public UnitAffordable(ResourceInventory resourceInventory)
+    private readonly IResourceInventory inventory; //Uso el inventario global del jugador
+    public UnitAffordable(IResourceInventory resourceInventory)
     {
         this.inventory = resourceInventory;
     }

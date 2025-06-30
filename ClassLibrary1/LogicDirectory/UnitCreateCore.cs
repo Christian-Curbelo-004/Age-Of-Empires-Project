@@ -4,13 +4,13 @@ namespace ClassLibrary1.LogicDirectory;
 
 public class UnitCreateCore
 {
-    private readonly ResourceInventory inventory;
+    private readonly IResourceInventory inventory;
     private readonly UnitAffordable unitAffordable;
     private readonly Map map;
     private readonly KnowingCell knowingCell;
     private readonly Player player;
     
-    public UnitCreateCore(ResourceInventory resourceInventory, Map map, Player player)
+    public UnitCreateCore(IResourceInventory resourceInventory, Map map, Player player)
     {
         this.inventory = resourceInventory;
         this.unitAffordable = new UnitAffordable(resourceInventory);

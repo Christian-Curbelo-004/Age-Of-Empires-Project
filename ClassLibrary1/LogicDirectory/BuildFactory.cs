@@ -6,7 +6,7 @@ namespace ClassLibrary1.LogicDirectory;
 
 public class BuildFactory
 {
-    private readonly ResourceInventory inventory;
+    private readonly IResourceInventory inventory;
     // Falta CivicCenter
     public static ChivarlyCenter CreateChivarlyCenter()
     {
