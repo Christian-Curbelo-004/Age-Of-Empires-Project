@@ -1,7 +1,7 @@
 
 namespace ClassLibrary1.CivilizationDirectory;
 
-public class Chivarly : Soldier                                 //ICharacter
+public class Chivarly : Soldier                                 
 {
     
     public Chivarly() : base(100, 20, 15,20)

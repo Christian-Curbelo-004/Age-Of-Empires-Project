@@ -29,11 +29,6 @@ namespace ClassLibrary1.CivilizationDirectory
             Life -= damage;
             return Life;
         }
-        public Cost GetCost()
-        {
-            return new Cost(100, 50, 0, 0);
-        }
-
         public string Name { get; set; }
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
