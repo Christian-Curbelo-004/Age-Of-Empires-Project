@@ -1,8 +1,8 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
-
 namespace CommandDirectory;
+
 public class CombatService
 {
     private readonly Map _map;
@@ -19,30 +19,32 @@ public class CombatService
         await _mover.MoveEntityAsync(entityType, destination);
         var (x, y) = _mover.ParseCoords(destination);
         var cell = _map.Cells[x, y];
-
+        
         var attacker = _map.GetAllCells()
-            .FirstOrDefault(c => c.EntityType == entityType)?.Entity as ICharacter;
+            .SelectMany(c => c.Entities)
+            .FirstOrDefault(e => e.GetType().Name == entityType) as ICharacter;
 
         if (attacker == null)
         {
             return $"'{entityType}' no puede atacar.";
         }
 
-        if (cell.Entity is ICharacter target)
+        var targetCharacter = cell.Entities.OfType<ICharacter>().FirstOrDefault();
+        if (targetCharacter != null)
         {
             await Task.Delay(2000);
-            int damage = attacker.Attack(target);
-            return $"{entityType} atacó a personaje.\nDaño infligido: {damage}. Vida restante: {target.Life}";
+            int damage = attacker.Attack(targetCharacter);
+            return $"{entityType} atacó a personaje.\nDaño infligido: {damage}. Vida restante: {targetCharacter.Life}";
         }
-        else if (cell.Entity is Buildings building)
+        
+        var targetBuilding = cell.Entities.OfType<Buildings>().FirstOrDefault();
+        if (targetBuilding != null)
         {
             await Task.Delay(2000);
-            building.Endurence -= attacker.AttackValue;
-            return $"{entityType} atacó edificio.\nDaño a edificio: {attacker.AttackValue}. Resistencia restante: {building.Endurence}";
+            targetBuilding.Endurence -= attacker.AttackValue;
+            return $"{entityType} atacó edificio.\nDaño a edificio: {attacker.AttackValue}. Resistencia restante: {targetBuilding.Endurence}";
         }
-        else
-        {
-            return $"No hay objetivo para atacar en ({x},{y}).";
-        }
+
+        return $"No hay objetivo para atacar en ({x},{y}).";
     }
 }

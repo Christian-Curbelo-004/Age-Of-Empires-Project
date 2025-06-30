@@ -1,5 +1,4 @@
-﻿
-namespace ClassLibrary1.MapDirectory
+﻿namespace ClassLibrary1.MapDirectory
 {
     public class Map
     {
@@ -41,36 +40,35 @@ namespace ClassLibrary1.MapDirectory
         {
             if (!IsWithinBounds(x, y))
             {
-                Console.WriteLine($" Posición ({x},{y}) fuera del mapa.");
+                Console.WriteLine($"Posición ({x},{y}) fuera del mapa.");
                 return false;
             }
 
             var cell = Cells[x, y];
-
-            if (cell.Entity != null)
+            if (cell.IsOccupied)
             {
-                Console.WriteLine($"La celda ({x},{y}) ya está ocupada por otra entidad ({cell.Entity.GetType().Name}).");
+                Console.WriteLine($"La celda ({x},{y}) ya está ocupada por otra entidad.");
                 return false;
             }
 
             entity.Position = (x, y);
             _entities.Add(entity);
-            cell.Entity = entity;
-            cell.IsOccupied = true;
-            cell.EntityType = entity.GetType().Name;
-
+            cell.Entities.Add(entity);
             return true;
         }
+
         public void RemoveEntity(IMapEntity entity)
         {
             var (x, y) = entity.Position;
-            if (IsWithinBounds(x, y) && Cells[x, y].Entity == entity)
+            if (IsWithinBounds(x, y))
             {
-                Cells[x, y].Entity = null;
-                Cells[x, y].IsOccupied = false;
-                Cells[x, y].EntityType = null;
+                var cell = Cells[x, y];
+                if (cell.Entities.Contains(entity))
+                {
+                    cell.Entities.Remove(entity);
+                    _entities.Remove(entity);
+                }
             }
-            _entities.Remove(entity);
         }
 
         public List<T> GetEntities<T>() where T : IMapEntity
@@ -84,6 +82,5 @@ namespace ClassLibrary1.MapDirectory
                 for (int y = 0; y < _height; y++)
                     yield return Cells[x, y];
         }
-        
     }
 }

@@ -13,19 +13,17 @@ namespace ClassLibrary1.MapDirectory
 
         public bool PlaceEntity(int x, int y, IMapEntity entity)
         {
-            if (!_map.IsWithinBounds(x, y)) return false;
+            if (!_map.IsWithinBounds(x, y))
+                return false;
 
             var cell = _map.GetCell(x, y);
-            if (cell.IsOccupied) return false;
-
-            cell.Entity = entity;
-            cell.IsOccupied = true;
-            cell.EntityType = entity.GetType().Name;
-
+            cell.Entities.Add(entity);
             if (entity is IResourceDeposit resource)
             {
                 cell.Resource = resource;
             }
+            
+            entity.Position = (x, y);
 
             return true;
         }

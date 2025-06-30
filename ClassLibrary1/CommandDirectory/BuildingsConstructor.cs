@@ -4,6 +4,8 @@ using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
+using ClassLibrary1.QuaryDirectory;
+using System.Linq;
 
 namespace ClassLibrary1.CommandDirectory;
 
@@ -23,11 +25,15 @@ public class BuildingsConstructor
         {
             return $"Coordenadas ({x},{y}) fuera del mapa.";
         }
+
         var cell = _map.GetCell(x, y);
+
+        // Revisar si la celda ya tiene alguna entidad (ocupada)
         if (cell.IsOccupied)
         {
             return $"La celda ({x},{y}) ya está ocupada, no se puede construir.";
         }
+
         Buildings newBuilding = buildingType.ToLower() switch
         {
             "home" => new Home(20, 10, "Home"),
@@ -41,13 +47,20 @@ public class BuildingsConstructor
             "wooddeposit" => new WoodDeposit(20, 10, "WoodDeposit", 300, 1, inventory),
             _ => null
         };
+
         if (newBuilding == null)
         {
             return $"Tipo de edificio '{buildingType}' no reconocido.";
         }
-        _map.Cells[x, y].Entity = newBuilding;
-        _map.Cells[x, y].IsOccupied = true;
-        _map.Cells[x, y].EntityType = buildingType;
+        
+        cell.Entities.Add(newBuilding);
+        newBuilding.Position = (x, y);
+        
+        if (newBuilding is IResourceDeposit resource)
+        {
+            cell.Resource = resource;
+        }
+
         return $"{buildingType} construido en ({x},{y}) por el jugador {ownerId}.";
     }
 
