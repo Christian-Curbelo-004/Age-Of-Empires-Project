@@ -5,7 +5,7 @@ namespace ClassLibrary1.CivilizationDirectory
 {
     public class Centuries : Soldier
     {
-        public Centuries() : base( 10, 40,12, 12)
+        public Centuries() : base( 100, 40,12, 12)
         {
         }
         public override int Attack(ICharacter target)

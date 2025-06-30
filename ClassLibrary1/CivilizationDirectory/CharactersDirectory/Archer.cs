@@ -4,7 +4,7 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Archer : Soldier
 {
-    public Archer() : base(0,20, 10, 10)
+    public Archer() : base(100,20, 10, 10)
     {
     }
     

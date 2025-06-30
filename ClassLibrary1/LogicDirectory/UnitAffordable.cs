@@ -1,9 +1,9 @@
 namespace ClassLibrary1.LogicDirectory;
 
-public class UnitCreator
+public class UnitAffordable
 {
     private readonly ResourceInventory inventory; //Uso el inventario global del jugador
-    public UnitCreator(ResourceInventory resourceInventory)
+    public UnitAffordable(ResourceInventory resourceInventory)
     {
         this.inventory = resourceInventory;
     }
@@ -14,13 +14,13 @@ public class UnitCreator
                inventory.Gold >= cost.Gold;
     }
 
-    public bool CreateUnit(Cost cost) // Devuelvo si se puede crear la unidad
-    {
-        if (CanAfford(cost))
-        {
-            inventory.Spend(cost);
-            return true;
-        }
-        return false;
-    }
+    //public bool CreateUnit(Cost cost) // Devuelvo si se puede crear la unidad
+    //{
+        //if (CanAfford(cost))
+        //{
+            //inventory.Spend(cost);
+            //return true;
+        //}
+        //return false;
+    //}
 }
