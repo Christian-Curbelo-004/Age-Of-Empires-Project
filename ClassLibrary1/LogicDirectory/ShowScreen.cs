@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
-using ClassLibrary1.UnitsDirectory;
+
 
 namespace ClassLibrary1
 {
@@ -21,21 +18,17 @@ namespace ClassLibrary1
             _playerOne = playerOne;
         }
 
-        // Devuelve todo el estado del juego en un string para enviar en Discord
         public string Screen()
         {
             var sb = new StringBuilder();
 
-            // Mapa (texto plano)
             sb.AppendLine("==== MAPA ====");
             PrintMap printMap = new PrintMap(_map);
             sb.AppendLine(printMap.DisplayMap());
 
-            // Población
             sb.AppendLine("\n==== POBLACIÓN ====");
             sb.AppendLine($"Población actual: {_playerOne.CurrentPoblacion} / {_playerOne.MaxPoblacion}");
 
-            // Detalle de unidades por tipo
             sb.AppendLine("\nUnidades del jugador:");
             var unidades = _playerOne.Units
                 .GroupBy(u => u.GetType().Name)
@@ -53,22 +46,19 @@ namespace ClassLibrary1
                 }
             }
 
-            // Recursos en el mapa
-            sb.AppendLine("\n==== RECURSOS EN EL MAPA ====");
-            var recursos = GetInfoResources();
-            if (recursos.Count == 0)
+            sb.AppendLine("\n==== RECURSOS DEL JUGADOR ====");
+            if (_playerOne.Resources == null || _playerOne.Resources.Count == 0)
             {
-                sb.AppendLine(" - No hay recursos en el mapa.");
+                sb.AppendLine(" - No tienes recursos.");
             }
             else
             {
-                foreach (var recurso in recursos)
+                foreach (var recurso in _playerOne.Resources)
                 {
-                    sb.AppendLine($" - {recurso}");
+                    sb.AppendLine($" - {recurso.Key}: {recurso.Value}");
                 }
             }
 
-            // Estado del centro cívico
             int actualHealth = _playerOne.CivicCenter?.ActualHealth ?? 0;
             int maxHealth = CivicCenter.MaxHealth;
 
@@ -91,7 +81,6 @@ namespace ClassLibrary1
             return sb.ToString();
         }
 
-        // Devuelve lista con info de recursos en el mapa
         public List<string> GetInfoResources()
         {
             List<string> Resources = new List<string>();
@@ -104,7 +93,6 @@ namespace ClassLibrary1
             return Resources;
         }
 
-        // Opcional: devuelve string con tasa de recolección para mostrar en Discord
         public string ShowRecolectionResourceMuf(GameFacade gameFacade)
         {
             var ResourceMug = gameFacade.TasaRecoleccionRecurso();

@@ -14,8 +14,6 @@ namespace ClassLibrary1.MapDirectory
         {
             _map = map;
         }
-
-        // Devuelve el mapa como string plano, para enviar en chat (Discord)
         public string DisplayMap()
         {
             if (_map?.Cells == null)
@@ -26,17 +24,13 @@ namespace ClassLibrary1.MapDirectory
 
             int coordWidth = Math.Max(height, length).ToString().Length;
             string numFormat = new string('0', coordWidth);
-            int cellWidth = 4; // ancho fijo para cada celda
+            int cellWidth = 4;
 
             var sb = new StringBuilder();
-
-            // Encabezado superior con coordenadas X
             sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
                 sb.Append(x.ToString(numFormat).PadRight(cellWidth));
             sb.AppendLine();
-
-            // Filas con coordenadas Y y símbolos
             for (int y = 0; y < height; y++)
             {
                 sb.Append(y.ToString(numFormat).PadRight(coordWidth) + " ");
@@ -50,8 +44,6 @@ namespace ClassLibrary1.MapDirectory
 
                 sb.AppendLine(y.ToString(numFormat).PadRight(coordWidth));
             }
-
-            // Encabezado inferior con coordenadas X
             sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
                 sb.Append(x.ToString(numFormat).PadRight(cellWidth));
@@ -59,8 +51,6 @@ namespace ClassLibrary1.MapDirectory
 
             return sb.ToString();
         }
-
-        // Obtiene símbolo para la celda (sin color, solo texto)
         private string GetSymbolForCell(Cell cell)
         {
             if (cell.Entity is IMapEntity entity)
@@ -79,10 +69,9 @@ namespace ClassLibrary1.MapDirectory
                 };
             }
 
-            return "[]"; // celda vacía
+            return "[]"; 
         }
 
-        // Símbolos para entidades
         private string GetSymbolForEntity(IMapEntity entity)
         {
             return entity switch
