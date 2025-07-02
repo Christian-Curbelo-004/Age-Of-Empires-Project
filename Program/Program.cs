@@ -16,7 +16,6 @@ namespace ClassLibrary1
 
         private async Task MainAsync()
         {
-            // 🎮 SETUP DEL JUEGO
             GameFacade gameFacade = new GameFacade();
             Map map = gameFacade.GenerateMap();
             gameFacade.InitializePlayer(map);
