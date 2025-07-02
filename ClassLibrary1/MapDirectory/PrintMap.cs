@@ -1,5 +1,6 @@
 using System.Text;
 using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
 
@@ -13,39 +14,44 @@ namespace ClassLibrary1.MapDirectory
         {
             _map = map;
         }
+
+        // Devuelve el mapa como string plano, para enviar en chat (Discord)
         public string DisplayMap()
         {
             if (_map?.Cells == null)
-            {
                 return "El mapa está vacío.";
-            }
 
             int height = _map.Cells.GetLength(1);
             int length = _map.Cells.GetLength(0);
 
             int coordWidth = Math.Max(height, length).ToString().Length;
             string numFormat = new string('0', coordWidth);
-            int cellWidth = 4;
+            int cellWidth = 4; // ancho fijo para cada celda
 
             var sb = new StringBuilder();
+
+            // Encabezado superior con coordenadas X
             sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
                 sb.Append(x.ToString(numFormat).PadRight(cellWidth));
             sb.AppendLine();
 
-            // Filas
+            // Filas con coordenadas Y y símbolos
             for (int y = 0; y < height; y++)
             {
                 sb.Append(y.ToString(numFormat).PadRight(coordWidth) + " ");
+
                 for (int x = 0; x < length; x++)
                 {
                     var cell = _map.Cells[x, y];
-                    var (symbol, color) = GetSymbolAndColor(cell);
+                    string symbol = GetSymbolForCell(cell);
                     sb.Append(symbol.PadRight(cellWidth));
                 }
+
                 sb.AppendLine(y.ToString(numFormat).PadRight(coordWidth));
             }
 
+            // Encabezado inferior con coordenadas X
             sb.Append(' ', coordWidth + 1);
             for (int x = 0; x < length; x++)
                 sb.Append(x.ToString(numFormat).PadRight(cellWidth));
@@ -54,61 +60,58 @@ namespace ClassLibrary1.MapDirectory
             return sb.ToString();
         }
 
-        public void StartDisplay(int refreshRateMs = 500)
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine(DisplayMap());
-                Thread.Sleep(refreshRateMs);
-            }
-        }
-
-        private (string symbol, ConsoleColor color) GetSymbolAndColor(Cell cell)
+        // Obtiene símbolo para la celda (sin color, solo texto)
+        private string GetSymbolForCell(Cell cell)
         {
             if (cell.Entity is IMapEntity entity)
             {
-                string symbol = GetSymbolForEntity(entity);
-
-                ConsoleColor color = entity switch
-                {
-                    GoldMine => ConsoleColor.Yellow,
-                    StoneMine => ConsoleColor.DarkCyan,
-                    Forest => ConsoleColor.Green,
-                    _ => entity.OwnerId switch
-                    {
-                        1 => ConsoleColor.Blue,
-                        2 => ConsoleColor.Red,
-                        _ => ConsoleColor.Gray
-                    }
-                };
-
-                return (symbol, color);
+                return GetSymbolForEntity(entity);
             }
 
             if (cell.Resource is IResource resource)
             {
                 return resource switch
                 {
-                    GoldMine => ("G", ConsoleColor.Yellow),
-                    StoneMine => ("S", ConsoleColor.DarkCyan),
-                    Forest => ("F", ConsoleColor.Green),
-                    _ => ("R", ConsoleColor.Gray)
+                    GoldMine => "Gm",
+                    StoneMine => "Sm",
+                    Forest => "Fo",
+                    _ => " R"
                 };
             }
-            return ("[]", ConsoleColor.DarkGray);
+
+            return "[]"; // celda vacía
         }
 
+        // Símbolos para entidades
         private string GetSymbolForEntity(IMapEntity entity)
         {
             return entity switch
             {
-                Villagers => "V",
-                CivicCenter => "C",
-                GoldMine => "G",
-                Forest => "F",
-                StoneMine => "S",
-                _ => "?"
+                // Tropas
+                Villagers => "Vi",
+                Archer => "Ar",
+                Infantery => "In",
+                Paladin => "Pa",
+                Raider => "Ra",
+                Chivarly => "Ch",
+                Centuries => "Ce",
+
+                // Edificios
+                CivicCenter => "Cc",
+                Home => "Ho",
+                InfanteryCenter => "In",
+                ArcherCenter => "AC",
+                PaladinCenter => "PC",
+                RaiderCenter => "RC",
+                ChivarlyCenter => "CH",
+                CenturiesCenter => "CE",
+
+                // Recursos (si alguna vez son entidad)
+                GoldMine => "Gm",
+                StoneMine => "Sm",
+                Forest => "Fo",
+
+                _ => "??"
             };
         }
     }

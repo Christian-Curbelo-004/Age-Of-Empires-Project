@@ -75,21 +75,25 @@
         Console.ReadKey();
     }
 */
-using ClassLibrary1;
+
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.FacadeDirectory;
 
-
-class Program
+namespace ClassLibrary1
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        GameFacade gameFacade = new GameFacade();
-        Map map = gameFacade.GenerateMap();
-        gameFacade.RecursosEnEsquinas(map, 0, 0, 50, 50,70 );
-        gameFacade.RecursosEnEsquinas(map,50,50,50,50,70);
-        gameFacade.InitializePlayer(map);
-        ShowScreen showScreen = new ShowScreen(map, gameFacade.PlayerOne);
-        showScreen.Screen();
+        static void Main(string[] args)
+        {
+            GameFacade gameFacade = new GameFacade();
+            Map map = gameFacade.GenerateMap();
+            gameFacade.InitializePlayer(map);
+            ShowScreen showScreen = new ShowScreen(map, gameFacade.PlayerOne);
+            string estado = showScreen.Screen();
+            Console.WriteLine(estado);
+
+            Console.WriteLine("\nPresiona cualquier tecla para salir...");
+            Console.ReadKey();
+        }
     }
 }

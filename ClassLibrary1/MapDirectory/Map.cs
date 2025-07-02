@@ -25,7 +25,8 @@
                 }
             }
         }
-
+        public int Width => _length; 
+        public int Height => _height;  
         public bool IsWithinBounds(int x, int y) =>
             x >= 0 && x < _length && y >= 0 && y < _height;
 

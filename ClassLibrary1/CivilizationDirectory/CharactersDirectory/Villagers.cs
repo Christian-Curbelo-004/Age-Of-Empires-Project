@@ -4,7 +4,7 @@ using ClassLibrary1.MapDirectory;
 
 namespace ClassLibrary1.UnitsDirectory
 {
-    public class Villagers : IMapEntity, IMovable
+    public class Villagers : Units, IMovable
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }

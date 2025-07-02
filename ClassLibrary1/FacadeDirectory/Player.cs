@@ -1,18 +1,14 @@
 using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.DepositDirectory;
-using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
-using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
-
-namespace ClassLibrary1.FacadeDirectory;
+using CreateBuildings;
 
 public class Player
 {
     public int Id { get; set; }
     public string Civilization { get; set; }
-    public object Buildings { get; set; }
-    public List<Units> Units { get; set; } = new();
+    public List<Buildings> Buildings { get; set; } = new List<Buildings>(); 
+    public List<IMapEntity> Units { get; set; } = new List<IMapEntity>();
     public int MaxPoblacion { get; set; }
     public int CurrentPoblacion => Units.Count;
     public (int, int) StartingPosition { get; set; }
@@ -24,8 +20,8 @@ public class Player
         Civilization = civilization;
         CivicCenter = new CivicCenter();
         MaxPoblacion = maxPoblacion;
-      
     }
+
     public void AddUnit(Units unit)
     {
         if (CurrentPoblacion < MaxPoblacion)
@@ -33,5 +29,4 @@ public class Player
             Units.Add(unit);
         }
     }
-    
 }
