@@ -159,28 +159,27 @@ namespace ClassLibrary1.FacadeDirectory
         }
 
 
-        public void PlaceFarm(Map map, int x, int y) // ya se que figura como metodo, hay que completarlo
+        public void GenerateFarm(Map map, int x, int y) // ya se que figura como metodo, hay que completarlo
         {
             var farm = new Farm(0, 100, 10, 1) { Position = (x, y) };
             map.PlaceEntity(farm, x, y);
         }
 
-        public void PlaceForest(Map map, int x, int y)
+        public void GenerateForest(Map map, int x, int y)
         {
             var forest = new Forest(0, 100, 10, 1) { Position = (x, y) };
             map.PlaceEntity(forest, x, y);
         }
 
-        public void PlaceGoldMine(Map map, int x, int y)
+        public void GenerateGoldMine(Map map, int x, int y)
         {
             var  gold = new GoldMine(0, 100, 10, 1) { Position = (x, y) };
             map.PlaceEntity(gold, x, y);
         }
 
-        public void PlaceStoneMine(Map map, int x, int y)
+        public void GenerateStoneMine(Map map, int x, int y)
         {
             var stone = new StoneMine(0, 100, 10, 1) { Position = (x, y) };
         }
     }   
-    
 }

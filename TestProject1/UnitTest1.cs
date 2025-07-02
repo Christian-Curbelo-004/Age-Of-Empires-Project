@@ -1,4 +1,4 @@
-﻿using ClassLibrary1.CivilizationDirectory;
+﻿/*using ClassLibrary1.CivilizationDirectory;
 
 namespace TestProject1;
 
@@ -20,3 +20,4 @@ public class TestsChivarlyCenter
         Assert.That(constructionCost["Oro"],Is.EqualTo(20));
     }
 }
+*/

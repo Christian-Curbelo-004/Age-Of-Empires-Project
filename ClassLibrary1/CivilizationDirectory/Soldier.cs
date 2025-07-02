@@ -1,5 +1,4 @@
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
-using ClassLibrary1.LogicDirectory;
 
 namespace ClassLibrary1.CivilizationDirectory
 {
