@@ -20,4 +20,5 @@ public class CreationCost
     public static readonly Cost ChivarlyCenter = new Cost(0, 100, 0, 30);
     public static readonly Cost PaladinCenter = new Cost(0, 100, 10, 30);
     public static readonly Cost CenturiesCenter = new Cost(0, 100, 10, 30);
+    public static readonly Cost CivicCenter = new Cost(100, 200, 30, 10);
 }

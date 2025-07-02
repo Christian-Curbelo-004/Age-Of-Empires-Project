@@ -7,10 +7,17 @@ namespace ClassLibrary1.LogicDirectory;
 public class BuildFactory
 {
     private readonly IResourceInventory inventory;
-    // Falta CivicCenter
     public static ChivarlyCenter CreateChivarlyCenter()
     {
         return new ChivarlyCenter(100, 0, "Chivarly Center", 0);
+    }
+
+    public static CivicCenter CreateCivicCenter()
+    {
+        return new CivicCenter()
+        {
+            ActualHealth = 500, ConstructionTime = 0, Endurence = 500, Name = "CivicCenter", OwnerId = 0,
+        };
     }
     public static InfanteryCenter CreateInfanteryCenter()
     {

@@ -1,4 +1,5 @@
 using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.FacadeDirectory;
 namespace ClassLibrary1.LogicDirectory;
@@ -10,8 +11,6 @@ public class UnitCreateCore
     private readonly Map map;
     private readonly KnowingCell knowingCell;
     private readonly Player player;
-    private CivicCenter civicCenter = new CivicCenter();
-    
     public UnitCreateCore(IResourceInventory resourceInventory, Map map, Player player)
     {
         this.inventory = resourceInventory;
@@ -20,73 +19,91 @@ public class UnitCreateCore
         this.knowingCell = new KnowingCell(map);
         this.player = player;
     }
-    public void ReturnArcher()
+    public void ReturnArcher(ArcherCenter archerCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (archerCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Archer))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateArcher();
-                inventory.Spend(CreationCost.Archer);
+                if (unitAffordable.CanAfford(CreationCost.Archer))
+                {
+                    UnitFactory.CreateArcher();
+                    inventory.Spend(CreationCost.Archer);
+                }
             }
         }
     }
-    public void ReturnCenturies()
+    public void ReturnCenturies(CenturiesCenter centuriesCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (centuriesCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Centuries))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateCenturies();
-                inventory.Spend(CreationCost.Centuries);
+                if (unitAffordable.CanAfford(CreationCost.Centuries))
+                {
+                    UnitFactory.CreateCenturies();
+                    inventory.Spend(CreationCost.Centuries);
+                }
             }
         }
     }
-    public void ReturnPaladin()
+    public void ReturnPaladin(PaladinCenter paladinCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (paladinCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Paladin))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreatePaladin();
-                inventory.Spend(CreationCost.Paladin);
+                if (unitAffordable.CanAfford(CreationCost.Paladin))
+                {
+                    UnitFactory.CreatePaladin();
+                    inventory.Spend(CreationCost.Paladin);
+                }
             }
         }
     }
-    public void ReturnInfantery()
+    public void ReturnInfantery(InfanteryCenter infanteryCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (infanteryCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Infantery))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateInfantery();
-                inventory.Spend(CreationCost.Infantery);
+                if (unitAffordable.CanAfford(CreationCost.Infantery))
+                {
+                    UnitFactory.CreateInfantery();
+                    inventory.Spend(CreationCost.Infantery);
+                }
             }
         }
     }
-    public void ReturnChivarly()
+    public void ReturnChivarly(ChivarlyCenter chivarlyCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (chivarlyCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Chivarly))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateChivarly();
-                inventory.Spend(CreationCost.Chivarly);
+                if (unitAffordable.CanAfford(CreationCost.Chivarly))
+                {
+                    UnitFactory.CreateChivarly();
+                    inventory.Spend(CreationCost.Chivarly);
+                }
             }
         }
     }
-    public void ReturnRaider()
+    public void ReturnRaider(RaiderCenter raiderCenter)
     {
-        if (knowingCell.CheckPopulation(player.Id) >= 1)
+        if (raiderCenter.IsConstructed)
         {
-            if (unitAffordable.CanAfford(CreationCost.Raider))
+            if (knowingCell.CheckPopulation(player.Id) >= 1)
             {
-                UnitFactory.CreateRaider();
-                inventory.Spend(CreationCost.Raider);
+                if (unitAffordable.CanAfford(CreationCost.Raider))
+                {
+                    UnitFactory.CreateRaider();
+                    inventory.Spend(CreationCost.Raider);
+                }
             }
         }
     }
-    public void ReturnVillager()
+    public void ReturnVillager(CivicCenter civicCenter)
     { 
         if (civicCenter.IsConstructed)
         {
