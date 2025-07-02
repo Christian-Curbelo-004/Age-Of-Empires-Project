@@ -1,89 +1,20 @@
-﻿/*
-        Civilization civ1 = ElegiUnaCivilizacion();
-        GameState state = facade.StartNewGame(civ1);
-        GameLogic logic = new GameLogic();
-
-
-        var civic1 = new CivicCenter(100, 10, "Civic Center", playerOne.Id);
-        map.map[1, 1].Entity = civic1;
-        map.map[1, 1].EntityType = "CivicCenter";
-        map.map[1, 1].IsOccupied = true;
-        playerOne.CivicCenter = civic1;
-
-        var civic2 = new CivicCenter(100, 10, "Civic Center", playerTwo.Id);
-        map.map[width - 2, height - 2].Entity = civic2;
-        map.map[width - 2, height - 2].EntityType = "CivicCenter";
-        map.map[width - 2, height - 2].IsOccupied = true;
-        playerTwo.CivicCenter = civic2;
-
-        // Crear aldeanos alrededor de los CivicCenters (jugador 1 y 2) ...
-        var posicionesAldeanos1 = new (int x, int y)[] { (2, 1), (1, 2), (2, 2) };
-        foreach (var (x, y) in posicionesAldeanos1)
-        {
-            var villager = new Villagers(100, 5, playerOne.Id);
-            map.map[x, y].Entity = villager;
-            map.map[x, y].EntityType = "Villagers";
-            map.map[x, y].IsOccupied = true;
-            playerOne.AddVillagers(villager);
-        }
-
-        var posicionesAldeanos2 = new (int x, int y)[]
-            { (width - 3, height - 2), (width - 2, height - 3), (width - 3, height - 3) };
-        foreach (var (x, y) in posicionesAldeanos2)
-        {
-            var villager = new Villagers(100, 5, playerTwo.Id);
-            map.map[x, y].Entity = villager;
-            map.map[x, y].EntityType = "Villagers";
-            map.map[x, y].IsOccupied = true;
-            playerTwo.AddVillagers(villager);
-    
-    static Civilization ElegiUnaCivilizacion()
-
-        if (edificio == null)
-        {
-            Console.WriteLine("Opción de edificio inválida.");
-            Console.ReadKey();
-            return;
-        }
-
-        map.PonerEntidad(x, y, edificio);
-        Console.WriteLine($"{edificio.Name} construido en ({x}, {y}).");
-        Console.ReadKey();
-    }
-
-    static void MoverUnidad(Map map)
-    {
-        Console.WriteLine("De qué coordenadas quieres mover algo?");
-        string[] origenCoords = Console.ReadLine()?.Split() ?? Array.Empty<string>();
-
-        Console.WriteLine("Hacia dónde quieres mover?");
-        string[] destinoCoords = Console.ReadLine()?.Split() ?? Array.Empty<string>();
-
-        if (origenCoords.Length < 2 || destinoCoords.Length < 2 ||
-            !int.TryParse(origenCoords[0], out int origenX) ||
-            !int.TryParse(origenCoords[1], out int origenY) ||
-            !int.TryParse(destinoCoords[0], out int destinoX) ||
-            !int.TryParse(destinoCoords[1], out int destinoY))
-        {
-            Console.WriteLine("Coordenadas mal colocadas.");
-            Console.ReadKey();
-            return;
-        }
-
-        bool moverse = map.MoverEntidad(origenX, origenY, destinoX, destinoY);
-        Console.WriteLine(moverse ? "Se movió la entidad." : "No se pudo mover.");
-        Console.ReadKey();
-    }
-*/
-
-using ClassLibrary1.MapDirectory;
+﻿using Discord;
+using Discord.WebSocket;
+using ClassLibrary1.MapDirectory;       
 using ClassLibrary1.FacadeDirectory;
+using ClassLibrary1.CommandDirectory;
 
 namespace ClassLibrary1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private readonly ResourceHarvester _harvester;
+        private DiscordSocketClient? _client;
+        private readonly BuildingsConstructor _builder;
+
+        static Task Main(string[] args) => new Program().MainAsync();
+
+        private async Task MainAsync()
         {
             GameFacade gameFacade = new GameFacade();
             Map map = gameFacade.GenerateMap();
@@ -91,9 +22,62 @@ namespace ClassLibrary1
             ShowScreen showScreen = new ShowScreen(map, gameFacade.PlayerOne);
             string estado = showScreen.Screen();
             Console.WriteLine(estado);
+            
+            _client = new DiscordSocketClient(new DiscordSocketConfig
+            {
+                GatewayIntents = GatewayIntents.Guilds |
+                                 GatewayIntents.GuildMessages |
+                                 GatewayIntents.MessageContent
+            });
 
-            Console.WriteLine("\nPresiona cualquier tecla para salir...");
-            Console.ReadKey();
+            _client.Log += LogAsync;
+            _client.Ready += ReadyAsync;
+            _client.MessageReceived += MessageReceivedAsync;
+            
+
+            var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+
+            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.StartAsync();
+
+            await Task.Delay(-1);
+        }
+
+        private Task LogAsync(LogMessage log)
+        {
+            Console.WriteLine(log);
+            return Task.CompletedTask;
+        }
+
+        public Task<string> ChopAsync(string entityType, string destination, SocketMessage message)
+        {
+            if (message.Author.IsBot)
+                if (message.Content == "Talar")
+                    return _harvester.ChopAsync(entityType, destination);
+                return _harvester.MineAsync(entityType, destination);
+        }
+
+        
+        private Task ReadyAsync()
+        {
+            if (_client != null)
+                Console.WriteLine($"Conectado como -> {_client.CurrentUser}");
+            return Task.CompletedTask;
+        }
+
+        private async Task MessageReceivedAsync(SocketMessage message)
+        {
+            if (message.Author.IsBot) return;
+            if (message.Content == "!ping")
+                await message.Channel.SendMessageAsync("Pong!");
+        }
+
+        public Task<string> BuildAsync(string buildingType, string destination, Player player)
+        {
+            var result = _builder.Construct(buildingType, destination, player);
+            return Task.FromResult(result);
+            
         }
     }
 }
+
