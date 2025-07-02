@@ -30,58 +30,7 @@ namespace ClassLibrary1.FacadeDirectory
         {
             throw new NotImplementedException();
         }
-
-        // Método que intenta colocar la entidad en (x,y), y si está ocupada busca cerca (radio máximo 5)
-        private bool TryPlaceEntityNearby(Map map, IMapEntity entity, int x, int y, int maxRadius = 5)
-        {
-            // Primero intenta en la posición original
-            if (TryPlaceEntity(map, entity, x, y))
-                return true;
-
-            // Busca celdas alrededor en expansión de radio
-            for (int radius = 1; radius <= maxRadius; radius++)
-            {
-                for (int dx = -radius; dx <= radius; dx++)
-                {
-                    for (int dy = -radius; dy <= radius; dy++)
-                    {
-                        int newX = x + dx;
-                        int newY = y + dy;
-                        if (newX == x && newY == y)
-                            continue;
-
-                        if (newX >= 0 && newY >= 0 && newX < map.Cells.GetLength(0) && newY < map.Cells.GetLength(1))
-                        {
-                            if (TryPlaceEntity(map, entity, newX, newY))
-                                return true;
-                        }
-                    }
-                }
-            }
-
-            Console.WriteLine($"No se pudo colocar la entidad cerca de ({x},{y}).");
-            return false;
-        }
-
-        // Método que verifica si la celda está libre y coloca la entidad
-        private bool TryPlaceEntity(Map map, IMapEntity entity, int x, int y)
-        {
-            if (x < 0 || y < 0 || x >= map.Cells.GetLength(0) || y >= map.Cells.GetLength(1))
-                return false;
-
-            var cell = map.Cells[x, y];
-            if (!cell.IsOccupied)
-            {
-                map.PlaceEntity(entity, x, y);
-                return true;
-            }
-            else
-            {
-                // Console.WriteLine($"La celda ({x},{y}) ya está ocupada por otra entidad.");
-                return false;
-            }
-        }
-
+        
         public void GenerateCivicCenter(Map map)
         {
             var civic = new CivicCenter
@@ -171,45 +120,6 @@ namespace ClassLibrary1.FacadeDirectory
                 mensaje += ". El objetivo ha sido derrotado";
             return mensaje;
         }
-
-        public void RecursosEnEsquinas(Map map, int inicialX, int inicialY, int width, int height, int cantidadrecursos)
-        {
-            int attemptsLimit = cantidadrecursos * 5;
-            int placed = 0;
-            int attempts = 0;
-
-            while (placed < cantidadrecursos && attempts < attemptsLimit)
-            {
-                attempts++;
-                int x = _random.Next(inicialX, inicialX + width);
-                int y = _random.Next(inicialY, inicialY + height);
-
-                int recurso = _random.Next(3);
-                IMapEntity entity;
-
-                if (recurso == 0)
-                    entity = new Forest(5, 0, 50, 150);
-                else if (recurso == 1)
-                    entity = new GoldMine(5, 0, 50, 50);
-                else
-                    entity = new StoneMine(5, 0, 50, 75);
-
-                if (TryPlaceEntityNearby(map, entity, x, y))
-                    placed++;
-            }
-
-            if (placed < cantidadrecursos)
-                Console.WriteLine($"Solo se colocaron {placed} recursos de {cantidadrecursos} solicitados en la zona.");
-        }
-
-        public Dictionary<string, int> TasaRecoleccionRecurso()
-        {
-            return new Dictionary<string, int>()
-            {
-                { "gold", 4 }, { "stone", 5 }, { "wood", 6 }, { "food", 5 }
-            };
-        }
-
         public async Task BuildBuildingWithAsync(Buildings buildings, Map map, int x, int y, Player player)
         {
             Constructor constructor = new Constructor();

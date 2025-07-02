@@ -2,6 +2,7 @@ using System.Text;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.FacadeDirectory;
+using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 
 
@@ -11,6 +12,7 @@ namespace ClassLibrary1
     {
         private readonly Map _map;
         private readonly Player _playerOne;
+        private readonly ResourceInventory _resourceInventory;
 
         public ShowScreen(Map map, Player playerOne)
         {
@@ -94,7 +96,7 @@ namespace ClassLibrary1
 
         public string ShowRecolectionResourceMuf(GameFacade gameFacade)
         {
-            var ResourceMug = gameFacade.TasaRecoleccionRecurso();
+            var ResourceMug = _resourceInventory.TasaRecoleccionRecurso();
 
             var sb = new StringBuilder();
             sb.AppendLine("Tasa de recolección de recursos:");
