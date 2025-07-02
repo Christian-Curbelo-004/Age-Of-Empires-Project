@@ -9,5 +9,12 @@ public class PaladinCenter : Buildings
     public PaladinCenter(int endurence, int constructiontimeleft, string name, int ownerId) : base(endurence, name)
     {
         OwnerId = ownerId;
+        ConstructionTime = constructiontimeleft;
+    }
+
+    public async Task<PaladinCenter> CreatPaladinCenter()
+    {
+        await Task.Delay(1000);
+        return this;
     }
 }

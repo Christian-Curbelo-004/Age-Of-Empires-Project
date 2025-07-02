@@ -3,7 +3,8 @@ using ClassLibrary1.UnitsDirectory;
 
 namespace TestProject1;
 
-public class TestCivilization
+public class 
+    TestCivilization
 {
     [Test]
     public void PropiedadesDeVillager()

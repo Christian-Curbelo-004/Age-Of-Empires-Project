@@ -21,7 +21,7 @@ public class Player
     {
         Id = id;
         Civilization = civilization;
-        CivicCenter = new CivicCenter();
+        CivicCenter = new CivicCenter(10, 20, "CivicCenter", 1);
         MaxPoblacion = maxPoblacion;
 
         // Recursos iniciales

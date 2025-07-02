@@ -14,7 +14,7 @@ public class BuildFactory
 
     public static CivicCenter CreateCivicCenter()
     {
-        return new CivicCenter()
+        return new CivicCenter(10, 20, "CivicCenter", 1)
         {
             ActualHealth = 500, ConstructionTime = 0, Endurence = 500, Name = "CivicCenter", OwnerId = 0,
         };

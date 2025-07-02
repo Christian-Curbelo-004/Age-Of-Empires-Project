@@ -1,16 +1,30 @@
 ﻿using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
-namespace ClassLibrary1.BuildingsDirectory;                  
-    public class CivicCenter : Buildings , IMapEntity , ICapacity
+namespace ClassLibrary1.BuildingsDirectory;
+
+public class CivicCenter : Buildings, IMapEntity, ICapacity
+{
+    public int OwnerId { get; set; }
+
+    //  public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0
+    public (int X, int Y) Position { get; set; }
+    public const int MaxHealth = 500;
+    public int ActualHealth = 500;
+    private IMapEntity _mapEntityImplementation;
+    public int Capacity { get; } = 10; // Capacidad del CC
+
+
+    public CivicCenter(int endurance, int constructionTimeleft, string name, int OwnerId) : base(endurance, name)
     {
-        public int OwnerId { get; set; }
-      //  public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0
-        public (int X, int Y) Position { get; set; }
-        public const int MaxHealth = 500;
-        public int ActualHealth = 500;
-        private IMapEntity _mapEntityImplementation;
-        public int Capacity { get; } = 10; // Capacidad del CC
-        
+        Endurence = endurance;
+        OwnerId = OwnerId;
+        ConstructionTime = constructionTimeleft;
     }
 
+    public async Task<CivicCenter> CreateCivicCenter()
+    {
+        await Task.Delay(0);
+        return this;
+    }
+}

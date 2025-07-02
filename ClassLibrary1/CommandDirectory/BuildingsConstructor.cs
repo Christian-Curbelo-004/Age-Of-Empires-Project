@@ -37,7 +37,7 @@ namespace ClassLibrary1.CommandDirectory
             Buildings newBuilding = buildingType.ToLower() switch
             {
                 "home" => new Home(20, 10, "Home"),
-                "civiccenter" => new CivicCenter(),
+                "civiccenter" => new CivicCenter(10, 10, "CivicCenter", 1),
                 "archercenter" => new ArcherCenter(20, 13, "ArcherCenter", 1),
                 "chivarlycenter" => new ChivarlyCenter(20, 10, "ChivarlyCenter", 1),
                 "infantrycenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),

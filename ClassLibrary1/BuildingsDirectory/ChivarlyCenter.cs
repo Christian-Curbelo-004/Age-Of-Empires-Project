@@ -9,6 +9,13 @@ namespace ClassLibrary1.CivilizationDirectory
             : base(endurence,  name) 
         {
             OwnerId = ownerId;
+            ConstructionTime = constructiontimeleft;
+        }
+
+        public async Task<ChivarlyCenter> BuildChivarlyCenter()
+        {
+            await Task.Delay(1000);
+            return this;
         }
     }
 }

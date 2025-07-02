@@ -9,6 +9,13 @@ namespace ClassLibrary1.BuildingsDirectory
             : base(endurence, name)
         {
             OwnerId = ownerId;
+            ConstructionTime = constructiontimeleft;
+        }
+
+        public async Task <ArcherCenter> BuildAsync()
+        {
+            await Task.Delay(1000);
+            return this;
         }
     }
 }
