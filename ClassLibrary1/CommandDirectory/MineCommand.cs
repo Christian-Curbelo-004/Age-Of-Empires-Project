@@ -1,7 +1,7 @@
 namespace CommandDirectory;
-using ClassLibrary1.QuaryDirectory;
 
-public class MineCommand : ICommand
+
+public class MineCommand : IGameCommand
 {
     private readonly IMapService _mapService;
 
@@ -10,8 +10,8 @@ public class MineCommand : ICommand
         _mapService = mapService;
     }
 
-    public async Task ExecuteAsync(string entityType, string destination)
+    public async Task<string> ExecuteAsync(string entityType, string destination)
     {
-        await _mapService.MineAsync(entityType, destination);
+        return await _mapService.MineAsync(entityType, destination);
     }
 }

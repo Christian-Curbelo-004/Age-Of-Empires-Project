@@ -47,18 +47,17 @@ namespace ClassLibrary1
             }
 
             sb.AppendLine("\n==== RECURSOS DEL JUGADOR ====");
-            if (_playerOne.Resources == null || _playerOne.Resources.Count == 0)
+            if (_playerOne.Resources == null)
             {
                 sb.AppendLine(" - No tienes recursos.");
             }
             else
             {
-                foreach (var recurso in _playerOne.Resources)
-                {
-                    sb.AppendLine($" - {recurso.Key}: {recurso.Value}");
-                }
+                sb.AppendLine($" - Madera: {_playerOne.Resources.Wood}");
+                sb.AppendLine($" - Alimento: {_playerOne.Resources.Food}");
+                sb.AppendLine($" - Oro: {_playerOne.Resources.Gold}");
+                sb.AppendLine($" - Piedra: {_playerOne.Resources.Stone}");
             }
-
             int actualHealth = _playerOne.CivicCenter?.ActualHealth ?? 0;
             int maxHealth = CivicCenter.MaxHealth;
 

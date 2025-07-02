@@ -1,5 +1,5 @@
 namespace CommandDirectory;
-public interface ICommand
+public interface IGameCommand
 {
-    Task ExecuteAsync(string obj, string parameter);
+    Task <string> ExecuteAsync(string obj, string parameter);
 }

@@ -1,5 +1,5 @@
 namespace CommandDirectory;
-public class ChopCommand : ICommand
+public class ChopCommand : IGameCommand
 {
     private readonly IMapService _mapService;
 
@@ -8,8 +8,8 @@ public class ChopCommand : ICommand
         _mapService = mapService;
     }
 
-    public async Task ExecuteAsync(string entityType, string destination)
+    public async Task <string> ExecuteAsync(string entityType, string destination)
     {
-        await _mapService.ChopAsync(entityType, destination);
+        return await _mapService.ChopAsync(entityType, destination);
     }
 }

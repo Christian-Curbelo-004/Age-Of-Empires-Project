@@ -146,15 +146,15 @@ namespace ClassLibrary1.FacadeDirectory
                 Buildings = new List<Buildings>(),
                 Units = new List<IMapEntity>()
             };
-            PlayerOne.Resources["wood"] = 100;
-            PlayerOne.Resources["food"] = 100;
-            PlayerOne.Resources["gold"] = 0;
-            PlayerOne.Resources["stone"] = 0;
+            PlayerOne.Resources.Wood = 100;
+            PlayerOne.Resources.Food = 100;
+            PlayerOne.Resources.Gold = 0;
+            PlayerOne.Resources.Stone = 0;
 
-            PlayerTwo.Resources["wood"] = 100;
-            PlayerTwo.Resources["food"] = 100;
-            PlayerTwo.Resources["gold"] = 0;
-            PlayerTwo.Resources["stone"] = 0;
+            PlayerTwo.Resources.Wood = 100;
+            PlayerTwo.Resources.Food = 100;
+            PlayerTwo.Resources.Gold = 0;
+            PlayerTwo.Resources.Stone = 0;
             
             GenerateCivicCenter(map);
             GenerateCivicCenter2(map);

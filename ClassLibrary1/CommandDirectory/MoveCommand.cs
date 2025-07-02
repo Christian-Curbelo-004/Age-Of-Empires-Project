@@ -1,6 +1,6 @@
 namespace CommandDirectory;
 
-public class MoveCommand : ICommand
+public class MoveCommand : IGameCommand
 {
     private readonly IMapService _mapService;
 
@@ -9,8 +9,8 @@ public class MoveCommand : ICommand
         _mapService = mapService;
     }
 
-    public async Task ExecuteAsync(string entityType, string destination)
+    public async Task <string> ExecuteAsync(string entityType, string destination)
     {
-        await _mapService.MoveEntityAsync(entityType, destination);
+        return await _mapService.MoveEntityAsync(entityType, destination);
     }
 }

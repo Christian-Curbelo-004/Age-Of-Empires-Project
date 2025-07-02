@@ -1,9 +1,9 @@
 using CommandDirectory;
 public class CommandProcessor
 {
-    private readonly Dictionary<string, ICommand> _commands;
+    private readonly Dictionary<string, IGameCommand> _commands;
 
-    public CommandProcessor(Dictionary<string, ICommand> commands)
+    public CommandProcessor(Dictionary<string, IGameCommand> commands)
     {
         _commands = commands;
     }

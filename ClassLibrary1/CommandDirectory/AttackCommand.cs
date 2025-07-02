@@ -4,7 +4,7 @@ using CreateBuildings;
 
 namespace CommandDirectory;
 
-public class AttackCommand : ICommand
+public class AttackCommand : IGameCommand
 {
     private readonly IMapService _mapService;
 
@@ -13,8 +13,8 @@ public class AttackCommand : ICommand
         _mapService = mapService;
     }
 
-    public async Task ExecuteAsync(string entityType, string destination)
+    public async Task <string> ExecuteAsync(string entityType, string destination)
     {
-        await _mapService.AttackAsync(entityType, destination);
+        return await _mapService.AttackAsync(entityType, destination);
     }
 }
