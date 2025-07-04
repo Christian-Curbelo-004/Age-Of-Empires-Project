@@ -5,12 +5,10 @@ using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
 using CreateBuildings;
 
-
 namespace ClassLibrary1.FacadeDirectory
 {
     public class GameFacade : IFacade
     {
-        //Falta llamar los métodos aca y evaluarlos, con los comandos que ingresa el jugador y evaluarlos fuera del program
         public Player PlayerOne { get; private set; }
         public Player PlayerTwo { get; private set; }
 
@@ -19,45 +17,47 @@ namespace ClassLibrary1.FacadeDirectory
             return new Map(100, 100); // Mapa 100x100
         }
 
-        public void GenerateQuary(Map map)
+        private bool TryPlaceEntityAt(Map map, IMapEntity entity, int x, int y)
         {
-            throw new NotImplementedException();
+            if (!map.IsWithinBounds(x, y)) return false;
+
+            var cell = map.GetCell(x, y);
+            if (cell.IsOccupied) return false;
+
+            cell.AddEntity(entity); // <- aquí se usa correctamente AddEntity
+            entity.Position = (x, y);
+            return true;
         }
-        
+
         public void GenerateCivicCenter(Map map)
         {
-            var civic = new CivicCenter(0,0,"Civic Center",0)
+            var civic = new CivicCenter(0, 0, "Civic Center", 0)
             {
-                OwnerId = PlayerOne.Id,
-                Position = (10, 10),
+                OwnerId = PlayerOne.Id
             };
-            PlayerOne.Buildings.Add(civic);
-            //TryPlaceEntityNearby(map, civic, 10, 10);
+
+            if (TryPlaceEntityAt(map, civic, 10, 10))
+                PlayerOne.Buildings.Add(civic);
         }
 
         public void GenerateCivicCenter2(Map map)
         {
-            var civic = new CivicCenter(0,0,"Civic Center",0)
+            var civic = new CivicCenter(0, 0, "Civic Center", 0)
             {
-                Endurence = 0,
-                ConstructionTime = 0,
-                OwnerId = PlayerTwo.Id,
-                Position = (90, 90)
+                OwnerId = PlayerTwo.Id
             };
-            PlayerTwo.Buildings.Add(civic);
-            //TryPlaceEntityNearby(map, civic, 90, 90);
+
+            if (TryPlaceEntityAt(map, civic, 90, 90))
+                PlayerTwo.Buildings.Add(civic);
         }
 
         public void GenerateVillagers(Map map)
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(12, 3, PlayerOne.Id, 5)
-                {
-                    Position = (12 + i, 12)
-                };
-                PlayerOne.Units.Add(villager);
-                //TryPlaceEntityNearby(map, villager, 12 + i, 12);
+                var villager = new Villagers(12, 3, PlayerOne.Id, 5);
+                if (TryPlaceEntityAt(map, villager, 12 + i, 12))
+                    PlayerOne.Units.Add(villager);
             }
         }
 
@@ -65,13 +65,22 @@ namespace ClassLibrary1.FacadeDirectory
         {
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(12, 3, PlayerTwo.Id, 8)
-                {
-                    Position = (88 + i, 88)
-                };
-                PlayerTwo.Units.Add(villager);
-                //TryPlaceEntityNearby(map, villager, 88 + i, 88);
+                var villager = new Villagers(12, 3, PlayerTwo.Id, 8);
+                if (TryPlaceEntityAt(map, villager, 88 + i, 88))
+                    PlayerTwo.Units.Add(villager);
             }
+        }
+
+        public void GenerateQuary(Map map)
+        {
+            var goldMine = new GoldMine(0, 100, 10, 1);
+            TryPlaceEntityAt(map, goldMine, 20, 20);
+
+            var stoneMine = new StoneMine(0, 100, 10, 1);
+            TryPlaceEntityAt(map, stoneMine, 25, 25);
+
+            var forest = new Forest(0, 100, 10, 1);
+            TryPlaceEntityAt(map, forest, 30, 30);
         }
 
         public void InitializePlayer(Map map)
@@ -83,6 +92,7 @@ namespace ClassLibrary1.FacadeDirectory
                 Buildings = new List<Buildings>(),
                 Units = new List<IMapEntity>()
             };
+
             PlayerTwo = new Player(124, "Vikings", 50)
             {
                 Id = 2,
@@ -90,6 +100,7 @@ namespace ClassLibrary1.FacadeDirectory
                 Buildings = new List<Buildings>(),
                 Units = new List<IMapEntity>()
             };
+
             PlayerOne.Resources.Wood = 100;
             PlayerOne.Resources.Food = 100;
             PlayerOne.Resources.Gold = 0;
@@ -99,12 +110,14 @@ namespace ClassLibrary1.FacadeDirectory
             PlayerTwo.Resources.Food = 100;
             PlayerTwo.Resources.Gold = 0;
             PlayerTwo.Resources.Stone = 0;
-            
+
             GenerateCivicCenter(map);
             GenerateCivicCenter2(map);
             GenerateVillagers(map);
             GenerateVillagers2(map);
+            GenerateQuary(map);
         }
+
         public async Task BuildBuildingWithAsync(Buildings buildings, Map map, int x, int y, Player player)
         {
             Constructor constructor = new Constructor();
@@ -113,26 +126,26 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateFarm(Map map, int x, int y)
         {
-            var farm = new Farm(0, 100, 10, 1) { Position = (x, y) };
-            //TryPlaceEntityNearby(map, farm, x, y);
+            var farm = new Farm(0, 100, 10, 1);
+            TryPlaceEntityAt(map, farm, x, y);
         }
 
         public void GenerateForest(Map map, int x, int y)
         {
-            var forest = new Forest(0, 100, 10, 1) { Position = (x, y) };
-            //TryPlaceEntityNearby(map, forest, x, y);
+            var forest = new Forest(0, 100, 10, 1);
+            TryPlaceEntityAt(map, forest, x, y);
         }
 
         public void GenerateGoldMine(Map map, int x, int y)
         {
-            var gold = new GoldMine(0, 100, 10, 1) { Position = (x, y) };
-            //TryPlaceEntityNearby(map, gold, x, y);
+            var gold = new GoldMine(0, 100, 10, 1);
+            TryPlaceEntityAt(map, gold, x, y);
         }
 
         public void GenerateStoneMine(Map map, int x, int y)
         {
-            var stone = new StoneMine(0, 100, 10, 1) { Position = (x, y) };
-            //TryPlaceEntityNearby(map, stone, x, y);
+            var stone = new StoneMine(0, 100, 10, 1);
+            TryPlaceEntityAt(map, stone, x, y);
         }
     }
 }

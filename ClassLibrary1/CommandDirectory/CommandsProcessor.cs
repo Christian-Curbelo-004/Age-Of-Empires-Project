@@ -16,7 +16,7 @@ public class CommandProcessor
         var parts = input.Split('+');
         if (parts.Length < 3)
             return "El comando debe tener el formato: verbo+entidad+parametros.";
-
+ 
         string verb = parts[0].ToLower();
         string entityType = parts[1];
         string destination = parts[2];
@@ -26,8 +26,8 @@ public class CommandProcessor
 
         try
         {
-            await command.ExecuteAsync(entityType, destination);
-            return $"Comando '{verb}' ejecutado para '{entityType}' en '{destination}'.";
+            string result = await command.ExecuteAsync(entityType, destination);
+            return result;
         }
         catch (Exception ex)
         {

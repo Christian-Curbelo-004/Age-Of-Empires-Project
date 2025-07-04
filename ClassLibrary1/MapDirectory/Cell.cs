@@ -12,6 +12,7 @@ namespace ClassLibrary1
         public List<IMapEntity> Entities { get; } = new List<IMapEntity>();
         public bool IsOccupied => Entities.Count > 0;
         public IEnumerable<string> EntityTypes => Entities.Select(e => e.GetType().Name);
+
         public IMapEntity Entity
         {
             get => Entities.FirstOrDefault();
@@ -30,6 +31,15 @@ namespace ClassLibrary1
             PosX = x;
             PosY = y;
             Resource = null;
+        }
+
+        public void AddEntity(IMapEntity entity)
+        {
+            Entities.Add(entity);
+            {
+                if (!Entities.Contains(entity))
+                    Entities.Add(entity);
+            }
         }
     }
 }

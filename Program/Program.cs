@@ -1,4 +1,4 @@
-﻿using Discord;
+﻿/*using Discord;
 using Discord.WebSocket;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.FacadeDirectory;
@@ -68,10 +68,18 @@ namespace ClassLibrary1
 
             if (message.Content.StartsWith("!"))
             {
-                string input = message.Content.Substring(1); 
+                string input = message.Content.Substring(1);
                 string response = await _commandProcessor.ProcessCommand(input);
                 await message.Channel.SendMessageAsync(response);
             }
         }
+    }
+}*/
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var bot = new DiscordBot();
+        await bot.StartAsync();
     }
 }
