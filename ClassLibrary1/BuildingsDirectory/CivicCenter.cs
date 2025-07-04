@@ -21,10 +21,4 @@ public class CivicCenter : Buildings, IMapEntity, ICapacity
         OwnerId = OwnerId;
         ConstructionTime = constructionTimeleft;
     }
-
-    public async Task<CivicCenter> CreateCivicCenter()
-    {
-        await Task.Delay(0);
-        return this;
-    }
 }

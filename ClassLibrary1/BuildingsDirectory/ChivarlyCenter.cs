@@ -11,12 +11,6 @@ namespace ClassLibrary1.CivilizationDirectory
             OwnerId = ownerId;
             ConstructionTime = constructiontimeleft;
         }
-
-        public async Task<ChivarlyCenter> BuildChivarlyCenter()
-        {
-            await Task.Delay(1000);
-            return this;
-        }
     }
 }
  

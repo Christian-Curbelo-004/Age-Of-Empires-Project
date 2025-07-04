@@ -96,7 +96,7 @@ namespace ClassLibrary1
 
         public string ShowRecolectionResourceMuf(GameFacade gameFacade)
         {
-            var ResourceMug = _resourceInventory.TasaRecoleccionRecurso();
+            var ResourceMug = _resourceInventory.ResourceCollectionCup();
 
             var sb = new StringBuilder();
             sb.AppendLine("Tasa de recolección de recursos:");

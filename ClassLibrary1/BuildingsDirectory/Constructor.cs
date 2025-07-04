@@ -1,9 +1,8 @@
-using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using CreateBuildings;
 
 namespace ClassLibrary1.BuildingsDirectory;
-
+// Creo que hay que sacarla
 public class Constructor
 {
     public async Task BuildEstructura(Buildings buildings, Map map, int x, int y, Player player)

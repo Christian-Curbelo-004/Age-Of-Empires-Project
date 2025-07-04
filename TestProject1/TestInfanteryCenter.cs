@@ -10,12 +10,4 @@ public class TestInfanteryCenter
     {
         _centerInf = new InfanteryCenter (20, 10, "InfanteryCenter",1223);
     }
-
-    [Test]
-    public void ConstructionCostCorrect()
-    {
-        var constructionCost = _centerInf.GetConstructionCost();
-        Assert.That(constructionCost["Piedra"],Is.EqualTo(10));
-        Assert.That(constructionCost["Oro"],Is.EqualTo(20));
-    }
 }

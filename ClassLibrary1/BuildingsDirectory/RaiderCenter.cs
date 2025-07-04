@@ -10,10 +10,4 @@ public class RaiderCenter : Buildings
     {
         OwnerId = ownerId;
     }
-
-    public async Task<RaiderCenter> CreateRaiderCenter()
-    {
-        await Task.Delay(1000);
-        return this;
-    }
 }

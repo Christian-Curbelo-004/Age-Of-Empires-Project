@@ -10,10 +10,4 @@ public class Home : Buildings , ICapacity
         : base(endurence, name) 
     {
     }
-
-    public async Task<Home> CreateHome()
-    {
-        await Task.Delay(1000);
-        return this;
-    }
 }

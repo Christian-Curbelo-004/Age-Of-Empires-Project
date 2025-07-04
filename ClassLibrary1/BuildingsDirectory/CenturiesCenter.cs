@@ -12,9 +12,4 @@ public class CenturiesCenter : Buildings
         OwnerId = ownerId;
         ConstructionTime = constructiontimeleft;
     }
-    public async Task <CenturiesCenter> Build()
-    {
-        await Task.Delay(1000);
-        return this;
-    }
 }

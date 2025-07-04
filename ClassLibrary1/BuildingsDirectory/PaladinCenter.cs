@@ -11,10 +11,4 @@ public class PaladinCenter : Buildings
         OwnerId = ownerId;
         ConstructionTime = constructiontimeleft;
     }
-
-    public async Task<PaladinCenter> CreatPaladinCenter()
-    {
-        await Task.Delay(1000);
-        return this;
-    }
 }

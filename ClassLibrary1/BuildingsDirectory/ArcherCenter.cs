@@ -11,11 +11,5 @@ namespace ClassLibrary1.BuildingsDirectory
             OwnerId = ownerId;
             ConstructionTime = constructiontimeleft;
         }
-
-        public async Task <ArcherCenter> BuildAsync()
-        {
-            await Task.Delay(1000);
-            return this;
-        }
     }
 }

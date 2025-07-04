@@ -19,7 +19,8 @@ public class ResourceInventory : IResourceInventory
         Gold -= cost.Gold;
         Stone -= cost.Stone;
     }
-    public Dictionary<string, int> TasaRecoleccionRecurso()
+    // Creo que no se usa
+    public Dictionary<string, int> ResourceCollectionCup()
     {
         return new Dictionary<string, int>()
         {
