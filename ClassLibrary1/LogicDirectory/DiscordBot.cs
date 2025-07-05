@@ -21,9 +21,7 @@ public class DiscordBot
     {
         _showScreen = _showScreen;
     }
-
     
-
     public async Task StartAsync()
     {
         _gameFacade = new GameFacade();
@@ -37,6 +35,7 @@ public class DiscordBot
         {
             { "chop", new ChopCommand(_mapService) },
             { "mine", new MineCommand(_mapService) },
+            { "gather", new GatherFoodCommand(_mapService) },
             { "move", new MoveCommand(_mapService) },
             { "attack", new AttackCommand(_mapService) }
         };

@@ -1,11 +1,8 @@
 ﻿namespace ClassLibrary1.QuaryDirectory
 {
-    public class Forest : IResourceDeposit // IMapEntity
+    public class Forest //Hereda de Quary?
     {
-     //   public string Name { get; set; } = "Forest"; 
         public int OwnerId { get; set; }
-        //public (int X, int Y) Position { get; set; }
-        //public int Speed { get; set; } = 0; 
         public int CurrentAmount
         {
             get => Wood;

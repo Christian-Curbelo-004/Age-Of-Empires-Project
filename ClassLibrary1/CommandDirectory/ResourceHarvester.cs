@@ -32,6 +32,22 @@ public class ResourceHarvester
         }
     }
 
+    public async Task<string> GatherFoodAsync(string entityType, string destination)
+    {
+        await _mover.MoveEntityAsync(entityType, destination);
+        var (x, y) = _mover.ParseCoords(destination);
+        var cell = _map.Cells[x, y];
+        if (cell.Resource is Farm farm)
+        {
+            await Task.Delay(3000);
+            int collected = farm.GetResources(1);
+            farm.CurrentAmount = Math.Max(0, farm.CurrentAmount - collected);
+            return $"{entityType} recolectó comida y consiguió {collected}. Restante: {farm.CurrentAmount}";
+        }
+
+        return $"No hay mina válida en ({x},{y}).";
+    }
+
     public async Task<string> MineAsync(string entityType, string destination)
     {
         await _mover.MoveEntityAsync(entityType, destination);

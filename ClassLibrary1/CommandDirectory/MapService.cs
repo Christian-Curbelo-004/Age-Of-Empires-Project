@@ -28,6 +28,9 @@ public class MapService : IMapService
     public Task<string> ChopAsync(string entityType, string destination) =>
         _harvester.ChopAsync(entityType, destination);
 
+    public Task<string> GatherFoodAsync(string entityType, string destination) =>
+        _harvester.GatherFoodAsync(entityType, destination);
+
     public Task<string> MineAsync(string entityType, string destination) =>
         _harvester.MineAsync(entityType, destination);
 
