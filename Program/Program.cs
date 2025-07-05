@@ -75,6 +75,9 @@ namespace ClassLibrary1
         }
     }
 }*/
+
+using ClassLibrary1;
+
 class Program
 {
     static async Task Main(string[] args)

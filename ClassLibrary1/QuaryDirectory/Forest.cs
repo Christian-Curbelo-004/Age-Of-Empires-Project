@@ -1,8 +1,8 @@
 ﻿namespace ClassLibrary1.QuaryDirectory
 {
-    public class Forest //: IResourceDeposit // IMapEntity
+    public class Forest : IResourceDeposit // IMapEntity
     {
-        public string Name { get; set; } = "Forest"; 
+     //   public string Name { get; set; } = "Forest"; 
         public int OwnerId { get; set; }
         //public (int X, int Y) Position { get; set; }
         //public int Speed { get; set; } = 0; 
@@ -17,10 +17,11 @@
         
 
         private int _extractionRate;
-        private int _collectionValue;
+        private int _collectionValue; // arreglar 
 
         public Forest(int ownerId, int initialWood, int extractionRate, int collectionValue)
         {
+            
             OwnerId = ownerId;
             Wood = initialWood;
             _extractionRate = extractionRate;
@@ -31,6 +32,7 @@
             int collected = GetResourcesCollected.ResourceCollected(Wood, _extractionRate, collectors);
             Wood -= collected;
             return collected;
+            
         }
     }
 }

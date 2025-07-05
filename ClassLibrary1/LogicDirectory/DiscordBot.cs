@@ -4,9 +4,6 @@ using ClassLibrary1;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.CommandDirectory;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using CommandDirectory;
 
 public class DiscordBot
@@ -19,6 +16,13 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
+
+    public DiscordBot()
+    {
+        _showScreen = _showScreen;
+    }
+
+    
 
     public async Task StartAsync()
     {
@@ -126,5 +130,27 @@ public class DiscordBot
         return await buildCommand.ExecuteAsync("Farm", "10");
     }
     
-    
+    public Task GenerateFarmCommand(Map map)
+    {
+        _gameFacade.GenerateFarm(map, 0,1);
+        return Task.CompletedTask;
+    }
+
+    public Task GenerateForestCommand(Map map)
+    {
+        _gameFacade.GenerateForest(map, 1, 2);
+        return Task.CompletedTask;
+    }
+
+    public Task GenerateStoneMineCommand(Map map)
+    {
+        _gameFacade.GenerateStoneMine(map, 3, 4);
+        return Task.CompletedTask;
+    }
+
+    public Task GenerateGoldMineCommand(Map map)
+    {
+        _gameFacade.GenerateGoldMine(map, 5, 6);
+        return Task.CompletedTask;
+    }
 }

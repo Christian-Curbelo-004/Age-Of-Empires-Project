@@ -4,7 +4,7 @@ namespace ClassLibrary1.QuaryDirectory
 {
     public class Farm : IResourceDeposit
     {
-        public string Name { get; set; } = "Farm";
+      //  public string Name { get; set; } = "Farm";
         public int OwnerId { get; set; }
         public int CurrentAmount
         {
@@ -25,7 +25,9 @@ namespace ClassLibrary1.QuaryDirectory
             _extractionRate = extractionRate;
             _collectionValue = collectionValue;
         }
+
         
+
         public int GetResources(int collectors)
         {
             int collected = GetResourcesCollected.ResourceCollected(Food, _extractionRate, collectors);

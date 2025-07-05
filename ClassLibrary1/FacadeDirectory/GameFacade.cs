@@ -1,6 +1,4 @@
-using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
@@ -20,13 +18,16 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateCivicCenter(Map map)
         {
-            var civic = new CivicCenter(0, 0, "Civic Center", 0)
+            if (PlayerOne == null)
             {
-                OwnerId = PlayerOne.Id
-            };
+                var civic = new CivicCenter(0, 0, "Civic Center", 0)
+                {
+                    OwnerId = PlayerOne.Id
+                };
+            }
 
             //if (TryPlaceEntityAt(map, civic, 10, 10))
-                //PlayerOne.Buildings.Add(civic);
+            //PlayerOne.Buildings.Add(civic);
         }
 
         public void GenerateCivicCenter2(Map map)
@@ -42,22 +43,18 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateVillagers(Map map)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                var villager = new Villagers(12, 3, PlayerOne.Id, 5);
-                //if (TryPlaceEntityAt(map, villager, 12 + i, 12))
-                    //PlayerOne.Units.Add(villager);
-            }
+            var villager = new Villagers(12, 3, PlayerOne.Id, 5);
+            //if (TryPlaceEntityAt(map, villager, 12 + i, 12))
+            //PlayerOne.Units.Add(villager);
+            
         }
 
         public void GenerateVillagers2(Map map)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                var villager = new Villagers(12, 3, PlayerTwo.Id, 8);
+            var villager = new Villagers(12, 3, PlayerTwo.Id, 8);
                 //if (TryPlaceEntityAt(map, villager, 88 + i, 88))
                    // PlayerTwo.Units.Add(villager);
-            }
+            
         }
 
         public void GenerateQuary(Map map)

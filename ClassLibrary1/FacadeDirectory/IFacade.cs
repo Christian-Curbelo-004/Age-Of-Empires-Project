@@ -1,7 +1,4 @@
-﻿using ClassLibrary1.MapDirectory;
-
-
-namespace ClassLibrary1.CivilizationDirectory
+﻿namespace ClassLibrary1.FacadeDirectory
 
 
 {
