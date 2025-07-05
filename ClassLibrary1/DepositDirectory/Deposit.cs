@@ -14,10 +14,5 @@ namespace ClassLibrary1.DepositDirectory
             CurrentStorage = 0;
             ConstructionTime = constructiontimeleft;
         }
-
-        public virtual int ActualResources() //Recursos Actuales
-        {
-            return 0;
-        }
     }
 }

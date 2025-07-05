@@ -12,7 +12,7 @@ public class ResourceInventory : IResourceInventory
     public void AddStone(int amount) => Stone += amount;
     public void AddGold(int amount) => Gold += amount;
 
-    public void Spend(Cost cost) // Le resto el costo de Creación de la unidad al Inventario (posible cambio)
+    public void Spend(Cost cost) // Le resto el costo de Creación de la unidad al Inventario 
     {
         Food -= cost.Food;
         Wood -= cost.Wood;

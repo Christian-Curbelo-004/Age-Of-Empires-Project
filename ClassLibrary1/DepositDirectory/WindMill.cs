@@ -20,11 +20,5 @@ namespace  ClassLibrary1.DepositDirectory
             inventory.AddGold(deposited);
         }
         public string EntityType => "WindMill";
-
-        public override int ActualResources()
-        {
-            return CurrentFood;
-        }
-
     }      
 }

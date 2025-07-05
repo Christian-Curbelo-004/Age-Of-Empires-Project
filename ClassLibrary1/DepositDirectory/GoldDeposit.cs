@@ -20,10 +20,5 @@ namespace ClassLibrary1.DepositDirectory
             inventory.AddGold(deposited);
         }
         public string EntityType => "GoldDeposit";
-
-        public override int ActualResources()
-        {
-            return CurrentGold;
-        }
     }      
 }

@@ -13,18 +13,12 @@ namespace ClassLibrary1.DepositDirectory
             OwnerId = ownerId;
             this.inventory = inventory;
         }
-        public void StoreStone(int amount) // Piedtra Almacenada
+        public void StoreStone(int amount) // Piedtra Almacenada (Falta implementar en aldeanos o algo de eso)
         {
             int deposited = Math.Min(amount, MaxCapacity - CurrentStone);
             CurrentStone += deposited;
             inventory.AddStone(deposited);
         }
-        
         public string EntityType => "StoneDeposit";
-
-        public override int ActualResources()
-        {
-            return CurrentStone;
-        }
     }     
 }

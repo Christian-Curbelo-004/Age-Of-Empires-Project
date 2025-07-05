@@ -87,7 +87,7 @@ namespace ClassLibrary1
             List<string> Resources = new List<string>();
             foreach (Deposit deposit in _map.GetEntities<Deposit>())
             {
-                string resourceAmount = $"{deposit.GetType().Name} tiene {deposit.ActualResources()} de {deposit.MaxCapacity}";
+                string resourceAmount = $"{deposit.GetType().Name} tiene {_resourceInventory} de {deposit.MaxCapacity}";
                 Resources.Add(resourceAmount);
             }
 
