@@ -1,14 +1,19 @@
-using ClassLibrary1.MapDirectory;
+
 
 namespace ClassLibrary1.QuaryDirectory
 {
-    public class Farm 
+    public class Farm : IResourceDeposit
     {
         public string Name { get; set; } = "Farm";
         public int OwnerId { get; set; }
-        public int CurrentAmount => Food;
-        public int Food { get; private set; }
+        public int CurrentAmount
+        {
+            get => Food;
+            set => Food = value;
+        }
+        
         public string ResourceType => "Food";
+        public int Food { get; private set; }
 
         private int _extractionRate;
         private int _collectionValue;

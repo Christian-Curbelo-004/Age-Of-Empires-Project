@@ -1,7 +1,6 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
-using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 using CreateBuildings;
 

@@ -119,4 +119,10 @@ public class DiscordBot
             }
         }
     }
+
+    public async Task<string> BuildCommand() // llama a la clase build command
+    {
+        var buildCommand = new BuildCommand(_mapService, _player);
+        return await buildCommand.ExecuteAsync("Farm", "10");
+    }   
 }

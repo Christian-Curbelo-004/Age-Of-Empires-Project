@@ -12,8 +12,9 @@
             set => Wood = value;
         }
 
-        public int Wood { get; private set; }
         public string ResourceType => "Wood";
+        public int Wood { get; private set; }
+        
 
         private int _extractionRate;
         private int _collectionValue;
