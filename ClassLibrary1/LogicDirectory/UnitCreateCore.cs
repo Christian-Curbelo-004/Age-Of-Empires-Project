@@ -33,30 +33,36 @@ public class UnitCreateCore
             }
         }
     }
-    public void ReturnCenturies(CenturiesCenter centuriesCenter)
+    public void ReturnCenturies(CenturiesCenter centuriesCenter, Civilization civilization, Roman roman)
     {
-        if (centuriesCenter.IsConstructed)
+        if (civilization == roman)
         {
-            if (knowingCell.CheckPopulation(player.Id) >= 1)
+            if (centuriesCenter.IsConstructed)
             {
-                if (unitAffordable.CanAfford(CreationCost.Centuries))
+                if (knowingCell.CheckPopulation(player.Id) >= 1)
                 {
-                    UnitFactory.CreateCenturies();
-                    inventory.Spend(CreationCost.Centuries);
+                    if (unitAffordable.CanAfford(CreationCost.Centuries))
+                    {
+                        UnitFactory.CreateCenturies();
+                        inventory.Spend(CreationCost.Centuries);
+                    }
                 }
             }
         }
     }
-    public void ReturnPaladin(PaladinCenter paladinCenter)
+    public void ReturnPaladin(PaladinCenter paladinCenter, Civilization civilization, Templaries templaries)
     {
-        if (paladinCenter.IsConstructed)
+        if (civilization == templaries)
         {
-            if (knowingCell.CheckPopulation(player.Id) >= 1)
+            if (paladinCenter.IsConstructed)
             {
-                if (unitAffordable.CanAfford(CreationCost.Paladin))
+                if (knowingCell.CheckPopulation(player.Id) >= 1)
                 {
-                    UnitFactory.CreatePaladin();
-                    inventory.Spend(CreationCost.Paladin);
+                    if (unitAffordable.CanAfford(CreationCost.Paladin))
+                    {
+                        UnitFactory.CreatePaladin();
+                        inventory.Spend(CreationCost.Paladin);
+                    }
                 }
             }
         }
@@ -89,16 +95,19 @@ public class UnitCreateCore
             }
         }
     }
-    public void ReturnRaider(RaiderCenter raiderCenter)
+    public void ReturnRaider(RaiderCenter raiderCenter, Civilization civilization, Viking viking)
     {
-        if (raiderCenter.IsConstructed)
+        if (civilization == viking)
         {
-            if (knowingCell.CheckPopulation(player.Id) >= 1)
+            if (raiderCenter.IsConstructed)
             {
-                if (unitAffordable.CanAfford(CreationCost.Raider))
+                if (knowingCell.CheckPopulation(player.Id) >= 1)
                 {
-                    UnitFactory.CreateRaider();
-                    inventory.Spend(CreationCost.Raider);
+                    if (unitAffordable.CanAfford(CreationCost.Raider))
+                    {
+                        UnitFactory.CreateRaider();
+                        inventory.Spend(CreationCost.Raider);
+                    }
                 }
             }
         }

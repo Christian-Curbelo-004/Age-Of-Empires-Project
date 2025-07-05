@@ -1,14 +1,10 @@
-using ClassLibrary1.MapDirectory;
-
 namespace ClassLibrary1.QuaryDirectory
 {
     // Porque no heredamos de quary
-    public class StoneMine : IResourceDeposit // IMapEntity
+    public class StoneMine 
     {
         public string Name { get; set; } = "Stone Mine"; 
         public int OwnerId { get; set; }
-        //public (int X, int Y) Position { get; set; }
-        //public int Speed { get; set; } = 0;
         public int CurrentAmount
         {
             get => Stone;

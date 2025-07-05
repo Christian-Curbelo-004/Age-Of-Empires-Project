@@ -2,12 +2,10 @@ using ClassLibrary1.MapDirectory;
 
 namespace ClassLibrary1.QuaryDirectory
 {
-    public class Farm : IResourceDeposit // IMapEntity
+    public class Farm 
     {
         public string Name { get; set; } = "Farm";
         public int OwnerId { get; set; }
-        //public (int X, int Y) Position { get; set; }
-        //public int Speed { get; set; } = 0;
         public int CurrentAmount => Food;
         public int Food { get; private set; }
         public string ResourceType => "Food";
@@ -22,7 +20,6 @@ namespace ClassLibrary1.QuaryDirectory
             _extractionRate = extractionRate;
             _collectionValue = collectionValue;
         }
-        // Usar en clase GetResources
         public int GetResources(int collectors = 1)
         {
             if (Food <= 0) return 0;
