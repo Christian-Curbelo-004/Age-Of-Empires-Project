@@ -25,11 +25,10 @@ namespace ClassLibrary1.QuaryDirectory
             _extractionRate = extractionRate;
             _collectionValue = collectionValue;
         }
-        public int GetResources(int collectors = 1)
+        
+        public int GetResources(int collectors)
         {
-            if (Food <= 0) return 0;
-            int amount = _extractionRate * collectors;
-            int collected = Math.Min(Food, amount);
+            int collected = GetResourcesCollected.ResourceCollected(Food, _extractionRate, collectors);
             Food -= collected;
             return collected;
         }

@@ -25,11 +25,9 @@ namespace ClassLibrary1.QuaryDirectory
             _collectionValue = collectionValue;
         }
 
-        public int GetResources(int collectors = 1)
+        public int GetResources(int collectors)
         {
-            if (Stone <= 0) return 0;
-            int amount = _extractionRate * collectors;
-            int collected = Math.Min(Stone, amount);
+            int collected = GetResourcesCollected.ResourceCollected(Stone, _extractionRate, collectors);
             Stone -= collected;
             return collected;
         }

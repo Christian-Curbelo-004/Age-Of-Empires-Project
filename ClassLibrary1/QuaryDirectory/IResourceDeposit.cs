@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1.QuaryDirectory
+namespace ClassLibrary1.QuaryDirectory
 {
     public interface IResourceDeposit
     {
