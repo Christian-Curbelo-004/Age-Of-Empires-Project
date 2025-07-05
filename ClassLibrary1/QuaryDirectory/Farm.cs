@@ -20,11 +20,8 @@ namespace ClassLibrary1.QuaryDirectory
             _extractionRate = extractionRate;
             _collectionValue = collectionValue;
         }
-<<<<<<< Updated upstream
-        public int GetResources(int collectors = 1)
-=======
+        
         public int GetResources(int collectors)
->>>>>>> Stashed changes
         {
             int collected = GetResourcesCollected.ResourceCollected(Food, _extractionRate, collectors);
             Food -= collected;
