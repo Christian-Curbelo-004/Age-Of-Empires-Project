@@ -1,14 +1,11 @@
-﻿using ClassLibrary1.MapDirectory;
-using ClassLibrary1.QuaryDirectory;
-
-namespace ClassLibrary1.QuaryDirectory
+﻿namespace ClassLibrary1.QuaryDirectory
 {
-    public class Forest : IResourceDeposit, IMapEntity
+    public class Forest : IResourceDeposit // IMapEntity
     {
         public string Name { get; set; } = "Forest"; 
         public int OwnerId { get; set; }
-        public (int X, int Y) Position { get; set; }
-        public int Speed { get; set; } = 0; 
+        //public (int X, int Y) Position { get; set; }
+        //public int Speed { get; set; } = 0; 
         public int CurrentAmount
         {
             get => Wood;
@@ -28,7 +25,7 @@ namespace ClassLibrary1.QuaryDirectory
             _extractionRate = extractionRate;
             _collectionValue = collectionValue;
         }
-
+        // Usar en clase GetResources
         public int GetResources(int collectors = 1)
         {
             if (Wood <= 0) return 0;

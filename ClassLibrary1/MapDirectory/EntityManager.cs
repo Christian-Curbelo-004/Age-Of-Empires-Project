@@ -22,10 +22,27 @@ namespace ClassLibrary1.MapDirectory
             {
                 cell.Resource = resource;
             }
-            
+
             entity.Position = (x, y);
 
             return true;
         }
     }
+
+    /*
+
+    private bool TryPlaceEntityAt(Map map, IMapEntity entity, int x, int y)
+    {
+        if (!map.IsWithinBounds(x, y)) return false;
+
+        var cell = map.GetCell(x, y);
+        if (cell.IsOccupied) return false;
+
+        cell.AddEntity(entity); // <- aquí se usa correctamente AddEntity
+        entity.Position = (x, y);
+        return true;
+    }
+
+    */
+
 }

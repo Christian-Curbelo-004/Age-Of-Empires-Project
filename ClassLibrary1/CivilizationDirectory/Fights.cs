@@ -1,5 +1,5 @@
 namespace ClassLibrary1.CivilizationDirectory;
-public class Figths
+public class Figths  
 {
     public List<string> Combats(ICharacter attacker, ICharacter target)
     {

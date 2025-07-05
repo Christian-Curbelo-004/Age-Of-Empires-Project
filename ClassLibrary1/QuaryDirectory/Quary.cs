@@ -1,7 +1,7 @@
 ﻿
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
-
+// Posible cambio ya que no se usa
 public  class Quary : IResourceDeposit, IMapEntity
 {
     public int OwnerId { get; set; }

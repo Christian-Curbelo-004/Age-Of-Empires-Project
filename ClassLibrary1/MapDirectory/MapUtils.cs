@@ -57,9 +57,10 @@ public static class MapUtils
 
             IMapEntity entity = random.Next(3) switch
             {
-                0 => new Forest(5, 0, 50, 150),
-                1 => new GoldMine(5, 0, 50, 50),
-                _ => new StoneMine(5, 0, 50, 75),
+                // Arreglar después de lo de Getresources
+                //0 => new Forest(5, 0, 50, 150),
+                //1 => new GoldMine(5, 0, 50, 50),
+                //_ => new StoneMine(5, 0, 50, 75),
             };
 
             if (TryPlaceEntityNearby(map, entity, x, y))
