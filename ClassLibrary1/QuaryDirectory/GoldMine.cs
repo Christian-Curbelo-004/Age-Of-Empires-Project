@@ -1,14 +1,10 @@
 
 namespace ClassLibrary1.QuaryDirectory
 {
-    // Porque no heredamos de Quary
-    public class GoldMine //: IResourceDeposit // IMapEntity
+    public class GoldMine : Quary
     {
         public int OwnerId { get; set; }
-      //  public string Name { get; set; } = "Gold Mine";
-        
-      //public (int X, int Y) Position { get; set; }
-        //public int Speed { get; set; } = 0; 
+        private readonly IResourceCollector _collector; 
         public int CurrentAmount
         {
             get => Gold;
@@ -17,21 +13,19 @@ namespace ClassLibrary1.QuaryDirectory
 
         public int Gold { get; private set; }
         public string ResourceType => "Gold";
+        
 
-        private int _extractionRate;
-        private int _collectionValue;
-
-        public GoldMine(int ownerId, int initialGold, int extractionRate, int collectionValue)
+        public GoldMine(int ownerId, int extractionRate, int collectionValue, int initialGold, IResourceCollector collector) 
+            : base(ownerId, extractionRate, collectionValue,initialGold )
         {
             OwnerId = ownerId;
-            Gold = initialGold;
-            _extractionRate = extractionRate;
-            _collectionValue = collectionValue;
+            _collector = collector;
+            CurrentAmount = initialGold;
         }
-        // Usar en clase GetResources
+        
         public int GetResources(int collectors)
         {
-            int collected = GetResourcesCollected.ResourceCollected(Gold, _extractionRate, collectors);
+            int collected = _collector.CalculateCollected(Gold, ExtractionRate, collectors);
             Gold -= collected;
             return collected;
         }

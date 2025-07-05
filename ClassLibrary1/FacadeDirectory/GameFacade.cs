@@ -59,13 +59,13 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateQuary(Map map)
         {
-            var goldMine = new GoldMine(0, 100, 10, 1);
+            var goldMine = new GoldMine(0, 100, 10, 1, collector:new ResourceCollector());
             //TryPlaceEntityAt(map, goldMine, 20, 20);
 
-            var stoneMine = new StoneMine(0, 100, 10, 1);
+            var stoneMine = new StoneMine(0, 100, 10, 1, collector: new ResourceCollector());
             //TryPlaceEntityAt(map, stoneMine, 25, 25);
 
-            var forest = new Forest(0, 100, 10, 1);
+            var forest = new Forest(0, 100, 10, 1, collector: new ResourceCollector());
             //TryPlaceEntityAt(map, forest, 30, 30);
         }
 
@@ -112,25 +112,25 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateFarm(Map map, int x, int y)
         {
-            var farm = new Farm(0, 100, 10, 1);
+            var farm = new Farm(0, 100, 10, 1,collector : new ResourceCollector());
             //TryPlaceEntityAt(map, farm, x, y);
         }
 
         public void GenerateForest(Map map, int x, int y)
         {
-            var forest = new Forest(0, 100, 10, 1);
+            var forest = new Forest(0, 100, 10, 1,collector : new ResourceCollector());
             //TryPlaceEntityAt(map, forest, x, y);
         }
 
         public void GenerateGoldMine(Map map, int x, int y)
         {
-            var gold = new GoldMine(0, 100, 10, 1);
+            var gold = new GoldMine(0, 100, 10, 1, collector : new ResourceCollector());
             //TryPlaceEntityAt(map, gold, x, y);
         }
 
         public void GenerateStoneMine(Map map, int x, int y)
         {
-            var stone = new StoneMine(0, 100, 10, 1);
+            var stone = new StoneMine(0, 100, 10, 1, collector: new ResourceCollector());
             //TryPlaceEntityAt(map, stone, x, y);
         }
     }

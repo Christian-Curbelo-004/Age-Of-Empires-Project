@@ -1,9 +1,7 @@
 namespace ClassLibrary1.QuaryDirectory
 {
-    // Porque no heredamos de quary
-    public class StoneMine 
+    public class StoneMine : Quary
     {
-        public string Name { get; set; } = "Stone Mine"; 
         public int OwnerId { get; set; }
         public int CurrentAmount
         {
@@ -11,23 +9,21 @@ namespace ClassLibrary1.QuaryDirectory
             set => Stone = value;
         }
 
+        private readonly IResourceCollector _collector;
         public int Stone { get; private set; }
         public string ResourceType => "Stone";
 
-        private int _extractionRate;
-        private int _collectionValue;
-
-        public StoneMine(int ownerId, int initialStone, int extractionRate, int collectionValue)
+        public StoneMine(int ownerId, int initialStone, int extractionRate, int collectionValue, IResourceCollector collector)
+            : base(ownerId, extractionRate, collectionValue,initialStone )
         {
             OwnerId = ownerId;
-            Stone = initialStone;
-            _extractionRate = extractionRate;
-            _collectionValue = collectionValue;
+            _collector = collector;
+            CurrentAmount = initialStone;
         }
 
         public int GetResources(int collectors)
         {
-            int collected = GetResourcesCollected.ResourceCollected(Stone, _extractionRate, collectors);
+            int collected = _collector.CalculateCollected(Stone, ExtractionRate, collectors);
             Stone -= collected;
             return collected;
         }

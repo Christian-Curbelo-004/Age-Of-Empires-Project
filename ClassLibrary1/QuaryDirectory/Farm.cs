@@ -2,35 +2,29 @@
 
 namespace ClassLibrary1.QuaryDirectory
 {
-    public class Farm : IResourceDeposit
+    public class Farm : Quary
     {
-      //  public string Name { get; set; } = "Farm";
         public int OwnerId { get; set; }
         public int CurrentAmount
         {
             get => Food;
             set => Food = value;
         }
-        
+
+        private readonly IResourceCollector _collector;
         public string ResourceType => "Food";
         public int Food { get; private set; }
-
-        private int _extractionRate;
-        private int _collectionValue;
-
-        public Farm(int ownerId, int initialFood, int extractionRate, int collectionValue)
+        
+        public Farm(int ownerId, int initialFood, int extractionRate, int collectionValue, IResourceCollector collector)
+            : base(ownerId, extractionRate, collectionValue,initialFood )
         {
             OwnerId = ownerId;
-            Food = initialFood;
-            _extractionRate = extractionRate;
-            _collectionValue = collectionValue;
+            _collector = collector;
+            CurrentAmount = initialFood;
         }
-
-        
-
         public int GetResources(int collectors)
         {
-            int collected = GetResourcesCollected.ResourceCollected(Food, _extractionRate, collectors);
+            int collected = _collector.CalculateCollected(Food, ExtractionRate,collectors);
             Food -= collected;
             return collected;
         }

@@ -1,8 +1,9 @@
 ﻿namespace ClassLibrary1.QuaryDirectory
 {
-    public class Forest //Hereda de Quary?
+    public class Forest : Quary
     {
         public int OwnerId { get; set; }
+        private readonly IResourceCollector _collector; //Uso interfaces para cumplir con DIP
         public int CurrentAmount
         {
             get => Wood;
@@ -11,25 +12,18 @@
 
         public string ResourceType => "Wood";
         public int Wood { get; private set; }
-        
-
-        private int _extractionRate;
-        private int _collectionValue; // arreglar 
-
-        public Forest(int ownerId, int initialWood, int extractionRate, int collectionValue)
+        public Forest(int ownerId, int extractionRate, int collectionValue, int initialWood, IResourceCollector collector) 
+            : base(ownerId, extractionRate, collectionValue,initialWood )
         {
-            
             OwnerId = ownerId;
-            Wood = initialWood;
-            _extractionRate = extractionRate;
-            _collectionValue = collectionValue;
+            _collector = collector;
+            CurrentAmount = initialWood;
         }
-        public int GetResources(int collectors)
+        public int GetResources(int collectors) 
         {
-            int collected = GetResourcesCollected.ResourceCollected(Wood, _extractionRate, collectors);
+            int collected = _collector.CalculateCollected(Wood, ExtractionRate, collectors);
             Wood -= collected;
             return collected;
-            
         }
     }
 }
