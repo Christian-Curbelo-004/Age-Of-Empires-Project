@@ -9,5 +9,6 @@ public class RaiderCenter : Buildings
     public RaiderCenter(int endurence, int construciontimeleft, string name, int ownerId) : base(endurence, name)
     {
         OwnerId = ownerId;
+        ConstructionTime = construciontimeleft;
     }
 }

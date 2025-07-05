@@ -9,5 +9,7 @@ public class Home : Buildings , ICapacity
     public Home(int endurence, int constructiontimeleft, string name)
         : base(endurence, name) 
     {
+        ConstructionTime = constructiontimeleft;
     }
+    
 }

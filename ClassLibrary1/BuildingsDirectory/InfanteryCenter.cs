@@ -8,6 +8,7 @@ namespace ClassLibrary1.BuildingsDirectory
             : base(endurence, name)
         {
             OwnerId = ownerId;
+            ConstructionTime =  constructiontimeleft;
         }
     }
 }

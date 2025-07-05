@@ -5,7 +5,7 @@ namespace ClassLibrary1.BuildingsDirectory;
 
 public class CivicCenter : Buildings, IMapEntity, ICapacity
 {
-    public int OwnerId { get; set; }
+    public  int OwnerId { get; set; }
 
     //  public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0
     public (int X, int Y) Position { get; set; }
@@ -15,10 +15,10 @@ public class CivicCenter : Buildings, IMapEntity, ICapacity
     public int Capacity { get; } = 10; // Capacidad del CC
 
 
-    public CivicCenter(int endurance, int constructionTimeleft, string name, int OwnerId) : base(endurance, name)
+    public CivicCenter(int endurance, int constructionTimeleft, string name, int ownerId) : base(endurance, name)
     {
         Endurence = endurance;
-        OwnerId = OwnerId;
+        OwnerId = ownerId;
         ConstructionTime = constructionTimeleft;
     }
 }

@@ -12,6 +12,7 @@ namespace ClassLibrary1.DepositDirectory
 
             MaxCapacity = maxCapacity;
             CurrentStorage = 0;
+            ConstructionTime = constructiontimeleft;
         }
 
         public virtual int ActualResources() //Recursos Actuales

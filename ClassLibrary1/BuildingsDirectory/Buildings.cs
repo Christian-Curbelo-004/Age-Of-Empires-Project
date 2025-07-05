@@ -18,7 +18,5 @@ namespace CreateBuildings
             OwnerId = OwnerId;
             Position = (0, 0); // Default position, can be changed later
         }
-
-        protected Buildings() {}
     }
 }
