@@ -2,7 +2,7 @@
 namespace ClassLibrary1.QuaryDirectory
 {
     // Porque no heredamos de Quary
-    public class GoldMine : IResourceDeposit // IMapEntity
+    public class GoldMine //: IResourceDeposit // IMapEntity
     {
         public int OwnerId { get; set; }
         public string Name { get; set; } = "Gold Mine";
@@ -28,11 +28,9 @@ namespace ClassLibrary1.QuaryDirectory
             _collectionValue = collectionValue;
         }
         // Usar en clase GetResources
-        public int GetResources(int collectors = 1)
+        public int GetResources(int collectors)
         {
-            if (Gold <= 0) return 0;
-            int amount = _extractionRate * collectors;
-            int collected = Math.Min(Gold, amount);
+            int collected = GetResourcesCollected.ResourceCollected(Gold, _extractionRate, collectors);
             Gold -= collected;
             return collected;
         }
