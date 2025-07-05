@@ -1,5 +1,6 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;

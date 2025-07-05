@@ -1,4 +1,7 @@
 using ClassLibrary1.DepositDirectory;
+
+
+
 namespace ClassLibrary1.LogicDirectory;
 
 public class DepositLogic : Deposit
@@ -11,11 +14,11 @@ public class DepositLogic : Deposit
     {
         if (maxCapacity < CurrentStorage)
         {
-            IsOccupied = false;
+            IsOccupied = true;
         }
         else
         {
-            IsOccupied = true;
+            IsOccupied = false;
         }
 
     }

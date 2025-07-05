@@ -11,6 +11,7 @@ public class Player
     public string Civilization { get; set; }
     public List<Buildings> Buildings { get; set; } = new List<Buildings>();
     public List<IMapEntity> Units { get; set; } = new List<IMapEntity>();
+    public List<Villagers> Villagers { get; set; } = new();
     public int MaxPoblacion { get; set; }
     public int CurrentPoblacion => Units.Count;
     public (int, int) StartingPosition { get; set; }
@@ -30,12 +31,7 @@ public class Player
         Resources.Gold = 0;
         Resources.Stone = 0;
     }
-
-    public void AddUnit(Units unit)
-    {
-        if (CurrentPoblacion < MaxPoblacion)
-        {
-            Units.Add(unit);
-        }
-    }
+    
 }
+
+

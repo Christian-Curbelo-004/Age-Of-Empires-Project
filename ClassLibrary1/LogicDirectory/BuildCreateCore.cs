@@ -1,6 +1,8 @@
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.UnitsDirectory;
+using CreateBuildings;
 
 namespace ClassLibrary1.LogicDirectory;
 
@@ -135,7 +137,7 @@ public class BuildCreateCore
         }
     }
 
-    public async Task returnHome(Home home)
+    public async Task ReturnHome(Home home)
     {
         if (unitAffordable.CanAfford(CreationCost.Home))
         {
@@ -144,5 +146,10 @@ public class BuildCreateCore
             await ConstructionTimeManager.BuildAsync(home, 1500);
             home.IsConstructed = true;
         }
+    }
+
+    public bool VillagersBuilding(Villagers villager, Buildings buildings) // nuevo 
+    {
+        return villager.Build(buildings);
     }
 }
