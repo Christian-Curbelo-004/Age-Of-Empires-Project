@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary1.CivilizationDirectory;
+﻿using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
+
+namespace ClassLibrary1.CivilizationDirectory;
 
 public class Roman : Civilization
 {
@@ -6,7 +8,6 @@ public class Roman : Civilization
     {
         Units.Add(new Centuries());
     }
-
     public override ICharacter PickUnit(string unitName)
     {
         return unitName.ToLower() switch
