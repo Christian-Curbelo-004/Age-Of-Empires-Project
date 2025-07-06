@@ -1,5 +1,3 @@
-using ClassLibrary1.DepositDirectory;
-
 namespace ClassLibrary1.LogicDirectory;
 
 public class ResourceInventory : IResourceInventory
@@ -20,7 +18,7 @@ public class ResourceInventory : IResourceInventory
         Gold -= cost.Gold;
         Stone -= cost.Stone;
     }
-    // Creo que no se usa
+    // Borrar
     public Dictionary<string, int> ResourceCollectionCup()
     {
         return new Dictionary<string, int>()
