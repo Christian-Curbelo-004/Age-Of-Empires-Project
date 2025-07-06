@@ -18,15 +18,15 @@ namespace ClassLibrary1
         {
             _map = map;
             _playerOne = playerOne;
+            _resourceInventory = playerOne.Resources;
         }
-
         public string Screen()
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("==== MAPA ====");
-            PrintMap printMap = new PrintMap(_map);
-            sb.AppendLine(printMap.DisplayMap());
+            //sb.AppendLine("==== MAPA ====");
+            //PrintMap printMap = new PrintMap(_map);
+           // sb.AppendLine(printMap.DisplayMap());
 
             sb.AppendLine("\n==== POBLACIÓN ====");
             sb.AppendLine($"Población actual: {_playerOne.CurrentPoblacion} / {_playerOne.MaxPoblacion}");

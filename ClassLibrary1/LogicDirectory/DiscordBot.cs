@@ -82,10 +82,12 @@ public class DiscordBot
             await SendMapInMultipleSectors(message.Channel);
             return;
         }
-
-        // Si no es "map", procesa comandos normales
+        
         string response = await _commandProcessor.ProcessCommand(input);
         await message.Channel.SendMessageAsync(response);
+
+        string screen = _showScreen.Screen();
+        await message.Channel.SendMessageAsync($"```\n{screen}\n```");
     }
 
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
