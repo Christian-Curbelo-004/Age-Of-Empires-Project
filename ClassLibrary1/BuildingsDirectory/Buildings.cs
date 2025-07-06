@@ -15,7 +15,6 @@ namespace ClassLibrary1.BuildingsDirectory
         {
             Endurence = endurence;
             Name = name;
-           
             Position = (0, 0); 
         }
     }

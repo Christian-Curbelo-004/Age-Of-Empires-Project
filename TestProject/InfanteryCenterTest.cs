@@ -8,20 +8,36 @@ namespace TestProject
     {
         private InfanteryCenter? _centerInf;
         
-        [Test]
-        public void InfanteryCenterTest()
+
+        [SetUp]
+        public void Setup()
         {
-            int expectedendurence = 20;
-            int expectedConstructionTimeleft = 10;
-            string expectedname = "InfanteryCenter";
-            int expectedOwnerId = 1223;
-
             _centerInf = new InfanteryCenter(20, 10, "InfanteryCenter", 1223);
-
-            Assert.That(_centerInf.Name, Is.EqualTo(expectedname));
-            Assert.That(_centerInf.ConstructionTime, Is.EqualTo(expectedConstructionTimeleft));
-            Assert.That(_centerInf.Endurence, Is.EqualTo(expectedendurence));
-            Assert.That(_centerInf.OwnerId, Is.EqualTo(expectedOwnerId));
         }
+
+        [Test]
+        public void TestDeVerificacionDeResistenciaDelInfanteryCenter()
+        {
+            Assert.That(_centerInf.Endurence, Is.EqualTo(20));
+        }
+
+        [Test]
+        public void TestDeVerificacionDelTiempoDeConstruccion()
+        {
+            Assert.That(_centerInf.ConstructionTime, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void TestDeVerificaiconDelNombreCorrectoDeLaConstruccion()
+        {
+            Assert.That(_centerInf.Name, Is.EqualTo("InfanteryCenter"));
+        }
+
+        [Test]
+        public void TestDeVerificacionDeLaIdDelJugadorUno()
+        {
+            Assert.That(_centerInf.OwnerId, Is.EqualTo(1223));
+        }
+
     }
 }

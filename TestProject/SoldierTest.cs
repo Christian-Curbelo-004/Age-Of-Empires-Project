@@ -10,29 +10,54 @@ namespace TestProject
             public TesterSoldier(int life, int attackValue, int defenseValue, int speed)
                 : base(life, attackValue, defenseValue, speed)
             {
+
             }
         }
 
-        [Test]
-        public void Attack_ShouldReduceTargetLife()
+        private Soldier _soldier;
+        
+        //Arrange
+        [SetUp]
+        public void Setup()
         {
-            var attacker = new TesterSoldier(100, 20, 5, 10);
-            var target = new TesterSoldier(100, 15, 5, 8);
+            _soldier = new TesterSoldier(100, 80, 54, 23);
+        }
+        
+        
+        
+        
+        //Assert
+        [Test]
+        public void TestVerificacionDeLaVidaDelSoldado()
+        {
+            Assert.That(_soldier.Life, Is.EqualTo(100));
+        }
 
-            int damage = attacker.Attack(target);
-
-            Assert.That(target.Life, Is.EqualTo(80));
-            Assert.That(damage, Is.EqualTo(80));
+        
+        
+        [Test] // Act
+        public void TestDePerdidaDeVidaDelSoldado()
+        {
+            _soldier.RecieveAttack(30);
+            Assert.That(_soldier.Life, Is.EqualTo(70));
         }
 
         [Test]
-        public void RecieveAttack_ShouldReduceLifeByDamage()
+        public void TestVerificacionDelValorDeAtaqueDelSoldado()
         {
-            var soldier = new TesterSoldier(100, 10, 5, 5);
-
-            int remainingLife = soldier.RecieveAttack(70);
-
-            Assert.That(remainingLife, Is.EqualTo(30));
+            Assert.That(_soldier.AttackValue, Is.EqualTo(80));
+        }
+        
+        [Test]
+        public void TestVerificacionDeValorDeDefensaDelSoldado()
+        {
+            Assert.That(_soldier.DeffenseValue, Is.EqualTo(54));
+        }
+        
+        [Test]
+        public void TestVerificacionDeValorDeVelocidadDelSoldado()
+        {
+            Assert.That(_soldier.Speed, Is.EqualTo(23));
         }
     }
 }

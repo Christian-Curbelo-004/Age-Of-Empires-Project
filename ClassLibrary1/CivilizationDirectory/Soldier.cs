@@ -8,13 +8,14 @@ namespace ClassLibrary1.CivilizationDirectory
         public virtual int AttackValue { get; set; }
         public virtual int DeffenseValue { get; set; }
         public virtual int Speed { get; set; }  // Propiedad requerida por IMovable
-
+        
         public Soldier(int life, int attackValue, int defenseValue, int speed)
         {
             Life = life;
             AttackValue = attackValue;
             DeffenseValue = defenseValue;
             Speed = speed;
+           
         }
 
         public virtual int Attack(ICharacter target)  // Metodo para atacar
@@ -23,7 +24,7 @@ namespace ClassLibrary1.CivilizationDirectory
             return damage;
         }
 
-        public virtual int RecieveAttack(int damage)  // Metodo para recibir daño 
+        public virtual int  RecieveAttack(int damage)  // Metodo para recibir daño 
         {
             Life -= damage;
             return Life;
@@ -31,5 +32,6 @@ namespace ClassLibrary1.CivilizationDirectory
         public string Name { get; set; }
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
+        
     }
 }
