@@ -1,5 +1,3 @@
-using CreateBuildings;
-
 namespace ClassLibrary1.BuildingsDirectory;
 
 public class RaiderCenter : Buildings

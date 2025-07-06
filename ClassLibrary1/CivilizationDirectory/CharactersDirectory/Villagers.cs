@@ -1,6 +1,6 @@
-﻿using ClassLibrary1.CivilizationDirectory;
+﻿using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
-using CreateBuildings;
 
 
 namespace ClassLibrary1.UnitsDirectory

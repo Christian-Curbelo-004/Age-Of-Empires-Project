@@ -1,13 +1,13 @@
 ﻿using ClassLibrary1.MapDirectory;
 
-namespace CreateBuildings
+namespace ClassLibrary1.BuildingsDirectory
 {
     public abstract class Buildings : IMapEntity
     {
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
         public string Name { get; set; }
-       // public int Speed { get; }  // Buildings typically do not move, so speed is set to 0
+       
        public int ConstructionTime { get; set; }
        public bool IsConstructed { get; set; } 
         public int Endurence { get; set; }
@@ -15,8 +15,8 @@ namespace CreateBuildings
         {
             Endurence = endurence;
             Name = name;
-            OwnerId = OwnerId;
-            Position = (0, 0); // Default position, can be changed later
+           
+            Position = (0, 0); 
         }
     }
 }

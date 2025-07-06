@@ -1,4 +1,5 @@
-using CreateBuildings;
+using ClassLibrary1.BuildingsDirectory;
+
 namespace ClassLibrary1.LogicDirectory;
 
 public class ConstructionTimeManager

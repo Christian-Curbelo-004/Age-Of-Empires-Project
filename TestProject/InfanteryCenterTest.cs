@@ -6,8 +6,8 @@ namespace TestProject
 {
     public class TestInfanteryCenter
     {
-        private InfanteryCenter _centerInf;
-
+        private InfanteryCenter? _centerInf;
+        
         [Test]
         public void InfanteryCenterTest()
         {
