@@ -11,7 +11,7 @@ public class Archer : Soldier //Hereda de Soldier
         return target.RecieveAttack(AttackValue);
     }
 
-    public override  int RecieveAttack(int damage) //Metodo recibir ataque
+    public override  int RecieveAttack(int damage) // Metodo recibir ataque
     {
         Life -= damage;
         return Life;

@@ -1,28 +1,13 @@
-﻿using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1.MapDirectory;
-using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
-
-namespace ClassLibrary1.BuildingsDirectory
+﻿namespace ClassLibrary1.BuildingsDirectory
 {
-    public class InfanteryCenter : Buildings, ITrainingBuilding
+    public class InfanteryCenter : Buildings
     {
-        public new int OwnerId { get; set; }
-
+        public new int OwnerId { get; set; } // Propiedad del jugador 
         public InfanteryCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {
             OwnerId = ownerId;
-            ConstructionTime = constructiontimeleft;
-        }
-
-        public IMapEntity CreateUnit(string troopType)
-        {
-            if (troopType.Equals("infantwry", StringComparison.OrdinalIgnoreCase))
-            {
-                return new Infantery { OwnerId = this.OwnerId, Position = this.Position };
-            }
-
-            throw new InvalidOperationException($"'{troopType}' no se puede crear en InfanteryCenter.");
+            ConstructionTime =  constructiontimeleft;
         }
     }
 }

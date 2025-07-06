@@ -1,5 +1,6 @@
 using ClassLibrary1.CivilizationDirectory;
 
+
 namespace TestProject
 {
     public class TestSoldier
@@ -22,10 +23,7 @@ namespace TestProject
         {
             _soldier = new TesterSoldier(100, 80, 54, 23);
         }
-        
-        
-        
-        
+
         //Assert
         [Test]
         public void TestVerificacionDeLaVidaDelSoldado()
@@ -34,8 +32,8 @@ namespace TestProject
         }
 
         
-        
-        [Test] // Act
+        // Act
+        [Test] 
         public void TestDePerdidaDeVidaDelSoldado()
         {
             _soldier.RecieveAttack(30);

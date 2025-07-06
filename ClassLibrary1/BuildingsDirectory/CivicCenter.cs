@@ -11,7 +11,7 @@ public class CivicCenter : Buildings, IMapEntity, ICapacity
     public const int MaxHealth = 500;
     public int ActualHealth = 500;
     private IMapEntity _mapEntityImplementation;
-    public int Capacity { get; } = 10; // Capacidad del CC
+    public int Capacity => 10; // Capacidad del CC
 
 
     public CivicCenter(int endurance, int constructionTimeleft, string name, int ownerId) : base(endurance, name)
