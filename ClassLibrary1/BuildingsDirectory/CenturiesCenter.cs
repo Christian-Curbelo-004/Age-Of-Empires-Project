@@ -1,13 +1,27 @@
-namespace ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.MapDirectory;
 
-public class CenturiesCenter : Buildings
+namespace ClassLibrary1.BuildingsDirectory
 {
-    public int OwnerId { get; set; } // Propiedad del jugador 
-    
-
-    public CenturiesCenter(int endurence, int constructiontimeleft, string name, int ownerId) : base(endurence, name)
+    public class CenturiesCenter : Buildings, ITrainingBuilding
     {
-        OwnerId = ownerId;
-        ConstructionTime = constructiontimeleft;
+        public int OwnerId { get; set; }
+
+        public CenturiesCenter(int endurence, int constructiontimeleft, string name, int ownerId)
+            : base(endurence, name)
+        {
+            OwnerId = ownerId;
+            ConstructionTime = constructiontimeleft;
+        }
+
+        public IMapEntity CreateUnit(string troopType)
+        {
+            if (troopType.Equals("centurion", StringComparison.OrdinalIgnoreCase))
+            {
+                return new Centuries { OwnerId = this.OwnerId, Position = this.Position };
+            }
+
+            throw new InvalidOperationException($"'{troopType}' no se puede crear en CenturiesCenter.");
+        }
     }
 }

@@ -16,11 +16,6 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
-
-    public DiscordBot()
-    {
-        _showScreen = _showScreen;
-    }
     
     public async Task StartAsync()
     {

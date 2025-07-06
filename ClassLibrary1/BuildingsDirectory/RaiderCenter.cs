@@ -1,12 +1,27 @@
-namespace ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.MapDirectory;
 
-public class RaiderCenter : Buildings
+namespace ClassLibrary1.BuildingsDirectory
 {
-    public int OwnerId { get; set; } // Propiedad del jugador 
-
-    public RaiderCenter(int endurence, int construciontimeleft, string name, int ownerId) : base(endurence, name)
+    public class RaiderCenter : Buildings, ITrainingBuilding
     {
-        OwnerId = ownerId;
-        ConstructionTime = construciontimeleft;
+        public int OwnerId { get; set; }
+
+        public RaiderCenter(int endurence, int constructiontimeleft, string name, int ownerId)
+            : base(endurence, name)
+        {
+            OwnerId = ownerId;
+            ConstructionTime = constructiontimeleft;
+        }
+
+        public IMapEntity CreateUnit(string troopType)
+        {
+            if (troopType.Equals("raider", StringComparison.OrdinalIgnoreCase))
+            {
+                return new Raider { OwnerId = this.OwnerId, Position = this.Position };
+            }
+
+            throw new InvalidOperationException($"'{troopType}' no se puede crear en RaiderCenter.");
+        }
     }
 }

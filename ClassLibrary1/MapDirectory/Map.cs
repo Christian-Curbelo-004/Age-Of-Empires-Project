@@ -64,4 +64,14 @@ public class Map
             for (int y = 0; y < _height; y++)
                 yield return Cells[x, y];
     }
+    public void AddEntity(IMapEntity entity)
+    {
+        var (x, y) = entity.Position;
+
+        if (!IsWithinBounds(x, y))
+            throw new ArgumentOutOfRangeException($"La posición ({x},{y}) está fuera del mapa.");
+
+        Cells[x, y].Entities.Add(entity);
+        _entities.Add(entity);
+    }
 }

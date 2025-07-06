@@ -1,12 +1,28 @@
-namespace ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.MapDirectory;
+using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 
-public class PaladinCenter : Buildings
+namespace ClassLibrary1.BuildingsDirectory
 {
-    public int OwnerId { get; set; } // Propiedad del jugador 
-
-    public PaladinCenter(int endurence, int constructiontimeleft, string name, int ownerId) : base(endurence, name)
+    public class PaladinCenter : Buildings, ITrainingBuilding
     {
-        OwnerId = ownerId;
-        ConstructionTime = constructiontimeleft;
+        public int OwnerId { get; set; }
+
+        public PaladinCenter(int endurence, int constructiontimeleft, string name, int ownerId)
+            : base(endurence, name)
+        {
+            OwnerId = ownerId;
+            ConstructionTime = constructiontimeleft;
+        }
+
+        public IMapEntity CreateUnit(string troopType)
+        {
+            if (troopType.Equals("paladin", StringComparison.OrdinalIgnoreCase))
+            {
+                return new Paladin { OwnerId = this.OwnerId, Position = this.Position };
+            }
+
+            throw new InvalidOperationException($"'{troopType}' no se puede crear en PaladinCenter.");
+        }
     }
 }

@@ -1,17 +1,29 @@
-﻿using ClassLibrary1.BuildingsDirectory;
+﻿using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.MapDirectory;
 
-namespace ClassLibrary1.CivilizationDirectory
+
+namespace ClassLibrary1.BuildingsDirectory
 {
-    public class ChivarlyCenter : Buildings
+    public class ChivarlyCenter : Buildings, ITrainingBuilding
     {
-        public int OwnerId { get; set; } // Propiedad del jugador 
-        public ChivarlyCenter(int endurence, int constructiontimeleft,  string name, int ownerId)
-            : base(endurence,  name) 
+        public int OwnerId { get; set; }
+
+        public ChivarlyCenter(int endurence, int constructiontimeleft, string name, int ownerId)
+            : base(endurence, name)
         {
             OwnerId = ownerId;
             ConstructionTime = constructiontimeleft;
         }
+
+        public IMapEntity CreateUnit(string troopType)
+        {
+            if (troopType.Equals("chivarly", StringComparison.OrdinalIgnoreCase))
+            {
+                return new Chivarly { OwnerId = this.OwnerId, Position = this.Position };
+            }
+
+            throw new InvalidOperationException($"'{troopType}' no se puede crear en ChivarlyCenter.");
+        }
     }
 }
- 
  
