@@ -4,6 +4,7 @@ using ClassLibrary1;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.CommandDirectory;
+using ClassLibrary1.LogicDirectory;
 using CommandDirectory;
 
 public class DiscordBot
@@ -16,6 +17,7 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
+    private VerificarPartidaPerdida _verificarPartida;
     
     public async Task StartAsync()
     {
@@ -25,8 +27,10 @@ public class DiscordBot
         _player = _gameFacade.PlayerOne;
         _showScreen = new ShowScreen(_map, _player);
         _mapService = new MapService(_map);
-
+        _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
+        
         var commands = new Dictionary<string, IGameCommand>
+        
         {
             { "chop", new ChopCommand(_mapService) },
             { "mine", new MineCommand(_mapService) },
