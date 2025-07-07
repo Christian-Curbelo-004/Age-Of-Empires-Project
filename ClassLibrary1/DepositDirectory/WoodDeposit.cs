@@ -6,6 +6,10 @@ public class WoodDeposit : Deposit, IMapEntity
 {
     public int OwnerId { get; set; }
     public string Symbol { get; set; } = "Wd";
+    public override string ToString()
+    {
+        return $"{Symbol}{OwnerId}"; 
+    }
     public int CurrentWood { get; private set; } 
     private readonly ResourceInventory inventory;
 

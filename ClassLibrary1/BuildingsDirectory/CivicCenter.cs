@@ -6,6 +6,10 @@ namespace ClassLibrary1.BuildingsDirectory;
 public class CivicCenter : Buildings, IMapEntity, ICapacity
 {
     public string Symbol { get; set; } = "CC";
+    public override string ToString()
+    {
+        return $"{Symbol}{OwnerId}"; 
+    }
     public  int OwnerId { get; set; }
 
     //  public int Speed { get; } = 0; // El Civic Center no se mueve, por lo que su velocidad es 0

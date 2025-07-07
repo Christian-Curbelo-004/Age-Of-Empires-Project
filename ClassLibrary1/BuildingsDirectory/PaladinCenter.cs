@@ -8,6 +8,10 @@ namespace ClassLibrary1.BuildingsDirectory
     {
         public int OwnerId { get; set; }
         public string Symbol { get; set; } = "PC";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         public PaladinCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {

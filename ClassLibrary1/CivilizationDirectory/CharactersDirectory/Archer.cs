@@ -10,6 +10,10 @@ namespace ClassLibrary1.CivilizationDirectory
     public class Archer : Soldier, IMapEntity
     {
         public string Symbol { get; set; } = "Ar";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         /// <summary>
         /// Inicializa una nueva instancia de <see cref="Archer"/> con valores predeterminados de vida, ataque y defensa.
         /// </summary>

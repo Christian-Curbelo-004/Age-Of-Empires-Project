@@ -14,6 +14,10 @@ namespace ClassLibrary1.DepositDirectory
         /// </summary>
         public int OwnerId { get; set; }
         public string Symbol { get; set; } = "Mw";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
 
         /// <summary>
         /// Obtiene la cantidad actual de comida almacenada en el molino.

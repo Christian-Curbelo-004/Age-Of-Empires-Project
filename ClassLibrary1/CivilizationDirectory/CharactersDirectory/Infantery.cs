@@ -8,6 +8,10 @@ public class Infantery : Soldier, IMapEntity
     {
     }
     public string Symbol { get; set; } = "In";
+    public override string ToString()
+    {
+        return $"{Symbol}{OwnerId}"; 
+    }
     public override int Attack(ICharacter target) //Atacar
     {
         return target.RecieveAttack(AttackValue);

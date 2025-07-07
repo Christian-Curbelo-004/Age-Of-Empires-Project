@@ -7,6 +7,10 @@ namespace ClassLibrary1.BuildingsDirectory
     {
         public int OwnerId { get; set; }
         public string Symbol { get; set; } = "RC";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         public RaiderCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {

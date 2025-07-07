@@ -13,6 +13,10 @@ namespace ClassLibrary1.BuildingsDirectory
         /// </summary>
         public int OwnerId { get; set; }
         public string Symbol { get; set; } = "AC";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ArcherCenter"/> con los atributos heredados.
         /// </summary>

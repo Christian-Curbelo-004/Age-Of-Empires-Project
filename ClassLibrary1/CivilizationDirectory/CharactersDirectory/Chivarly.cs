@@ -10,6 +10,10 @@ public class Chivarly : Soldier, IMapEntity
     {
     }
     public string Symbol { get; set; } = "Ch";
+    public override string ToString()
+    {
+        return $"{Symbol}{OwnerId}"; 
+    }
     public override int Attack(ICharacter target) //Ataque
     {
         return target.RecieveAttack(AttackValue);

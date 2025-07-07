@@ -10,6 +10,10 @@ namespace ClassLibrary1.CivilizationDirectory
         {
         }
         public string Symbol { get; set; } = "Ce";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         public override int Attack(ICharacter target) // Atacar
         {
             return target.RecieveAttack(AttackValue);

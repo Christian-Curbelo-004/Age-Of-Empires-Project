@@ -122,7 +122,7 @@ namespace ClassLibrary1.MapDirectory
 
         private string GetSymbolForEntity(IMapEntity entity)
         {
-            return entity.Symbol ?? "??";
+            return $"{entity.Symbol}{entity.OwnerId}";
         }
     }
 }

@@ -21,6 +21,10 @@ namespace ClassLibrary1.UnitsDirectory
             Construyendo,
         }
         public string Symbol { get; set; } = "V";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         public Villagers(int life, int attackValue, int ownerId, int speed)
         {
             OwnerId = ownerId;

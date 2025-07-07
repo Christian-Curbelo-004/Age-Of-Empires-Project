@@ -7,6 +7,10 @@ namespace ClassLibrary1.DepositDirectory
     {
         public int OwnerId { get; set; }
         public string Symbol { get; set; } = "Sd";
+        public override string ToString()
+        {
+            return $"{Symbol}{OwnerId}"; 
+        }
         public int CurrentStone { get; private set; }
         private readonly ResourceInventory _inventory;
 
