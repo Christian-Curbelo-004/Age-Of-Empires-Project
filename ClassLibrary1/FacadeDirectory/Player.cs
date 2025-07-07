@@ -30,7 +30,6 @@ public class Player
         Resources.Gold = 0;
         Resources.Stone = 0;
     }
-    
 }
 
 
