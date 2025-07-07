@@ -61,9 +61,20 @@ public async Task StartAsync()
     
     _verificarPartida = new VerificarPartidaPerdida(_map);
     _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+    _civilization = null; 
+    
+    var player = _civilization.Player;
+    var resourceInventory = new ResourceInventory(player.Resources);
+    var knowingCell = new KnowingCell(_map);
+    var unitAffordable = new UnitAffordable(player);
 
-    // Inicializa las civilizaciones si es necesario
-    _civilization = null; // O asigna la civilización correspondiente
+    var unitCreateCore = new UnitCreateCore(
+        resourceInventory,
+        _map,
+        player,
+        knowingCell,
+        unitAffordable
+    );
 
     var commands = new Dictionary<string, IGameCommand>
     {
@@ -72,7 +83,7 @@ public async Task StartAsync()
         { "gather", new GatherFoodCommand(_mapService) },
         { "move", new MoveCommand(_mapService) },
         { "attack", new AttackCommand(_mapService) },
-        { "create", new CreateTroopCommand(_map, _civilization) },
+        { "create", new CreateTroopCommand(_map, _civilization, unitCreateCore ) },
         { "build", new BuildCommand(_mapService, _player) }
     };
 

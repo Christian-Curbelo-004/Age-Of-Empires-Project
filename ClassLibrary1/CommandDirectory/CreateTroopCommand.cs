@@ -11,10 +11,15 @@ namespace ClassLibrary1.CommandDirectory
         private readonly UnitCreateCore _unitCreateCore;
         private readonly Civilization civilization;
         
-        public CreateTroopCommand(Map map, Civilization civilization)
+        public CreateTroopCommand(
+            Map map,
+            Civilization civilization,
+            UnitCreateCore unitCreateCore // ✅ lo pasás desde afuera
+        )
         {
             _map = map;
             this.civilization = civilization;
+            _unitCreateCore = unitCreateCore;
         }
 
         public async Task<string> ExecuteAsync(string buildingType, string troopType)

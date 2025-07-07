@@ -50,6 +50,21 @@ namespace ClassLibrary1.FacadeDirectory
             }
         }
 
+        public void GenerateArcherCenter(Map map)
+        {
+            int x = 15;
+            int y = 15;
+
+            var archercenter = new ArcherCenter(100, 0, "Archer Center", PlayerOne.Id)
+            {
+                OwnerId = PlayerOne.Id,
+                Position = (x, y)
+            };
+
+            if (map.PlaceEntity(archercenter, x, y))
+                PlayerOne.Buildings.Add(archercenter);
+        }
+
         public void GenerateVillagers2(Map map)
         {
             if (PlayerTwo == null) return;
@@ -110,6 +125,7 @@ namespace ClassLibrary1.FacadeDirectory
             GenerateVillagers(map);
             GenerateVillagers2(map);
             GenerateQuary(map);
+            GenerateArcherCenter(map);
         }
         
     }

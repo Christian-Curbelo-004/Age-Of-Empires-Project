@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
@@ -19,21 +16,16 @@ public class CombatService
 
     public async Task<string> AttackAsync(string entityType, string destination)
     {
-        // Mover primero el atacante al destino
         await _mover.MoveEntityAsync(entityType, destination);
 
         var (x, y) = _mover.ParseCoords(destination);
         var cell = _map.Cells[x, y];
-
-        // Buscar al atacante en todo el mapa (sensible a mayúsculas)
         var attacker = _map.GetAllCells()
             .SelectMany(c => c.Entities)
             .FirstOrDefault(e => e.GetType().Name.Equals(entityType, StringComparison.OrdinalIgnoreCase)) as ICharacter;
 
         if (attacker == null)
             return $"'{entityType}' no puede atacar.";
-
-        // Buscar enemigo (unidades) que no sea el atacante y que tenga distinto OwnerId
         var targetCharacter = cell.Entities
             .OfType<ICharacter>()
             .FirstOrDefault(e => e != attacker && e.OwnerId != attacker.OwnerId);
@@ -57,7 +49,7 @@ public class CombatService
                 }
                 else if (targetCharacter.Life < 10)
                 {
-                    entityTarget.Symbol = "!"; // Símbolo de herido
+                    entityTarget.Symbol = "!";
                 }
             }
 

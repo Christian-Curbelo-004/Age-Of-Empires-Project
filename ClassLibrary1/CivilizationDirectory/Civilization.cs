@@ -11,6 +11,8 @@ namespace ClassLibrary1.CivilizationDirectory
         /// Lista de aldeanos pertenecientes a la civilización.
         /// </summary>
         public List<Villagers> Villagers { get; set; }
+        
+        public Player Player { get; set; }
 
         /// <summary>
         /// Lista de soldados pertenecientes a la civilización.
