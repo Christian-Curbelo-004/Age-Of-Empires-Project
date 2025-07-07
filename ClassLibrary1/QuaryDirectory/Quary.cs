@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Security.AccessControl;
+
+/// <summary>
 /// Representa una cantera abstracta que define el comportamiento común de las minas.
 /// lógica base para la extraccion de recursos.
 /// </summary>
@@ -27,8 +29,9 @@ public abstract class Quary
     /// <summary>
     /// Cantidad actual de recursos disponibles en la cantera.
     /// </summary>
-    public int CurrentAmount { get; set; }
+    public virtual int CurrentAmount { get; set; }
 
+    public abstract string ResourceType { get; }
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="Quary"/>.
     /// </summary>

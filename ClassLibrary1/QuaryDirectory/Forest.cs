@@ -25,7 +25,7 @@ public class Forest : Quary, IMapEntity
     /// <summary>
     /// Tipo de recurso disponible en este depósito.
     /// </summary>
-    public string ResourceType => "Wood";
+    public override string ResourceType => "Wood";
 
     /// <summary>
     /// Cantidad actual de madera disponible en forest.

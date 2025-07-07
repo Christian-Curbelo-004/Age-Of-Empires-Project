@@ -24,6 +24,7 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
+    private Quary quary;
     private VerificarPartidaPerdida _verificarPartida;
     private readonly SaveGame _gameState = new SaveGame();
 
@@ -33,7 +34,7 @@ public async Task StartAsync()
     _map = _gameFacade.GenerateMap();
     _gameFacade.InitializePlayer(_map);
     _player = _gameFacade.PlayerOne;
-    _showScreen = new ShowScreen(_map, _player);
+    _showScreen = new ShowScreen(_map, _player,quary);
     var inventory = new ResourceInventory();
     var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
     var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
@@ -131,6 +132,8 @@ public async Task StartAsync()
 
         string screen = _showScreen.Screen();
         await message.Channel.SendMessageAsync($"```\n{screen}\n```");
+        string resources = _showScreen.ShowRecolectionResourceMuf();
+        await message.Channel.SendMessageAsync($"```\n{resources}\n```");
         
         _verificarPartida.Verificar();
         if (_verificarPartida.PartidaTerminada)

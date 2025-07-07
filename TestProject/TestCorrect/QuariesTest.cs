@@ -6,14 +6,6 @@ namespace TestProject
         private class TesterQuaries : Quary
         {
             public override string ResourceType => "TestResource";
-
-            public override int CurrentAmount
-            {
-                get => _currentAmount;
-                set => _currentAmount = value;
-            }
-
-            private int _currentAmount;
             public TesterQuaries(int ownerId, int extractionRate, int collectionValue, int initialAmount)
                 : base(ownerId, extractionRate, collectionValue, initialAmount)
             {
@@ -23,6 +15,7 @@ namespace TestProject
                 CurrentAmount = 0;
             }
         }
+        
         private Quary _quary;
 
         [SetUp]
