@@ -16,6 +16,7 @@ namespace ClassLibrary1.BuildingsDirectory
         /// Obtiene o establece la posición del edificio en el mapa, como coordenadas X e Y.
         /// </summary>
         public (int X, int Y) Position { get; set; }
+        public string Symbol { get; set; }
 
         /// <summary>
         /// Obtiene o establece el nombre del edificio.

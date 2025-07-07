@@ -1,13 +1,15 @@
 
 using System.Diagnostics;
+using ClassLibrary1.MapDirectory;
 
 namespace ClassLibrary1.CivilizationDirectory
 {
-    public class Centuries : Soldier
+    public class Centuries : Soldier, IMapEntity
     {
         public Centuries() : base( 100, 40,12, 12)
         {
         }
+        public string Symbol { get; set; } = "Ce";
         public override int Attack(ICharacter target) // Atacar
         {
             return target.RecieveAttack(AttackValue);

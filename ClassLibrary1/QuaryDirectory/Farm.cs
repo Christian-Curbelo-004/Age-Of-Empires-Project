@@ -16,7 +16,7 @@ public class Farm : Quary, IMapEntity
 
     public override string ResourceType => "Food";
     public int Food { get; private set; }
-
+    public string Symbol { get; set; } = "Fa";
     public Farm(int x, int y, int initialFood, int extractionRate, int collectionValue, int ownerId, IResourceCollector collector)
         : base(ownerId, extractionRate, collectionValue, initialFood)
     {

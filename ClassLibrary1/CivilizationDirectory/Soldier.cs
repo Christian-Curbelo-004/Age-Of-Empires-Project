@@ -30,6 +30,7 @@ namespace ClassLibrary1.CivilizationDirectory
             return Life;
         }
         public string Name { get; set; }
+        public string Symbol { get; set; }
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
         

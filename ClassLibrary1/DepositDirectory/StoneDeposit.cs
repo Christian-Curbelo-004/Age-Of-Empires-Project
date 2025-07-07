@@ -1,10 +1,12 @@
 ﻿using ClassLibrary1.LogicDirectory;
+using ClassLibrary1.MapDirectory;
 
 namespace ClassLibrary1.DepositDirectory
 {
-    public class StoneDeposit : Deposit
+    public class StoneDeposit : Deposit, IMapEntity
     {
         public int OwnerId { get; set; }
+        public string Symbol { get; set; } = "Sd";
         public int CurrentStone { get; private set; }
         private readonly ResourceInventory _inventory;
 

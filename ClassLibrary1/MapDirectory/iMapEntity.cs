@@ -2,7 +2,7 @@ namespace ClassLibrary1.MapDirectory
 {
     public interface IMapEntity
     {
-        string Name { get; set; }
+        string Symbol { get; set; }
         int OwnerId { get; set; }
         (int X, int Y) Position { get; set; }
     }

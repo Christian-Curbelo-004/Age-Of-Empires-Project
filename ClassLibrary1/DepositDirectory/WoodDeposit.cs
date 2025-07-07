@@ -1,9 +1,11 @@
 ﻿using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
+using ClassLibrary1.MapDirectory;
 
-public class WoodDeposit : Deposit
+public class WoodDeposit : Deposit, IMapEntity
 {
     public int OwnerId { get; set; }
+    public string Symbol { get; set; } = "Wd";
     public int CurrentWood { get; private set; } 
     private readonly ResourceInventory inventory;
 

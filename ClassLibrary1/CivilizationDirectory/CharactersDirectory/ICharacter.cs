@@ -4,7 +4,7 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public interface ICharacter
 {
-    
+    public int OwnerId { get; set; }
     public int Life { get; set; }
     public  int AttackValue { get; set; }
     

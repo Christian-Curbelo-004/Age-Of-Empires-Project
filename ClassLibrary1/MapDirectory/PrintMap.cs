@@ -1,9 +1,5 @@
 using System.Text;
-using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.QuaryDirectory;
-using ClassLibrary1.UnitsDirectory;
 
 namespace ClassLibrary1.MapDirectory
 {
@@ -68,7 +64,7 @@ namespace ClassLibrary1.MapDirectory
             startY = Math.Clamp(startY, 0, height);
             endY = Math.Clamp(endY, 0, height);
 
-            const int coordWidth = 3; // ancho fijo para coord y celda
+            const int coordWidth = 3;
             const int cellWidth = 3;
 
             var sb = new StringBuilder();
@@ -82,7 +78,7 @@ namespace ClassLibrary1.MapDirectory
             // Filas con coordenadas Y y celdas
             for (int y = startY; y < endY; y++)
             {
-                sb.Append(y.ToString("D2").PadLeft(coordWidth - 1) + " "); // Coord Y
+                sb.Append(y.ToString("D2").PadLeft(coordWidth - 1) + " ");
 
                 for (int x = startX; x < endX; x++)
                 {
@@ -93,7 +89,7 @@ namespace ClassLibrary1.MapDirectory
                 sb.AppendLine();
             }
 
-            // Pie con columnas X de nuevo
+            // Pie con columnas X
             sb.Append(' ', coordWidth);
             for (int x = startX; x < endX; x++)
                 sb.Append(x.ToString("D2").PadLeft(cellWidth));
@@ -126,38 +122,7 @@ namespace ClassLibrary1.MapDirectory
 
         private string GetSymbolForEntity(IMapEntity entity)
         {
-            return entity switch
-            {
-                Villagers => "Vi",
-                Archer => "Ar",
-                Infantery => "In",
-                Paladin => "Pa",
-                Raider => "Ra",
-                Chivarly => "Ch",
-                Centuries => "Ce",
-
-                CivicCenter => "Cc",
-                Home => "Ho",
-                InfanteryCenter => "IC",
-                ArcherCenter => "AC",
-                PaladinCenter => "PC",
-                RaiderCenter => "RC",
-                ChivarlyCenter => "CH",
-                CenturiesCenter => "CE",
-
-                GoldMine => "Gm",
-                StoneMine => "Sm",
-                Forest => "Fo",
-                Farm => "Fa",
-
-                WoodDeposit => "Wd",
-                GoldDeposit => "Gd",
-                StoneDeposit => "Sd",
-                WindMill => "Wm",
-
-                _ => "??"
-            };
+            return entity.Symbol ?? "??";
         }
-        
     }
 }

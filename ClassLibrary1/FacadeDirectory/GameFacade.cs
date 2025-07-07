@@ -16,7 +16,7 @@ namespace ClassLibrary1.FacadeDirectory
         {
             if (PlayerOne == null) return;
 
-            var civic = new CivicCenter(0, 0, "Civic Center", PlayerOne.Id)
+            var civic = new CivicCenter(500, 0, "Civic Center", PlayerOne.Id)
             {
                 OwnerId = PlayerOne.Id
             };
@@ -27,7 +27,7 @@ namespace ClassLibrary1.FacadeDirectory
 
         public void GenerateCivicCenter2(Map map)
         {
-            var civic = new CivicCenter(0, 0, "Civic Center", PlayerTwo.Id)
+            var civic = new CivicCenter(500, 0, "Civic Center", PlayerTwo.Id)
             {
                 OwnerId = PlayerTwo.Id
             };
@@ -41,7 +41,7 @@ namespace ClassLibrary1.FacadeDirectory
             if (PlayerOne == null) return;
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(0, 0, PlayerOne.Id, 5);
+                var villager = new Villagers(100, 2, PlayerOne.Id, 5);
                 int x = 12 + i;
                 int y = 12;
 
@@ -55,7 +55,7 @@ namespace ClassLibrary1.FacadeDirectory
             if (PlayerTwo == null) return;
             for (int i = 0; i < 3; i++)
             {
-                var villager = new Villagers(0, 0, PlayerTwo.Id, 5);
+                var villager = new Villagers(100, 1, PlayerTwo.Id, 5);
                 int x = 88 + i;
                 int y = 88;
 

@@ -6,7 +6,7 @@ public class GoldMine : Quary, IMapEntity
     public int OwnerId { get; set; }
     public (int X, int Y) Position { get; set; }
     public string Name { get; set; } = "Gold Mine";
-
+    public string Symbol { get; set; } = "Gm";
     private readonly IResourceCollector _collector;
     public override int CurrentAmount
     {

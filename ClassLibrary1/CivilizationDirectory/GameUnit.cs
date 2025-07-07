@@ -11,6 +11,7 @@ namespace ClassLibrary1.UnitsDirectory
         /// Obtiene o establece el nombre de la unidad.
         /// </summary>
         public string Name { get; set; }
+        public string Symbol { get; set; }
 
         /// <summary>
         /// Obtiene o establece el ID del jugador propietario de la unidad.

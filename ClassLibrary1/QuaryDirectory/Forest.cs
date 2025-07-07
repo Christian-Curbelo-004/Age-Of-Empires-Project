@@ -21,6 +21,10 @@ public class Forest : Quary, IMapEntity
     /// nombre de la entidad "Forest".
     /// </summary>
     public string Name { get; set; } = "Forest";
+    /// <summary>
+    /// string para el mapa".
+    /// </summary>
+    public string Symbol { get; set; } = "Fo";
 
     /// <summary>
     /// Tipo de recurso disponible en este depósito.

@@ -7,7 +7,7 @@ namespace ClassLibrary1.BuildingsDirectory
     public class ChivarlyCenter : Buildings, ITrainingBuilding
     {
         public int OwnerId { get; set; }
-
+        public string Symbol { get; set; } = "ChC";
         public ChivarlyCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {

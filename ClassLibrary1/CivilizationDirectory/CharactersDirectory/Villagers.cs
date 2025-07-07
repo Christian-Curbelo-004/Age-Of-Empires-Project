@@ -20,7 +20,7 @@ namespace ClassLibrary1.UnitsDirectory
             IsFree,
             Construyendo,
         }
-
+        public string Symbol { get; set; } = "V";
         public Villagers(int life, int attackValue, int ownerId, int speed)
         {
             OwnerId = ownerId;

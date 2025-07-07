@@ -1,12 +1,15 @@
+using ClassLibrary1.MapDirectory;
 using ClassLibrary1.UnitsDirectory;
 
 namespace ClassLibrary1.CivilizationDirectory
 {
+    
     /// <summary>
     /// Representa una unidad arquera, que hereda de <see cref="Soldier"/>.
     /// </summary>
-    public class Archer : Soldier
+    public class Archer : Soldier, IMapEntity
     {
+        public string Symbol { get; set; } = "Ar";
         /// <summary>
         /// Inicializa una nueva instancia de <see cref="Archer"/> con valores predeterminados de vida, ataque y defensa.
         /// </summary>

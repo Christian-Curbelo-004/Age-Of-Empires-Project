@@ -12,7 +12,7 @@ namespace ClassLibrary1.BuildingsDirectory
         ///  ID del jugador que tiene el archer center.
         /// </summary>
         public int OwnerId { get; set; }
-
+        public string Symbol { get; set; } = "AC";
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ArcherCenter"/> con los atributos heredados.
         /// </summary>

@@ -1,4 +1,5 @@
 ﻿using ClassLibrary1.LogicDirectory;
+using ClassLibrary1.MapDirectory;
 
 namespace ClassLibrary1.DepositDirectory
 {
@@ -6,12 +7,13 @@ namespace ClassLibrary1.DepositDirectory
     /// Representa un molino de viento que funciona como depósito de comida para el jugador.
     /// Hereda de la clase <see cref="Deposit"/>.
     /// </summary>
-    public class WindMill : Deposit
+    public class WindMill : Deposit, IMapEntity
     {
         /// <summary>
         /// Obtiene o establece el identificador del jugador propietario del molino.
         /// </summary>
         public int OwnerId { get; set; }
+        public string Symbol { get; set; } = "Mw";
 
         /// <summary>
         /// Obtiene la cantidad actual de comida almacenada en el molino.

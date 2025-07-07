@@ -7,7 +7,7 @@ namespace ClassLibrary1.BuildingsDirectory
     public class PaladinCenter : Buildings, ITrainingBuilding
     {
         public int OwnerId { get; set; }
-
+        public string Symbol { get; set; } = "PC";
         public PaladinCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {

@@ -6,7 +6,7 @@ namespace ClassLibrary1.BuildingsDirectory
     public class RaiderCenter : Buildings, ITrainingBuilding
     {
         public int OwnerId { get; set; }
-
+        public string Symbol { get; set; } = "RC";
         public RaiderCenter(int endurence, int constructiontimeleft, string name, int ownerId)
             : base(endurence, name)
         {

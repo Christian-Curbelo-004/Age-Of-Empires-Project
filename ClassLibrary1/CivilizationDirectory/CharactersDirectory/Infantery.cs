@@ -1,10 +1,13 @@
+using ClassLibrary1.MapDirectory;
+
 namespace ClassLibrary1.CivilizationDirectory;
 
-public class Infantery : Soldier                                               
+public class Infantery : Soldier, IMapEntity                                          
 {
     public Infantery() : base(100,14,10,13)
     {
     }
+    public string Symbol { get; set; } = "In";
     public override int Attack(ICharacter target) //Atacar
     {
         return target.RecieveAttack(AttackValue);

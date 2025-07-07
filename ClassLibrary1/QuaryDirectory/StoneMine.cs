@@ -7,7 +7,7 @@ namespace ClassLibrary1.QuaryDirectory
         public int OwnerId { get; set; }
         public (int X, int Y) Position { get; set; }
         public string Name { get; set; } = "Stone Mine";
-
+        public string Symbol { get; set; } = "Sm";
         private readonly IResourceCollector _collector;
 
         public override int CurrentAmount
