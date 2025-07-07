@@ -19,7 +19,8 @@ public class EntityMover
         }
 
         var cell = _map.GetAllCells()
-            .FirstOrDefault(c => c.Entities.Any(e => e.GetType().Name == entityType));
+            .FirstOrDefault(c => c.Entities.Any(e => 
+                string.Equals(e.GetType().Name, entityType, StringComparison.OrdinalIgnoreCase)));
 
         if (cell == null)
         {
@@ -27,7 +28,8 @@ public class EntityMover
             return messages;
         }
 
-        var entity = cell.Entities.FirstOrDefault(e => e.GetType().Name == entityType);
+        var entity = cell.Entities.FirstOrDefault(e => 
+            string.Equals(e.GetType().Name, entityType, StringComparison.OrdinalIgnoreCase));
 
         if (entity is not IMovable movableEntity)
         {

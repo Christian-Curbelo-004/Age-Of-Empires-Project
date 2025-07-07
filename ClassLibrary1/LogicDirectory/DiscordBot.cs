@@ -10,6 +10,7 @@ using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
+using ClassLibrary1.UnitsDirectory;
 using CommandDirectory;
 using IMapEntity = ClassLibrary1.MapDirectory.IMapEntity;
 
@@ -30,67 +31,73 @@ public class DiscordBot
     private Player _playerOne;
     private Player _playerTwo;
 
-    public async Task StartAsync()
+public async Task StartAsync()
+{
+    _gameFacade = new GameFacade();
+    _map = _gameFacade.GenerateMap();
+    _gameFacade.InitializePlayer(_map);
+    _playerOne = _gameFacade.PlayerOne;
+    _playerTwo = _gameFacade.PlayerTwo;
+    _player = _playerOne;
+    var villagersCollector = new Villagers(100, 2, _player.Id, 3);
+
+    _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id, collector: villagersCollector);
+
+    _showScreen = new ShowScreen(_map, _player, _quary);
+
+    // Ejemplo de recursos en el mapa
+    var inventory = new ResourceInventory();
+    var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
+    var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
+    var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
+    var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
+
+    _map.PlaceEntity(woodDeposit, 11, 11);
+    _map.PlaceEntity(goldDeposit, 12, 11);
+    _map.PlaceEntity(stoneDeposit, 13, 11);
+    _map.PlaceEntity(windMill, 14, 11);
+
+    _mapService = new MapService(_map);
+    
+    _verificarPartida = new VerificarPartidaPerdida(_map);
+    _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+
+    // Inicializa las civilizaciones si es necesario
+    _civilization = null; // O asigna la civilización correspondiente
+
+    var commands = new Dictionary<string, IGameCommand>
     {
-        _gameFacade = new GameFacade();
-        _map = _gameFacade.GenerateMap();
-        _gameFacade.InitializePlayer(_map);
-        _playerOne = _gameFacade.PlayerOne;
-        _playerTwo = _gameFacade.PlayerTwo;
-        _showScreen = new ShowScreen(_map, _player, _quary);
+        { "chop", new ChopCommand(_mapService) },
+        { "mine", new MineCommand(_mapService) },
+        { "gather", new GatherFoodCommand(_mapService) },
+        { "move", new MoveCommand(_mapService) },
+        { "attack", new AttackCommand(_mapService) },
+        { "create", new CreateTroopCommand(_map, _civilization) },
+        { "build", new BuildCommand(_mapService, _player) }
+    };
 
-        // Ejemplo de recursos en el mapa
-        var inventory = new ResourceInventory();
-        var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
-        var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
-        var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
-        var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
+    _commandProcessor = new CommandProcessor(commands);
 
-        _map.PlaceEntity(woodDeposit, 11, 11);
-        _map.PlaceEntity(goldDeposit, 12, 11);
-        _map.PlaceEntity(stoneDeposit, 13, 11);
-        _map.PlaceEntity(windMill, 14, 11);
+    _client = new DiscordSocketClient(new DiscordSocketConfig
+    {
+        GatewayIntents = GatewayIntents.Guilds |
+                         GatewayIntents.GuildMessages |
+                         GatewayIntents.MessageContent
+    });
 
-        _mapService = new MapService(_map);
+    _client.Log += LogAsync;
+    _client.Ready += ReadyAsync;
+    _client.MessageReceived += MessageReceivedAsync;
 
-        _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id); 
+    var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+    if (string.IsNullOrWhiteSpace(token))
+        throw new Exception("Token de Discord no configurado.");
 
-        // Inicializa las civilizaciones si es necesario
-        _civilization = null; // O asigna la civilización correspondiente
+    await _client.LoginAsync(TokenType.Bot, token);
+    await _client.StartAsync();
 
-        var commands = new Dictionary<string, IGameCommand>
-        {
-            { "chop", new ChopCommand(_mapService) },
-            { "mine", new MineCommand(_mapService) },
-            { "gather", new GatherFoodCommand(_mapService) },
-            { "move", new MoveCommand(_mapService) },
-            { "attack", new AttackCommand(_mapService) },
-            { "create", new CreateTroopCommand(_map, _civilization) },
-            { "build", new BuildCommand(_mapService, _player) }
-        };
-
-        _commandProcessor = new CommandProcessor(commands);
-
-        _client = new DiscordSocketClient(new DiscordSocketConfig
-        {
-            GatewayIntents = GatewayIntents.Guilds |
-                             GatewayIntents.GuildMessages |
-                             GatewayIntents.MessageContent
-        });
-
-        _client.Log += LogAsync;
-        _client.Ready += ReadyAsync;
-        _client.MessageReceived += MessageReceivedAsync;
-
-        var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
-        if (string.IsNullOrWhiteSpace(token))
-            throw new Exception("Token de Discord no configurado.");
-
-        await _client.LoginAsync(TokenType.Bot, token);
-        await _client.StartAsync();
-
-        await Task.Delay(-1);
-    }
+    await Task.Delay(-1);
+}
 
     private Task LogAsync(LogMessage log)
     {
