@@ -7,6 +7,7 @@ namespace ClassLibrary1.CivilizationDirectory
     /// </summary>
     public class Roman : Civilization
     {
+        public Player Player { get; set; }
         /// <summary>
         /// Inicializa una nueva instancia de la civilización romana y añade unidades iniciales.
         /// </summary>

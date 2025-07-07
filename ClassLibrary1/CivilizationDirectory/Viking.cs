@@ -3,6 +3,7 @@ using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 namespace ClassLibrary1.CivilizationDirectory;
 public class Viking : Civilization
 {
+    public Player Player { get; set; }
     public Viking()
     {
         Units.Add(new Raider());

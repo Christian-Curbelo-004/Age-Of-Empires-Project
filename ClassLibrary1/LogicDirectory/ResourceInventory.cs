@@ -6,6 +6,17 @@ public class ResourceInventory : IResourceInventory
     public int Wood { get; set; }
     public int Stone { get; set; }
     public int Gold { get; set; }
+
+    public ResourceInventory() { }
+
+    public ResourceInventory(Player player)
+    {
+        Food = player.Resources.Food;
+        Wood = player.Resources.Wood;
+        Stone = player.Resources.Stone;
+        Gold = player.Resources.Gold;
+    }
+
     public void AddFood(int amount) => Food += amount;
     public void AddWood(int amount) => Wood += amount;
     public void AddStone(int amount) => Stone += amount;

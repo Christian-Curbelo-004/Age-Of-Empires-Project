@@ -2,6 +2,7 @@ namespace ClassLibrary1.CivilizationDirectory;
 
 public class Templaries : Civilization
 {
+    public Player Player { get; set; }
     public Templaries()
     {
         Units.Add(new Paladin());

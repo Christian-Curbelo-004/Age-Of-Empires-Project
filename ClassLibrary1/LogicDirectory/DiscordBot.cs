@@ -61,12 +61,13 @@ public async Task StartAsync()
     
     _verificarPartida = new VerificarPartidaPerdida(_map);
     _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-    _civilization = null; 
-    
+    _civilization = new Roman();
+    _civilization.Player = _playerOne;
+
     var player = _civilization.Player;
-    var resourceInventory = new ResourceInventory(player.Resources);
+    var resourceInventory = player.Resources;
     var knowingCell = new KnowingCell(_map);
-    var unitAffordable = new UnitAffordable(player);
+    var unitAffordable = new UnitAffordable(player.Resources);
 
     var unitCreateCore = new UnitCreateCore(
         resourceInventory,
