@@ -1,43 +1,22 @@
-using ClassLibrary1.FacadeDirectory;
-
-namespace ClassLibrary1.LogicDirectory;
-
+using ClassLibrary1.MapDirectory;
 public class VerificarPartidaPerdida
 {
-    private readonly GameFacade _gameFacade;
     private readonly Map _map;
-    public bool PartidaTerminada { get; set; }
+    private readonly CivicCenterChecker _checker;
+    public bool PartidaTerminada { get; private set; }
 
-    public VerificarPartidaPerdida(GameFacade gameFacade, Map map)
+    public VerificarPartidaPerdida(Map map)
     {
-        _gameFacade = gameFacade;
         _map = map;
-        PartidaTerminada = false;
+        _checker = new CivicCenterChecker(_map);
     }
 
-    public bool TieneCivicCenter(Player player)
+    public void Verificar(int playerOneId, int playerTwoId)
     {
-        foreach (var edificio in player.Buildings)
-        {
-            if (edificio.GetType().Name == "CivicCenter")
-            {
-                return true;
-            }
-        }
+        int ccPlayerOne = _checker.CountCivicCenters(playerOneId);
+        int ccPlayerTwo = _checker.CountCivicCenters(playerTwoId);
 
-        return false;
-    }
-
-    public void Verificar()
-    {
-        bool playeroneTieneCC = TieneCivicCenter(_gameFacade.PlayerOne);
-        bool playertwoTieneCC = TieneCivicCenter(_gameFacade.PlayerTwo);
-
-        if (!playeroneTieneCC)
-        {
-            PartidaTerminada = true;
-        }
-        else if (!playertwoTieneCC)
+        if (ccPlayerOne == 0 || ccPlayerTwo == 0)
         {
             PartidaTerminada = true;
         }

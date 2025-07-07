@@ -27,13 +27,16 @@ public class DiscordBot
     private Quary _quary; // Declarado pero no inicializado (cuidado)
     private VerificarPartidaPerdida _verificarPartida;
     private readonly SaveGame _gameState = new SaveGame();
+    private Player _playerOne;
+    private Player _playerTwo;
 
     public async Task StartAsync()
     {
         _gameFacade = new GameFacade();
         _map = _gameFacade.GenerateMap();
         _gameFacade.InitializePlayer(_map);
-        _player = _gameFacade.PlayerOne;
+        _playerOne = _gameFacade.PlayerOne;
+        _playerTwo = _gameFacade.PlayerTwo;
         _showScreen = new ShowScreen(_map, _player, _quary);
 
         // Ejemplo de recursos en el mapa
@@ -50,7 +53,7 @@ public class DiscordBot
 
         _mapService = new MapService(_map);
 
-        _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
+        _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id); 
 
         // Inicializa las civilizaciones si es necesario
         _civilization = null; // O asigna la civilización correspondiente
@@ -178,7 +181,7 @@ public class DiscordBot
 
         await SendScreenAsync(message.Channel);
 
-        _verificarPartida.Verificar();
+        _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
         if (_verificarPartida.PartidaTerminada)
         {
             await message.Channel.SendMessageAsync(
@@ -190,6 +193,8 @@ public class DiscordBot
     {
         string screen = _showScreen.Screen();
         await channel.SendMessageAsync($"```\n{screen}\n```");
+        string resourcemessage = _showScreen.ShowRecolectionResourceMuf();
+        await channel.SendMessageAsync(($"```\n{resourcemessage}\n```"));
     }
 
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
