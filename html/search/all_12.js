@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['save_0',['Save',['../class_class_library1_1_1_bonus_1_1_game_storage.html#a2c3c26436d1b992b836e76b3e3cd1f01',1,'ClassLibrary1.Bonus.GameStorage.Save()'],['../class_class_library1_1_1_bonus_1_1_save_game.html#a97ccb504ef77791645ed9c3a34c83520',1,'ClassLibrary1.Bonus.SaveGame.Save()']]],
+  ['savedgames_1',['SavedGames',['../class_discord_bot.html#a38c2601aad43b78f9cec1628f7c7e928',1,'DiscordBot']]],
+  ['savegame_2',['SaveGame',['../class_class_library1_1_1_bonus_1_1_save_game.html',1,'ClassLibrary1.Bonus.SaveGame'],['../class_discord_bot.html#a2eb746cc77a7bff02d923b976cb00918',1,'DiscordBot.SaveGame()']]],
+  ['savegame_2ecs_3',['SaveGame.cs',['../_save_game_8cs.html',1,'']]],
+  ['screen_4',['Screen',['../class_class_library1_1_1_show_screen.html#ac0fc3a1b2c9706624dc0d8a3293a1f7a',1,'ClassLibrary1::ShowScreen']]],
+  ['showrecolectionresourcemuf_5',['ShowRecolectionResourceMuf',['../class_class_library1_1_1_show_screen.html#ab3ba503afdf9c4f3d379d73dd0506060',1,'ClassLibrary1::ShowScreen']]],
+  ['showscreen_6',['ShowScreen',['../class_class_library1_1_1_show_screen.html',1,'ClassLibrary1.ShowScreen'],['../class_class_library1_1_1_show_screen.html#abad64e703dd5f4ef2f0d3841a4c727df',1,'ClassLibrary1.ShowScreen.ShowScreen()']]],
+  ['showscreen_2ecs_7',['ShowScreen.cs',['../_show_screen_8cs.html',1,'']]],
+  ['soldier_8',['Soldier',['../class_class_library1_1_1_civilization_directory_1_1_soldier.html',1,'ClassLibrary1.CivilizationDirectory.Soldier'],['../class_class_library1_1_1_civilization_directory_1_1_soldier.html#a972925fbb0af00a307452016e3e525b1',1,'ClassLibrary1.CivilizationDirectory.Soldier.Soldier()']]],
+  ['soldier_2ecs_9',['Soldier.cs',['../_soldier_8cs.html',1,'']]],
+  ['soldiers_10',['Soldiers',['../class_class_library1_1_1_civilization_directory_1_1_civilization.html#a5b50e281e0c2e117ee0a430e273fa616',1,'ClassLibrary1::CivilizationDirectory::Civilization']]],
+  ['speed_11',['Speed',['../interface_class_library1_1_1_civilization_directory_1_1_characters_directory_1_1_i_movable.html#aa528da665bad0a13845fd751603b5d25',1,'ClassLibrary1.CivilizationDirectory.CharactersDirectory.IMovable.Speed'],['../class_class_library1_1_1_units_directory_1_1_villagers.html#a0a8bc396a0b22eb0d3a4fec4a8825be9',1,'ClassLibrary1.UnitsDirectory.Villagers.Speed'],['../class_class_library1_1_1_civilization_directory_1_1_soldier.html#a31da36028b6e5dab01e2e521a011a2c7',1,'ClassLibrary1.CivilizationDirectory.Soldier.Speed'],['../class_class_library1_1_1_units_directory_1_1_units.html#a132c41b366de0388cac9ea80baaa2023',1,'ClassLibrary1.UnitsDirectory.Units.Speed']]],
+  ['spend_12',['Spend',['../interface_class_library1_1_1_logic_directory_1_1_i_resource_inventory.html#a4f41c1affd29846eac16cdb9c1b644be',1,'ClassLibrary1.LogicDirectory.IResourceInventory.Spend()'],['../class_class_library1_1_1_logic_directory_1_1_resource_inventory.html#a0199a19f7c460f7b8810406fcfd970af',1,'ClassLibrary1.LogicDirectory.ResourceInventory.Spend()']]],
+  ['startasync_13',['StartAsync',['../class_discord_bot.html#a4cdebab53dc54e22b35aea00aa41bcb7',1,'DiscordBot']]],
+  ['startingposition_14',['StartingPosition',['../class_player.html#a12ab384d42e6670a3343fbd7c8d05d08',1,'Player']]],
+  ['state_15',['State',['../class_class_library1_1_1_units_directory_1_1_villagers.html#aabfc7b17c743ecae7f2b5b2e22cad352',1,'ClassLibrary1::UnitsDirectory::Villagers']]],
+  ['stone_16',['Stone',['../class_class_library1_1_1_logic_directory_1_1_cost.html#a10cee64680f37284e5ca0d0b0f187862',1,'ClassLibrary1.LogicDirectory.Cost.Stone'],['../interface_class_library1_1_1_logic_directory_1_1_i_resource_inventory.html#a1c25489a79f7a45742cb15d8c55b9446',1,'ClassLibrary1.LogicDirectory.IResourceInventory.Stone'],['../class_class_library1_1_1_logic_directory_1_1_resource_inventory.html#a8f0a5401272a57afd320894eaaed774e',1,'ClassLibrary1.LogicDirectory.ResourceInventory.Stone'],['../class_class_library1_1_1_quary_directory_1_1_stone_mine.html#a627de8d9b006aa63d8d279f7e2e58166',1,'ClassLibrary1.QuaryDirectory.StoneMine.Stone']]],
+  ['stonedeposit_17',['StoneDeposit',['../class_class_library1_1_1_deposit_directory_1_1_stone_deposit.html',1,'ClassLibrary1.DepositDirectory.StoneDeposit'],['../class_class_library1_1_1_logic_directory_1_1_creation_cost.html#abdcd523aaeace4d70f2cdc55ef561434',1,'ClassLibrary1.LogicDirectory.CreationCost.StoneDeposit'],['../class_class_library1_1_1_deposit_directory_1_1_stone_deposit.html#a0961ef57c4b7d7155cfbf9f4219d9740',1,'ClassLibrary1.DepositDirectory.StoneDeposit.StoneDeposit()']]],
+  ['stonedeposit_2ecs_18',['StoneDeposit.cs',['../_stone_deposit_8cs.html',1,'']]],
+  ['stonemine_19',['StoneMine',['../class_class_library1_1_1_quary_directory_1_1_stone_mine.html',1,'ClassLibrary1.QuaryDirectory.StoneMine'],['../class_class_library1_1_1_quary_directory_1_1_stone_mine.html#ab55006315dc538f24949d131f2b2be71',1,'ClassLibrary1.QuaryDirectory.StoneMine.StoneMine()']]],
+  ['stonemine_2ecs_20',['StoneMine.cs',['../_stone_mine_8cs.html',1,'']]],
+  ['storefood_21',['StoreFood',['../class_class_library1_1_1_deposit_directory_1_1_wind_mill.html#a3ad6745821801f4b0b43e36c934be291',1,'ClassLibrary1::DepositDirectory::WindMill']]],
+  ['storegold_22',['StoreGold',['../class_class_library1_1_1_deposit_directory_1_1_gold_deposit.html#a06dfd8ab8fef5e54153a46ae95686f0b',1,'ClassLibrary1::DepositDirectory::GoldDeposit']]],
+  ['storestone_23',['StoreStone',['../class_class_library1_1_1_deposit_directory_1_1_stone_deposit.html#aa52c82028acb466381e0caa8dc2f9359',1,'ClassLibrary1::DepositDirectory::StoneDeposit']]],
+  ['storewood_24',['StoreWood',['../class_class_library1_1_1_deposit_directory_1_1_wood_deposit.html#a1c2eedf7619c43736881d66c044cf1da',1,'ClassLibrary1::DepositDirectory::WoodDeposit']]]
+];

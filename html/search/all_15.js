@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['verificar_0',['Verificar',['../class_class_library1_1_1_logic_directory_1_1_verificar_partida_perdida.html#a1e7360e9a4527e7f270619f786512b58',1,'ClassLibrary1::LogicDirectory::VerificarPartidaPerdida']]],
+  ['verificarpartidaperdida_1',['VerificarPartidaPerdida',['../class_class_library1_1_1_logic_directory_1_1_verificar_partida_perdida.html',1,'ClassLibrary1.LogicDirectory.VerificarPartidaPerdida'],['../class_class_library1_1_1_logic_directory_1_1_verificar_partida_perdida.html#a001f3eae888e6a57afface361f9cd29b',1,'ClassLibrary1.LogicDirectory.VerificarPartidaPerdida.VerificarPartidaPerdida()']]],
+  ['verificarpartidaperdida_2ecs_2',['VerificarPartidaPerdida.cs',['../_verificar_partida_perdida_8cs.html',1,'']]],
+  ['viking_3',['Viking',['../class_class_library1_1_1_civilization_directory_1_1_viking.html',1,'ClassLibrary1.CivilizationDirectory.Viking'],['../class_class_library1_1_1_civilization_directory_1_1_viking.html#a2d2cc9b319ed648ae12bd3517c2f7ee8',1,'ClassLibrary1.CivilizationDirectory.Viking.Viking()']]],
+  ['viking_2ecs_4',['Viking.cs',['../_viking_8cs.html',1,'']]],
+  ['villagers_5',['Villagers',['../class_class_library1_1_1_units_directory_1_1_villagers.html',1,'ClassLibrary1.UnitsDirectory.Villagers'],['../class_class_library1_1_1_civilization_directory_1_1_civilization.html#a44c4c82bec003036bc86861225fa3ec5',1,'ClassLibrary1.CivilizationDirectory.Civilization.Villagers'],['../class_player.html#af5fd1a7b1dc29300baf8c122ef820960',1,'Player.Villagers'],['../class_class_library1_1_1_logic_directory_1_1_creation_cost.html#a13d290985fc9c62b87063ec5a1a0ef58',1,'ClassLibrary1.LogicDirectory.CreationCost.Villagers'],['../class_class_library1_1_1_units_directory_1_1_villagers.html#ab18b42fe564254fb6c59466942c9d60b',1,'ClassLibrary1.UnitsDirectory.Villagers.Villagers()'],['../namespace_class_library1_1_1_civilization_directory_1_1_characters_directory.html#a0244d5365c16df4c1189ff9b5ce658faa75a5cb6b0c5c3cea46bbfb9cd397edd1',1,'ClassLibrary1.CivilizationDirectory.CharactersDirectory.Villagers']]],
+  ['villagers_2ecs_6',['Villagers.cs',['../_villagers_8cs.html',1,'']]],
+  ['villagersbuilding_7',['VillagersBuilding',['../class_class_library1_1_1_logic_directory_1_1_build_create_core.html#a880cc7675ad44d55a9b53d5844ad9fd7',1,'ClassLibrary1::LogicDirectory::BuildCreateCore']]],
+  ['villagerstate_8',['VillagerState',['../class_class_library1_1_1_units_directory_1_1_villagers.html#a9d6334c6671e8056733a8884ee935b0e',1,'ClassLibrary1::UnitsDirectory::Villagers']]]
+];
