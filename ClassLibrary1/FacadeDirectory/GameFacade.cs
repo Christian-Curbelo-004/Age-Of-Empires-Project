@@ -10,63 +10,72 @@ namespace ClassLibrary1.FacadeDirectory
         public Player PlayerOne { get; private set; }
         public Player PlayerTwo { get; private set; }
 
-        public Map GenerateMap()
-        {
-            return new Map(100, 100); // Mapa 100x100
-        }
+        public Map GenerateMap() => new Map(100, 100);
 
         public void GenerateCivicCenter(Map map)
         {
-            if (PlayerOne == null)
-            {
-                var civic = new CivicCenter(0, 0, "Civic Center", 0)
-                {
-                    OwnerId = PlayerOne.Id
-                };
-            }
+            if (PlayerOne == null) return;
 
-            //if (TryPlaceEntityAt(map, civic, 10, 10))
-            //PlayerOne.Buildings.Add(civic);
+            var civic = new CivicCenter(0, 0, "Civic Center", PlayerOne.Id)
+            {
+                OwnerId = PlayerOne.Id
+            };
+
+            if (map.PlaceEntity(civic, 10, 10))
+                PlayerOne.Buildings.Add(civic);
         }
 
         public void GenerateCivicCenter2(Map map)
         {
-            var civic = new CivicCenter(0, 0, "Civic Center", 0)
+            var civic = new CivicCenter(0, 0, "Civic Center", PlayerTwo.Id)
             {
                 OwnerId = PlayerTwo.Id
             };
 
-            //if (TryPlaceEntityAt(map, civic, 90, 90))
-                //PlayerTwo.Buildings.Add(civic);
+            if (map.PlaceEntity(civic, 90, 90))
+                PlayerTwo.Buildings.Add(civic);
         }
 
         public void GenerateVillagers(Map map)
         {
-            var villager = new Villagers(12, 3, PlayerOne.Id, 5);
-            //if (TryPlaceEntityAt(map, villager, 12 + i, 12))
-            //PlayerOne.Units.Add(villager);
-            
+            if (PlayerOne == null) return;
+            for (int i = 0; i < 3; i++)
+            {
+                var villager = new Villagers(0, 0, PlayerOne.Id, 5);
+                int x = 12 + i;
+                int y = 12;
+
+                if (map.PlaceEntity(villager, x, y))
+                    PlayerOne.Units.Add(villager);
+            }
         }
 
         public void GenerateVillagers2(Map map)
         {
-            var villager = new Villagers(12, 3, PlayerTwo.Id, 8);
-                //if (TryPlaceEntityAt(map, villager, 88 + i, 88))
-                   // PlayerTwo.Units.Add(villager);
-            
+            if (PlayerTwo == null) return;
+            for (int i = 0; i < 3; i++)
+            {
+                var villager = new Villagers(0, 0, PlayerTwo.Id, 5);
+                int x = 88 + i;
+                int y = 88;
+
+                if (map.PlaceEntity(villager, x, y))
+                    PlayerTwo.Units.Add(villager);
+            }
         }
 
         public void GenerateQuary(Map map)
         {
-            var goldMine = new GoldMine(0, 100, 10, 1, collector:new ResourceCollector());
-            //TryPlaceEntityAt(map, goldMine, 20, 20);
+            var goldMine = new GoldMine(0, 0, 300, 3, 1, PlayerOne.Id, new ResourceCollector());
+            map.PlaceEntity(goldMine, 20, 20);
 
-            var stoneMine = new StoneMine(0, 100, 10, 1, collector: new ResourceCollector());
-            //TryPlaceEntityAt(map, stoneMine, 25, 25);
+            var stoneMine = new StoneMine(0, 0, 300, 3, 1, PlayerOne.Id, new ResourceCollector());
+            map.PlaceEntity(stoneMine, 25, 25);
 
-            var forest = new Forest(0, 100, 10, 1, collector: new ResourceCollector());
-            //TryPlaceEntityAt(map, forest, 30, 30);
+            var forest = new Forest(0, 0, 300, 3, 1, PlayerOne.Id, new ResourceCollector());
+            map.PlaceEntity(forest, 30, 30);
         }
+
 
         public void InitializePlayer(Map map)
         {
@@ -109,28 +118,29 @@ namespace ClassLibrary1.FacadeDirectory
             await constructor.BuildEstructura(buildings, map, x, y, player);
         }
 
-        public void GenerateFarm(Map map, int x, int y)
+        public void GenerateFarm(Map map, int x, int y, int ownerId)
         {
-            var farm = new Farm(0, 100, 10, 1,collector : new ResourceCollector());
-            //TryPlaceEntityAt(map, farm, x, y);
+            var farm = new Farm(0, 0, 300, 3, 1, ownerId, new ResourceCollector());
+            map.PlaceEntity(farm, x, y);
         }
 
-        public void GenerateForest(Map map, int x, int y)
+        public void GenerateForest(Map map, int x, int y, int ownerId)
         {
-            var forest = new Forest(0, 100, 10, 1,collector : new ResourceCollector());
-            //TryPlaceEntityAt(map, forest, x, y);
+            var forest = new Forest(0, 0, 300, 3, 1, ownerId, new ResourceCollector());
+            map.PlaceEntity(forest, x, y);
         }
 
-        public void GenerateGoldMine(Map map, int x, int y)
+        public void GenerateGoldMine(Map map, int x, int y, int ownerId)
         {
-            var gold = new GoldMine(0, 100, 10, 1, collector : new ResourceCollector());
-            //TryPlaceEntityAt(map, gold, x, y);
+            var gold = new GoldMine(0, 0, 300, 3, 1, ownerId, new ResourceCollector());
+            map.PlaceEntity(gold, x, y);
         }
 
-        public void GenerateStoneMine(Map map, int x, int y)
+        public void GenerateStoneMine(Map map, int x, int y, int ownerId)
         {
-            var stone = new StoneMine(0, 100, 10, 1, collector: new ResourceCollector());
-            //TryPlaceEntityAt(map, stone, x, y);
+            var stone = new StoneMine(0, 0, 300, 3, 1, ownerId, new ResourceCollector());
+            map.PlaceEntity(stone, x, y);
         }
     }
 }
+

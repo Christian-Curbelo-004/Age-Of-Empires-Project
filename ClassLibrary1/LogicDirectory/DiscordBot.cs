@@ -1,16 +1,14 @@
 using Discord;
 using Discord.WebSocket;
+using Discord.Commands;
 using ClassLibrary1;
-using ClassLibrary1.Bonus;
-using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.CommandDirectory;
-using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.Bonus;
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.LogicDirectory;
-using ClassLibrary1.UnitsDirectory;
 using CommandDirectory;
-using Discord.Commands;
 using IMapEntity = ClassLibrary1.MapDirectory.IMapEntity;
 
 public class DiscordBot
@@ -24,7 +22,7 @@ public class DiscordBot
     private MapService _mapService;
     private Player _player;
     private VerificarPartidaPerdida _verificarPartida;
-    private readonly SaveGame _gameState =  new SaveGame();
+    private readonly SaveGame _gameState = new SaveGame();
 
     public async Task StartAsync()
     {
@@ -37,13 +35,13 @@ public class DiscordBot
         _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
 
         var commands = new Dictionary<string, IGameCommand>
-
         {
             { "chop", new ChopCommand(_mapService) },
             { "mine", new MineCommand(_mapService) },
             { "gather", new GatherFoodCommand(_mapService) },
             { "move", new MoveCommand(_mapService) },
-            { "attack", new AttackCommand(_mapService) }
+            { "attack", new AttackCommand(_mapService) },
+            { "create", new CreateTroopCommand(_map) }
         };
         _commandProcessor = new CommandProcessor(commands);
 
@@ -83,7 +81,6 @@ public class DiscordBot
     private async Task MessageReceivedAsync(SocketMessage message)
     {
         if (message.Author.IsBot) return;
-
         if (!message.Content.StartsWith("!")) return;
 
         string input = message.Content.Substring(1).Trim().ToLower();
@@ -94,18 +91,40 @@ public class DiscordBot
             return;
         }
 
+        if (input.StartsWith("save "))
+        {
+            var name = input.Substring(5).Trim();
+            var context = new CommandContext(_client, message as SocketUserMessage);
+            await SaveGame(context, name);
+            return;
+        }
+
+        if (input.StartsWith("load "))
+        {
+            var name = input.Substring(5).Trim();
+            var context = new CommandContext(_client, message as SocketUserMessage);
+            await LoadGame(context, name);
+            return;
+        }
+
+        if (input == "saves")
+        {
+            var context = new CommandContext(_client, message as SocketUserMessage);
+            await SavedGames(context);
+            return;
+        }
+
         string response = await _commandProcessor.ProcessCommand(input);
         await message.Channel.SendMessageAsync(response);
 
         string screen = _showScreen.Screen();
         await message.Channel.SendMessageAsync($"```\n{screen}\n```");
     }
-
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
     {
         PrintMap printMap = new PrintMap(_map);
-        int sectorWidth = 25; // columnas por sector
-        int sectorHeight = 20; // filas por sector
+        int sectorWidth = 25;
+        int sectorHeight = 20;
 
         int mapWidth = _map.Width;
         int mapHeight = _map.Height;
@@ -119,7 +138,6 @@ public class DiscordBot
             {
                 int startX = h * sectorWidth;
                 int endX = Math.Min(startX + sectorWidth, mapWidth);
-
                 int startY = v * sectorHeight;
                 int endY = Math.Min(startY + sectorHeight, mapHeight);
 
@@ -131,33 +149,34 @@ public class DiscordBot
         }
     }
 
-    public async Task<string> BuildCommand() // llama a la clase build command
+    public async Task<string> BuildCommand()
     {
         var buildCommand = new BuildCommand(_mapService, _player);
         return await buildCommand.ExecuteAsync("Farm", "10");
     }
-
+    
+    private int ownerId = 0;
     public Task GenerateFarmCommand(Map map)
     {
-        _gameFacade.GenerateFarm(map, 0, 1);
+        _gameFacade.GenerateFarm(map, 0, 1, ownerId);
         return Task.CompletedTask;
     }
 
     public Task GenerateForestCommand(Map map)
     {
-        _gameFacade.GenerateForest(map, 1, 2);
+        _gameFacade.GenerateForest(map, 1, 2, ownerId);
         return Task.CompletedTask;
     }
 
     public Task GenerateStoneMineCommand(Map map)
     {
-        _gameFacade.GenerateStoneMine(map, 3, 4);
+        _gameFacade.GenerateStoneMine(map, 3, 4, ownerId);
         return Task.CompletedTask;
     }
 
     public Task GenerateGoldMineCommand(Map map)
     {
-        _gameFacade.GenerateGoldMine(map, 5, 6);
+        _gameFacade.GenerateGoldMine(map, 5, 6, ownerId);
         return Task.CompletedTask;
     }
 
@@ -166,33 +185,33 @@ public class DiscordBot
         var estado = new GameState
         {
             PlayerName = context.User.Username,
-            Resources = new ResourceInventory(), 
+            Resources = new ResourceInventory(),
             Buildings = new List<Buildings>(),
-            Units = new List<IMapEntity>(), 
+            Units = new List<IMapEntity>(),
             Position = _player.StartingPosition
-
         };
-       _gameState.Save(name, estado);
-       await context.Channel.SendMessageAsync($"{name} la partida fue guardada correctamente.");
+
+        _gameState.Save(name, estado);
+        await context.Channel.SendMessageAsync($"{name} la partida fue guardada correctamente.");
     }
+
     public async Task LoadGame(CommandContext context, string name)
     {
         try
         {
             var game = _gameState.Load(name);
-            
+
             _player.Resources = game.Resources;
             _player.Buildings = game.Buildings;
             _player.Units = game.Units;
             _player.StartingPosition = game.Position;
-            
-            await context.Channel.SendMessageAsync($"{name} la partida fue cargada con exito.");
-            
+
+            await context.Channel.SendMessageAsync($"{name} la partida fue cargada con éxito.");
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error al cargar el juego: {e.Message}");
-            throw;
+            await context.Channel.SendMessageAsync("Error al cargar la partida.");
         }
     }
 
@@ -201,13 +220,13 @@ public class DiscordBot
         var games = _gameState.ListSaves();
         if (games.Count == 0)
         {
-            await context.Channel.SendMessageAsync("No hay partidas guardadas");
+            await context.Channel.SendMessageAsync("No hay partidas guardadas.");
             return;
         }
-        string ListGameSaved = string.Join("\n", games);
-        await context.Channel.SendMessageAsync(ListGameSaved);
+
+        string list = string.Join("\n", games);
+        await context.Channel.SendMessageAsync($"Partidas guardadas:\n{list}");
     }
 }
-
 
 
