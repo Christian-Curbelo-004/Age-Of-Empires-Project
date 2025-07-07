@@ -31,85 +31,86 @@ public class DiscordBot
     private Player _playerOne;
     private Player _playerTwo;
 
-public async Task StartAsync()
-{
-    _gameFacade = new GameFacade();
-    _map = _gameFacade.GenerateMap();
-    _gameFacade.InitializePlayer(_map);
-    _playerOne = _gameFacade.PlayerOne;
-    _playerTwo = _gameFacade.PlayerTwo;
-    _player = _playerOne;
-    var villagersCollector = new Villagers(100, 2, _player.Id, 3);
-
-    _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id, collector: villagersCollector);
-
-    _showScreen = new ShowScreen(_map, _player, _quary);
-
-    // Ejemplo de recursos en el mapa
-    var inventory = new ResourceInventory();
-    var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
-    var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
-    var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
-    var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
-
-    _map.PlaceEntity(woodDeposit, 11, 11);
-    _map.PlaceEntity(goldDeposit, 12, 11);
-    _map.PlaceEntity(stoneDeposit, 13, 11);
-    _map.PlaceEntity(windMill, 14, 11);
-
-    _mapService = new MapService(_map);
-    
-    _verificarPartida = new VerificarPartidaPerdida(_map);
-    _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-    _civilization = new Roman();
-    _civilization.Player = _playerOne;
-
-    var player = _civilization.Player;
-    var resourceInventory = player.Resources;
-    var knowingCell = new KnowingCell(_map);
-    var unitAffordable = new UnitAffordable(player.Resources);
-
-    var unitCreateCore = new UnitCreateCore(
-        resourceInventory,
-        _map,
-        player,
-        knowingCell,
-        unitAffordable
-    );
-
-    var commands = new Dictionary<string, IGameCommand>
+    public async Task StartAsync()
     {
-        { "chop", new ChopCommand(_mapService) },
-        { "mine", new MineCommand(_mapService) },
-        { "gather", new GatherFoodCommand(_mapService) },
-        { "move", new MoveCommand(_mapService) },
-        { "attack", new AttackCommand(_mapService) },
-        { "create", new CreateTroopCommand(_map, _civilization, unitCreateCore ) },
-        { "build", new BuildCommand(_mapService, _player) }
-    };
+        _gameFacade = new GameFacade();
+        _map = _gameFacade.GenerateMap();
+        _gameFacade.InitializePlayer(_map);
+        _playerOne = _gameFacade.PlayerOne;
+        _playerTwo = _gameFacade.PlayerTwo;
+        _player = _playerOne;
+        var villagersCollector = new Villagers(100, 2, _player.Id, 3);
 
-    _commandProcessor = new CommandProcessor(commands);
+        _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id,
+            collector: villagersCollector);
 
-    _client = new DiscordSocketClient(new DiscordSocketConfig
-    {
-        GatewayIntents = GatewayIntents.Guilds |
-                         GatewayIntents.GuildMessages |
-                         GatewayIntents.MessageContent
-    });
+        _showScreen = new ShowScreen(_map, _player, _quary);
 
-    _client.Log += LogAsync;
-    _client.Ready += ReadyAsync;
-    _client.MessageReceived += MessageReceivedAsync;
+        // Ejemplo de recursos en el mapa
+        var inventory = new ResourceInventory();
+        var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
+        var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
+        var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
+        var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
 
-    var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
-    if (string.IsNullOrWhiteSpace(token))
-        throw new Exception("Token de Discord no configurado.");
+        _map.PlaceEntity(woodDeposit, 11, 11);
+        _map.PlaceEntity(goldDeposit, 12, 11);
+        _map.PlaceEntity(stoneDeposit, 13, 11);
+        _map.PlaceEntity(windMill, 14, 11);
 
-    await _client.LoginAsync(TokenType.Bot, token);
-    await _client.StartAsync();
+        _mapService = new MapService(_map);
 
-    await Task.Delay(-1);
-}
+        _verificarPartida = new VerificarPartidaPerdida(_map);
+        _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+        _civilization = new Roman();
+        _civilization.Player = _playerOne;
+
+        var player = _civilization.Player;
+        var resourceInventory = player.Resources;
+        var knowingCell = new KnowingCell(_map);
+        var unitAffordable = new UnitAffordable(player.Resources);
+
+        var unitCreateCore = new UnitCreateCore(
+            resourceInventory,
+            _map,
+            player,
+            knowingCell,
+            unitAffordable
+        );
+
+        var commands = new Dictionary<string, IGameCommand>
+        {
+            { "chop", new ChopCommand(_mapService) },
+            { "mine", new MineCommand(_mapService) },
+            { "gather", new GatherFoodCommand(_mapService) },
+            { "move", new MoveCommand(_mapService) },
+            { "attack", new AttackCommand(_mapService) },
+            { "create", new CreateTroopCommand(_map, _civilization, unitCreateCore) },
+            { "build", new BuildCommand(_mapService, _player) }
+        };
+
+        _commandProcessor = new CommandProcessor(commands);
+
+        _client = new DiscordSocketClient(new DiscordSocketConfig
+        {
+            GatewayIntents = GatewayIntents.Guilds |
+                             GatewayIntents.GuildMessages |
+                             GatewayIntents.MessageContent
+        });
+
+        _client.Log += LogAsync;
+        _client.Ready += ReadyAsync;
+        _client.MessageReceived += MessageReceivedAsync;
+
+        var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+        if (string.IsNullOrWhiteSpace(token))
+            throw new Exception("Token de Discord no configurado.");
+
+        await _client.LoginAsync(TokenType.Bot, token);
+        await _client.StartAsync();
+
+        await Task.Delay(-1);
+    }
 
     private Task LogAsync(LogMessage log)
     {
@@ -203,8 +204,33 @@ public async Task StartAsync()
         _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
         if (_verificarPartida.PartidaTerminada)
         {
-            await message.Channel.SendMessageAsync(
-                "Partida terminó porque uno de los dos se quedó sin centro cívico");
+            await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
+        }
+
+        if (command == "civilization")
+        {
+            if (parts.Length < 2)
+            {
+                await message.Channel.SendMessageAsync(
+                    "Uso correcto: !civilization <CivilizationName> (Ejemplo: !civilization+Roman)");
+                return;
+            }
+            
+            string output = parts[1].ToLower();;
+
+            if (output == "Error al elegir la civilizacion")
+            {
+                await message.Channel.SendMessageAsync("Tenes que elegir entre 1: Roman, 2: Vikingos, 3: Templarios");
+            }
+            else
+            {
+                if(output == "Roman") _civilization = new Roman();
+                if(output == "Viking") _civilization = new Viking();
+                if(output == "Templaries") _civilization = new Templaries();
+                _civilization.Player = _playerOne;
+                await message.Channel.SendMessageAsync($"Elegiste la civilizacion: {output}");
+            }
+            
         }
     }
 
@@ -292,4 +318,7 @@ public async Task StartAsync()
         string list = string.Join("\n", games);
         await context.Channel.SendMessageAsync($"Partidas guardadas:\n{list}");
     }
+
+    
 }
+

@@ -40,5 +40,21 @@ namespace ClassLibrary1.CivilizationDirectory
         /// <param name="unitName">Nombre de la unidad a seleccionar.</param>
         /// <returns>La unidad que corresponde al nombre dado.</returns>
         public abstract ICharacter PickUnit(string unitName);
+        
+        public string PickYourCivilization(string option)
+        { 
+            switch (option)
+            { 
+                case "1":
+                    return "Roman";
+                case "2":
+                    return "Vikings";
+                case "3":
+                    return "Templaries";
+                default:
+                    return "No se encontró la civilizacion";
+                }
+            }
+            
+        }
     }
-}
