@@ -1,9 +1,9 @@
-namespace TestProject
+namespace TestProject.TestCorrect
 {
     public class TestQuaries
     {
 
-        private class TesterQuaries : Quary
+        private sealed class TesterQuaries : Quary
         {
             public override string ResourceType => "TestResource";
             public TesterQuaries(int ownerId, int extractionRate, int collectionValue, int initialAmount)

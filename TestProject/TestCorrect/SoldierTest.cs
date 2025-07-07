@@ -1,7 +1,6 @@
 using ClassLibrary1.CivilizationDirectory;
 
-
-namespace TestProject
+namespace TestProject.TestCorrect
 {
     public class TestSoldier
     {

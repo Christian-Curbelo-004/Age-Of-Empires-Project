@@ -1,7 +1,7 @@
 
 using ClassLibrary1.UnitsDirectory;
 
-namespace TestProject;
+namespace TestProject.TestCorrect;
 
 public class TestCivilization
 {

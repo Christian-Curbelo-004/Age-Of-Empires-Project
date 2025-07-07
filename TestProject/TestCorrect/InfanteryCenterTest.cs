@@ -1,8 +1,7 @@
 
 using ClassLibrary1.BuildingsDirectory;
 
-
-namespace TestProject
+namespace TestProject.TestCorrect
 {
     public class TestInfanteryCenter
     {
