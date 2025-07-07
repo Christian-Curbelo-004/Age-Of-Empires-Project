@@ -1,6 +1,7 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.MapDirectory;
 
+
 namespace ClassLibrary1.BuildingsDirectory
 {
     public class CenturiesCenter : Buildings, ITrainingBuilding

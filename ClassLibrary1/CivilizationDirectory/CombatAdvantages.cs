@@ -1,4 +1,4 @@
-//falta implementarla en el program 
+ 
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class CombatAdvantages

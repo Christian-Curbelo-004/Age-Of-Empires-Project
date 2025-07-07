@@ -1,20 +1,32 @@
 ﻿using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 
-namespace ClassLibrary1.CivilizationDirectory;
-
-public class Roman : Civilization
+namespace ClassLibrary1.CivilizationDirectory
 {
-    public Roman()
+    /// <summary>
+    /// Representa la civilización romana con sus unidades específicas.
+    /// </summary>
+    public class Roman : Civilization
     {
-        Units.Add(new Centuries());
-    }
-    public override ICharacter PickUnit(string unitName)
-    {
-        return unitName.ToLower() switch
+        /// <summary>
+        /// Inicializa una nueva instancia de la civilización romana y añade unidades iniciales.
+        /// </summary>
+        public Roman()
         {
-            "Centuries" => new Centuries(),
-            _ => null,
-        };
+            Units.Add(new Centuries());
+        }
+
+        /// <summary>
+        /// Selecciona una unidad específica de la civilización romana según el nombre proporcionado.
+        /// </summary>
+        /// <param name="unitName">Nombre de la unidad a seleccionar.</param>
+        /// <returns>La unidad correspondiente si existe; de lo contrario, <c>null</c>.</returns>
+        public override ICharacter PickUnit(string unitName)
+        {
+            return unitName.ToLower() switch
+            {
+                "centuries" => new Centuries(),
+                _ => null,
+            };
+        }
     }
 }
-    

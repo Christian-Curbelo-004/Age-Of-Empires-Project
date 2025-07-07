@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary1.BuildingsDirectory
+﻿namespace ClassLibrary1.BuildingsDirectory 
+    
+  
 {
     public class InfanteryCenter : Buildings
     {
