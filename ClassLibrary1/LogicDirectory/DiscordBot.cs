@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
@@ -30,6 +31,7 @@ public class DiscordBot
     private readonly SaveGame _gameState = new SaveGame();
     private Player _playerOne;
     private Player _playerTwo;
+    private Player _currentPlayer;
 
     public async Task StartAsync()
     {
@@ -39,6 +41,7 @@ public class DiscordBot
         _playerOne = _gameFacade.PlayerOne;
         _playerTwo = _gameFacade.PlayerTwo;
         _player = _playerOne;
+        _currentPlayer = _playerOne;
         var villagersCollector = new Villagers(100, 2, _player.Id, 3);
 
         _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id,
@@ -63,7 +66,7 @@ public class DiscordBot
         _verificarPartida = new VerificarPartidaPerdida(_map);
         _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
         _civilization = new Roman();
-        _civilization.Player = _playerOne;
+        _civilization.Player = _currentPlayer;
 
         var player = _civilization.Player;
         var resourceInventory = player.Resources;
@@ -111,6 +114,19 @@ public class DiscordBot
 
         await Task.Delay(-1);
     }
+
+    private void NextTurn()
+    {
+        if (_currentPlayer == _playerOne)
+        {
+            _currentPlayer = _playerTwo;
+        }
+        else
+        {
+            _currentPlayer = _playerOne;
+        }
+    }
+    
 
     private Task LogAsync(LogMessage log)
     {
@@ -193,6 +209,14 @@ public class DiscordBot
                 await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
             await message.Channel.SendMessageAsync(response);
             await SendScreenAsync(message.Channel);
+            
+            NextTurn();
+            await message.Channel.SendMessageAsync($"Turno de {_currentPlayer}");
+            _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+            if (_verificarPartida.PartidaTerminada)
+            {
+                await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
+            }
             return;
         }
 
