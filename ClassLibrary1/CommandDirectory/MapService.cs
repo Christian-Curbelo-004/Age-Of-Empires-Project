@@ -1,7 +1,6 @@
 using ClassLibrary1.CommandDirectory;
 using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
-using ClassLibrary1.MapDirectory;
 using CommandDirectory;
 
 public class MapService : IMapService
@@ -12,17 +11,11 @@ public class MapService : IMapService
     private readonly CombatService _combat;
     private readonly BuildingsConstructor _builder;
 
-    public MapService(
-        Map map,
-        ResourceInventory inventory,
-        WoodDeposit woodDeposit,
-        GoldDeposit goldDeposit,
-        StoneDeposit stoneDeposit,
-        WindMill windMill)
+    public MapService(Map map)
     {
         _map = map;
         _mover = new EntityMover(map);
-        _harvester = new ResourceHarvester(map, _mover, woodDeposit, goldDeposit, stoneDeposit, windMill);
+        _harvester = new ResourceHarvester(map, _mover);
         _combat = new CombatService(map, _mover);
         _builder = new BuildingsConstructor(map);
     }

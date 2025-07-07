@@ -2,28 +2,17 @@ using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
 using CommandDirectory;
+using System.Linq;
 
 public class ResourceHarvester
 {
     private readonly Map _map;
     private readonly EntityMover _mover;
-    private readonly WoodDeposit _woodDeposit;
-    private readonly GoldDeposit _goldDeposit;
-    private readonly StoneDeposit _stoneDeposit;
-    private readonly WindMill _windMill;
 
-    public ResourceHarvester(Map map, EntityMover mover,
-        WoodDeposit woodDeposit,
-        GoldDeposit goldDeposit,
-        StoneDeposit stoneDeposit,
-        WindMill windMill)
+    public ResourceHarvester(Map map, EntityMover mover)
     {
         _map = map;
         _mover = mover;
-        _woodDeposit = woodDeposit;
-        _goldDeposit = goldDeposit;
-        _stoneDeposit = stoneDeposit;
-        _windMill = windMill;
     }
 
     public async Task<string> ChopAsync(string entityType, string destination)
@@ -39,15 +28,17 @@ public class ResourceHarvester
             await Task.Delay(8000);
             int collected = forest.GetResources(1);
             forest.CurrentAmount = Math.Max(0, forest.CurrentAmount - collected);
-            _woodDeposit.StoreWood(collected);
+
+            var woodDeposit = _map.GetEntities<WoodDeposit>()
+                .FirstOrDefault(d => d.OwnerId == forest.OwnerId);
+
+            woodDeposit?.StoreWood(collected);
+
             return $"{entityType} taló en ({x},{y}) y recolectó {collected} madera. Restante: {forest.CurrentAmount}";
         }
-        else
-        {
-            return $"No hay bosque en ({x},{y}).";
-        }
-    }
 
+        return $"No hay bosque en ({x},{y}).";
+    }
 
     public async Task<string> GatherFoodAsync(string entityType, string destination)
     {
@@ -66,12 +57,12 @@ public class ResourceHarvester
             int collected = farm.GetResources(1);
             farm.CurrentAmount = Math.Max(0, farm.CurrentAmount - collected);
 
-            if (_windMill == null)
-                return "Error: Molino (depósito de comida) no inicializado.";
+            var windMill = _map.GetEntities<WindMill>()
+                .FirstOrDefault(d => d.OwnerId == farm.OwnerId);
 
-            _windMill.StoreFood(collected);
-            return
-                $"{entityType} recolectó comida en ({x},{y}) y consiguió {collected}. Restante: {farm.CurrentAmount}";
+            windMill?.StoreFood(collected);
+
+            return $"{entityType} recolectó comida en ({x},{y}) y consiguió {collected}. Restante: {farm.CurrentAmount}";
         }
 
         return $"No hay granja en ({x},{y}).";
@@ -94,10 +85,11 @@ public class ResourceHarvester
             int collected = goldMine.GetResources(1);
             goldMine.CurrentAmount = Math.Max(0, goldMine.CurrentAmount - collected);
 
-            if (_goldDeposit == null)
-                return "Error: Depósito de oro no inicializado.";
+            var goldDeposit = _map.GetEntities<GoldDeposit>()
+                .FirstOrDefault(d => d.OwnerId == goldMine.OwnerId);
 
-            _goldDeposit.StoreGold(collected);
+            goldDeposit?.StoreGold(collected);
+
             return $"{entityType} minó oro en ({x},{y}) y recolectó {collected}. Restante: {goldMine.CurrentAmount}";
         }
 
@@ -108,12 +100,12 @@ public class ResourceHarvester
             int collected = stoneMine.GetResources(1);
             stoneMine.CurrentAmount = Math.Max(0, stoneMine.CurrentAmount - collected);
 
-            if (_stoneDeposit == null)
-                return "Error: Depósito de piedra no inicializado.";
+            var stoneDeposit = _map.GetEntities<StoneDeposit>()
+                .FirstOrDefault(d => d.OwnerId == stoneMine.OwnerId);
 
-            _stoneDeposit.StoreStone(collected);
-            return
-                $"{entityType} minó piedra en ({x},{y}) y recolectó {collected}. Restante: {stoneMine.CurrentAmount}";
+            stoneDeposit?.StoreStone(collected);
+
+            return $"{entityType} minó piedra en ({x},{y}) y recolectó {collected}. Restante: {stoneMine.CurrentAmount}";
         }
 
         return $"No hay mina válida en ({x},{y}).";

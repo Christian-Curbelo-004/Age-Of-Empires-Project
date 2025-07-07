@@ -24,61 +24,71 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
-    private Quary quary;
+    private Quary _quary; // Declarado pero no inicializado (cuidado)
     private VerificarPartidaPerdida _verificarPartida;
     private readonly SaveGame _gameState = new SaveGame();
 
-public async Task StartAsync()
-{
-    _gameFacade = new GameFacade();
-    _map = _gameFacade.GenerateMap();
-    _gameFacade.InitializePlayer(_map);
-    _player = _gameFacade.PlayerOne;
-    _showScreen = new ShowScreen(_map, _player,quary);
-    var inventory = new ResourceInventory();
-    var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
-    var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
-    var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
-    var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
-    _map.PlaceEntity(woodDeposit, 11, 11);
-    _map.PlaceEntity(goldDeposit, 12, 11);
-    _map.PlaceEntity(stoneDeposit, 13, 11);
-    _map.PlaceEntity(windMill, 14, 11);
-    _mapService = new MapService(_map, inventory, woodDeposit, goldDeposit, stoneDeposit, windMill);
-
-    _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
-
-    var commands = new Dictionary<string, IGameCommand>
+    public async Task StartAsync()
     {
-        { "chop", new ChopCommand(_mapService) },
-        { "mine", new MineCommand(_mapService) },
-        { "gather", new GatherFoodCommand(_mapService) },
-        { "move", new MoveCommand(_mapService) },
-        { "attack", new AttackCommand(_mapService) },
-        { "create", new CreateTroopCommand(_map, _civilization) }
-    };
-    _commandProcessor = new CommandProcessor(commands);
+        _gameFacade = new GameFacade();
+        _map = _gameFacade.GenerateMap();
+        _gameFacade.InitializePlayer(_map);
+        _player = _gameFacade.PlayerOne;
+        _showScreen = new ShowScreen(_map, _player, _quary);
 
-    _client = new DiscordSocketClient(new DiscordSocketConfig
-    {
-        GatewayIntents = GatewayIntents.Guilds |
-                         GatewayIntents.GuildMessages |
-                         GatewayIntents.MessageContent
-    });
+        // Ejemplo de recursos en el mapa
+        var inventory = new ResourceInventory();
+        var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
+        var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
+        var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
+        var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
 
-    _client.Log += LogAsync;
-    _client.Ready += ReadyAsync;
-    _client.MessageReceived += MessageReceivedAsync;
+        _map.PlaceEntity(woodDeposit, 11, 11);
+        _map.PlaceEntity(goldDeposit, 12, 11);
+        _map.PlaceEntity(stoneDeposit, 13, 11);
+        _map.PlaceEntity(windMill, 14, 11);
 
-    var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
-    if (string.IsNullOrWhiteSpace(token))
-        throw new Exception("Token de Discord no configurado.");
+        _mapService = new MapService(_map);
 
-    await _client.LoginAsync(TokenType.Bot, token);
-    await _client.StartAsync();
+        _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
 
-    await Task.Delay(-1);
-}
+        // Inicializa las civilizaciones si es necesario
+        _civilization = null; // O asigna la civilización correspondiente
+
+        var commands = new Dictionary<string, IGameCommand>
+        {
+            { "chop", new ChopCommand(_mapService) },
+            { "mine", new MineCommand(_mapService) },
+            { "gather", new GatherFoodCommand(_mapService) },
+            { "move", new MoveCommand(_mapService) },
+            { "attack", new AttackCommand(_mapService) },
+            { "create", new CreateTroopCommand(_map, _civilization) },
+            { "build", new BuildCommand(_mapService, _player) }
+        };
+
+        _commandProcessor = new CommandProcessor(commands);
+
+        _client = new DiscordSocketClient(new DiscordSocketConfig
+        {
+            GatewayIntents = GatewayIntents.Guilds |
+                             GatewayIntents.GuildMessages |
+                             GatewayIntents.MessageContent
+        });
+
+        _client.Log += LogAsync;
+        _client.Ready += ReadyAsync;
+        _client.MessageReceived += MessageReceivedAsync;
+
+        var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+        if (string.IsNullOrWhiteSpace(token))
+            throw new Exception("Token de Discord no configurado.");
+
+        await _client.LoginAsync(TokenType.Bot, token);
+        await _client.StartAsync();
+
+        await Task.Delay(-1);
+    }
+
     private Task LogAsync(LogMessage log)
     {
         Console.WriteLine(log.ToString());
@@ -96,51 +106,92 @@ public async Task StartAsync()
         if (message.Author.IsBot) return;
         if (!message.Content.StartsWith("!")) return;
 
-        string input = message.Content.Substring(1).Trim().ToLower();
+        string input = message.Content.Substring(1).Trim();
+        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0) return;
 
-        if (input == "map")
+        string command = parts[0].ToLower();
+
+        if (command == "map")
         {
             await SendMapInMultipleSectors(message.Channel);
             return;
         }
 
-        if (input.StartsWith("save "))
+        if (command == "save")
         {
-            var name = input.Substring(5).Trim();
+            if (parts.Length < 2)
+            {
+                await message.Channel.SendMessageAsync(
+                    "Debes especificar el nombre para guardar la partida. Ejemplo: !save partida1");
+                return;
+            }
+
+            var name = parts[1];
             var context = new CommandContext(_client, message as SocketUserMessage);
             await SaveGame(context, name);
             return;
         }
 
-        if (input.StartsWith("load "))
+        if (command == "load")
         {
-            var name = input.Substring(5).Trim();
+            if (parts.Length < 2)
+            {
+                await message.Channel.SendMessageAsync(
+                    "Debes especificar el nombre de la partida a cargar. Ejemplo: !load partida1");
+                return;
+            }
+
+            var name = parts[1];
             var context = new CommandContext(_client, message as SocketUserMessage);
             await LoadGame(context, name);
             return;
         }
 
-        if (input == "saves")
+        if (command == "saves")
         {
             var context = new CommandContext(_client, message as SocketUserMessage);
             await SavedGames(context);
             return;
         }
 
-        string response = await _commandProcessor.ProcessCommand(input);
-        await message.Channel.SendMessageAsync(response);
+        if (command == "build")
+        {
+            if (parts.Length < 3)
+            {
+                await message.Channel.SendMessageAsync(
+                    "Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
+                return;
+            }
 
-        string screen = _showScreen.Screen();
-        await message.Channel.SendMessageAsync($"```\n{screen}\n```");
-        string resources = _showScreen.ShowRecolectionResourceMuf();
-        await message.Channel.SendMessageAsync($"```\n{resources}\n```");
-        
+            string buildingType = parts[1];
+            string coords = parts[2];
+            string response =
+                await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
+            await message.Channel.SendMessageAsync(response);
+            await SendScreenAsync(message.Channel);
+            return;
+        }
+
+        string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
+        await message.Channel.SendMessageAsync(responseGeneral);
+
+        await SendScreenAsync(message.Channel);
+
         _verificarPartida.Verificar();
         if (_verificarPartida.PartidaTerminada)
         {
-            await message.Channel.SendMessageAsync("Partida temrino porque uno de los dos se quedó sin centro civico");
+            await message.Channel.SendMessageAsync(
+                "Partida terminó porque uno de los dos se quedó sin centro cívico");
         }
     }
+
+    private async Task SendScreenAsync(ISocketMessageChannel channel)
+    {
+        string screen = _showScreen.Screen();
+        await channel.SendMessageAsync($"```\n{screen}\n```");
+    }
+
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
     {
         PrintMap printMap = new PrintMap(_map);
@@ -170,13 +221,6 @@ public async Task StartAsync()
         }
     }
 
-    public async Task<string> BuildCommand()
-    {
-        var buildCommand = new BuildCommand(_mapService, _player);
-        return await buildCommand.ExecuteAsync("Farm", "10");
-    }
-    
-    private int ownerId = 0;
     public async Task SaveGame(CommandContext context, string name)
     {
         var estado = new GameState
@@ -225,5 +269,3 @@ public async Task StartAsync()
         await context.Channel.SendMessageAsync($"Partidas guardadas:\n{list}");
     }
 }
-
-
