@@ -2,10 +2,9 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
 
-
 namespace ClassLibrary1.UnitsDirectory
 {
-    public class Villagers : Units, IMovable, ICharacter 
+    public class Villagers : GameUnit, IMovable, ICharacter 
     {
         public int Life { get; set; }
         public int AttackValue { get; set; }
