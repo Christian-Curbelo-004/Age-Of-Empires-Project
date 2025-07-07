@@ -57,10 +57,11 @@ public static class MapUtils
             int x = random.Next(inicialX, inicialX + width);
             int y = random.Next(inicialY, inicialY + height);
 
-            IMapEntity entity = random.Next(3) switch
+            IMapEntity entity = random.Next(4) switch
             {
                 0 => new Forest(x, y, 300, 10, 5, ownerId, collector),
                 1 => new GoldMine(x, y, 300, 10, 5, ownerId, collector),
+                2 => new Farm(x,y,300,10,5,ownerId,collector),
                 _ => new StoneMine(x, y, 300, 10, 5,ownerId,  collector)
             };
 

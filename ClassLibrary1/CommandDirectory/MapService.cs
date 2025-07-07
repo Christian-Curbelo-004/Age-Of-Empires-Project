@@ -12,9 +12,10 @@ public class MapService : IMapService
     private readonly BuildingsConstructor _builder;
     private readonly BuildCreateCore _buildCreateCore;
 
-    public MapService(Map map)
+    public MapService(Map map, BuildCreateCore buildCreateCore)
     {
         _map = map;
+        _buildCreateCore = buildCreateCore;
         _mover = new EntityMover(map);
         _harvester = new ResourceHarvester(map, _mover);
         _combat = new CombatService(map, _mover);

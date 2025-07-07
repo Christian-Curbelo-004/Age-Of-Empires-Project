@@ -30,12 +30,16 @@ public class DiscordBot
     private Player _playerOne;
     private Player _playerTwo;
     private Player _currentPlayer;
+    private GameInitializer _gameInitializer;
 
     public async Task StartAsync()
     {
         _gameFacade = new GameFacade();
         _map = _gameFacade.GenerateMap();
         _gameFacade.InitializePlayers();
+        _gameInitializer = new GameInitializer(_gameFacade, _map);
+        _gameInitializer.SetupGame();
+        
 
         _playerOne = _gameFacade.PlayerOne;
         _playerTwo = _gameFacade.PlayerTwo;
@@ -50,7 +54,6 @@ public class DiscordBot
         _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id, collector: villagersCollector);
 
         _showScreen = new ShowScreen(_map, _player, _quary);
-        _mapService = new MapService(_map);
         _verificarPartida = new VerificarPartidaPerdida(_map);
         _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
 
@@ -61,6 +64,8 @@ public class DiscordBot
         var resourceInventory = player.Resources;
         var knowingCell = new KnowingCell(_map);
         var unitAffordable = new UnitAffordable(player.Resources);
+        var builCreateCore = new BuildCreateCore(player.Resources);
+        _mapService = new MapService(_map,builCreateCore);
 
         var unitCreateCore = new UnitCreateCore(resourceInventory, _map, player, knowingCell, unitAffordable);
 
