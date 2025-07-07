@@ -44,7 +44,7 @@ namespace ClassLibrary1.CommandDirectory
                     var archer = _unitCreateCore.TryCreateUnit<ArcherCenter>(
                         concreteBuilding,
                         CreationCost.Archer,
-                        _civilization,
+                        civilization,
                         civ => true,
                         UnitFactory.CreateArcher
                     );
@@ -58,7 +58,7 @@ namespace ClassLibrary1.CommandDirectory
                     var chivarly = _unitCreateCore.TryCreateUnit<ChivarlyCenter>(
                         concreteBuilding,
                         CreationCost.Chivarly,
-                        _civilization,
+                        civilization,
                         civ => true,
                         UnitFactory.CreateChivarly
                     );
@@ -72,7 +72,7 @@ namespace ClassLibrary1.CommandDirectory
                     var infantery = _unitCreateCore.TryCreateUnit<InfanteryCenter>(
                         concreteBuilding,
                         CreationCost.Infantery,
-                        _civilization,
+                        civilization,
                         civ => true,
                         UnitFactory.CreateInfantery
                     );
@@ -86,7 +86,7 @@ namespace ClassLibrary1.CommandDirectory
                     var paladin = _unitCreateCore.TryCreateUnit<PaladinCenter>(
                         concreteBuilding,
                         CreationCost.Paladin,
-                        _civilization,
+                        civilization,
                         civ => civ is Templaries,
                         UnitFactory.CreatePaladin
                     );
@@ -100,7 +100,7 @@ namespace ClassLibrary1.CommandDirectory
                     var raider = _unitCreateCore.TryCreateUnit<RaiderCenter>(
                         concreteBuilding,
                         CreationCost.Raider,
-                        _civilization,
+                        civilization,
                         civ => civ is Viking,
                         UnitFactory.CreateRaider
                     );
@@ -114,7 +114,7 @@ namespace ClassLibrary1.CommandDirectory
                     var centuries = _unitCreateCore.TryCreateUnit<CenturiesCenter>(
                         concreteBuilding,
                         CreationCost.Centuries,
-                        _civilization,
+                        civilization,
                         civ => civ is Roman,
                         UnitFactory.CreateCenturies
                     );
