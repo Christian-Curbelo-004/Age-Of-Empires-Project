@@ -1,0 +1,106 @@
+\doxysection{Map\+Service Class Reference}
+\hypertarget{class_map_service}{}\label{class_map_service}\index{MapService@{MapService}}
+Inheritance diagram for Map\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_map_service}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_map_service_a4e29587ff1d3d734fb1f794a187a20ef}{Map\+Service}} (\mbox{\hyperlink{class_map}{Map}} map)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_map_service_a72d9548fc68cd5c98fb236a86490fbe8}{Move\+Entity\+Async}} (string entity\+Type, string destination)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{class_map_service_ad321b322c67b0e09747079f0750fd924}{Chop\+Async}} (string entity\+Type, string destination)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{class_map_service_aeb9a1a55732a4a0bf4c65d8880e59bcf}{Gather\+Food\+Async}} (string entity\+Type, string destination)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{class_map_service_aa4a9aea73740c9e9b0342ea2397cf951}{Mine\+Async}} (string entity\+Type, string destination)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{class_map_service_a65bb1ec09a6f433587a5b915e9ba7518}{Attack\+Async}} (string entity\+Type, string destination)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{class_map_service_af815844ecaf7f0edb1bdec29be849f99}{Build\+Async}} (string building\+Type, string destination, \mbox{\hyperlink{class_player}{Player}} player)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_map_service_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_map_service_a4e29587ff1d3d734fb1f794a187a20ef}\index{MapService@{MapService}!MapService@{MapService}}
+\index{MapService@{MapService}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{MapService()}{MapService()}}
+{\footnotesize\ttfamily \label{class_map_service_a4e29587ff1d3d734fb1f794a187a20ef} 
+Map\+Service.\+Map\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_map}{Map}}}]{map}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_map_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_map_service_a65bb1ec09a6f433587a5b915e9ba7518}\index{MapService@{MapService}!AttackAsync@{AttackAsync}}
+\index{AttackAsync@{AttackAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{AttackAsync()}{AttackAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_a65bb1ec09a6f433587a5b915e9ba7518} 
+Task$<$ string $>$ Map\+Service.\+Attack\+Async (\begin{DoxyParamCaption}\item[{string}]{entity\+Type}{, }\item[{string}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_a566b3f2745e19431df0ee8a0a757ae00}{Command\+Directory.\+IMap\+Service}}.
+
+\Hypertarget{class_map_service_af815844ecaf7f0edb1bdec29be849f99}\index{MapService@{MapService}!BuildAsync@{BuildAsync}}
+\index{BuildAsync@{BuildAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{BuildAsync()}{BuildAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_af815844ecaf7f0edb1bdec29be849f99} 
+Task$<$ string $>$ Map\+Service.\+Build\+Async (\begin{DoxyParamCaption}\item[{string}]{building\+Type}{, }\item[{string}]{destination}{, }\item[{\mbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_a759dbaab1f1f4e894089222c84d72714}{Command\+Directory.\+IMap\+Service}}.
+
+\Hypertarget{class_map_service_ad321b322c67b0e09747079f0750fd924}\index{MapService@{MapService}!ChopAsync@{ChopAsync}}
+\index{ChopAsync@{ChopAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{ChopAsync()}{ChopAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_ad321b322c67b0e09747079f0750fd924} 
+Task$<$ string $>$ Map\+Service.\+Chop\+Async (\begin{DoxyParamCaption}\item[{string}]{entity\+Type}{, }\item[{string}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_ad7f9f50c37149abe979ef7942fd1df76}{Command\+Directory.\+IMap\+Service}}.
+
+\Hypertarget{class_map_service_aeb9a1a55732a4a0bf4c65d8880e59bcf}\index{MapService@{MapService}!GatherFoodAsync@{GatherFoodAsync}}
+\index{GatherFoodAsync@{GatherFoodAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{GatherFoodAsync()}{GatherFoodAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_aeb9a1a55732a4a0bf4c65d8880e59bcf} 
+Task$<$ string $>$ Map\+Service.\+Gather\+Food\+Async (\begin{DoxyParamCaption}\item[{string}]{entity\+Type}{, }\item[{string}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_aba80ad4357a7350d033ca9fa72da780c}{Command\+Directory.\+IMap\+Service}}.
+
+\Hypertarget{class_map_service_aa4a9aea73740c9e9b0342ea2397cf951}\index{MapService@{MapService}!MineAsync@{MineAsync}}
+\index{MineAsync@{MineAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{MineAsync()}{MineAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_aa4a9aea73740c9e9b0342ea2397cf951} 
+Task$<$ string $>$ Map\+Service.\+Mine\+Async (\begin{DoxyParamCaption}\item[{string}]{entity\+Type}{, }\item[{string}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_ad9d82e22779e4c1827f1dfec243499c3}{Command\+Directory.\+IMap\+Service}}.
+
+\Hypertarget{class_map_service_a72d9548fc68cd5c98fb236a86490fbe8}\index{MapService@{MapService}!MoveEntityAsync@{MoveEntityAsync}}
+\index{MoveEntityAsync@{MoveEntityAsync}!MapService@{MapService}}
+\doxysubsubsection{\texorpdfstring{MoveEntityAsync()}{MoveEntityAsync()}}
+{\footnotesize\ttfamily \label{class_map_service_a72d9548fc68cd5c98fb236a86490fbe8} 
+async Task$<$ string $>$ Map\+Service.\+Move\+Entity\+Async (\begin{DoxyParamCaption}\item[{string}]{entity\+Type}{, }\item[{string}]{destination}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interface_command_directory_1_1_i_map_service_a5aeb56d51363e0753d4d6f2ffc41ac74}{Command\+Directory.\+IMap\+Service}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Class\+Library1/\+Command\+Directory/\mbox{\hyperlink{_map_service_8cs}{Map\+Service.\+cs}}\end{DoxyCompactItemize}
