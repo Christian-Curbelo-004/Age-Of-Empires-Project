@@ -74,4 +74,5 @@ public class Map
         Cells[x, y].Entities.Add(entity);
         _entities.Add(entity);
     }
+
 }

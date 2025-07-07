@@ -8,6 +8,7 @@ using ClassLibrary1.CommandDirectory;
 using ClassLibrary1.Bonus;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
 using CommandDirectory;
 using IMapEntity = ClassLibrary1.MapDirectory.IMapEntity;
@@ -26,48 +27,57 @@ public class DiscordBot
     private VerificarPartidaPerdida _verificarPartida;
     private readonly SaveGame _gameState = new SaveGame();
 
-    public async Task StartAsync()
+public async Task StartAsync()
+{
+    _gameFacade = new GameFacade();
+    _map = _gameFacade.GenerateMap();
+    _gameFacade.InitializePlayer(_map);
+    _player = _gameFacade.PlayerOne;
+    _showScreen = new ShowScreen(_map, _player);
+    var inventory = new ResourceInventory();
+    var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
+    var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
+    var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
+    var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
+    _map.PlaceEntity(woodDeposit, 11, 11);
+    _map.PlaceEntity(goldDeposit, 12, 11);
+    _map.PlaceEntity(stoneDeposit, 13, 11);
+    _map.PlaceEntity(windMill, 14, 11);
+    _mapService = new MapService(_map, inventory, woodDeposit, goldDeposit, stoneDeposit, windMill);
+
+    _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
+
+    var commands = new Dictionary<string, IGameCommand>
     {
-        _gameFacade = new GameFacade();
-        _map = _gameFacade.GenerateMap();
-        _gameFacade.InitializePlayer(_map);
-        _player = _gameFacade.PlayerOne;
-        _showScreen = new ShowScreen(_map, _player);
-        _mapService = new MapService(_map);
-        _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
+        { "chop", new ChopCommand(_mapService) },
+        { "mine", new MineCommand(_mapService) },
+        { "gather", new GatherFoodCommand(_mapService) },
+        { "move", new MoveCommand(_mapService) },
+        { "attack", new AttackCommand(_mapService) },
+        { "create", new CreateTroopCommand(_map, _civilization) }
+    };
+    _commandProcessor = new CommandProcessor(commands);
 
-        var commands = new Dictionary<string, IGameCommand>
-        {
-            { "chop", new ChopCommand(_mapService) },
-            { "mine", new MineCommand(_mapService) },
-            { "gather", new GatherFoodCommand(_mapService) },
-            { "move", new MoveCommand(_mapService) },
-            { "attack", new AttackCommand(_mapService) },
-            { "create", new CreateTroopCommand(_map,_civilization) }
-        };
-        _commandProcessor = new CommandProcessor(commands);
+    _client = new DiscordSocketClient(new DiscordSocketConfig
+    {
+        GatewayIntents = GatewayIntents.Guilds |
+                         GatewayIntents.GuildMessages |
+                         GatewayIntents.MessageContent
+    });
 
-        _client = new DiscordSocketClient(new DiscordSocketConfig
-        {
-            GatewayIntents = GatewayIntents.Guilds |
-                             GatewayIntents.GuildMessages |
-                             GatewayIntents.MessageContent
-        });
+    _client.Log += LogAsync;
+    _client.Ready += ReadyAsync;
+    _client.MessageReceived += MessageReceivedAsync;
 
-        _client.Log += LogAsync;
-        _client.Ready += ReadyAsync;
-        _client.MessageReceived += MessageReceivedAsync;
+    var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+    if (string.IsNullOrWhiteSpace(token))
+        throw new Exception("Token de Discord no configurado.");
 
-        var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
-        if (string.IsNullOrWhiteSpace(token))
-            throw new Exception("Token de Discord no configurado.");
+    await _client.LoginAsync(TokenType.Bot, token);
+    await _client.StartAsync();
 
-        await _client.LoginAsync(TokenType.Bot, token);
-        await _client.StartAsync();
-
-        await Task.Delay(-1);
-    }
-
+    await Task.Delay(-1);
+}
     private Task LogAsync(LogMessage log)
     {
         Console.WriteLine(log.ToString());
@@ -164,30 +174,6 @@ public class DiscordBot
     }
     
     private int ownerId = 0;
-    public Task GenerateFarmCommand(Map map)
-    {
-        _gameFacade.GenerateFarm(map, 0, 1, ownerId);
-        return Task.CompletedTask;
-    }
-
-    public Task GenerateForestCommand(Map map)
-    {
-        _gameFacade.GenerateForest(map, 1, 2, ownerId);
-        return Task.CompletedTask;
-    }
-
-    public Task GenerateStoneMineCommand(Map map)
-    {
-        _gameFacade.GenerateStoneMine(map, 3, 4, ownerId);
-        return Task.CompletedTask;
-    }
-
-    public Task GenerateGoldMineCommand(Map map)
-    {
-        _gameFacade.GenerateGoldMine(map, 5, 6, ownerId);
-        return Task.CompletedTask;
-    }
-
     public async Task SaveGame(CommandContext context, string name)
     {
         var estado = new GameState

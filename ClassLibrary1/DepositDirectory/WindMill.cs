@@ -1,24 +1,28 @@
 ﻿using ClassLibrary1.LogicDirectory;
-namespace  ClassLibrary1.DepositDirectory
+
+namespace ClassLibrary1.DepositDirectory
 {
     public class WindMill : Deposit
     {
         public int OwnerId { get; set; }
-        public int CurrentFood { get; private set; } // Comida actual
-        private readonly ResourceInventory inventory;
-        public WindMill(int endurence, int constructiontimeleft,string name, int maxCapacity, int ownerId, ResourceInventory inventory)
-            : base(endurence,constructiontimeleft, name,  maxCapacity)
+        public int CurrentFood { get; private set; }
+        private readonly ResourceInventory _inventory;
+
+        public WindMill(int endurance, int constructionTimeLeft, string name, int maxCapacity, int ownerId, ResourceInventory inventory)
+            : base(endurance, constructionTimeLeft, name, maxCapacity)
         {
             OwnerId = ownerId;
             CurrentFood = 100;
-            this.inventory = inventory;
+            _inventory = inventory;
         }
-        public void StoreFood(int amount) // Comida Almacenada
+
+        public void StoreFood(int amount)
         {
             int deposited = Math.Min(amount, MaxCapacity - CurrentFood);
             CurrentFood += deposited;
-            inventory.AddGold(deposited);
+            _inventory.AddFood(deposited);
         }
+
         public string EntityType => "WindMill";
-    }      
+    }
 }

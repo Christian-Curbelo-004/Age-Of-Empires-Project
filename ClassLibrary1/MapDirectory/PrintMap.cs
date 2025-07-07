@@ -1,6 +1,7 @@
 using System.Text;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
+using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.QuaryDirectory;
 using ClassLibrary1.UnitsDirectory;
 
@@ -134,6 +135,7 @@ namespace ClassLibrary1.MapDirectory
                 Raider => "Ra",
                 Chivarly => "Ch",
                 Centuries => "Ce",
+
                 CivicCenter => "Cc",
                 Home => "Ho",
                 InfanteryCenter => "IC",
@@ -142,11 +144,20 @@ namespace ClassLibrary1.MapDirectory
                 RaiderCenter => "RC",
                 ChivarlyCenter => "CH",
                 CenturiesCenter => "CE",
+
                 GoldMine => "Gm",
                 StoneMine => "Sm",
                 Forest => "Fo",
+                Farm => "Fa",
+
+                WoodDeposit => "Wd",
+                GoldDeposit => "Gd",
+                StoneDeposit => "Sd",
+                WindMill => "Wm",
+
                 _ => "??"
             };
         }
+        
     }
 }

@@ -1,5 +1,6 @@
 using ClassLibrary1.CommandDirectory;
 using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.MapDirectory;
 using CommandDirectory;
 
@@ -11,20 +12,23 @@ public class MapService : IMapService
     private readonly CombatService _combat;
     private readonly BuildingsConstructor _builder;
 
-    public MapService(Map map)
+    public MapService(
+        Map map,
+        ResourceInventory inventory,
+        WoodDeposit woodDeposit,
+        GoldDeposit goldDeposit,
+        StoneDeposit stoneDeposit,
+        WindMill windMill)
     {
         _map = map;
         _mover = new EntityMover(map);
-        _harvester = new ResourceHarvester(map, _mover);
+        _harvester = new ResourceHarvester(map, _mover, woodDeposit, goldDeposit, stoneDeposit, windMill);
         _combat = new CombatService(map, _mover);
         _builder = new BuildingsConstructor(map);
     }
 
-    public async Task<string> MoveEntityAsync(string entityType, string destination)
-    {
-        var resultList = await _mover.MoveEntityAsync(entityType, destination);
-        return string.Join("\n", resultList);
-    }
+    public async Task<string> MoveEntityAsync(string entityType, string destination) =>
+        string.Join("\n", await _mover.MoveEntityAsync(entityType, destination));
 
     public Task<string> ChopAsync(string entityType, string destination) =>
         _harvester.ChopAsync(entityType, destination);
@@ -38,9 +42,6 @@ public class MapService : IMapService
     public Task<string> AttackAsync(string entityType, string destination) =>
         _combat.AttackAsync(entityType, destination);
 
-    public Task<string> BuildAsync(string buildingType, string destination, Player player)
-    {
-        var result = _builder.Construct(buildingType, destination, player);
-        return Task.FromResult(result);
-    }
+    public Task<string> BuildAsync(string buildingType, string destination, Player player) =>
+        Task.FromResult(_builder.Construct(buildingType, destination, player));
 }
