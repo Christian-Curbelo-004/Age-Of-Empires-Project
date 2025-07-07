@@ -121,6 +121,12 @@ public class DiscordBot
 
         string screen = _showScreen.Screen();
         await message.Channel.SendMessageAsync($"```\n{screen}\n```");
+        
+        _verificarPartida.Verificar();
+        if (_verificarPartida.PartidaTerminada)
+        {
+            await message.Channel.SendMessageAsync("Partida temrino porque uno de los dos se quedó sin centro civico");
+        }
     }
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
     {
