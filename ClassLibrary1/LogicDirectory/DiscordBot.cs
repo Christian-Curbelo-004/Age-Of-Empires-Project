@@ -7,6 +7,7 @@ using ClassLibrary1.MapDirectory;
 using ClassLibrary1.CommandDirectory;
 using ClassLibrary1.Bonus;
 using ClassLibrary1.BuildingsDirectory;
+using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.LogicDirectory;
 using CommandDirectory;
 using IMapEntity = ClassLibrary1.MapDirectory.IMapEntity;
@@ -18,6 +19,7 @@ public class DiscordBot
 
     private GameFacade _gameFacade;
     private Map _map;
+    private Civilization _civilization;
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
@@ -41,7 +43,7 @@ public class DiscordBot
             { "gather", new GatherFoodCommand(_mapService) },
             { "move", new MoveCommand(_mapService) },
             { "attack", new AttackCommand(_mapService) },
-            { "create", new CreateTroopCommand(_map) }
+            { "create", new CreateTroopCommand(_map,_civilization) }
         };
         _commandProcessor = new CommandProcessor(commands);
 

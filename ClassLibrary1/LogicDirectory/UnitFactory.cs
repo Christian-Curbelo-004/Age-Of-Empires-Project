@@ -1,6 +1,7 @@
 using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.UnitsDirectory;
 
+
 namespace ClassLibrary1.LogicDirectory;
 
 public class UnitFactory
@@ -68,7 +69,7 @@ public class UnitFactory
         };
     }
 
-    public static Villagers CreateVillagers()
+    public static GameUnit CreateVillagers()
     {
         return new Villagers(100, 5, 0, 5);
     }
