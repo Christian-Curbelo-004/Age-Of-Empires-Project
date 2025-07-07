@@ -14,7 +14,7 @@ public class CombatService
         _map = map;
         _mover = mover;
     }
-
+    
     public async Task<string> AttackAsync(string entityType, string destination)
     {
         await _mover.MoveEntityAsync(entityType, destination);
@@ -34,8 +34,12 @@ public class CombatService
         if (targetCharacter != null)
         {
             await Task.Delay(2000);
-            int damage = attacker.Attack(targetCharacter);
-            return $"{entityType} atacó a personaje.\nDaño infligido: {damage}. Vida restante: {targetCharacter.Life}";
+            float advantage = CombatAdvantages.GetAddvantage(attacker, targetCharacter);
+            int rawdamage = attacker.AttackValue;
+            int totaldamage = (int)(rawdamage * advantage);
+
+            targetCharacter.Life -= totaldamage;
+            return $"{entityType} atacó a personaje.\nDaño infligido: {totaldamage}. Vida restante: {targetCharacter.Life}";
         }
         
         var targetBuilding = cell.Entities.OfType<Buildings>().FirstOrDefault();

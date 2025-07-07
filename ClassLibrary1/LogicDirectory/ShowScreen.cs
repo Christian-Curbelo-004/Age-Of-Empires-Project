@@ -13,21 +13,19 @@ namespace ClassLibrary1
         private readonly Map _map;
         private readonly Player _playerOne;
         private readonly ResourceInventory _resourceInventory;
+        private readonly Quary quary;
 
-        public ShowScreen(Map map, Player playerOne)
+        public ShowScreen(Map map, Player playerOne, Quary quary)
         {
             _map = map;
             _playerOne = playerOne;
             _resourceInventory = playerOne.Resources;
+            this.quary = quary;
         }
         public string Screen()
         {
             var sb = new StringBuilder();
-
-            //sb.AppendLine("==== MAPA ====");
-            //PrintMap printMap = new PrintMap(_map);
-           // sb.AppendLine(printMap.DisplayMap());
-
+            
             sb.AppendLine("\n==== POBLACIÓN ====");
             sb.AppendLine($"Población actual: {_playerOne.CurrentPoblacion} / {_playerOne.MaxPoblacion}");
 
@@ -81,30 +79,21 @@ namespace ClassLibrary1
 
             return sb.ToString();
         }
-
-        public List<string> GetInfoResources()
+        public string ShowRecolectionResourceMuf()
         {
-            List<string> Resources = new List<string>();
-            foreach (Deposit deposit in _map.GetEntities<Deposit>())
-            {
-                string resourceAmount = $"{deposit.GetType().Name} tiene {_resourceInventory} de {deposit.MaxCapacity}";
-                Resources.Add(resourceAmount);
-            }
-
-            return Resources;
-        }
-
-        public string ShowRecolectionResourceMuf(GameFacade gameFacade)
-        {
-            var ResourceMug = _resourceInventory.ResourceCollectionCup();
-
             var sb = new StringBuilder();
-            sb.AppendLine("Tasa de recolección de recursos:");
-            foreach (var recolect in ResourceMug)
-            {
-                sb.AppendLine($"{recolect.Key} : {recolect.Value}");
-            }
 
+            foreach (var cell in _map.Cells)
+            {
+                if (cell.Resource is Quary quary)
+                {
+                    string resourceType = quary.ResourceType;
+                    int available = quary.CurrentAmount;
+                    int extractionRate = quary.ExtractionRate;
+
+                    sb.AppendLine($"Recurso: {resourceType} - Disponible: {available} - Extracción/aldeano: {extractionRate}");
+                }
+            }
             return sb.ToString();
         }
     }

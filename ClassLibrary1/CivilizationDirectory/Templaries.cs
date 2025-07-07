@@ -1,5 +1,3 @@
-using ClassLibrary1.CivilizationDirectory.CharactersDirectory;
-
 namespace ClassLibrary1.CivilizationDirectory;
 
 public class Templaries : Civilization

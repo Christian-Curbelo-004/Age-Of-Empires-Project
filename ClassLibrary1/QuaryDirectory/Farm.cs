@@ -8,13 +8,13 @@ public class Farm : Quary, IMapEntity
     public string Name { get; set; } = "Farm";
 
     private readonly IResourceCollector _collector;
-    public int CurrentAmount
+    public override int CurrentAmount
     {
         get => Food;
         set => Food = value;
     }
 
-    public string ResourceType => "Food";
+    public override string ResourceType => "Food";
     public int Food { get; private set; }
 
     public Farm(int x, int y, int initialFood, int extractionRate, int collectionValue, int ownerId, IResourceCollector collector)
@@ -26,7 +26,7 @@ public class Farm : Quary, IMapEntity
         CurrentAmount = initialFood;
     }
 
-    public int GetResources(int collectors)
+    public override int GetResources(int collectors)
     {
         int collected = _collector.CalculateCollected(Food, ExtractionRate, collectors);
         Food -= collected;

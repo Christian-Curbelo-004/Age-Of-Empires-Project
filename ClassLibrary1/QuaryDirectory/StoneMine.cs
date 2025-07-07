@@ -10,14 +10,14 @@ namespace ClassLibrary1.QuaryDirectory
 
         private readonly IResourceCollector _collector;
 
-        public int CurrentAmount
+        public override int CurrentAmount
         {
             get => Stone;
             set => Stone = value;
         }
 
         public int Stone { get; private set; }
-        public string ResourceType => "Stone";
+        public override string ResourceType => "Stone";
 
         public StoneMine(int x, int y, int initialStone, int extractionRate, int collectionValue, int ownerId,
             IResourceCollector collector)
@@ -29,7 +29,7 @@ namespace ClassLibrary1.QuaryDirectory
             CurrentAmount = initialStone;
         }
 
-        public int GetResources(int collectors)
+        public override int GetResources(int collectors)
         {
             int collected = _collector.CalculateCollected(Stone, ExtractionRate, collectors);
             Stone -= collected;

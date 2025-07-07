@@ -6,7 +6,7 @@ using ClassLibrary1.UnitsDirectory;
 namespace ClassLibrary1.FacadeDirectory
 {
     public class GameFacade : IFacade
-    {
+    { // Puede ser que se pueda mejorar 
         public Player PlayerOne { get; private set; }
         public Player PlayerTwo { get; private set; }
 

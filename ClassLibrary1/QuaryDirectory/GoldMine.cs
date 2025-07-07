@@ -8,14 +8,14 @@ public class GoldMine : Quary, IMapEntity
     public string Name { get; set; } = "Gold Mine";
 
     private readonly IResourceCollector _collector;
-    public int CurrentAmount
+    public override int CurrentAmount
     {
         get => Gold;
         set => Gold = value;
     }
 
     public int Gold { get; private set; }
-    public string ResourceType => "Gold";
+    public override string ResourceType => "Gold";
 
     public GoldMine(int x, int y, int initialGold, int extractionRate, int collectionValue, int ownerId, IResourceCollector collector)
         : base(ownerId, extractionRate, collectionValue, initialGold)
@@ -26,7 +26,7 @@ public class GoldMine : Quary, IMapEntity
         CurrentAmount = initialGold;
     }
 
-    public int GetResources(int collectors)
+    public override int GetResources(int collectors)
     {
         int collected = _collector.CalculateCollected(Gold, ExtractionRate, collectors);
         Gold -= collected;
