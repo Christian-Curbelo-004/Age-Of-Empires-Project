@@ -2,7 +2,7 @@ using CommandDirectory;
 
 namespace ClassLibrary1.CommandDirectory;
 
-public class GatherFoodCommand : IGameCommand
+public class GatherFoodCommand : IPlayerCommand
 {
     private readonly IMapService _mapService;
 
@@ -11,7 +11,7 @@ public class GatherFoodCommand : IGameCommand
         _mapService = mapService;
     }
 
-    public async Task<string> ExecuteAsync(string entityType, string destination)
+    public async Task<string> ExecuteAsync(string entityType, string destination, Player player)
     {
         return await _mapService.GatherFoodAsync(entityType, destination);
     }

@@ -22,7 +22,7 @@ namespace ClassLibrary1.CommandDirectory
             _unitCreateCore = unitCreateCore;
         }
 
-        public async Task<string> ExecuteAsync(string buildingType, string troopType)
+        public async Task<string> ExecuteAsync(string buildingType, string troopType, Player player)
         {
             var building = _map.GetEntities<ITrainingBuilding>()
                 .FirstOrDefault(b => b.GetType().Name.Equals(buildingType, StringComparison.OrdinalIgnoreCase));

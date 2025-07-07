@@ -77,9 +77,8 @@ public class DiscordBot
             { "move", new MoveCommand(_mapService) },
             { "attack", new AttackCommand(_mapService) },
             { "create", new CreateTroopCommand(_map, _civilization, unitCreateCore) },
-            { "build", new BuildCommand(_mapService, _player) }
+            { "build", new BuildCommand(_mapService) }
         };
-
         _commandProcessor = new CommandProcessor(commands);
 
         _client = new DiscordSocketClient(new DiscordSocketConfig
@@ -123,9 +122,9 @@ public class DiscordBot
     private async Task MessageReceivedAsync(SocketMessage message)
     {
         if (message.Author.IsBot) return;
-        if (!message.Content.StartsWith("!")) return;
-
-        string input = message.Content.Substring(1).Trim();
+        string input = message.Content.Substring(1).Trim(); // sacás el "!" inicial
+        string responseMessage = await _commandProcessor.ProcessCommand(input, _currentPlayer);
+        await message.Channel.SendMessageAsync(responseMessage);
         var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 0) return;
 
@@ -167,14 +166,12 @@ public class DiscordBot
             case "build":
                 if (parts.Length < 3)
                 {
-                    await message.Channel.SendMessageAsync("Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
+                    await message.Channel.SendMessageAsync("Uso correcto: !build+<Entidad>+<x,y> (Ejemplo: !build+home+3,3)");
                     return;
                 }
-                string buildingType = parts[1];
-                string coords = parts[2];
-                string response = await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
+                
 
-                await message.Channel.SendMessageAsync(response);
+                // Mostrar mapa y recursos solo UNA vez
                 await SendScreenAsync(message.Channel);
 
                 NextTurn();
@@ -182,21 +179,8 @@ public class DiscordBot
 
                 _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
                 if (_verificarPartida.PartidaTerminada)
-                {
                     await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
-                }
-                break;
 
-            default:
-                string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
-                await message.Channel.SendMessageAsync(responseGeneral);
-                await SendScreenAsync(message.Channel);
-
-                _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-                if (_verificarPartida.PartidaTerminada)
-                {
-                    await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
-                }
                 break;
         }
     }

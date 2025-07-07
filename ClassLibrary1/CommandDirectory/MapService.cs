@@ -9,8 +9,7 @@ public class MapService : IMapService
     private readonly EntityMover _mover;
     private readonly ResourceHarvester _harvester;
     private readonly CombatService _combat;
-    private readonly BuildingsConstructor _builder;
-    private readonly BuildCreateCore _buildCreateCore;
+    private BuildCreateCore _buildCreateCore;
 
     public MapService(Map map, BuildCreateCore buildCreateCore)
     {
@@ -19,7 +18,6 @@ public class MapService : IMapService
         _mover = new EntityMover(map);
         _harvester = new ResourceHarvester(map, _mover);
         _combat = new CombatService(map, _mover);
-        _builder = new BuildingsConstructor(map,_buildCreateCore );
     }
 
     public async Task<string> MoveEntityAsync(string entityType, string destination) =>
@@ -37,6 +35,10 @@ public class MapService : IMapService
     public Task<string> AttackAsync(string entityType, string destination) =>
         _combat.AttackAsync(entityType, destination);
 
-    public Task<string> BuildAsync(string buildingType, string destination, Player player) =>
-        _builder.ConstructAsync(buildingType, destination, player);
+    public Task<string> BuildAsync(string buildingType, string destination, Player player)
+    {
+        var buildCreateCore = new BuildCreateCore(player.Resources);
+        var builder = new BuildingsConstructor(_map, buildCreateCore);
+        return builder.ConstructAsync(buildingType, destination, player);
+    }
 }

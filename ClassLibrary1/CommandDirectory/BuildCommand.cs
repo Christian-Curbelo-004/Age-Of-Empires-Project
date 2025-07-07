@@ -2,20 +2,23 @@ using CommandDirectory;
 
 namespace ClassLibrary1.CommandDirectory;
 
-public class BuildCommand : IGameCommand
+public class BuildCommand : IPlayerCommand
 {
     private readonly IMapService _mapService;
-    private readonly Player _player;
 
-    public BuildCommand(IMapService mapService, Player player)
+    public BuildCommand(IMapService mapService)
     {
         _mapService = mapService;
-        _player = player;
     }
 
-    public async Task<string> ExecuteAsync(string buildingType, string destination)
+    public async Task<string> ExecuteAsync(string entityType, string destination, Player player)
     {
-        string result = await _mapService.BuildAsync(buildingType, destination, _player);
-        return result;
+        return await _mapService.BuildAsync(entityType, destination, player);
+    }
+
+    // Compatibilidad con IGameCommand
+    public async Task<string> ExecuteAsync(string entityType, string destination)
+    {
+        return "Este comando requiere un jugador.";
     }
 }

@@ -3,7 +3,7 @@ using ClassLibrary1.CivilizationDirectory;
 
 namespace CommandDirectory;
 
-public class AttackCommand : IGameCommand
+public class AttackCommand : IPlayerCommand
 {
     private readonly IMapService _mapService;
 
@@ -12,7 +12,7 @@ public class AttackCommand : IGameCommand
         _mapService = mapService;
     }
 
-    public async Task <string> ExecuteAsync(string entityType, string destination)
+    public async Task <string> ExecuteAsync(string entityType, string destination, Player player)
     {
         return await _mapService.AttackAsync(entityType, destination);
     }
