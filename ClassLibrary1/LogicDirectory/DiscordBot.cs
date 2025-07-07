@@ -140,123 +140,86 @@ public class DiscordBot
         return Task.CompletedTask;
     }
 
-    private async Task MessageReceivedAsync(SocketMessage message)
+private async Task MessageReceivedAsync(SocketMessage message)
+{
+    if (message.Author.IsBot) return;
+    if (!message.Content.StartsWith("!")) return;
+
+    string input = message.Content.Substring(1).Trim();
+    var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+    if (parts.Length == 0) return;
+
+    string command = parts[0].ToLower();
+    
+    if (command == "civilization")
     {
-        if (message.Author.IsBot) return;
-        if (!message.Content.StartsWith("!")) return;
-
-        string input = message.Content.Substring(1).Trim();
-        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length == 0) return;
-
-        string command = parts[0].ToLower();
-
-        if (command == "map")
+        if (parts.Length < 2)
         {
-            await SendMapInMultipleSectors(message.Channel);
+            await message.Channel.SendMessageAsync(
+                "Uso correcto: !civilization+<CivilizationName> (Ejemplo: !civilization+Roman)");
             return;
         }
 
-        if (command == "save")
+        string output = parts[1].ToLower();
+
+        switch (output)
         {
-            if (parts.Length < 2)
-            {
-                await message.Channel.SendMessageAsync(
-                    "Debes especificar el nombre para guardar la partida. Ejemplo: !save partida1");
+            case "roman":
+                _civilization = new Roman();
+                break;
+            case "viking":
+                _civilization = new Viking();
+                break;
+            case "templaries":
+                _civilization = new Templaries();
+                break;
+            default:
+                await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries");
                 return;
-            }
-
-            var name = parts[1];
-            var context = new CommandContext(_client, message as SocketUserMessage);
-            await SaveGame(context, name);
-            return;
         }
 
-        if (command == "load")
+        _civilization.Player = _playerOne;
+        await message.Channel.SendMessageAsync($"Elegiste la civilización: {parts[1]}");
+        return; // ← Muy importante para que no pase al processor
+    }
+    if (command == "build")
+    {
+        if (parts.Length < 3)
         {
-            if (parts.Length < 2)
-            {
-                await message.Channel.SendMessageAsync(
-                    "Debes especificar el nombre de la partida a cargar. Ejemplo: !load partida1");
-                return;
-            }
-
-            var name = parts[1];
-            var context = new CommandContext(_client, message as SocketUserMessage);
-            await LoadGame(context, name);
+            await message.Channel.SendMessageAsync(
+                "Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
             return;
         }
 
-        if (command == "saves")
-        {
-            var context = new CommandContext(_client, message as SocketUserMessage);
-            await SavedGames(context);
-            return;
-        }
+        string buildingType = parts[1];
+        string coords = parts[2];
+        string response = await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
 
-        if (command == "build")
-        {
-            if (parts.Length < 3)
-            {
-                await message.Channel.SendMessageAsync(
-                    "Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
-                return;
-            }
-
-            string buildingType = parts[1];
-            string coords = parts[2];
-            string response =
-                await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
-            await message.Channel.SendMessageAsync(response);
-            await SendScreenAsync(message.Channel);
-            
-            NextTurn();
-            await message.Channel.SendMessageAsync($"Turno de {_currentPlayer}");
-            _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-            if (_verificarPartida.PartidaTerminada)
-            {
-                await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
-            }
-            return;
-        }
-
-        string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
-        await message.Channel.SendMessageAsync(responseGeneral);
-
+        await message.Channel.SendMessageAsync(response);
         await SendScreenAsync(message.Channel);
+
+        NextTurn();
+        await message.Channel.SendMessageAsync($"Turno de {_currentPlayer}");
 
         _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
         if (_verificarPartida.PartidaTerminada)
         {
             await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
         }
-
-        if (command == "civilization")
-        {
-            if (parts.Length < 2)
-            {
-                await message.Channel.SendMessageAsync(
-                    "Uso correcto: !civilization <CivilizationName> (Ejemplo: !civilization+Roman)");
-                return;
-            }
-            
-            string output = parts[1].ToLower();;
-
-            if (output == "Error al elegir la civilizacion")
-            {
-                await message.Channel.SendMessageAsync("Tenes que elegir entre 1: Roman, 2: Vikingos, 3: Templarios");
-            }
-            else
-            {
-                if(output == "Roman") _civilization = new Roman();
-                if(output == "Viking") _civilization = new Viking();
-                if(output == "Templaries") _civilization = new Templaries();
-                _civilization.Player = _playerOne;
-                await message.Channel.SendMessageAsync($"Elegiste la civilizacion: {output}");
-            }
-            
-        }
+        return;
     }
+
+    string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
+    await message.Channel.SendMessageAsync(responseGeneral);
+    await SendScreenAsync(message.Channel);
+
+    _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+    if (_verificarPartida.PartidaTerminada)
+    {
+        await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
+    }
+}
+
 
     private async Task SendScreenAsync(ISocketMessageChannel channel)
     {
