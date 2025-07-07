@@ -1,8 +1,5 @@
 using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.CivilizationDirectory;
 using ClassLibrary1.DepositDirectory;
-using ClassLibrary1.UnitsDirectory;
-
 namespace ClassLibrary1.LogicDirectory
 {
     /// <summary>
@@ -10,208 +7,192 @@ namespace ClassLibrary1.LogicDirectory
     /// </summary>
     public class BuildCreateCore
     {
-        private readonly ResourceInventory inventory;
+        private readonly ResourceInventory _inventory;
         private readonly UnitAffordable unitAffordable;
-
-        /// <summary>
-        /// Inicializa una nueva instancia de <see cref="BuildCreateCore"/>.
-        /// </summary>
-        /// <param name="resourceInventory">Inventario de recursos para poder gastar en construcciones.</param>
         public BuildCreateCore(ResourceInventory resourceInventory)
         {
-            this.inventory = resourceInventory;
+            _inventory = resourceInventory;
             this.unitAffordable = new UnitAffordable(resourceInventory);
         }
-
-        /// <summary>
-        /// Construye un centro de arqueros si hay recursos suficientes.
-        /// </summary>
-        /// <param name="archerCenter">Instancia del centro de arqueros a construir.</param>
-        public async Task ReturnArcherCenter(ArcherCenter archerCenter)
+        public async Task<ArcherCenter?> BuildArcherCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.ArcherCenter))
-            {
-                BuildFactory.CreateArcherCenter();
-                inventory.Spend(CreationCost.ArcherCenter);
-                await ConstructionTimeManager.BuildAsync(archerCenter, 2000);
-                archerCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.ArcherCenter))
+                return null;
+
+            var archerCenter = BuildFactory.CreateArcherCenter(); // este método ahora debe devolver el objeto
+            archerCenter.Position = (x, y);
+            archerCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.ArcherCenter);
+            await ConstructionTimeManager.BuildAsync(archerCenter, 2000);
+            archerCenter.IsConstructed = true;
+
+            return archerCenter;
         }
-
-        /// <summary>
-        /// Construye un centro cívico si hay recursos suficientes.
-        /// </summary>
-        /// <param name="civicCenter">Instancia del centro cívico a construir.</param>
-        public async Task ReturnCivicCenter(CivicCenter civicCenter)
+        public async Task<InfanteryCenter?> BuildInfanteryCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.CivicCenter))
-            {
-                BuildFactory.CreateCivicCenter();
-                inventory.Spend(CreationCost.CivicCenter);
-                await ConstructionTimeManager.BuildAsync(civicCenter, 3000);
-                civicCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.InfanteryCenter))
+                return null;
+
+            var infanteryCenter = BuildFactory.CreateInfanteryCenter(); // este método ahora debe devolver el objeto
+            infanteryCenter.Position = (x, y);
+            infanteryCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.InfanteryCenter);
+            await ConstructionTimeManager.BuildAsync(infanteryCenter, 2000);
+            infanteryCenter.IsConstructed = true;
+
+            return infanteryCenter;
         }
-
-        /// <summary>
-        /// Construye un centro de infantería si hay recursos suficientes.
-        /// </summary>
-        /// <param name="infanteryCenter">Instancia del centro de infantería a construir.</param>
-        public async Task ReturnInfanteryCenter(InfanteryCenter infanteryCenter)
+        public async Task<RaiderCenter?> BuildRaiderCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.InfanteryCenter))
-            {
-                BuildFactory.CreateInfanteryCenter();
-                inventory.Spend(CreationCost.InfanteryCenter);
-                await ConstructionTimeManager.BuildAsync(infanteryCenter, 2000);
-                infanteryCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.RaiderCenter))
+                return null;
+
+            var raiderCenter = BuildFactory.CreateRaiderCenter(); // este método ahora debe devolver el objeto
+            raiderCenter.Position = (x, y);
+            raiderCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.RaiderCenter);
+            await ConstructionTimeManager.BuildAsync(raiderCenter, 2000);
+            raiderCenter.IsConstructed = true;
+
+            return raiderCenter;
         }
-
-        /// <summary>
-        /// Construye un centro de caballería si hay recursos suficientes.
-        /// </summary>
-        /// <param name="chivarlyCenter">Instancia del centro de caballería a construir.</param>
-        public async Task ReturnChivarlyCenter(ChivarlyCenter chivarlyCenter)
+        public async Task<ChivarlyCenter?> BuildChivarlyCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.ChivarlyCenter))
-            {
-                BuildFactory.CreateChivarlyCenter();
-                inventory.Spend(CreationCost.ChivarlyCenter);
-                await ConstructionTimeManager.BuildAsync(chivarlyCenter, 2000);
-                chivarlyCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.ChivarlyCenter))
+                return null;
+
+            var chivarlyCenter = BuildFactory.CreateChivarlyCenter(); // este método ahora debe devolver el objeto
+            chivarlyCenter.Position = (x, y);
+            chivarlyCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.ChivarlyCenter);
+            await ConstructionTimeManager.BuildAsync(chivarlyCenter, 2000);
+            chivarlyCenter.IsConstructed = true;
+
+            return chivarlyCenter;
         }
-
-        /// <summary>
-        /// Construye un centro de saqueadores si hay recursos suficientes.
-        /// </summary>
-        /// <param name="raiderCenter">Instancia del centro de saqueadores a construir.</param>
-        public async Task ReturnRaiderCenter(RaiderCenter raiderCenter)
+        public async Task<StoneDeposit?> BuildStoneDepositAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.RaiderCenter))
-            {
-                BuildFactory.CreateRaiderCenter();
-                inventory.Spend(CreationCost.RaiderCenter);
-                await ConstructionTimeManager.BuildAsync(raiderCenter, 2000);
-                raiderCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.StoneDeposit))
+                return null;
+
+            var stoneDeposit = BuildFactory.CreateStoneDeposit(_inventory); // este método ahora debe devolver el objeto
+            stoneDeposit.Position = (x, y);
+            stoneDeposit.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.StoneDeposit);
+            await ConstructionTimeManager.BuildAsync(stoneDeposit, 2000);
+            stoneDeposit.IsConstructed = true;
+
+            return stoneDeposit;
         }
-
-        /// <summary>
-        /// Construye un centro de paladines si hay recursos suficientes.
-        /// </summary>
-        /// <param name="paladinCenter">Instancia del centro de paladines a construir.</param>
-        public async Task ReturnPaladinCenter(PaladinCenter paladinCenter)
+        public async Task<GoldDeposit?> BuildGoldDepositAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.PaladinCenter))
-            {
-                BuildFactory.CreatePaladinCenter();
-                inventory.Spend(CreationCost.PaladinCenter);
-                await ConstructionTimeManager.BuildAsync(paladinCenter, 2000);
-                paladinCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.GoldDeposit))
+                return null;
+
+            var goldDeposit = BuildFactory.CreateGoldDeposit(_inventory); // este método ahora debe devolver el objeto
+            goldDeposit.Position = (x, y);
+            goldDeposit.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.GoldDeposit);
+            await ConstructionTimeManager.BuildAsync(goldDeposit, 2000);
+            goldDeposit.IsConstructed = true;
+
+            return goldDeposit;
         }
-
-        /// <summary>
-        /// Construye un centro de siglos si hay recursos suficientes.
-        /// </summary>
-        /// <param name="centuriesCenter">Instancia del centro de siglos a construir.</param>
-        public async Task ReturnCenturiesCenter(CenturiesCenter centuriesCenter)
+        public async Task<WoodDeposit?> BuildWoodDepositAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.CenturiesCenter))
-            {
-                BuildFactory.CreateCenturiesCenter();
-                inventory.Spend(CreationCost.CenturiesCenter);
-                await ConstructionTimeManager.BuildAsync(centuriesCenter, 2000);
-                centuriesCenter.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.WoodDeposit))
+                return null;
+
+            var woodDeposit = BuildFactory.CreateWoodDeposit(_inventory); // este método ahora debe devolver el objeto
+            woodDeposit.Position = (x, y);
+            woodDeposit.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.WoodDeposit);
+            await ConstructionTimeManager.BuildAsync(woodDeposit, 2000);
+            woodDeposit.IsConstructed = true;
+
+            return woodDeposit;
         }
-
-        /// <summary>
-        /// Construye un depósito de oro si hay recursos suficientes.
-        /// </summary>
-        /// <param name="goldDeposit">Instancia del depósito de oro a construir.</param>
-        public async Task ReturnGoldDeposit(GoldDeposit goldDeposit)
+        public async Task<CivicCenter?> BuildCivicCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.GoldDeposit))
-            {
-                BuildFactory.CreateGoldDeposit(inventory);
-                inventory.Spend(CreationCost.GoldDeposit);
-                await ConstructionTimeManager.BuildAsync(goldDeposit, 2500);
-                goldDeposit.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.CivicCenter))
+                return null;
+
+            var civicCenter = BuildFactory.CreateCivicCenter(); // este método ahora debe devolver el objeto
+            civicCenter.Position = (x, y);
+            civicCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.CivicCenter);
+            await ConstructionTimeManager.BuildAsync(civicCenter, 2000);
+            civicCenter.IsConstructed = true;
+
+            return civicCenter;
         }
-
-        /// <summary>
-        /// Construye un depósito de madera si hay recursos suficientes.
-        /// </summary>
-        /// <param name="woodDeposit">Instancia del depósito de madera a construir.</param>
-        public async Task ReturnWoodDeposit(WoodDeposit woodDeposit)
+        public async Task<Home?> BuildHomeAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.WoodDeposit))
-            {
-                BuildFactory.CreateWoodDeposit(inventory);
-                inventory.Spend(CreationCost.WoodDeposit);
-                await ConstructionTimeManager.BuildAsync(woodDeposit, 2500);
-                woodDeposit.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.Home))
+                return null;
+
+            var home = BuildFactory.CreateHome(); // este método ahora debe devolver el objeto
+            home.Position = (x, y);
+            home.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.CivicCenter);
+            await ConstructionTimeManager.BuildAsync(home, 2000);
+            home.IsConstructed = true;
+
+            return home;
         }
-
-        /// <summary>
-        /// Construye un depósito de piedra si hay recursos suficientes.
-        /// </summary>
-        /// <param name="stoneDeposit">Instancia del depósito de piedra a construir.</param>
-        public async Task ReturnStoneDeposit(StoneDeposit stoneDeposit)
+        public async Task<PaladinCenter?> BuildPaladinCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.StoneDeposit))
-            {
-                BuildFactory.CreateStoneDeposit(inventory);
-                inventory.Spend(CreationCost.StoneDeposit);
-                await ConstructionTimeManager.BuildAsync(stoneDeposit, 2500);
-                stoneDeposit.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.PaladinCenter))
+                return null;
+
+            var paladinCenter = BuildFactory.CreatePaladinCenter(); // este método ahora debe devolver el objeto
+            paladinCenter.Position = (x, y);
+            paladinCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.WindMill);
+            await ConstructionTimeManager.BuildAsync(paladinCenter, 2000);
+            paladinCenter.IsConstructed = true;
+
+            return paladinCenter;
         }
-
-        /// <summary>
-        /// Construye un molino de viento si hay recursos suficientes.
-        /// </summary>
-        /// <param name="windMill">Instancia del molino de viento a construir.</param>
-        public async Task ReturnWindmill(WindMill windMill)
+        public async Task<WindMill?> BuildWindMillAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.WindMill))
-            {
-                BuildFactory.CreateWindMill(inventory);
-                inventory.Spend(CreationCost.WindMill);
-                await ConstructionTimeManager.BuildAsync(windMill, 2500);
-                windMill.IsConstructed = true;
-            }
+            if (!unitAffordable.CanAfford(CreationCost.WindMill))
+                return null;
+
+            var windMill = BuildFactory.CreateWindMill(_inventory); // este método ahora debe devolver el objeto
+            windMill.Position = (x, y);
+            windMill.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.CivicCenter);
+            await ConstructionTimeManager.BuildAsync(windMill, 2000);
+            windMill.IsConstructed = true;
+
+            return windMill;
         }
-
-        /// <summary>
-        /// Construye una casa si hay recursos suficientes.
-        /// </summary>
-        /// <param name="home">Instancia de la casa a construir.</param>
-        public async Task ReturnHome(Home home)
+        public async Task<CenturiesCenter?> BuildCenturiesCenterAtAsync(int x, int y, int playerId)
         {
-            if (unitAffordable.CanAfford(CreationCost.Home))
-            {
-                BuildFactory.CreateHome();
-                inventory.Spend(CreationCost.Home);
-                await ConstructionTimeManager.BuildAsync(home, 1500);
-                home.IsConstructed = true;
-            }
-        }
+            if (!unitAffordable.CanAfford(CreationCost.CenturiesCenter))
+                return null;
 
-        /// <summary>
-        /// Permite que un aldeano construya un edificio.
-        /// </summary>
-        /// <param name="villager">Aldeano que realizará la construcción.</param>
-        /// <param name="buildings">Edificio a construir.</param>
-        /// <returns>True si la construcción fue iniciada correctamente.</returns>
-        public bool VillagersBuilding(Villagers villager, Buildings buildings)
-        {
-            return villager.Build(buildings);
+            var centuriesCenter = BuildFactory.CreateCenturiesCenter(); // este método ahora debe devolver el objeto
+            centuriesCenter.Position = (x, y);
+            centuriesCenter.OwnerId = playerId;
+
+            _inventory.Spend(CreationCost.CenturiesCenter);
+            await ConstructionTimeManager.BuildAsync(centuriesCenter, 2000);
+            centuriesCenter.IsConstructed = true;
+
+            return centuriesCenter;
         }
     }
 }

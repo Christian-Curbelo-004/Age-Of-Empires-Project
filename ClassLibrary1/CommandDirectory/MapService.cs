@@ -10,6 +10,7 @@ public class MapService : IMapService
     private readonly ResourceHarvester _harvester;
     private readonly CombatService _combat;
     private readonly BuildingsConstructor _builder;
+    private readonly BuildCreateCore _buildCreateCore;
 
     public MapService(Map map)
     {
@@ -17,7 +18,7 @@ public class MapService : IMapService
         _mover = new EntityMover(map);
         _harvester = new ResourceHarvester(map, _mover);
         _combat = new CombatService(map, _mover);
-        _builder = new BuildingsConstructor(map);
+        _builder = new BuildingsConstructor(map,_buildCreateCore );
     }
 
     public async Task<string> MoveEntityAsync(string entityType, string destination) =>
@@ -36,5 +37,5 @@ public class MapService : IMapService
         _combat.AttackAsync(entityType, destination);
 
     public Task<string> BuildAsync(string buildingType, string destination, Player player) =>
-        Task.FromResult(_builder.Construct(buildingType, destination, player));
+        _builder.ConstructAsync(buildingType, destination, player);
 }

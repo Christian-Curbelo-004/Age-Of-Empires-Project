@@ -1,6 +1,5 @@
 using ClassLibrary1.BuildingsDirectory;
-using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1.DepositDirectory;
+using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.QuaryDirectory;
 
 
@@ -9,61 +8,50 @@ namespace ClassLibrary1.CommandDirectory
     public class BuildingsConstructor
     {
         private readonly Map _map;
+        private readonly BuildCreateCore _buildCreateCore;
 
-        public BuildingsConstructor(Map map)
+        public BuildingsConstructor(Map map, BuildCreateCore buildCreateCore)
         {
             _map = map;
+            _buildCreateCore = buildCreateCore;
         }
 
-        public string Construct(string buildingType, string destination, Player player)
+        public async Task<string> ConstructAsync(string buildingType, string destination, Player player)
         {
             var (x, y) = ParseCoords(destination);
             if (!_map.IsWithinBounds(x, y))
-            {
                 return $"Coordenadas ({x},{y}) fuera del mapa.";
-            }
 
             var cell = _map.GetCell(x, y);
-
             if (cell.IsOccupied)
+                return $"La celda ({x},{y}) ya está ocupada.";
+            Buildings? built = buildingType.ToLower() switch
             {
-                return $"La celda ({x},{y}) ya está ocupada, no se puede construir.";
-            }
-
-            var inventory = player.Resources;
-
-            Buildings newBuilding = buildingType.ToLower() switch
-            {
-                "home" => new Home(20, 10, "Home"),
-                "civiccenter" => new CivicCenter(10, 10, "CivicCenter", 1),
-                "archercenter" => new ArcherCenter(20, 13, "ArcherCenter", 1),
-                "chivarlycenter" => new ChivarlyCenter(20, 10, "ChivarlyCenter", 1),
-                "infantrycenter" => new InfanteryCenter(20, 10, "InfantryCenter", 1),
-                "golddeposit" => new GoldDeposit(20, 10, "GoldDeposit", 300, 1, inventory),
-                "stonedeposit" => new StoneDeposit(20, 10, "StoneDeposit", 300, 1, inventory),
-                "windmill" => new WindMill(20, 10, "WindMill", 300, 1, inventory),
-                "wooddeposit" => new WoodDeposit(20, 10, "WoodDeposit", 300, 1, inventory),
+                "archercenter" => await _buildCreateCore.BuildArcherCenterAtAsync(x, y, player.Id),
+                "civiccenter" => await _buildCreateCore.BuildCivicCenterAtAsync(x, y, player.Id),
+                "infantrycenter" => await _buildCreateCore.BuildInfanteryCenterAtAsync(x, y, player.Id),
+                "chivarlycenter" => await _buildCreateCore.BuildChivarlyCenterAtAsync(x, y, player.Id),
+                "home" => await _buildCreateCore.BuildHomeAtAsync(x, y, player.Id),
+                "golddeposit" => await _buildCreateCore.BuildGoldDepositAtAsync(x, y, player.Id),
+                "stonedeposit" => await _buildCreateCore.BuildStoneDepositAtAsync(x, y, player.Id),
+                "wooddeposit" => await _buildCreateCore.BuildWoodDepositAtAsync(x, y, player.Id),
+                "windmill" => await _buildCreateCore.BuildWindMillAtAsync(x, y, player.Id),
+                "RaiderCenter" => await _buildCreateCore.BuildRaiderCenterAtAsync(x,y,player.Id),
+                "PaladinCenter" => await _buildCreateCore.BuildPaladinCenterAtAsync(x,y,player.Id),
+                "CenturiesCenter" => await _buildCreateCore.BuildCenturiesCenterAtAsync(x,y,player.Id),
                 _ => null
             };
 
-            if (newBuilding == null)
-            {
-                return $"Tipo de edificio '{buildingType}' no reconocido.";
-            }
+            if (built == null)
+                return $"No se pudo construir '{buildingType}': recursos insuficientes o tipo desconocido.";
+            cell.Entities.Add(built);
+            if (built is IResourceDeposit deposit)
+                cell.Resource = deposit;
+            
+            player.Buildings.Add(built);
 
-            newBuilding.Position = (x, y);
-            newBuilding.OwnerId = player.Id;
-            cell.Entities.Add(newBuilding);
-            player.Buildings.Add(newBuilding);
-
-            if (newBuilding is IResourceDeposit resource)
-            {
-                cell.Resource = resource;
-            }
-
-            return $"{buildingType} construido en ({x},{y}) por el jugador {player.Id}.";
+            return $"{buildingType} construido correctamente en ({x},{y}) por el jugador {player.Id}.";
         }
-
         private (int x, int y) ParseCoords(string input)
         {
             var parts = input.Split(',');
