@@ -1,5 +1,6 @@
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.QuaryDirectory;
+using ClassLibrary1.UnitsDirectory;
 
 public static class MapUtils
 {
@@ -43,11 +44,12 @@ public static class MapUtils
         return false;
     }
 
-    public static int ColocarRecursosEnEsquina(Map map, int inicialX, int inicialY, int width, int height, int cantidadRecursos, Random random)
+    public static int ColocarRecursosEnEsquina(Map map, int inicialX, int inicialY, int width, int height, int cantidadRecursos, Random random, int ownerId)
     {
         int attemptsLimit = cantidadRecursos * 5;
         int placed = 0;
         int attempts = 0;
+        var collector = new Villagers(100, 1, ownerId, 3);
 
         while (placed < cantidadRecursos && attempts < attemptsLimit)
         {
@@ -57,16 +59,15 @@ public static class MapUtils
 
             IMapEntity entity = random.Next(3) switch
             {
-                // Arreglar después de lo de Getresources
-                //0 => new Forest(5, 0, 50, 150),
-                //1 => new GoldMine(5, 0, 50, 50),
-                //_ => new StoneMine(5, 0, 50, 75),
+                0 => new Forest(x, y, 300, 10, 5, ownerId, collector),
+                1 => new GoldMine(x, y, 300, 10, 5, ownerId, collector),
+                _ => new StoneMine(x, y, 300, 10, 5,ownerId,  collector)
             };
 
             if (TryPlaceEntityNearby(map, entity, x, y))
                 placed++;
         }
 
-        return placed; // Devolvés cuántos se colocaron correctamente
+        return placed;
     }
 }

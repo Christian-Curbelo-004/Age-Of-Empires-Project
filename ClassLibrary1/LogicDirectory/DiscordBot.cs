@@ -1,4 +1,3 @@
-using System.Net.Sockets;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
@@ -9,7 +8,6 @@ using ClassLibrary1.CommandDirectory;
 using ClassLibrary1.Bonus;
 using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.CivilizationDirectory;
-using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
 using ClassLibrary1.UnitsDirectory;
 using CommandDirectory;
@@ -26,7 +24,7 @@ public class DiscordBot
     private ShowScreen _showScreen;
     private MapService _mapService;
     private Player _player;
-    private Quary _quary; // Declarado pero no inicializado (cuidado)
+    private Quary _quary;
     private VerificarPartidaPerdida _verificarPartida;
     private readonly SaveGame _gameState = new SaveGame();
     private Player _playerOne;
@@ -38,33 +36,24 @@ public class DiscordBot
         _gameFacade = new GameFacade();
         _map = _gameFacade.GenerateMap();
         _gameFacade.InitializePlayers();
+
         _playerOne = _gameFacade.PlayerOne;
         _playerTwo = _gameFacade.PlayerTwo;
         _player = _playerOne;
         _currentPlayer = _playerOne;
-        var villagersCollector = new Villagers(100, 2, _player.Id, 3);
 
-        _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id,
-            collector: villagersCollector);
+        Random random = new Random();
+        MapUtils.ColocarRecursosEnEsquina(_map, 0, 0, 40, 40, 70, random, _playerOne.Id);
+        MapUtils.ColocarRecursosEnEsquina(_map, _map.Width - 25, _map.Height - 25, 40, 40, 70, random, _playerTwo.Id);
+
+        var villagersCollector = new Villagers(100, 2, _player.Id, 3);
+        _quary = new Farm(x: 5, y: 5, initialFood: 100, extractionRate: 10, collectionValue: 5, ownerId: _player.Id, collector: villagersCollector);
 
         _showScreen = new ShowScreen(_map, _player, _quary);
-
-        // Ejemplo de recursos en el mapa
-        var inventory = new ResourceInventory();
-        var woodDeposit = new WoodDeposit(100, 0, "WoodDeposit", 500, _player.Id, inventory);
-        var goldDeposit = new GoldDeposit(100, 0, "GoldDeposit", 500, _player.Id, inventory);
-        var stoneDeposit = new StoneDeposit(100, 0, "StoneDeposit", 500, _player.Id, inventory);
-        var windMill = new WindMill(100, 0, "WindMill", 500, _player.Id, inventory);
-
-        _map.PlaceEntity(woodDeposit, 11, 11);
-        _map.PlaceEntity(goldDeposit, 12, 11);
-        _map.PlaceEntity(stoneDeposit, 13, 11);
-        _map.PlaceEntity(windMill, 14, 11);
-
         _mapService = new MapService(_map);
-
         _verificarPartida = new VerificarPartidaPerdida(_map);
         _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+
         _civilization = new Roman();
         _civilization.Player = _currentPlayer;
 
@@ -73,13 +62,7 @@ public class DiscordBot
         var knowingCell = new KnowingCell(_map);
         var unitAffordable = new UnitAffordable(player.Resources);
 
-        var unitCreateCore = new UnitCreateCore(
-            resourceInventory,
-            _map,
-            player,
-            knowingCell,
-            unitAffordable
-        );
+        var unitCreateCore = new UnitCreateCore(resourceInventory, _map, player, knowingCell, unitAffordable);
 
         var commands = new Dictionary<string, IGameCommand>
         {
@@ -117,16 +100,8 @@ public class DiscordBot
 
     private void NextTurn()
     {
-        if (_currentPlayer == _playerOne)
-        {
-            _currentPlayer = _playerTwo;
-        }
-        else
-        {
-            _currentPlayer = _playerOne;
-        }
+        _currentPlayer = _currentPlayer == _playerOne ? _playerTwo : _playerOne;
     }
-    
 
     private Task LogAsync(LogMessage log)
     {
@@ -140,100 +115,100 @@ public class DiscordBot
         return Task.CompletedTask;
     }
 
-private async Task MessageReceivedAsync(SocketMessage message)
-{
-    if (message.Author.IsBot) return;
-    if (!message.Content.StartsWith("!")) return;
-
-    string input = message.Content.Substring(1).Trim();
-    var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-    if (parts.Length == 0) return;
-
-    string command = parts[0].ToLower();
-    
-    if (command == "civilization")
+    private async Task MessageReceivedAsync(SocketMessage message)
     {
-        if (parts.Length < 2)
-        {
-            await message.Channel.SendMessageAsync(
-                "Uso correcto: !civilization+<CivilizationName> (Ejemplo: !civilization+Roman)");
-            return;
-        }
+        if (message.Author.IsBot) return;
+        if (!message.Content.StartsWith("!")) return;
 
-        string output = parts[1].ToLower();
+        string input = message.Content.Substring(1).Trim();
+        var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0) return;
 
-        switch (output)
+        string command = parts[0].ToLower();
+
+        switch (command)
         {
-            case "roman":
-                _civilization = new Roman();
+            case "map":
+                // Para evitar mensajes muy largos, imprimimos el mapa en sectores
+                await SendMapInMultipleSectors(message.Channel);
                 break;
-            case "viking":
-                _civilization = new Viking();
+
+            case "civilization":
+                if (parts.Length < 2)
+                {
+                    await message.Channel.SendMessageAsync("Uso correcto: !civilization+<CivilizationName> (Ejemplo: !civilization+Roman)");
+                    return;
+                }
+                string civName = parts[1].ToLower();
+                switch (civName)
+                {
+                    case "roman":
+                        _civilization = new Roman();
+                        break;
+                    case "viking":
+                        _civilization = new Viking();
+                        break;
+                    case "templaries":
+                        _civilization = new Templaries();
+                        break;
+                    default:
+                        await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries");
+                        return;
+                }
+                _civilization.Player = _playerOne;
+                await message.Channel.SendMessageAsync($"Elegiste la civilización: {parts[1]}");
                 break;
-            case "templaries":
-                _civilization = new Templaries();
+
+            case "build":
+                if (parts.Length < 3)
+                {
+                    await message.Channel.SendMessageAsync("Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
+                    return;
+                }
+                string buildingType = parts[1];
+                string coords = parts[2];
+                string response = await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
+
+                await message.Channel.SendMessageAsync(response);
+                await SendScreenAsync(message.Channel);
+
+                NextTurn();
+                await message.Channel.SendMessageAsync($"Turno de {_currentPlayer}");
+
+                _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+                if (_verificarPartida.PartidaTerminada)
+                {
+                    await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
+                }
                 break;
+
             default:
-                await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries");
-                return;
+                string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
+                await message.Channel.SendMessageAsync(responseGeneral);
+                await SendScreenAsync(message.Channel);
+
+                _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
+                if (_verificarPartida.PartidaTerminada)
+                {
+                    await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
+                }
+                break;
         }
-
-        _civilization.Player = _playerOne;
-        await message.Channel.SendMessageAsync($"Elegiste la civilización: {parts[1]}");
-        return; // ← Muy importante para que no pase al processor
     }
-    if (command == "build")
-    {
-        if (parts.Length < 3)
-        {
-            await message.Channel.SendMessageAsync(
-                "Uso correcto: !build <BuildingType> <x,y> (Ejemplo: !build CivicCenter 10,10)");
-            return;
-        }
-
-        string buildingType = parts[1];
-        string coords = parts[2];
-        string response = await _commandProcessor.ProcessCommand($"{command} {buildingType} {coords}".ToLower());
-
-        await message.Channel.SendMessageAsync(response);
-        await SendScreenAsync(message.Channel);
-
-        NextTurn();
-        await message.Channel.SendMessageAsync($"Turno de {_currentPlayer}");
-
-        _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-        if (_verificarPartida.PartidaTerminada)
-        {
-            await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
-        }
-        return;
-    }
-
-    string responseGeneral = await _commandProcessor.ProcessCommand(input.ToLower());
-    await message.Channel.SendMessageAsync(responseGeneral);
-    await SendScreenAsync(message.Channel);
-
-    _verificarPartida.Verificar(_playerOne.Id, _playerTwo.Id);
-    if (_verificarPartida.PartidaTerminada)
-    {
-        await message.Channel.SendMessageAsync("Partida terminó porque uno de los dos se quedó sin centro cívico");
-    }
-}
-
 
     private async Task SendScreenAsync(ISocketMessageChannel channel)
     {
         string screen = _showScreen.Screen();
         await channel.SendMessageAsync($"```\n{screen}\n```");
         string resourcemessage = _showScreen.ShowRecolectionResourceMuf();
-        await channel.SendMessageAsync(($"```\n{resourcemessage}\n```"));
+        await channel.SendMessageAsync($"```\n{resourcemessage}\n```");
     }
 
     private async Task SendMapInMultipleSectors(ISocketMessageChannel channel)
     {
-        PrintMap printMap = new PrintMap(_map);
-        int sectorWidth = 25;
-        int sectorHeight = 20;
+        var printMap = new PrintMap(_map);
+        const int sectorWidth = 25;
+        const int sectorHeight = 20;
 
         int mapWidth = _map.Width;
         int mapHeight = _map.Height;
@@ -306,4 +281,3 @@ private async Task MessageReceivedAsync(SocketMessage message)
         await context.Channel.SendMessageAsync($"Partidas guardadas:\n{list}");
     }
 }
-
