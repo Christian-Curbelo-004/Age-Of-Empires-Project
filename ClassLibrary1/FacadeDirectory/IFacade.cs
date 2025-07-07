@@ -1,13 +1,15 @@
 ﻿namespace ClassLibrary1.FacadeDirectory
-
-
 {
-    public interface IFacade      
+    public interface IFacade
     {
         Map GenerateMap();
-        void GenerateQuary(Map map);
-        void GenerateVillagers(Map map);
-        void GenerateCivicCenter(Map map);
-        void InitializePlayer(Map map);
+        void InitializePlayers();
+
+        void GenerateCivicCenter(Map map, Player player, (int x, int y) position);
+        void GenerateVillagers(Map map, Player player, (int x, int y) startPosition);
+        void GenerateQuarries(Map map);
+
+        Player PlayerOne { get; }
+        Player PlayerTwo { get; }
     }
-} 
+}

@@ -35,7 +35,7 @@ public class DiscordBot
     {
         _gameFacade = new GameFacade();
         _map = _gameFacade.GenerateMap();
-        _gameFacade.InitializePlayer(_map);
+        _gameFacade.InitializePlayers();
         _playerOne = _gameFacade.PlayerOne;
         _playerTwo = _gameFacade.PlayerTwo;
         _player = _playerOne;
@@ -318,7 +318,5 @@ public class DiscordBot
         string list = string.Join("\n", games);
         await context.Channel.SendMessageAsync($"Partidas guardadas:\n{list}");
     }
-
-    
 }
 
