@@ -1,11 +1,17 @@
 using Discord;
 using Discord.WebSocket;
 using ClassLibrary1;
+using ClassLibrary1.Bonus;
+using ClassLibrary1.BuildingsDirectory;
 using ClassLibrary1.FacadeDirectory;
 using ClassLibrary1.MapDirectory;
 using ClassLibrary1.CommandDirectory;
+using ClassLibrary1.DepositDirectory;
 using ClassLibrary1.LogicDirectory;
+using ClassLibrary1.UnitsDirectory;
 using CommandDirectory;
+using Discord.Commands;
+using IMapEntity = ClassLibrary1.MapDirectory.IMapEntity;
 
 public class DiscordBot
 {
@@ -18,7 +24,8 @@ public class DiscordBot
     private MapService _mapService;
     private Player _player;
     private VerificarPartidaPerdida _verificarPartida;
-    
+    private readonly SaveGame _gameState =  new SaveGame();
+
     public async Task StartAsync()
     {
         _gameFacade = new GameFacade();
@@ -28,9 +35,9 @@ public class DiscordBot
         _showScreen = new ShowScreen(_map, _player);
         _mapService = new MapService(_map);
         _verificarPartida = new VerificarPartidaPerdida(_gameFacade, _map);
-        
+
         var commands = new Dictionary<string, IGameCommand>
-        
+
         {
             { "chop", new ChopCommand(_mapService) },
             { "mine", new MineCommand(_mapService) },
@@ -86,7 +93,7 @@ public class DiscordBot
             await SendMapInMultipleSectors(message.Channel);
             return;
         }
-        
+
         string response = await _commandProcessor.ProcessCommand(input);
         await message.Channel.SendMessageAsync(response);
 
@@ -129,10 +136,10 @@ public class DiscordBot
         var buildCommand = new BuildCommand(_mapService, _player);
         return await buildCommand.ExecuteAsync("Farm", "10");
     }
-    
+
     public Task GenerateFarmCommand(Map map)
     {
-        _gameFacade.GenerateFarm(map, 0,1);
+        _gameFacade.GenerateFarm(map, 0, 1);
         return Task.CompletedTask;
     }
 
@@ -153,4 +160,54 @@ public class DiscordBot
         _gameFacade.GenerateGoldMine(map, 5, 6);
         return Task.CompletedTask;
     }
+
+    public async Task SaveGame(CommandContext context, string name)
+    {
+        var estado = new GameState
+        {
+            PlayerName = context.User.Username,
+            Resources = new ResourceInventory(), 
+            Buildings = new List<Buildings>(),
+            Units = new List<IMapEntity>(), 
+            Position = _player.StartingPosition
+
+        };
+       _gameState.Save(name, estado);
+       await context.Channel.SendMessageAsync($"{name} la partida fue guardada correctamente.");
+    }
+    public async Task LoadGame(CommandContext context, string name)
+    {
+        try
+        {
+            var game = _gameState.Load(name);
+            
+            _player.Resources = game.Resources;
+            _player.Buildings = game.Buildings;
+            _player.Units = game.Units;
+            _player.StartingPosition = game.Position;
+            
+            await context.Channel.SendMessageAsync($"{name} la partida fue cargada con exito.");
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error al cargar el juego: {e.Message}");
+            throw;
+        }
+    }
+
+    public async Task SavedGames(CommandContext context)
+    {
+        var games = _gameState.ListSaves();
+        if (games.Count == 0)
+        {
+            await context.Channel.SendMessageAsync("No hay partidas guardadas");
+            return;
+        }
+        string ListGameSaved = string.Join("\n", games);
+        await context.Channel.SendMessageAsync(ListGameSaved);
+    }
 }
+
+
+

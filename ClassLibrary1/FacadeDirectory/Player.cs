@@ -8,8 +8,8 @@ public class Player
 {
     public int Id { get; set; }
     public string Civilization { get; set; }
-    public List<Buildings> Buildings { get; set; } = new List<Buildings>();
-    public List<IMapEntity> Units { get; set; } = new List<IMapEntity>();
+    public List<Buildings> Buildings { get; set; } = new();
+    public List<IMapEntity> Units { get; set; } = new();
     public List<Villagers> Villagers { get; set; } = new();
     public int MaxPoblacion { get; set; }
     public int CurrentPoblacion => Units.Count;
