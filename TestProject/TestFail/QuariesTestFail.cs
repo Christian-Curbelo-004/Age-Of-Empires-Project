@@ -1,4 +1,4 @@
-namespace TestProject
+namespace TestProject.TestFail
 {
     public class TestQuariesFail
     {

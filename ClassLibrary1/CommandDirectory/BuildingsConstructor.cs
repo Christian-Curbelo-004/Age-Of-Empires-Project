@@ -71,4 +71,3 @@ public async Task<string> ConstructAsync(string buildingType, string destination
         }
     }
 }
-

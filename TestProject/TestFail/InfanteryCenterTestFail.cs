@@ -1,7 +1,7 @@
 using ClassLibrary1.BuildingsDirectory;
 
 
-namespace TestProject
+namespace TestProject.TestFail
 {
     public class TestInfanteryCenterFail
     {

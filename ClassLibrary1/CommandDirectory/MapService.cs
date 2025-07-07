@@ -9,15 +9,20 @@ public class MapService : IMapService
     private readonly EntityMover _mover;
     private readonly ResourceHarvester _harvester;
     private readonly CombatService _combat;
+
     private BuildCreateCore _buildCreateCore;
+    private readonly BuildingsConstructor _builder;
+
 
     public MapService(Map map, BuildCreateCore buildCreateCore)
     {
         _map = map;
-        _buildCreateCore = buildCreateCore;
         _mover = new EntityMover(map);
         _harvester = new ResourceHarvester(map, _mover);
         _combat = new CombatService(map, _mover);
+
+        _builder = new BuildingsConstructor(map,buildCreateCore );
+
     }
 
     public async Task<string> MoveEntityAsync(string entityType, string destination) =>

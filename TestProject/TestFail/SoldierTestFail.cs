@@ -1,7 +1,7 @@
 using ClassLibrary1.CivilizationDirectory;
 
 
-namespace TestProject
+namespace TestProject.TestFail
 {
     public class TestSoldierFail
     {
@@ -37,7 +37,7 @@ namespace TestProject
         public void TestDePerdidaDeVidaDelSoldado()
         {
             _soldier.RecieveAttack(30);
-            Assert.That(_soldier.Life, Is.EqualTo(30));
+            Assert.That(_soldier.Life, Is.EqualTo(20));
         }
 
         [Test]

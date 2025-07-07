@@ -1,6 +1,6 @@
 using ClassLibrary1.DepositDirectory;
 
-namespace TestProject;
+namespace TestProject.TestFail;
 
 [TestFixture]
 public class DepositTestFail

@@ -31,6 +31,9 @@ public class DiscordBot
     private Player _playerTwo;
     private Player _currentPlayer;
     private GameInitializer _gameInitializer;
+    private Civilization _civilizationPlayerOne;
+    private Civilization _civilizationPlayerTwo;
+    
 
     public async Task StartAsync()
     {
@@ -137,32 +140,44 @@ public class DiscordBot
                 await SendMapInMultipleSectors(message.Channel);
                 break;
 
-            case "civilization":
-                if (parts.Length < 2)
-                {
-                    await message.Channel.SendMessageAsync("Uso correcto: !civilization+<CivilizationName> (Ejemplo: !civilization+Roman)");
-                    return;
-                }
-                string civName = parts[1].ToLower();
-                switch (civName)
-                {
-                    case "roman":
-                        _civilization = new Roman();
-                        break;
-                    case "viking":
-                        _civilization = new Viking();
-                        break;
-                    case "templaries":
-                        _civilization = new Templaries();
-                        break;
-                    default:
-                        await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries");
+                case "start":
+                    if (parts.Length < 3)
+                    {
+                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationName> (Ejemplo: !civilization+Roman)");
                         return;
-                }
-                _civilization.Player = _playerOne;
-                await message.Channel.SendMessageAsync($"Elegiste la civilización: {parts[1]}");
-                break;
-
+                    }
+                    
+                    string civNameUno = parts[1].ToLower();
+                    string civNameDos = parts[2].ToLower();
+                    
+                    _civilizationPlayerOne = civNameUno 
+                        switch
+                    {
+                        "roman" => new Roman(),
+                        "viking" => new Viking(),
+                        "templaries" => new Templaries(),
+                        _ => null
+                    };
+                    _civilizationPlayerTwo = civNameDos 
+                        switch
+                    {
+                        "roman" => new Roman(),
+                        "viking" => new Viking(),
+                        "templaries" => new Templaries(),
+                        _ => null
+                    };
+                    if (_playerOne == null || _playerTwo == null)
+                    {
+                        await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries para ambos jugadores.");
+                        return;
+                    }
+                    
+                    _civilizationPlayerOne.Player = _playerOne;
+                    _civilizationPlayerTwo.Player = _playerTwo;
+                    await message.Channel.SendMessageAsync($"El jugador 1 eligió la civilizacion {civNameUno}");
+                    await message.Channel.SendMessageAsync($"El jugador 2 eligió la civilizacion {civNameDos}");
+                    break;
+            
             case "build":
                 if (parts.Length < 3)
                 {

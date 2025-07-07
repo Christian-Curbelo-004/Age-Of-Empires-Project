@@ -1,6 +1,6 @@
 using ClassLibrary1.UnitsDirectory;
 
-namespace TestProject;
+namespace TestProject.TestFail;
 
 public class TestCivilizationFail
 {
