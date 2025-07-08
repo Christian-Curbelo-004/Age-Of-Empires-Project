@@ -87,7 +87,7 @@ namespace ClassLibrary1.LogicDirectory
         /// <returns>Instancia de <see cref="Home"/>.</returns>
         public static Home CreateHome()
         {
-            return new Home(80, 0, "Home");
+            return new Home(80, 0, "Home",0);
         }
 
         /// <summary>
