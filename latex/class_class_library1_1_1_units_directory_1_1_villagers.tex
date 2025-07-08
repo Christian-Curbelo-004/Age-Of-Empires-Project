@@ -1,0 +1,207 @@
+\doxysection{Class\+Library1.\+Units\+Directory.\+Villagers Class Reference}
+\hypertarget{class_class_library1_1_1_units_directory_1_1_villagers}{}\label{class_class_library1_1_1_units_directory_1_1_villagers}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+Inheritance diagram for Class\+Library1.\+Units\+Directory.\+Villagers\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.424936cm]{class_class_library1_1_1_units_directory_1_1_villagers}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e}{Villager\+State}} \{ \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eae1ee5e871179672ccffb0043842ca6c5}{Is\+Free}}
+, \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eaf9c6c1a304bd3a5afa18a65da4d07851}{Construyendo}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} (int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a4446e649b9efe9809c57c069ecd1c52d}{X}}, int Y) \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a40b04cc3c1b57e25ba313d3d2058a66e}{Position}}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ab18b42fe564254fb6c59466942c9d60b}{Villagers}} (int life, int attack\+Value, int owner\+Id, int speed)
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_adb6016131ddac423fc5ec26544d6337c}{Attack}} (\mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character}{ICharacter}} target)
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a49286f8b5ecc8c668fd5bcdb2ff86990}{Recieve\+Attack}} (int damage)
+\item 
+bool \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a70e9add0929ff941129a4130e226cfed}{Build}} (\mbox{\hyperlink{class_class_library1_1_1_buildings_directory_1_1_buildings}{Buildings}} buildings)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units}{Class\+Library1.\+Units\+Directory.\+Units}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a011564d87c142e19de42fe4032b3e65f}{Move\+To}} (int x, int y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a102666c8a4cf766eb2dbeed25649f2c6}{Life}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a5f5d639954d5488518367c38081d4fa1}{Attack\+Value}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a0a8bc396a0b22eb0d3a4fec4a8825be9}{Speed}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} string \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a4769a4ec74afe74694ff5b45bf4bf605}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a05a6f78dfd3a68b71d07794cde69bd36}{Owner\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e}{Villager\+State}} \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_aabfc7b17c743ecae7f2b5b2e22cad352}{State}} = \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eae1ee5e871179672ccffb0043842ca6c5}{Villager\+State.\+Is\+Free}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units}{Class\+Library1.\+Units\+Directory.\+Units}}}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_af072d949a381776011b97e34d1eb312d}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a4064dba906bb122f022c880a4fffdd8a}{Owner\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int int Y \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a40b04cc3c1b57e25ba313d3d2058a66e}{Position}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_abbcbd95c053a71d57e8b879dd0f38f02}{Health}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a132c41b366de0388cac9ea80baaa2023}{Speed}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units}{Class\+Library1.\+Units\+Directory.\+Units}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_units_a4446e649b9efe9809c57c069ecd1c52d}{X}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{interface_class_library1_1_1_map_directory_1_1_i_map_entity}{Class\+Library1.\+Map\+Directory.\+IMap\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_class_library1_1_1_map_directory_1_1_i_map_entity_abb1fba62a047ca021e73a562cdc50031}{X}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!VillagerState@{VillagerState}}
+\index{VillagerState@{VillagerState}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{VillagerState}{VillagerState}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e} 
+enum \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e}{Class\+Library1.\+Units\+Directory.\+Villagers.\+Villager\+State}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IsFree@{IsFree}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!IsFree@{IsFree}}}\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eae1ee5e871179672ccffb0043842ca6c5}\label{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eae1ee5e871179672ccffb0043842ca6c5} 
+Is\+Free&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Construyendo@{Construyendo}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Construyendo@{Construyendo}}}\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eaf9c6c1a304bd3a5afa18a65da4d07851}\label{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eaf9c6c1a304bd3a5afa18a65da4d07851} 
+Construyendo&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_ab18b42fe564254fb6c59466942c9d60b}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Villagers@{Villagers}}
+\index{Villagers@{Villagers}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Villagers()}{Villagers()}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_ab18b42fe564254fb6c59466942c9d60b} 
+Class\+Library1.\+Units\+Directory.\+Villagers.\+Villagers (\begin{DoxyParamCaption}\item[{int}]{life}{, }\item[{int}]{attack\+Value}{, }\item[{int}]{owner\+Id}{, }\item[{int}]{speed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_adb6016131ddac423fc5ec26544d6337c}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Attack@{Attack}}
+\index{Attack@{Attack}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Attack()}{Attack()}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_adb6016131ddac423fc5ec26544d6337c} 
+int Class\+Library1.\+Units\+Directory.\+Villagers.\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character}{ICharacter}}}]{target}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character_a25810b206ef3dd356c7076e355c55d8e}{Class\+Library1.\+Civilization\+Directory.\+ICharacter}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a70e9add0929ff941129a4130e226cfed}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Build@{Build}}
+\index{Build@{Build}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Build()}{Build()}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a70e9add0929ff941129a4130e226cfed} 
+bool Class\+Library1.\+Units\+Directory.\+Villagers.\+Build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_class_library1_1_1_buildings_directory_1_1_buildings}{Buildings}}}]{buildings}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!new@{new}}
+\index{new@{new}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64} 
+Class\+Library1.\+Units\+Directory.\+Villagers.\+new (\begin{DoxyParamCaption}\item[{int}]{X}{, }\item[{int}]{Y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a49286f8b5ecc8c668fd5bcdb2ff86990}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!RecieveAttack@{RecieveAttack}}
+\index{RecieveAttack@{RecieveAttack}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{RecieveAttack()}{RecieveAttack()}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a49286f8b5ecc8c668fd5bcdb2ff86990} 
+int Class\+Library1.\+Units\+Directory.\+Villagers.\+Recieve\+Attack (\begin{DoxyParamCaption}\item[{int}]{damage}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character_a1e5560fe15e7156ecb261dfb1fb90240}{Class\+Library1.\+Civilization\+Directory.\+ICharacter}}.
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a5f5d639954d5488518367c38081d4fa1}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!AttackValue@{AttackValue}}
+\index{AttackValue@{AttackValue}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{AttackValue}{AttackValue}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a5f5d639954d5488518367c38081d4fa1} 
+int Class\+Library1.\+Units\+Directory.\+Villagers.\+Attack\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character_a52acaa1eea94176d79b33371a348b5e0}{Class\+Library1.\+Civilization\+Directory.\+ICharacter}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a102666c8a4cf766eb2dbeed25649f2c6}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Life@{Life}}
+\index{Life@{Life}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Life}{Life}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a102666c8a4cf766eb2dbeed25649f2c6} 
+int Class\+Library1.\+Units\+Directory.\+Villagers.\+Life\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_i_character_a29b3cbdd1ddacd3f474a300beab0abd8}{Class\+Library1.\+Civilization\+Directory.\+ICharacter}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a4769a4ec74afe74694ff5b45bf4bf605}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Name@{Name}}
+\index{Name@{Name}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a4769a4ec74afe74694ff5b45bf4bf605} 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} string Class\+Library1.\+Units\+Directory.\+Villagers.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_map_directory_1_1_i_map_entity_a6c05e40f599977a26b622275432426d9}{Class\+Library1.\+Map\+Directory.\+IMap\+Entity}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a05a6f78dfd3a68b71d07794cde69bd36}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!OwnerId@{OwnerId}}
+\index{OwnerId@{OwnerId}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{OwnerId}{OwnerId}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a05a6f78dfd3a68b71d07794cde69bd36} 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} int Class\+Library1.\+Units\+Directory.\+Villagers.\+Owner\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_map_directory_1_1_i_map_entity_ae7076085a6889c5c40ecd36b8dee9a49}{Class\+Library1.\+Map\+Directory.\+IMap\+Entity}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_a0a8bc396a0b22eb0d3a4fec4a8825be9}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!Speed@{Speed}}
+\index{Speed@{Speed}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{Speed}{Speed}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_a0a8bc396a0b22eb0d3a4fec4a8825be9} 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_ac6ad137df61cb629ecc11d15b5d08c64}{new}} int Class\+Library1.\+Units\+Directory.\+Villagers.\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_class_library1_1_1_civilization_directory_1_1_characters_directory_1_1_i_movable_aa528da665bad0a13845fd751603b5d25}{Class\+Library1.\+Civilization\+Directory.\+Characters\+Directory.\+IMovable}}.
+
+\Hypertarget{class_class_library1_1_1_units_directory_1_1_villagers_aabfc7b17c743ecae7f2b5b2e22cad352}\index{ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}!State@{State}}
+\index{State@{State}!ClassLibrary1.UnitsDirectory.Villagers@{ClassLibrary1.UnitsDirectory.Villagers}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \label{class_class_library1_1_1_units_directory_1_1_villagers_aabfc7b17c743ecae7f2b5b2e22cad352} 
+\mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0e}{Villager\+State}} Class\+Library1.\+Units\+Directory.\+Villagers.\+State = \mbox{\hyperlink{class_class_library1_1_1_units_directory_1_1_villagers_a9d6334c6671e8056733a8884ee935b0eae1ee5e871179672ccffb0043842ca6c5}{Villager\+State.\+Is\+Free}}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Class\+Library1/\+Civilization\+Directory/\+Characters\+Directory/\mbox{\hyperlink{_villagers_8cs}{Villagers.\+cs}}\end{DoxyCompactItemize}
