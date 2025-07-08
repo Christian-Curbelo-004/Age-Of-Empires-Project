@@ -111,14 +111,14 @@ public class EntityMover
 
                 await Task.Delay(1000 / movableEntity.Speed);
 
-                originCell.Entities.Remove(entity);
+                _map.Cells[currentX, currentY].Entities.Remove(entity);
                 entity.Position = (nextX, nextY);
                 nextCell.Entities.Add(entity);
 
                 currentX = nextX;
                 currentY = nextY;
 
-                messages.Add($"{entityType} movido a ({currentX},{currentY}).");
+                messages.Add($"{(entity as IMapEntity)?.Symbol}{(entity as IMapEntity)?.OwnerId} movido a ({currentX},{currentY}).");
             }
 
             messages.Add($"{entityType} llegó a destino ({to.x},{to.y}).");

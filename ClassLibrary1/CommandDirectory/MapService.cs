@@ -46,4 +46,16 @@ public class MapService : IMapService
         var builder = new BuildingsConstructor(_map, buildCreateCore);
         return builder.ConstructAsync(buildingType, destination, player);
     }
+    public async Task<string> MoveEntitiesOfTypeAsync(string entityType, int amount, (int x, int y) from, (int x, int y) to, int playerId)
+    {
+        var originCell = _map.Cells[from.x, from.y];
+        var playerEntities = originCell.Entities
+            .Where(e => e.OwnerId == playerId && e.GetType().Name.Equals(entityType, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (playerEntities.Count == 0)
+            return $"No hay entidades '{entityType}' del jugador {playerId} en ({from.x},{from.y}).";
+        int toMove = amount == int.MaxValue ? playerEntities.Count : Math.Min(amount, playerEntities.Count);
+        var result = await _mover.MoveEntitiesOfTypeAsync(entityType, toMove, from, to);
+        return string.Join("\n", result);
+    }
 }

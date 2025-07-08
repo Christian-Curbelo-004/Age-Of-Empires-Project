@@ -8,4 +8,5 @@ public interface IMapService
     Task<string> MineAsync(string entityType, string destination);
     Task <string>AttackAsync(string entityType, string destination);
     Task<string> BuildAsync(string buildingType, string destination, Player player);
+    Task<string> MoveEntitiesOfTypeAsync(string entityType, int amount, (int x, int y) from, (int x, int y) to, int playerId);
 }

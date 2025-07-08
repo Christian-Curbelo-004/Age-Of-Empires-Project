@@ -21,7 +21,7 @@ public class CommandProcessor
 
         string verb = parts[0].ToLower();
         string entityType = parts[1];
-        string destination = parts[2];
+        string parameters = string.Join('+', parts.Skip(2)); 
 
         if (!_commands.TryGetValue(verb, out var command))
             return $"Comando no reconocido: '{verb}'.";
@@ -29,7 +29,7 @@ public class CommandProcessor
         try
         {
             if (command is IPlayerCommand playerCommand)
-                return await playerCommand.ExecuteAsync(entityType, destination, currentPlayer);
+                return await playerCommand.ExecuteAsync(entityType, parameters, currentPlayer);
             else
                 return "Este comando no admite jugadores. Implementalo como IPlayerCommand.";
         }
