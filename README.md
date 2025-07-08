@@ -21,3 +21,24 @@ como git, temas y además abordar una experiencia cargada de trabajo en equipo.Y
 podemos decir que, si miramos el inicio del curso, y comparamos nuestras expectativas a 
 como estaban el primer dia, y nuestros conocimientos desde el día 1 hasta el dia de hoy, 
 hemos avanzado y aprendido mucho del curso. 
+
+
+
+Aca esta la lista de comandos para que puedas jugar Age-Of-Empires 
+1) “chop” + unidad + coordenadas 
+2) “mine” + unidad + coordenadas 
+3) “gather” + unidad + coordenadas 
+4) “move” + unidad + coordenadas 
+5) “attack” + unidad + coordenadas 
+6) “create” + unidad + coordenadas 
+7) “build” + unidad + coordenadas 
+1- Con el comando chop, lo que haces es que el tipo de unidad que mandes, acompañada 
+de coordenadas coherentes, vaya a recolectar madera(talar). 
+2- Con el comando map, lo que haces es también, junto a tipo de unidad y coordenadas que 
+existan es mandar a minar, recolectar piedra. 
+3- El comando gather, lo que haces es mandar a la unidad a recolectar comida. 
+4- Aca vos decis que quieres mover la unidad a un tipo de coordenada específica. 
+5- Mandas a atacar a una unidad a una coordenada. 
+6-Crear una unidad nueva en alguna parte del mapa. 
+7- Construir un edificio en alguna parte del mapa, claramente tiene que estar dentro de los 
+parámetros correctos del mapa. 
