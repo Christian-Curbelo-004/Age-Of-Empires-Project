@@ -128,7 +128,7 @@ public class DiscordBot
         string input = message.Content.Substring(1).Trim(); // sacás el "!" inicial
         string responseMessage = await _commandProcessor.ProcessCommand(input, _currentPlayer);
         await message.Channel.SendMessageAsync(responseMessage);
-        var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        var parts = input.Split('+');//var parts = input.Split(new[] { '+', ' ' }, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 0) return;
 
         string command = parts[0].ToLower();
@@ -143,7 +143,7 @@ public class DiscordBot
                 case "start":
                     if (parts.Length < 3)
                     {
-                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationName> (Ejemplo: !start+Roman)");
+                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationNamePlayer1>+<CivilizationNamePlayer2> (Ejemplo: !start+Roman+Templaries)");
                         return;
                     }
                     
