@@ -12,6 +12,6 @@ public class MineCommand : IPlayerCommand
 
     public async Task<string> ExecuteAsync(string entityType, string destination, Player player)
     {
-        return await _mapService.MineAsync(entityType, destination);
+        return await _mapService.MineAsync(entityType, destination, player);
     }
 }

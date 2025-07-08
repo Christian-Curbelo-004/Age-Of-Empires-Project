@@ -68,7 +68,7 @@ public class ResourceHarvester
         return $"No hay granja en ({x},{y}).";
     }
 
-    public async Task<string> MineAsync(string entityType, string destination)
+    public async Task<string> MineAsync(string entityType, string destination, Player player)
     {
         await _mover.MoveEntityAsync(entityType, destination);
         var (x, y) = _mover.ParseCoords(destination);
@@ -88,7 +88,7 @@ public class ResourceHarvester
             var goldDeposit = _map.GetEntities<GoldDeposit>()
                 .FirstOrDefault(d => d.OwnerId == goldMine.OwnerId);
 
-            goldDeposit?.StoreGold(collected);
+            player.Resources.AddGold(collected);;
 
             return $"{entityType} minó oro en ({x},{y}) y recolectó {collected}. Restante: {goldMine.CurrentAmount}";
         }
@@ -98,12 +98,13 @@ public class ResourceHarvester
         {
             await Task.Delay(8000);
             int collected = stoneMine.GetResources(1);
+            player.Resources.AddStone(collected);
             stoneMine.CurrentAmount = Math.Max(0, stoneMine.CurrentAmount - collected);
 
             var stoneDeposit = _map.GetEntities<StoneDeposit>()
                 .FirstOrDefault(d => d.OwnerId == stoneMine.OwnerId);
 
-            stoneDeposit?.StoreStone(collected);
+           
 
             return $"{entityType} minó piedra en ({x},{y}) y recolectó {collected}. Restante: {stoneMine.CurrentAmount}";
         }

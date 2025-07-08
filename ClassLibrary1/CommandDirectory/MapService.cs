@@ -33,9 +33,8 @@ public class MapService : IMapService
 
     public Task<string> GatherFoodAsync(string entityType, string destination) =>
         _harvester.GatherFoodAsync(entityType, destination);
-
-    public Task<string> MineAsync(string entityType, string destination) =>
-        _harvester.MineAsync(entityType, destination);
+    public Task<string> MineAsync(string entityType, string destination, Player player) =>
+        _harvester.MineAsync(entityType, destination, player);
 
     public Task<string> AttackAsync(string entityType, string destination) =>
         _combat.AttackAsync(entityType, destination);
