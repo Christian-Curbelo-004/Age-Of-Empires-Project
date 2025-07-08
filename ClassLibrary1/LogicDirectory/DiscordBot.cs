@@ -141,13 +141,15 @@ public class DiscordBot
                 break;
 
                 case "start":
-                    if (parts.Length < 2)
+                    if (parts.Length < 3)
                     {
-                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationNamePlayer1>+<CivilizationNamePlayer2> (Ejemplo: !start+Roman)");
+                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationNamePlayer1>+<CivilizationNamePlayer2> (Ejemplo: !start+Roman+Templaries)");
                         return;
                     }
                     
                     string civNameUno = parts[1].ToLower();
+                    string civNameDos = parts[2].ToLower();
+                    
                     _civilizationPlayerOne = civNameUno switch
                     {
                         "roman" => new Roman(),
@@ -155,14 +157,6 @@ public class DiscordBot
                         "templaries" => new Templaries(),
                         _ => null
                     };
-                    
-                    if (parts.Length < 2)
-                    {
-                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationNamePlayer1>+<CivilizationNamePlayer2> (Ejemplo: !start+Vikings)");
-                        return;
-                    }
-                    
-                    string civNameDos = parts[2].ToLower();
                     _civilizationPlayerTwo = civNameDos switch
                     {
                         "roman" => new Roman(),
