@@ -150,23 +150,21 @@ public class DiscordBot
                     string civNameUno = parts[1].ToLower();
                     string civNameDos = parts[2].ToLower();
                     
-                    _civilizationPlayerOne = civNameUno 
-                        switch
+                    _civilizationPlayerOne = civNameUno switch
                     {
                         "roman" => new Roman(),
                         "viking" => new Viking(),
                         "templaries" => new Templaries(),
                         _ => null
                     };
-                    _civilizationPlayerTwo = civNameDos 
-                        switch
+                    _civilizationPlayerTwo = civNameDos switch
                     {
                         "roman" => new Roman(),
                         "viking" => new Viking(),
                         "templaries" => new Templaries(),
                         _ => null
                     };
-                    if (_playerOne == null || _playerTwo == null)
+                    if (_civilizationPlayerOne == null || _civilizationPlayerTwo == null)
                     {
                         await message.Channel.SendMessageAsync("Tenés que elegir entre: Roman, Viking o Templaries para ambos jugadores.");
                         return;
