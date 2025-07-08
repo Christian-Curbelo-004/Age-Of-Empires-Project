@@ -122,6 +122,10 @@ namespace ClassLibrary1.MapDirectory
 
         private string GetSymbolForEntity(IMapEntity entity)
         {
+            if (entity is Forest || entity is GoldMine || entity is StoneMine || entity is Farm)
+            {
+                return entity.Symbol ?? "??";
+            }
             return $"{entity.Symbol}{entity.OwnerId}";
         }
     }
