@@ -143,7 +143,7 @@ public class DiscordBot
                 case "start":
                     if (parts.Length < 3)
                     {
-                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationName> (Ejemplo: !civilization+Roman)");
+                        await message.Channel.SendMessageAsync("Uso correcto: !start+<CivilizationName> (Ejemplo: !start+Roman)");
                         return;
                     }
                     
